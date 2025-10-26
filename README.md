@@ -2,10 +2,10 @@
 
 本文档概述了将 hexo-theme-archer 迁移到 Halo 主题的计划。
 
-原始主题位于hexo-theme-archer 要完成的主题文件位置在根目录，
+原始主题位于[hexo-theme-archer](https://github.com/fi3ework/hexo-theme-archer) 要完成的主题文件位置在根目录，
 template文件夹主题模板目录，存放主题模板文件，所有模板都需要放在这个目录。
 halo文件夹是halo的源代码，不需要访问。
-主题的编写指南在theme-dev-doc，请在生成代码过程中有不清楚的地方可以翻阅theme-dev-doc。
+主题的编写指南在[theme-dev-doc](https://github.com/halo-dev/docs/tree/main/versioned_docs/version-2.21/developer-guide)，请在生成代码过程中有不清楚的地方可以翻阅theme-dev-doc。
 如果你需要移动文件夹或者大量文件，可以停止并且告诉我需要移动的文件和目标位置。
 /templates/assets/- 主题静态资源目录，存放主题的静态资源文件，目前静态资源文件只能放在这个目录。
 /theme.yaml- 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。
