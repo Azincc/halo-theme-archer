@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html
+  th:lang="${#locale.toLanguageTag}"
+  th:fragment="html (content,page_js,_title,_head)"
+  xmlns:th="http://www.thymeleaf.org"
+  theme="dark"
+  class="dark"
+  th:with="site_title = ${not #strings.isEmpty(_title) ?  _title+' - '+site.title  :  #strings.isEmpty(site.subtitle) ? site.title :  site.title +' - ' +site.subtitle }"
+>
+  <head th:replace="~{modules/head :: head}"></head>
+
+  <body
+    th:classappend="${#authentication.name  != 'anonymousUser' ? ' logged-in' : ''}"
+    th:with="contributor = ${contributorFinder.getContributor(#authentication.name)},
+      roleNames = ${#annotations.get(contributor, 'rbac.authorization.halo.run/role-names')},
+      roleName= ${roleNames == '[]' ? 'super-' : #strings.substring(roleNames,2, #strings.length(roleNames) - 2) }"
+  >
+    <th:block th:replace="~{modules/header}" />
+    <main class="min-h-screen" id="site-main">
+      <th:block th:replace="${content}" />
+    </main>
+    <footer class="relative z-[2] mt-16 p-[24px]">
+      <div class="sm:px-8">
+        <div class="mx-auto max-w-7xl lg:px-8">
+          <div class="border-t border-zinc-100 py-10 text-zinc-500 md:px-4 dark:border-zinc-700/40 dark:text-zinc-400">
+            <figure class="flex flex-wrap justify-between gap-y-[1em]">
+              <div
+                class="footer-info flex flex-wrap items-center text-sm"
+                th:text="|©${#dates.year(#dates.createNow())} ${site.title}版权所有.|"
+              ></div>
+              <div
+                class="site-link flex flex-wrap content-center text-sm"
+                th:with="sfooter_info = ${theme.config.footer.sfooter_info}"
+              >
+                <a
+                  th:each="sfooter : ${sfooter_info}"
+                  role="button"
+                  target="_blank"
+                  th:href="${sfooter.sf_link}"
+                  class="menu-item"
+                >
+                  <img th:src="${sfooter.sf_img}" class="" alt="底部链接" />
+                  <span th:text="${sfooter.sf_title}"></span>
+                </a>
+              </div>
+            </figure>
+            <div
+              th:if="${theme.config.footer.show_stats}"
+              class="mt-[1em] flex flex-wrap items-center justify-start gap-2 text-zinc-400 md:mt-1 dark:text-zinc-500"
+              th:with="stats = ${siteStatsFinder.getStats()}"
+            >
+              <span class="flex items-center justify-center gap-1 text-xs md:justify-start">
+                <i class="iconfont icon-views1 text-sm"></i>
+                <span>总浏览量</span>
+                <span th:data-num="${stats.visit}" class="format-num"></span>
+              </span>
+              <span class="flex items-center justify-center gap-1 text-xs md:justify-start">
+                <i class="iconfont icon-cate text-sm"></i>
+                <span>文章数量</span>
+                <span th:data-num="${stats.post}" class="format-num"></span>
+              </span>
+              <span class="flex items-center justify-center gap-1 text-xs md:justify-start">
+                <i class="iconfont icon-add-comment text-sm"></i>
+                <span>讨论次数</span>
+                <span th:data-num="${stats.comment}" class="format-num"></span>
+              </span>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  main.prettifyContainer(".format-num");
+                });
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="canvas-top"></div>
+    <div class="canvas-bottom"></div>
+    <div class="canvas-wrapper mx-auto max-w-7xl">
+      <div class="wrapper bg-zinc-50/90 ring-1 ring-zinc-100 dark:bg-zinc-900/80 dark:ring-zinc-400/20"></div>
+    </div>
+    <div class="site-bg pointer-events-none fixed inset-0 z-0 select-none bg-top bg-repeat"></div>
+    <span
+      class="pointer-events-none fixed top-0 block h-[800px] w-full select-none bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(5,5,5,0.045)_0%,rgba(0,0,0,0)_100%)] dark:bg-[radial-gradient(103.72%_46.58%_at_50%_0%,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0)_100%)]"
+    ></span>
+
+    <script
+      th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"
+      type="text/javascript"
+    ></script>
+    <script
+      th:src="@{/assets/lit-dist/vapor-lit-wc.iife.js?v={version}(version=${theme.spec.version})}"
+      type="text/javascript"
+    ></script>
+    <script>
+      main.initializeColorScheme("[[${theme.config.style.color_scheme}]]");
+    </script>
+    <th:block th:if="${page_js != null}">
+      <th:block th:replace="${page_js}" />
+    </th:block>
+    <script
+      type="text/javascript"
+      th:src="@{/assets/js/function.js?ver={version}(version=${theme.spec.version})}"
+      id="function-js"
+    ></script>
+    <script
+      type="text/javascript"
+      th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
+      th:utext="${theme.config.custom.code_js}"
+    ></script>
+    <th:block
+      th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
+      th:utext="${theme.config.custom.footer_html}"
+    >
+    </th:block>
+    <halo:footer />
+  </body>
+</html>

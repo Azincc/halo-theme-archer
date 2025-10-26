@@ -1,0 +1,11 @@
+<div th:fragment="base-title-tags(post, className)" th:class="${className}">
+    <div th:if="${theme.config.style.show_categories == true && !#lists.isEmpty(post.categories)}">
+        <span class="post-category" th:data-categories="${#strings.listJoin(post.categories.![spec.displayName], '/')}">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text" th:text="${#strings.listJoin(post.categories.![spec.displayName], '/')}"></span>
+        </span>
+    </div>
+    <th:block th:each="tag : ${post.tags}">
+        <a class="post-tag" href="javascript:void(0);" th:data-tags="${tag.spec.displayName}" th:text="${tag.spec.displayName}"></a>
+    </th:block>
+</div>

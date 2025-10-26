@@ -20,6 +20,72 @@ spec:
           label: 网站图标
           value: "/assets/favicon.ico"
 
+    - group: layout
+      label: 首页布局
+      formSchema:
+        - $formkit: attachment
+          name: home_avatar
+          id: home_avatar
+          key: home_avatar
+          label: 首页展示头像
+          value: ""
+        - $formkit: code
+          language: html
+          height: 200px
+          name: home_slogan
+          id: home_slogan
+          key: home_slogan
+          label: 首页介绍词
+
+        - $formkit: number
+          name: featured_focus_num
+          id: featured_focus_num
+          key: featured_focus_num
+          label: 推荐阅读｜数量
+          value: 6
+          min: 0
+          help: 默认 6 条。输入 0 则关闭该板块。
+          validation: required
+
+        - $formkit: text
+          name: blogger_keywords
+          id: blogger_keywords
+          key: blogger_keywords
+          label: 博主介绍关键词
+          value: 开发者,攻城狮,细节控,写博客
+          help: "必须使用英文逗号分隔，最多四个词语"
+
+        - $formkit: repeater
+          name: home_links
+          label: 社交链接
+          value:
+            - value: twitter
+            - value: youtube
+            - value: bilibili
+            - value: github
+            - value: telegram
+            - value: email
+          children:
+            - $formkit: select
+              name: value
+              label: 类型
+              options:
+                - label: Twitter链接
+                  value: twitter
+                - label: Youtube链接
+                  value: youtube
+                - label: Bilibili链接
+                  value: bilibili
+                - label: Github链接
+                  value: github
+                - label: Telegram链接
+                  value: telegram
+                - label: 首页邮箱
+                  value: email
+            - $formkit: text
+              name: home_links_url
+              label: 链接
+
     - group: profile
       label: 个人资料
       formSchema:
@@ -57,10 +123,66 @@ spec:
             - name: "email"
               url: "mailto:12345@qq.com"
               icon: "fas fa-envelope"
+        - $formkit: repeater
+          name: friends
+          label: 友情链接
+          children:
+            - $formkit: text
+              name: name
+              label: "名称"
+              validation: "required"
+            - $formkit: text
+              name: url
+              label: "链接"
+              validation: "required"
+        - $formkit: group
+          name: profile_icons
+          label: "个人资料图标"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: text
+              name: friends
+              label: "友链图标"
+              value: "fas fa-heart"
+            - $formkit: text
+              name: about
+              label: "关于图标"
+              value: "fas fa-id-card"
+            - $formkit: text
+              name: search
+              label: "搜索图标"
+              value: "fas fa-search"
+        - $formkit: repeater
+          name: profile_links
+          label: "附加个人链接"
+          children:
+            - $formkit: text
+              name: name
+              label: "名称"
+            - $formkit: text
+              name: url
+              label: "链接"
+            - $formkit: text
+              name: icon
+              label: "图标"
 
     - group: style
       label: 风格设置
       formSchema:
+        - $formkit: select
+          name: color_scheme
+          label: 默认配色
+          value: system
+          options:
+            - label: 跟随系统
+              value: system
+            - label: 深色
+              value: dark
+            - label: 浅色
+              value: light
         - $formkit: attachment
           name: site_header_image
           label: 首页顶部图片
@@ -128,6 +250,45 @@ spec:
           name: show_categories
           label: 显示文章分类
           value: false
+        - $formkit: number
+          name: truncate_length
+          label: "摘要截断长度"
+          value: 300
+        - $formkit: checkbox
+          name: read_more_button
+          label: "显示阅读更多按钮"
+          value: false
+        - $formkit: checkbox
+          name: toc
+          label: "启用文章目录"
+          value: true
+        - $formkit: checkbox
+          name: reading_info
+          label: "显示字数和阅读时间"
+          value: false
+
+    - group: search
+      label: "站内搜索"
+      formSchema:
+        - $formkit: checkbox
+          name: enable
+          label: "启用"
+          value: false
+        - $formkit: text
+          name: url
+          label: "搜索 URL"
+          description: "例如：'fi3ework.github.io'"
+        - $formkit: radio
+          name: engine
+          label: "搜索引擎"
+          options:
+            - label: "bing"
+              value: "bing"
+            - label: "google"
+              value: "google"
+            - label: "baidu"
+              value: "baidu"
+          value: "bing"
 
     - group: seo
       label: SEO 设置
@@ -216,12 +377,58 @@ spec:
               name: enable
               label: 启用不蒜子统计
               value: true
+            - $formkit: radio
+              name: pv_or_uv
+              label: "PV or UV"
+              options:
+                - label: "pv"
+                  value: "pv"
+                - label: "uv"
+                  value: "uv"
+              value: "pv"
+            - $formkit: text
+              name: slug
+              label: "自定义分析标语"
+              value: "PV: ${count} :)"
         - $formkit: text
           name: baidu_analytics
           label: 百度统计 ID
         - $formkit: text
           name: google_analytics
           label: 谷歌统计 ID
+        - $formkit: text
+          name: CNZZ_analytics
+          label: "CNZZ 统计 ID"
+
+    - group: footer
+      label: 页脚
+      formSchema:
+        - $formkit: repeater
+          name: sfooter_info
+          label: 底部信息
+          value:
+            - sf_title: 鄂ICP备xxxxxxx号
+              sf_link: https://beian.miit.gov.cn/
+              sf_img: /themes/halo-theme-vapor/assets/imgs/icpb.webp
+          children:
+            - $formkit: text
+              name: sf_title
+              label: 信息文本
+            - $formkit: text
+              name: sf_link
+              label: 信息链接
+            - $formkit: attachment
+              name: sf_img
+              label: 图标
+              accepts:
+                - "image/*"
+        - $formkit: checkbox
+          name: show_stats
+          key: show_stats
+          id: show_stats
+          label: 显示统计信息
+          value: true
+          help: 在站点底部显示全站的统计信息
 
     - group: other
       label: 其他设置
@@ -237,3 +444,155 @@ spec:
               name: license
               label: 许可协议
               value: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
+        - $formkit: group
+          name: website_approve
+          label: "网站审批"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: text
+              name: icp_approve
+              label: "ICP 备案号"
+            - $formkit: text
+              name: beian_approve
+              label: "公安备案号"
+            - $formkit: attachment
+              name: beian_img
+              label: "公安备案图标"
+        - $formkit: group
+          name: outdated_threshold
+          label: "文章时效性提示"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: number
+              name: days
+              label: "阈值天数"
+              value: 180
+            - $formkit: checkbox
+              name: specify_article
+              label: "为指定文章启用"
+              value: false
+        - $formkit: group
+          name: mermaid
+          label: "Mermaid 图表"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: text
+              name: version
+              label: "版本"
+              value: "8.11.0"
+            - $formkit: text
+              name: theme
+              label: "主题"
+              value: "dark"
+        - $formkit: group
+          name: math
+          label: "LaTeX 数学公式"
+          children:
+            - $formkit: group
+              name: mathjax
+              children:
+                - $formkit: checkbox
+                  name: enable
+                  label: "启用 MathJax"
+                  value: false
+                - $formkit: text
+                  name: version
+                  label: "版本"
+                  value: "3.2.0"
+        - $formkit: group
+          name: custom_font
+          label: "自定义字体"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: text
+              name: name
+              label: "字体名称"
+              value: "Noto Sans SC:n3,n4,n5,n7"
+            - $formkit: text
+              name: url
+              label: "字体 CDN URL"
+              value: "https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+
+    - group: custom
+      label: 扩展设置
+      formSchema:
+        - $formkit: textarea
+          name: keywords
+          label: SEO关键词
+          rows: 3
+        - $formkit: code
+          name: code_css
+          label: 自定义CSS代码
+          height: 200px
+          language: css
+        - $formkit: code
+          name: code_js
+          label: 自定义JavaScript代码
+          height: 200px
+          language: javascript
+        - $formkit: code
+          name: head_html
+          label: 自定义HTML代码-头部
+          height: 200px
+          language: html
+        - $formkit: code
+          name: footer_html
+          label: 自定义HTML代码-底部
+          height: 200px
+          language: html
+
+    - group: pluginPage
+      label: 特殊页面设置
+      formSchema:
+        - $formkit: text
+          name: douban_description
+          label: 豆瓣页面描述
+          value: 光影、旋律、文字、像素与舞台在此交汇，每段记录都藏着当时的心跳与感悟。
+        - $formkit: checkbox
+          name: "douban_comment"
+          label: "豆瓣页面允许评论"
+          value: "true"
+          on-value: "true"
+          off-value: "false"
+        - $formkit: text
+          name: moments_description
+          label: 瞬间页面描述
+          value: 生活碎片在此停泊，一句碎念、半帧风景、偶然心绪都被妥帖收藏，拼凑成时光的鲜活注脚。
+        - $formkit: checkbox
+          name: "moments_comment"
+          label: "瞬间页面允许评论"
+          value: "true"
+          on-value: "true"
+          off-value: "false"
+        - $formkit: text
+          name: equipment_description
+          label: 装备页面描述
+          value: 实物装备推荐，一起享受科技带来的乐趣
+        - $formkit: checkbox
+          name: "equipment_comment"
+          label: "装备页面允许评论"
+          value: "true"
+          on-value: "true"
+          off-value: "false"
+        - $formkit: text
+          name: photos_description
+          label: 图库页面描述
+          value: 帧帧光影凝住时光絮语，每幅画面都是笔尖未及的温柔心事与灵感回响。
+        - $formkit: checkbox
+          name: "photos_comment"
+          label: "图库页面允许评论"
+          value: "true"
+          on-value: "true"
+          off-value: "false"

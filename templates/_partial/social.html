@@ -1,0 +1,9 @@
+<th:block th:fragment="social">
+    <th:block th:each="socialItem : ${theme.config.profile.social}">
+        <a th:if="${socialItem.name == 'email'}" th:href="'mailto:' + ${socialItem.url}" th:class="'iconfont-archer ' + ${socialItem.name}" th:title="${socialItem.name}"></a>
+        <span th:if="${socialItem.name == 'wechat' || socialItem.name == 'qq'}" th:class="'iconfont-archer ' + ${socialItem.name}" th:title="${socialItem.name}">
+            <img class="profile-qr" th:src="@{${socialItem.url}}" />
+        </span>
+        <a th:if="${socialItem.name != 'email' && socialItem.name != 'wechat' && socialItem.name != 'qq'}" th:href="@{${socialItem.url}}" th:class="'iconfont-archer ' + ${socialItem.name}" target="_blank" th:title="${socialItem.name}"></a>
+    </th:block>
+</th:block>

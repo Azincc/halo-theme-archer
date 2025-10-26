@@ -1,0 +1,7 @@
+<main class="main tags-page">
+    <div class="tags-container">
+        <div class="tag-cloud">
+            <a th:each="tag : ${tags}" th:href="@{${tag.status.permalink}}" class="tag-cloud-item" th:text="${tag.spec.displayName}" th:style="'font-size: ' + ${#numbers.random(12, 30)} + 'px;'"></a>
+        </div>
+    </div>
+</main>
