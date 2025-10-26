@@ -1,18 +1,34 @@
-# archer-halo (migrated)
+# Hexo to Halo Theme Migration Plan
 
-这是从 Hexo 主题迁移为 Halo 的最小样例。按照 Halo 官方 theme-starter 结构准备。
+This document outlines the plan for migrating the hexo-theme-archer to a Halo theme.
 
-安装与测试
-1. 将本项目的代码克隆到本地：
-   git clone https://github.com/Azincc/halo-theme-archer.git
-2. 新建并切换到 migrate 分支（如果尚未拉取远端 migrate 分支）：
-   git fetch origin
-   git checkout -b migrate origin/migrate
-   # 或者如果你在本地已经有 migrate 分支： git checkout migrate
-3. 把 themes/archer-halo 目录放到你的 Halo 服务实例的 `themes/` 下，或把此仓库作为主题仓库（取决于你的部署方式）。
-4. 在 Halo 管理后台启用主题或重启 Halo 服务以加载新主题。
-5. 根据需要把 SCSS 编译为 resources/css/style.css，并把静态资源放到 resources/ 下。
+## Migration Plan
 
-注意事项
-- 这是最小可运行结构，迁移完整功能（例如：tag 列表、搜索、评论、分页、partials 等）需要把 Hexo EJS 文件逐一手动改写为 Halo 模板变量/语法。
-- 检查 Hexo 使用的自定义 helper（例如时间格式化、摘要）并在模板中用 Halo 的 API/表达式替换或在后端提供。
+1.  **Theme Configuration Migration**
+    *   Analyze the `hexo-theme-archer/_config.yml` file to understand its configuration options.
+    *   Map and migrate these configuration options to the `settings.yaml` file for theme settings in Halo.
+    *   Check and confirm that the basic theme information in `theme.yaml` is correct.
+
+2.  **Static Asset Migration**
+    *   Copy all static asset files (e.g., CSS, JavaScript, images, fonts) from the `hexo-theme-archer/source` directory to the `/templates/assets` directory.
+
+3.  **Template File Migration**
+    *   Analyze all template files (usually `.ejs` files) in the `hexo-theme-archer/layout` directory.
+    *   Convert these Hexo template files to the Freemarker template format supported by Halo.
+    *   Place the converted template files in the `/templates` directory. This includes, but is not limited to:
+        *   `index.ftl` (Home)
+        *   `post.ftl` (Post detail)
+        *   `page.ftl` (Custom page)
+        *   `archives.ftl` (Archives)
+        *   `categories.ftl` (Categories)
+        *   `tags.ftl` (Tags)
+        *   `header.ftl` (Common header)
+        *   `footer.ftl` (Common footer)
+        *   `sidebar.ftl` (Sidebar)
+
+4.  **Language File Migration**
+    *   Analyze the language files in the `hexo-theme-archer/languages` directory.
+    *   Integrate these language files into the Halo theme to support multi-language features.
+
+5.  **Update README.md**
+    *   After each operation, I will update the `README.md` file with detailed progress.
