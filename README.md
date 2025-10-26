@@ -25,7 +25,7 @@ halo文件夹是halo的源代码，不需要访问。
 
 3. **模板文件迁移**
     * 分析 `hexo-theme-archer/layout` 目录中的所有模板文件（通常是 `.ejs` 文件）。
-    * 将这些 Hexo 模板文件转换为 Halo 支持的 Freemarker 模板格式。
+    * 将这些 Hexo 模板文件转换为 Halo 支持的 Thymeleaf 模板格式。
     * 将转换后的模板文件放置在 `/templates` 目录中。这包括但不限于：
         * `index.html`（首页）(优先)
         * `post.html`（文章详情）
@@ -48,6 +48,7 @@ halo文件夹是halo的源代码，不需要访问。
 ## 进度
 
 * **已完成：主题配置迁移**
+* **已完成：静态资源迁移**
 * **进行中：模板文件迁移**
   * [x] 开始实现 index.html
     * 已完成首页布局结构
@@ -60,5 +61,5 @@ halo文件夹是halo的源代码，不需要访问。
     * 添加了返回顶部功能
     * 使用所有主题配置更新了 `settings.yaml`。
     * 确认了`theme.yaml` 中的基本主题信息是正确的。
-    * 已从 `hexo-theme-archer/source` 目录复制所有静态资源文件到 `/templates/assets/source` 目录。
-    * 警告 暂时未阅读theme-dev-doc,了解halo主题的基本写法
+    * 已从 `hexo-theme-archer/source` 目录复制所有静态资源文件到 `/templates/assets` 目录。
+    * 已阅读theme-dev-doc,了解halo主题的基本写法
