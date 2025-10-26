@@ -64,3 +64,4 @@ halo文件夹是halo的源代码，不需要访问。
     * 已从 `hexo-theme-archer/source` 目录复制所有静态资源文件到 `/templates/assets` 目录。
     * 已阅读theme-dev-doc,了解halo主题的基本写法
     * 已将所有模板文件转换为Thymeleaf语法并验证其正确性。
+    * 已完成所有页面的迁移。
