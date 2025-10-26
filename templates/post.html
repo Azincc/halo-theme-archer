@@ -1,0 +1,57 @@
+<main class="main post-page">
+    <article class="article-entry" th:utext="${post.content.content}">
+    </article>
+    <!-- license -->
+    <div class="license-wrapper" th:if="${theme.config.other.copyright?.enable == true && post.spec.allowComment}">
+        <p th:if="${post.spec.owner != null}">[[#{translater}]]: <a th:href="${#authentication.principal.path}" th:text="${post.spec.owner}"></a></p>
+        <p th:if="${post.spec.owner == null}">[[#{author}]]: <a th:href="${#authentication.principal.path}" th:text="${contributor.displayName}"></a></p>
+        <p>[[#{post_link}]]: <a th:href="${post.status.permalink}" th:text="${post.status.permalink}"></a></p>
+        <p>[[#{publish_date}]]: <a th:href="${post.status.permalink}" th:text="${#dates.format(post.spec.publishTime, 'MMMM dd yyyy, HH:mm:ss')}"></a></p>
+        <p>[[#{update_date}]]: <a th:href="${post.status.permalink}" th:text="${#dates.format(post.metadata.creationTimestamp, 'MMMM dd yyyy, HH:mm:ss')}"></a></p>
+        <p>[[#{license}]]: <span th:text="${theme.config.other.copyright?.license}"></span></p>
+    </div>
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next" th:if="${post.prev?.status?.permalink != null}">
+            <div class="nextSlogan">Next Post</div>
+            <a th:href="${post.prev?.status?.permalink}" th:title="${post.prev?.spec?.title}">
+                <div class="nextTitle" th:text="${post.prev?.spec?.title ?: '[Untitled Post]'}"></div>
+            </a>
+        </li>
+        <li class="previous" th:if="${post.next?.status?.permalink != null}">
+            <div class="prevSlogan">Previous Post</div>
+            <a th:href="${post.next?.status?.permalink}" th:title="${post.next?.spec?.title}">
+                <div class="prevTitle" th:text="${post.next?.spec?.title ?: '[Untitled Post]'}"></div>
+            </a>
+        </li>
+    </ul>
+    <!-- comment -->
+    <div class="post-comment" th:if="${post.spec.allowComment}">
+        <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
+    </div>
+    <!-- timeliness note -->
+    <script th:if="${theme.config.other.outdated_threshold?.enable == true && post.spec.allowComment}">
+        (function () {
+            const time = document.getElementsByClassName('post-intro-time')[0];
+            const post = document.getElementsByTagName("article")[0];
+            if (time === undefined || post === undefined) {
+                return;
+            }
+
+            const pubTime = new Date(time.innerText);
+            const now = Date.now();
+            const interval = parseInt(now - pubTime);
+            const days = parseInt(interval / 86400000);
+            const outdated_threshold = parseInt('[[${theme.config.other.outdated_threshold.days}]]');
+            if (interval > outdated_threshold * 24 * 3600 * 1000) {
+                post.innerHTML = '<div class="note note-warning">' +
+                `<div class="title">文章时效性提示</div><p>这是一篇发布于 ${days} 天前的文章，部分信息可能已发生改变，请注意甄别。` +
+                '</p></div>' + post.innerHTML;
+            }
+        })();
+    </script>
+    <!-- Mathjax -->
+    <div th:if="${post.spec.extra.mathjax == true}">
+        <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </div>
+</main>

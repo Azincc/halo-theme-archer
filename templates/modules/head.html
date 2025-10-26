@@ -1,0 +1,60 @@
+<head th:fragment="head">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <title th:text="${site_title}"></title>
+  <link rel="shortcut icon" th:href="${site.favicon}" title="Favicon" />
+  <link rel="apple-touch-icon-precomposed" th:href="${site.logo}" />
+  <meta name="robots" content="max-image-preview:large" />
+  <meta name="application-name" th:content="${site.title}" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" th:content="${site.title}" />
+  <meta itemprop="name" th:content="${site.title}" />
+  <meta name="keywords" th:content="${theme.config.custom.keywords}" />
+  <meta itemprop="image" th:content="${site.logo}" />
+  <link rel="alternate" type="application/rss+xml" th:title="|${site.title} » rss|" href="/rss.xml" />
+  <link
+    rel="stylesheet"
+    id="iconfont-css"
+    th:href="@{https://at.alicdn.com/t/c/font_4938099_o2toxo8ypx.css?ver={version}(version=${theme.spec.version})}"
+    type="text/css"
+    media="all"
+  />
+
+  <link
+    rel="stylesheet"
+    id="sansfont-css"
+    th:href="@{/assets/fonts/kuaikanshijieti/result.css?(v=${theme.spec.version})}"
+    type="text/css"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    id="fancybox-css"
+    th:href="@{/assets/fancy/fancybox/fancybox.css?ver={version}(version=${theme.spec.version})}"
+    type="text/css"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    id="carousel-css"
+    th:href="@{/assets/fancy/carousel/carousel.css?ver={version}(version=${theme.spec.version})}"
+    type="text/css"
+    media="all"
+  />
+  <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
+
+  <th:block th:if="${_head != null}">
+    <th:block th:replace="${_head}" />
+  </th:block>
+  <style
+    type="text/css"
+    th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
+    th:utext="${theme.config.custom.code_css}"
+  ></style>
+  <th:block th:replace="~{modules/variables/site-config}" />
+  <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}">
+  </th:block>
+</head>
