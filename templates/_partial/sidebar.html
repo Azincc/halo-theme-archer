@@ -1,0 +1,38 @@
+<div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <!-- Archives -->
+        <div class="sidebar-archives">
+            <th:block th:with="archives = ${finder.find('archives', 1, 100)}">
+                <ul class="sidebar-archive-list">
+                    <li th:each="archive : ${archives.items}" class="sidebar-archive-item">
+                        <a th:href="@{${archive.status.permalink}}">
+                            <span th:text="${archive.spec.displayName}"></span>
+                            <span th:text="${archive.status.visiblePostCount}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </th:block>
+        </div>
+        <!-- Tags -->
+        <div class="sidebar-tags">
+            <th:block th:with="tags = ${finder.find('tags', 1, 100)}">
+                <div class="tags-cloud">
+                    <a th:each="tag : ${tags.items}" th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}" th:style="'font-size: ' + ${#numbers.random(12, 24)} + 'px;'"></a>
+                </div>
+            </th:block>
+        </div>
+        <!-- Categories -->
+        <div class="sidebar-categories">
+            <th:block th:with="categories = ${finder.find('categories', 1, 100)}">
+                <ul class="sidebar-category-list">
+                    <th:block th:replace="~{_partial/category-tree :: category-tree(${categories.items})}"></th:block>
+                </ul>
+            </th:block>
+        </div>
+    </div>
+</div>
