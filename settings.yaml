@@ -1,0 +1,239 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: halo-theme-archer-setting
+spec:
+  forms:
+    - group: basic
+      label: 基础设置
+      formSchema:
+        - $formkit: text
+          name: main_title
+          label: 主标题
+          value: "fi3ework's Studio."
+        - $formkit: text
+          name: subtitle
+          label: 副标题
+          value: "it's better to burn out than to fade away"
+        - $formkit: attachment
+          name: favicon
+          label: 网站图标
+          value: "/assets/favicon.ico"
+
+    - group: profile
+      label: 个人资料
+      formSchema:
+        - $formkit: attachment
+          name: avatar
+          label: 头像
+          value: "/avatar/Misaka.jpg"
+        - $formkit: text
+          name: author
+          label: 作者名
+          value: "fi3ework"
+        - $formkit: text
+          name: signature
+          label: 个性签名
+          value: "witness me"
+        - $formkit: repeater
+          name: social
+          label: 社交链接
+          children:
+            - $formkit: text
+              name: name
+              label: "名称"
+              validation: "required"
+            - $formkit: text
+              name: url
+              label: 链接
+            - $formkit: text
+              name: icon
+              label: 图标
+              description: "Font Awesome icon class, e.g., fab fa-github"
+          value:
+            - name: "github"
+              url: "//github.com/fi3ework"
+              icon: "fab fa-github"
+            - name: "email"
+              url: "mailto:12345@qq.com"
+              icon: "fas fa-envelope"
+
+    - group: style
+      label: 风格设置
+      formSchema:
+        - $formkit: attachment
+          name: site_header_image
+          label: 首页顶部图片
+          value: "/intro/index-bg.jpg"
+        - $formkit: attachment
+          name: post_header_image
+          label: 文章页顶部图片
+          value: "/intro/post-bg.jpg"
+        - $formkit: attachment
+          name: about_header_image
+          label: 关于页顶部图片
+          value: "/intro/about-bg.jpg"
+        - $formkit: attachment
+          name: _404_header_image
+          label: 404页顶部图片
+          value: "/intro/404-bg.jpg"
+        - $formkit: number
+          name: index_intro_height
+          label: 首页简介高度
+          value: 50
+        - $formkit: number
+          name: post_intro_height
+          label: 文章页简介高度
+          value: 50
+        - $formkit: number
+          name: about_intro_height
+          label: 关于页简介高度
+          value: 50
+        - $formkit: radio
+          name: float_button_theme
+          label: 浮动按钮主题
+          options:
+            - label: 默认
+              value: value
+            - label: 圆形
+              value: rounded
+          value: value
+        - $formkit: radio
+          name: read_progress_color
+          label: 阅读进度条颜色
+          options:
+            - label: 默认
+              value: value
+            - label: 特色
+              value: feature
+          value: value
+        - $formkit: radio
+          name: post_banner_theme
+          label: 文章页横幅主题
+          options:
+            - label: 默认
+              value: value
+            - label: 简洁
+              value: clean
+          value: value
+        - $formkit: checkbox
+          name: avatar_border
+          label: 显示头像边框
+          value: true
+        - $formkit: checkbox
+          name: profile_sticky
+          label: 固定个人资料
+          value: false
+        - $formkit: checkbox
+          name: show_categories
+          label: 显示文章分类
+          value: false
+
+    - group: seo
+      label: SEO 设置
+      formSchema:
+        - $formkit: text
+          name: SEO_title
+          label: 网站标题
+          value: "fi3ework's Studio"
+        - $formkit: list
+          name: SEO_keywords
+          label: 网站关键词
+          itemType: string
+          value: ["hexo", "hexo-theme", "hexo-blog"]
+
+    - group: algolia_search
+      label: Algolia 搜索
+      formSchema:
+        - $formkit: checkbox
+          name: enable
+          label: 启用
+          value: false
+        - $formkit: text
+          name: applicationID
+          label: Application ID
+        - $formkit: text
+          name: apiKey
+          label: API Key
+        - $formkit: text
+          name: indexName
+          label: Index Name
+        - $formkit: group
+          name: hits
+          children:
+            - $formkit: number
+              name: per_page
+              label: 每页命中数
+              value: 10
+        - $formkit: group
+          name: labels
+          children:
+            - $formkit: text
+              name: input_placeholder
+              label: 输入框占位符
+              value: "Search for Posts"
+            - $formkit: text
+              name: hits_empty
+              label: 空结果提示
+              value: "We did not find any results for the search: ${query}"
+            - $formkit: text
+              name: hits_stats
+              label: 结果统计
+              value: "${hits} results found in ${time} ms"
+
+    - group: donate
+      label: 赞赏设置
+      formSchema:
+        - $formkit: checkbox
+          name: enable
+          label: 启用
+          value: false
+        - $formkit: text
+          name: title
+          label: 标题
+          value: "Buy Me A Coffee"
+        - $formkit: textarea
+          name: description
+          label: 描述
+          value: "If this post helped you, please consider buying the author a cup of sugar-free coffee ☕️."
+        - $formkit: repeater
+          name: qr_codes
+          label: 二维码
+          addLabel: "添加二维码"
+          children:
+            - $formkit: attachment
+              name: image
+              label: "二维码图片"
+          value: []
+
+    - group: analytics
+      label: 分析统计
+      formSchema:
+        - $formkit: group
+          name: busuanzi
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: 启用不蒜子统计
+              value: true
+        - $formkit: text
+          name: baidu_analytics
+          label: 百度统计 ID
+        - $formkit: text
+          name: google_analytics
+          label: 谷歌统计 ID
+
+    - group: other
+      label: 其他设置
+      formSchema:
+        - $formkit: group
+          name: copyright
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: 启用版权信息
+              value: true
+            - $formkit: text
+              name: license
+              label: 许可协议
+              value: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
