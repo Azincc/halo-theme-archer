@@ -19,6 +19,33 @@
             </span>
         </th:block>
     </div>
+    <!-- footer info -->
+    <div class="footer-info" th:if="${theme.config.footer.sfooter_info != null && !theme.config.footer.sfooter_info.isEmpty()}">
+        <div th:each="info : ${theme.config.footer.sfooter_info}" class="footer-info-item">
+            <a th:if="${info.sf_link}" th:href="${info.sf_link}" target="_blank" class="footer-info-link">
+                <img th:if="${info.sf_img}" th:src="${info.sf_img}" alt="" class="footer-info-icon" />
+                <span th:text="${info.sf_title}"></span>
+            </a>
+            <span th:unless="${info.sf_link}" class="footer-info-text">
+                <img th:if="${info.sf_img}" th:src="${info.sf_img}" alt="" class="footer-info-icon" />
+                <span th:text="${info.sf_title}"></span>
+            </span>
+        </div>
+    </div>
+    <!-- site stats -->
+    <div class="site-stats" th:if="${theme.config.footer.show_stats == true}">
+        <span class="stats-item">
+            文章总数: <strong th:text="${stats.post}">0</strong>
+        </span>
+        <span class="stats-separator">•</span>
+        <span class="stats-item">
+            分类总数: <strong th:text="${stats.category}">0</strong>
+        </span>
+        <span class="stats-separator">•</span>
+        <span class="stats-item">
+            标签总数: <strong th:text="${stats.tag}">0</strong>
+        </span>
+    </div>
     <!-- busuanzi  -->
     <div class="busuanzi-container" th:if="${theme.config.analytics.busuanzi.enable == true}">
         <th:block th:with="sloganPieces = ${#strings.arraySplit(theme.config.analytics.busuanzi.slug, '${count}')}">

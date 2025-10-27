@@ -32,7 +32,11 @@
       </h2>
       <div class="z-20 mt-2 line-clamp-3 text-sm text-white/70">
         <th:block th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></th:block>
-        <th:block th:unless="${post.status.excerpt}" th:utext="${#strings.abbreviate(#strings.stripHtml(post.status.content), 300)}"></th:block>
+        <th:block 
+          th:unless="${post.status.excerpt}" 
+          th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300}"
+          th:utext="${#strings.abbreviate(#strings.stripHtml(post.status.content), truncateLen)}">
+        </th:block>
       </div>
       <span
         class="relative z-20 mt-auto flex flex-wrap items-center justify-between opacity-50 transition-opacity group-hover:opacity-80"
