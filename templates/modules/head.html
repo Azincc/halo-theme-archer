@@ -9,7 +9,8 @@
   <th:block
     th:with="keywords=${post != null && not #lists.isEmpty(post.tags) ? #strings.listJoin(post.tags.![spec.displayName], ',')
       : (singlePage != null && not #lists.isEmpty(singlePage.tags) ? #strings.listJoin(singlePage.tags.![spec.displayName], ',')
-      : (!#strings.isEmpty(theme.config.seo?.SEO_keywords) ? theme.config.seo.SEO_keywords : site.title + ',' + (theme.config.profile.author ?: site.title)))}"
+      : (!#strings.isEmpty(theme.config.seo?.SEO_keywords) ? theme.config.seo.SEO_keywords
+      : (!#strings.isEmpty(theme.config.custom?.keywords) ? theme.config.custom.keywords : site.title + ',' + (theme.config.profile.author ?: site.title))))}"
   >
     <meta name="keywords" th:content="${keywords}" />
   </th:block>
