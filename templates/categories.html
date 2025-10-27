@@ -1,7 +1,12 @@
-<main class="main categories-page">
-    <div class="categories-container">
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Categories', null, 'categories')}">
+  <th:block th:fragment="content">
+    <main class="main categories-page">
+      <div class="categories-container">
         <ul class="category-list">
-            <th:block th:replace="~{_partial/category-tree :: category-tree(${categories})}"></th:block>
+          <th:block th:replace="~{_partial/category-tree :: category-tree(${categories})}"></th:block>
         </ul>
-    </div>
-</main>
+      </div>
+    </main>
+  </th:block>
+  <th:block th:fragment="page_js"></th:block>
+</th:block>

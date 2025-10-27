@@ -9,7 +9,7 @@
           class="donate-popup__content-qrCode"
           th:title="${qr.alt ?: 'Donate QR ' + (indexStat.index + 1)}"
           th:alt="${qr.alt ?: 'Donate QR ' + (indexStat.index + 1)}"
-          th:src="@{${qr.image}}"
+          th:src="${qr.image}"
         />
       </div>
     </div>

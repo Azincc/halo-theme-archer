@@ -10,7 +10,7 @@
             <th:block th:with="archives = ${finder.find('archives', 1, 100)}">
                 <ul class="sidebar-archive-list">
                     <li th:each="archive : ${archives.items}" class="sidebar-archive-item">
-                        <a th:href="@{${archive.status.permalink}}">
+                        <a th:href="${archive.status.permalink}">
                             <span th:text="${archive.spec.displayName}"></span>
                             <span th:text="${archive.status.visiblePostCount}"></span>
                         </a>
@@ -22,7 +22,7 @@
         <div class="sidebar-tags">
             <th:block th:with="tags = ${finder.find('tags', 1, 100)}">
                 <div class="tags-cloud">
-                    <a th:each="tag : ${tags.items}" th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}" th:style="'font-size: ' + ${#numbers.random(12, 24)} + 'px;'"></a>
+                    <a th:each="tag : ${tags.items}" th:href="${tag.status.permalink}" th:text="${tag.spec.displayName}" th:style="${'font-size: ' + #numbers.random(12, 24) + 'px;'}"></a>
                 </div>
             </th:block>
         </div>

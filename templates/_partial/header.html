@@ -1,40 +1,48 @@
-<header th:class="'header header-mobile' + (${_templateId == 'index'} ? ' index-header' : '')">
-    <!-- CSS Links -->
-    <link rel="stylesheet" th:href="@{/assets/source/css/style.css}" />
-    <link rel="stylesheet" th:href="@{/assets/source/css/mobile.css}" />
-    <link rel="stylesheet" th:href="@{/assets/source/css/dark.css}" />
-
+<th:block th:fragment="header(templateId)">
+  <header class="header header-mobile" th:classappend="${templateId == 'index'} ? ' index-header'">
     <!-- top read progress line -->
     <div class="header-element">
-        <div th:class="'read-progress' + (${theme.config.style.read_progress_color == 'feature'} ? ' read-progress-feature' : '')"></div>
+      <div class="read-progress" th:classappend="${theme.config.style.read_progress_color == 'feature'} ? ' read-progress-feature'"></div>
     </div>
     <!-- sidebar menu button -->
     <div class="header-element">
-        <div th:class="'header-sidebar-menu' + (${theme.config.style.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded' : '')">
-            <i class="fas fa-bars" th:if="${theme.config.style.float_button_theme == 'rounded'}"></i>
-            <div style="padding-left: 1px;" th:unless="${theme.config.style.float_button_theme == 'rounded'}">&#xe775;</div>
-        </div>
+      <div
+        class="header-sidebar-menu"
+        th:classappend="${theme.config.style.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
+      >
+        <i class="fas fa-bars" th:if="${theme.config.style.float_button_theme == 'rounded'}"></i>
+        <div th:if="${theme.config.style.float_button_theme != 'rounded'}" style="padding-left: 1px;">&#xe775;</div>
+      </div>
     </div>
     <!-- header actions -->
     <div class="header-actions">
-        <!-- theme mode switch button -->
-        <span class="header-theme-btn header-element">
-            <i class="fas fa-adjust"></i>
-        </span>
-        <!-- back to home page text -->
-        <span class="home-link header-element">
-            <a th:href="@{/}" th:text="${theme.config.basic.main_title ?: blog.title}"></a>
-        </span>
+      <span class="header-theme-btn header-element">
+        <i class="fas fa-adjust"></i>
+      </span>
+      <span class="home-link header-element">
+        <a th:href="@{/}" th:text="${theme.config.basic.main_title != null ? theme.config.basic.main_title : site.title}"></a>
+      </span>
     </div>
-    <!-- toggle banner -->
-    <div th:class="'banner' + (${theme.config.style.post_banner_theme == 'clean'} ? ' banner-clean' : '')">
-        <div class="blog-title header-element">
-            <a th:href="@{/}" th:text="${theme.config.basic.main_title ?: blog.title}"></a>
-        </div>
-        <div class="post-title header-element">
-            <a href="#" class="post-name" 
-                th:text="${_templateId == 'post' ? post.spec.title : (_templateId == 'page' ? singlePage.spec.title : (_templateId == 'archives' ? 'Archives' : (_templateId == 'categories' ? 'Categories' : (_templateId == 'tags' ? 'Tags' : ''))))}">
-            </a>
-        </div>
+    <!-- banner -->
+    <div class="banner" th:classappend="${theme.config.style.post_banner_theme == 'clean'} ? ' banner-clean'">
+      <div class="blog-title header-element">
+        <a th:href="@{/}" th:text="${theme.config.basic.main_title != null ? theme.config.basic.main_title : site.title}"></a>
+      </div>
+      <div class="post-title header-element">
+        <a
+          href="#"
+          class="post-name"
+          th:text="${templateId == 'post' ? (post != null && post.spec != null && !#strings.isEmpty(post.spec.title) ? post.spec.title : '[Untitled Post]')
+            : (templateId == 'page' ? (singlePage != null && singlePage.spec != null && !#strings.isEmpty(singlePage.spec.title) ? singlePage.spec.title : '[Untitled Page]')
+            : (templateId == 'archives' ? 'Archives'
+            : (templateId == 'categories' ? 'Categories'
+            : (templateId == 'tags' ? 'Tags'
+            : (templateId == 'about' ? (singlePage != null && singlePage.spec != null && !#strings.isEmpty(singlePage.spec.title) ? singlePage.spec.title : 'About')
+            : (templateId == '404' ? '404'
+            : (templateId == 'index' ? (theme.config.basic.subtitle != null ? theme.config.basic.subtitle : site.title)
+            : (theme.config.basic.main_title != null ? theme.config.basic.main_title : site.title))))))))}">
+        </a>
+      </div>
     </div>
-</header>
+  </header>
+</th:block>

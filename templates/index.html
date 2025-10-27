@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <th:block th:replace="~{modules/head :: head}"></th:block>
-</head>
-<body>
-    <th:block th:replace="~{modules/header :: header}"></th:block>
-
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${site.title}, null, 'index')}">
+  <th:block th:fragment="content">
     <main class="main index-page container mx-auto px-4 py-8">
-        <!-- 文章列表 -->
       <figure class="for-first h-full w-full">
         <div class="max-w-screen relative z-[2] mx-auto px-0 sm:px-8 md:max-w-7xl lg:px-16">
           <section class="flex w-full flex-col gap-8 pt-[8rem]">
@@ -21,36 +14,29 @@
               />
             </div>
             <div class="max-w-2xl">
-              <th:block th:with="item=${#strings.listSplit(theme.config.layout.blogger_keywords, ',')}">
+              <th:block th:with="keywords=${#strings.listSplit(theme.config.layout.blogger_keywords ?: '', ',')}">
                 <h1 class="blur-before text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                  <span class="group" th:if="${item.size() > 0}">
-                    <span class="font-mono">&lt;</span>[[${item[0]}]]<span class="font-mono">/&gt;</span>
-                    <span
-                      class="invisible inline-flex text-zinc-300 before:content-['|'] group-hover:visible group-hover:animate-typing dark:text-zinc-500"
-                    ></span> </span
-                  ><span th:if="${item.size() > 1}"
-                    >，<span class="group relative inline-flex bg-black/5 p-1 dark:bg-white/5">
+                  <span class="group" th:if="${keywords.size() > 0}">
+                    <span class="font-mono">&lt;</span>[[${keywords[0]}]]<span class="font-mono">/&gt;</span>
+                    <span class="invisible inline-flex text-zinc-300 before:content-['|'] group-hover:visible group-hover:animate-typing dark:text-zinc-500"></span>
+                  </span>
+                  <span th:if="${keywords.size() > 1}">
+                    ，<span class="group relative inline-flex bg-black/5 p-1 dark:bg-white/5">
                       <span
                         class="pointer-events-none absolute inset-0 border border-lime-700/90 opacity-70 group-hover:border-dashed group-hover:opacity-100 dark:border-lime-400/90"
-                        ><span
-                          class="absolute -left-[3.5px] -top-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"
-                        ></span
-                        ><span
-                          class="absolute -bottom-[3.5px] -right-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"
-                        ></span
-                        ><span
-                          class="absolute -bottom-[3.5px] -left-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"
-                        ></span
-                        ><span
-                          class="absolute -right-[3.5px] -top-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"
-                        ></span></span
-                      >[[${item[1]}]]</span
-                    ></span
-                  >
-                  <span th:if="${item.size() > 2}"
-                    >，<span class="block h-2"></span>
-                    <span
-                      ><span class="group inline-flex items-center">
+                      >
+                        <span class="absolute -left-[3.5px] -top-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"></span>
+                        <span class="absolute -bottom-[3.5px] -right-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"></span>
+                        <span class="absolute -bottom-[3.5px] -left-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"></span>
+                        <span class="absolute -right-[3.5px] -top-[3.5px] size-1.5 border border-lime-700 bg-zinc-50 dark:border-lime-400"></span>
+                      </span>
+                      [[${keywords[1]}]]
+                    </span>
+                  </span>
+                  <span th:if="${keywords.size() > 2}">
+                    ，<span class="block h-2"></span>
+                    <span>
+                      <span class="group inline-flex items-center">
                         <svg
                           width="1em"
                           height="1em"
@@ -67,12 +53,12 @@
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <span>[[${item[2]}]]</span></span
-                      ></span
-                    ></span
-                  >
-                  <span th:if="${item.size() > 3}"
-                    >，<span class="group inline-flex items-center">
+                        <span>[[${keywords[2]}]]</span>
+                      </span>
+                    </span>
+                  </span>
+                  <span th:if="${keywords.size() > 3}">
+                    ，<span class="group inline-flex items-center">
                       <svg
                         width="1em"
                         height="1em"
@@ -89,29 +75,19 @@
                           stroke-linejoin="round"
                         ></path>
                       </svg>
-                      <span>[[${item[3]}]]</span>
-                    </span></span
-                  >
+                      <span>[[${keywords[3]}]]</span>
+                    </span>
+                  </span>
                 </h1>
               </th:block>
-              <p
-                class="blur-before home-slogan mt-6 text-base text-zinc-600 dark:text-zinc-400"
-                th:utext="${theme.config.layout.home_slogan}"
-              ></p>
+              <p class="blur-before home-slogan mt-6 text-base text-zinc-600 dark:text-zinc-400" th:utext="${theme.config.layout.home_slogan}"></p>
 
               <div class="blur-before author-links mt-[1em] flex items-center gap-6">
                 <th:block th:each="link : ${theme.config.layout.home_links}">
-                  <a
-                    data-state="closed"
-                    aria-label="我的推特"
-                    th:if="${link.home_links_url}"
-                    th:href="@{${link.home_links_url}}"
-                    target="_blank"
-                    class="group -m-1 p-1"
-                  >
+                  <a th:if="${link.home_links_url}" th:href="${link.home_links_url}" target="_blank" class="group -m-1 p-1">
                     <i
                       class="iconfont text-xl text-zinc-400 transition group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200"
-                      th:classappend="'icon-' + ${link.value}"
+                      th:classappend="${'icon-' + link.value}"
                     ></i>
                   </a>
                 </th:block>
@@ -121,28 +97,21 @@
           <hgroup class="blur-before relative mt-10 w-fit">
             <p class="font-semibold text-zinc-600 dark:text-zinc-400">推荐阅读</p>
             <div class="absolute -right-10 top-[100%] h-[25px] w-[25px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 25 25"
-                id="svg1451474137"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="fill-zinc-600 dark:fill-zinc-400">
                 <path
-                  d="M 24.919 22.96 C 23.578 20.741 22.154 18.562 20.814 16.343 C 20.563 15.924 19.85 16.091 19.892 16.594 C 19.892 17.557 19.934 18.479 19.934 19.442 C 19.264 18.73 19.096 17.892 18.971 16.887 C 18.887 16.468 18.719 16.007 18.259 15.882 C 17.547 15.672 16.751 16.384 16.206 16.761 C 14.824 17.725 13.568 18.856 12.06 19.652 C 10.301 20.531 10.259 19.275 10.636 17.892 C 11.013 16.426 11.683 14.96 12.437 13.662 C 13.777 11.4 15.327 9.055 15.704 6.416 C 15.913 4.95 15.159 2.73 13.316 2.814 C 11.054 2.897 8.457 4.573 6.991 6.248 C 6.154 7.086 1.379 13.369 0.918 9.767 C 0.583 7.128 2.761 3.903 4.059 1.725 C 4.227 1.431 3.808 1.138 3.599 1.389 C 1.965 3.4 0.667 5.955 0.08 8.51 C -0.213 9.892 0.248 12.447 2.258 11.903 C 4.604 11.274 6.154 8.636 7.662 6.876 C 8.583 5.746 10.049 4.908 11.306 4.238 C 13.986 2.814 15.201 4.908 14.531 7.337 C 13.693 10.311 11.557 12.74 10.342 15.547 C 9.924 16.552 8.416 19.903 10.049 20.741 C 11.934 21.704 14.447 19.316 15.788 18.269 C 15.704 18.311 17.924 16.51 18.049 16.887 C 18.175 17.264 18.175 17.725 18.259 18.144 C 18.426 18.94 18.761 19.568 19.306 20.07 C 18.51 20.029 17.714 20.07 16.919 20.196 C 16.5 20.28 16.458 20.908 16.793 21.118 C 19.18 22.458 21.861 22.793 24.416 23.673 C 24.793 23.84 25.17 23.338 24.919 22.96 Z M 20.395 20.824 C 20.646 20.824 20.73 20.615 20.688 20.447 C 20.814 20.364 20.898 20.238 20.898 20.07 L 20.898 18.395 C 21.735 19.735 22.573 21.034 23.411 22.374 C 21.819 21.913 20.186 21.578 18.678 20.95 C 19.25 20.907 19.822 20.865 20.395 20.824 Z"
-                  class="fill-zinc-600 dark:fill-zinc-400"
+                  d="M24.919 22.96C23.578 20.741 22.154 18.562 20.814 16.343C20.563 15.924 19.85 16.091 19.892 16.594C19.892 17.557 19.934 18.479 19.934 19.442C19.264 18.73 19.096 17.892 18.971 16.887C18.887 16.468 18.719 16.007 18.259 15.882C17.547 15.672 16.751 16.384 16.206 16.761C14.824 17.725 13.568 18.856 12.06 19.652C10.301 20.531 10.259 19.275 10.636 17.892C11.013 16.426 11.683 14.96 12.437 13.662C13.777 11.4 15.327 9.055 15.704 6.416C15.913 4.95 15.159 2.73 13.316 2.814C11.054 2.897 8.457 4.573 6.991 6.248C6.154 7.086 1.379 13.369 0.918 9.767C0.583 7.128 2.761 3.903 4.059 1.725C4.227 1.431 3.808 1.138 3.599 1.389C1.965 3.4 0.667 5.955 0.08 8.51C-0.213 9.892 0.248 12.447 2.258 11.903C4.604 11.274 6.154 8.636 7.662 6.876C8.583 5.746 10.049 4.908 11.306 4.238C13.986 2.814 15.201 4.908 14.531 7.337C13.693 10.311 11.557 12.74 10.342 15.547C9.924 16.552 8.416 19.903 10.049 20.741C11.934 21.704 14.447 19.316 15.788 18.269C15.704 18.311 17.924 16.51 18.049 16.887C18.175 17.264 18.175 17.725 18.259 18.144C18.426 18.94 18.761 19.568 19.306 20.07C18.51 20.029 17.714 20.07 16.919 20.196C16.5 20.28 16.458 20.908 16.793 21.118C19.18 22.458 21.861 22.793 24.416 23.673C24.793 23.84 25.17 23.338 24.919 22.96Z"
+                  fill="currentColor"
                 ></path>
               </svg>
             </div>
           </hgroup>
         </div>
       </figure>
-      <th:block
-        th:with="featured_focus_num=${#conversions.convert(theme.config.layout.featured_focus_num, 'java.lang.Integer')}"
-      >
-        <th:block th:if="${featured_focus_num > 0}" th:with="posts = ${postFinder.list(1,featured_focus_num)}">
+      <th:block th:with="featured_focus_num=${#conversions.convert(theme.config.layout.featured_focus_num, 'java.lang.Integer')}">
+        <th:block th:if="${featured_focus_num > 0}" th:with="featuredPosts=${postFinder.list(1, featured_focus_num)}">
           <div
-            th:if="${posts.total gt 0}"
-            th:with="postItems=${posts.items}"
+            th:if="${featuredPosts.total > 0}"
+            th:with="postItems=${featuredPosts.items}"
             id="post-list"
             class="relative z-[2] mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-4 px-0 sm:grid-cols-2 sm:gap-6 sm:px-8 lg:grid-cols-3 lg:px-16"
           >
@@ -154,23 +123,26 @@
       </th:block>
       <div class="relative z-[2] mx-auto mt-10 max-w-7xl px-4 text-center sm:px-8 lg:px-12">
         <a
-          href="/archives"
+          th:href="@{/archives}"
           class="sm:min-h-auto group inline-flex min-h-[44px] cursor-pointer touch-manipulation items-center justify-center gap-2 rounded-full bg-[hsl(var(--vapor--color-back-font))] px-4 py-2 text-sm text-zinc-500 ring-1 ring-inset ring-zinc-900/5 transition-all duration-300 hover:text-zinc-800 hover:ring-zinc-400 sm:px-3 sm:py-1 dark:text-zinc-400 dark:ring-white/10 dark:hover:ring-white/20"
         >
           全部文章
-          <div
-            class="h-2 w-2 rounded-full border-2 border-zinc-500 bg-zinc-500 transition-all duration-300 group-hover:border-zinc-800 group-hover:bg-zinc-800 dark:border-zinc-400 dark:bg-zinc-400 dark:group-hover:border-zinc-200 dark:group-hover:bg-zinc-200"
-          ></div>
-          <div
-            class="h-2 w-2 rounded-full border-2 border-zinc-500 transition-all duration-300 group-hover:border-zinc-800 dark:border-zinc-400 dark:group-hover:border-zinc-200"
-          ></div>
+          <div class="h-2 w-2 rounded-full border-2 border-zinc-500 bg-zinc-500 transition-all duration-300 group-hover:border-zinc-800 group-hover:bg-zinc-800 dark:border-zinc-400 dark:bg-zinc-400 dark:group-hover:border-zinc-200 dark:group-hover:bg-zinc-200"></div>
+          <div class="h-2 w-2 rounded-full border-2 border-zinc-500 transition-all duration-300 group-hover:border-zinc-800 dark:border-zinc-400 dark:group-hover:border-zinc-200"></div>
         </a>
       </div>
     </main>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        main.replaceLinksInElement(document.querySelector(".home-slogan"));
+  </th:block>
+  <th:block th:fragment="page_js">
+    <script th:inline="javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.main && main.replaceLinksInElement) {
+          var slogan = document.querySelector('.home-slogan');
+          if (slogan) {
+            main.replaceLinksInElement(slogan);
+          }
+        }
       });
     </script>
-  </body>
-</html>
+  </th:block>
+</th:block>
