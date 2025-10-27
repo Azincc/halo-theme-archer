@@ -9,7 +9,7 @@
     <main class="main index-page container mx-auto px-4 py-8">
         <!-- 文章列表 -->
       <figure class="for-first h-full w-full">
-        <main class="max-w-screen relative z-[2] mx-auto px-0 sm:px-8 md:max-w-7xl lg:px-16">
+        <div class="max-w-screen relative z-[2] mx-auto px-0 sm:px-8 md:max-w-7xl lg:px-16">
           <section class="flex w-full flex-col gap-8 pt-[8rem]">
             <div
               class="blur-before relative mt-1 flex h-16 w-16 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
@@ -134,7 +134,7 @@
               </svg>
             </div>
           </hgroup>
-        </main>
+        </div>
       </figure>
       <th:block
         th:with="featured_focus_num=${#conversions.convert(theme.config.layout.featured_focus_num, 'java.lang.Integer')}"
@@ -166,12 +166,11 @@
           ></div>
         </a>
       </div>
-    </section>
-  </th:block>
+    </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        main.replaceLinksInElement(document.querySelector(".home-slogan"));
+      });
+    </script>
+  </body>
 </html>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    main.replaceLinksInElement(document.querySelector(".home-slogan"));
-  });
-</script>
