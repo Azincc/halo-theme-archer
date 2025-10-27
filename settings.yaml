@@ -297,11 +297,35 @@ spec:
           name: SEO_title
           label: 网站标题
           value: "fi3ework's Studio"
-        - $formkit: list
+          help: 用于 SEO 的网站标题，会显示在浏览器标签和搜索结果中
+        - $formkit: text
           name: SEO_keywords
           label: 网站关键词
-          itemType: string
-          value: ["hexo", "hexo-theme", "hexo-blog"]
+          value: "hexo,hexo-theme,hexo-blog"
+          help: 多个关键词用逗号分隔
+        - $formkit: text
+          name: twitter_id
+          label: Twitter ID
+          help: Twitter 用户名（不含 @）
+        - $formkit: text
+          name: fb_admins
+          label: Facebook 管理员 ID
+        - $formkit: text
+          name: fb_app_id
+          label: Facebook App ID
+        - $formkit: group
+          name: feed
+          label: RSS Feed
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: 启用 RSS
+              value: false
+            - $formkit: text
+              name: path
+              label: RSS 路径
+              value: "/rss.xml"
+              help: RSS feed 的路径
 
     - group: algolia_search
       label: Algolia 搜索

@@ -22,8 +22,8 @@
 - ✅ 已将 Hexo 主题 `_partial` 目录中的 13 个核心片段迁移并重命名为 Halo 规范的 `templates/modules/partials/`，同时完成所有模板引用更新（`~{_partial/...}` → `~{modules/partials/...}`）。
 - ✅ 已校验静态资源引用方式，确认所有文件均从 `templates/assets/` 提供，并符合 Halo 官方《静态资源》文档要求。
 - ✅ 在 `/home/hexo-theme-archer` 克隆原始 Hexo 主题仓库，作为后续功能比对与迁移的参考基准。
+- ✅ **已完成 `modules/head.html` 重构**：整合 SEO 优化（动态 title/keywords/description）、Open Graph / Twitter Card / Facebook 元标签、RSS Feed、Algolia 搜索配置、百度/谷歌/CNZZ 统计等，现已成为功能完备的 `<head>` 片段。
 - ⏳ 尚未迁移 Hexo 主题中的脚本、评论、数学公式等扩展子目录（`_partial/script`, `_partial/comment`, `_partial/math`, `_partial/critical-css` 等），后续需按需评估并转换为 Halo 模板或静态资源。
-- ⏳ `base-head`、`algolia` 等与 `<head>` 及搜索功能相关的片段仍保持在 Hexo 格式，待 Halo 模板进一步重构时同步处理。
 - ❌ 暂无计划迁移 Hexo 中的开发支撑配置（如 `dev/`, `docs/`, `gulpfile.js` 等），这些对 Halo 主题运行并非必需，可按需要另行评估。
 
 ## 核心布局 (`layout.ejs`)
@@ -179,6 +179,7 @@
 
 | 原 Hexo 路径 (参考) | Halo 迁移路径 | 状态 | 说明 |
 | --------------------- | -------------- | ------ | ------ |
+| `_partial/base-head.ejs` | `templates/modules/head.html` | ✅ 已迁移 | 迁移并增强 SEO / OG / 分析脚本 |
 | `_partial/base-background-image.ejs` | `templates/modules/partials/background.html` | ✅ 已迁移 | 背景图与文章头图控制 |
 | `_partial/base-title-tags.ejs` | `templates/modules/partials/base-title-tags.html` | ✅ 已迁移 | 分类和标签显示组件 |
 | - | `templates/modules/partials/category-tree.html` | ✅ 已迁移 | 分类树递归渲染（Halo 新增） |
@@ -197,8 +198,7 @@
 
 | 原 Hexo 路径 | 迁移优先级 | 说明 |
 | -------------- | ----------- | ------ |
-| `_partial/base-head.ejs` | 🔴 高 | SEO、元信息与资源预加载，需重构为 Halo 的 `modules/head.html` |
-| `_partial/algolia.ejs` | 🟡 中 | Algolia 搜索配置，Halo 可能需使用内置搜索替代 |
+| `_partial/algolia.ejs` | ✅ 已集成 | Algolia 搜索配置已整合到 `modules/head.html` |
 | `_partial/comment/*` | 🟡 中 | 评论系统集成（Disqus/Gitalk/Valine 等），Halo 有原生评论方案 |
 | `_partial/math/*` | 🟢 低 | MathJax/KaTeX 支持，可作为增强功能后续添加 |
 | `_partial/script/*` | 🟢 低 | 额外脚本集成，需评估是否适用于 Halo |
@@ -206,31 +206,29 @@
 
 ### `_partial/base-head.ejs`
 
-此文件负责生成 HTML 文档的 `<head>` 部分，是 SEO 优化、样式和关键脚本加载的集中地。
+此文件负责生成 HTML 文档的 `<head>` 部分，是 SEO 优化、样式和关键脚本加载的集中地。Halo 版本已重构为 `templates/modules/head.html`，并保留/增强了以下能力：
 
-#### 结构化分析
+#### 迁移亮点
 
-1.  **动态标题和 SEO**:
-    *   **标题 (`<title>`)**: 动态生成页面标题。如果是文章页，格式为 `文章标题 · SEO标题`；否则直接使用 `SEO_title`。`SEO_title` 在 `_config.yml` 中配置。
-    *   **关键词 (`keywords`)**: 聚合了文章自身的 `keywords` 和主题配置中的 `SEO_keywords`。
-    *   **描述 (`description`)**: 直接使用 `config.description`。
-    *   **Open Graph & 其他元数据**: 使用 Hexo 的 `open_graph()` 辅助函数生成社交媒体分享所需的元数据。
+1.  **动态标题与 SEO 元信息**
+    * 根据实际页面（文章/自定义页面/列表）生成 `标题 · 站点标题`。
+    * 支持文章与页面标签自动注入 `keywords`，否则回退至主题配置中的 SEO 关键词或站点标题。
+    * 描述优先使用内容摘要，其次为站点描述或标题。
+    * 输出 Open Graph、Twitter Card、Facebook (`fb:admins`、`fb:app_id`) 等社交元数据。
 
-2.  **样式表加载**:
-    *   **预加载 (`preload`)**: 主题对所有主要 CSS 文件都使用了 `<link rel="preload" as="style">`，这是一种性能优化技术，可以告知浏览器提前加载这些关键资源。
-    *   **加载顺序与逻辑**:
-        1.  **Fancybox CSS**: 从 CDN 加载图片灯箱的样式。
-        2.  **主样式 (`style.css`)**: 主题的核心样式文件。
-        3.  **移动端样式 (`mobile.css`)**: 使用 `media='screen and (max-width: 960px)'` 实现响应式设计，仅在屏幕宽度小于 960px 时应用。
-        4.  **暗黑模式 (`dark.css`)**: 暗黑主题的样式文件。
-    *   **`onload` 技巧**: 通过 `onload="this.onload=null;this.rel='stylesheet'"`，实现了 CSS 的异步加载，避免了 CSS 加载阻塞页面渲染，提升了首次绘制速度 (First Paint)。
+2.  **RSS Feed 支持**
+    * 提供可选的 `rel="alternate"` 链接，路径可通过主题设置自定义。
 
-3.  **脚本与字体预加载**:
-    *   同样使用 `preload` 来优化 jQuery、`main.js` 以及主题所用字体的加载速度。
+3.  **样式与字体预加载**
+    * 复刻 Hexo 版本的预加载逻辑，配合 Polyfill 实现向下兼容。
+    * 对 Fancybox、主样式、移动端样式、暗黑主题样式和字体资源进行 `preload + noscript` 处理。
 
-4.  **第三方服务集成**:
-    *   **Algolia**: 如果启用，会在这里生成 Algolia 搜索所需的 JavaScript 配置对象。
-    *   **百度统计 & 谷歌统计 (GA)**: 如果在 `_config.yml` 中配置了对应的 ID，会自动插入跟踪代码。
+4.  **第三方服务与搜索**
+    * 将 Algolia 搜索配置迁移至 Halo，配置项与 Hexo 版本保持一致。
+    * 同步接入百度统计、谷歌统计、CNZZ 统计（可按需启用）。
+
+5.  **自定义注入**
+    * 延续 Hexo 主题对自定义 CSS (`code_css`) 与 `<head>` 片段 (`head_html`) 的注入能力。
 
 ### `_partial/base-header.ejs`
 
