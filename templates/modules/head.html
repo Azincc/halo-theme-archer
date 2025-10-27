@@ -1,19 +1,70 @@
-<th:block th:fragment="head(_title, _head)">
+<head th:fragment="head(_title, _head)">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="renderer" content="webkit" />
   <meta name="author" th:content="${theme.config.profile.author ?: site.title}" />
   <meta name="copyright" th:content="${theme.config.profile.author ?: site.title}" />
-  <meta
-    name="keywords"
-    th:content="${#strings.isEmpty(theme.config.custom.keywords) ? site.title + ',' + (theme.config.profile.author ?: site.title) : theme.config.custom.keywords}"
-  />
-  <meta name="description" th:content="${#strings.isEmpty(site.description) ? site.title : site.description}" />
+  
+  <!-- SEO Keywords -->
+  <th:block
+    th:with="keywords=${post != null && not #lists.isEmpty(post.tags) ? #strings.listJoin(post.tags.![spec.displayName], ',')
+      : (singlePage != null && not #lists.isEmpty(singlePage.tags) ? #strings.listJoin(singlePage.tags.![spec.displayName], ',')
+      : (!#strings.isEmpty(theme.config.seo?.SEO_keywords) ? theme.config.seo.SEO_keywords : site.title + ',' + (theme.config.profile.author ?: site.title)))}"
+  >
+    <meta name="keywords" th:content="${keywords}" />
+  </th:block>
+
+  <!-- SEO Description -->
+  <th:block
+    th:with="description=${post != null && post.status != null && !#strings.isEmpty(post.status.excerpt) ? post.status.excerpt
+      : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt
+      : (!#strings.isEmpty(site.description) ? site.description : site.title))}"
+  >
+    <meta name="description" th:content="${description}" />
+  </th:block>
+
   <meta http-equiv="Cache-control" content="no-cache" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+  <!-- Favicon -->
   <link rel="icon" th:href="${theme.config.basic.favicon ?: site.favicon}" />
-  <title th:text="${_title != null ? _title : (theme.config.seo?.SEO_title ?: site.title)}"></title>
+  
+  <!-- RSS Feed -->
+  <link th:if="${theme.config.seo?.feed?.enable == true && !#strings.isEmpty(theme.config.seo.feed.path)}"
+        rel="alternate"
+        th:href="@{${theme.config.seo.feed.path}}"
+        th:title="${theme.config.basic.main_title ?: site.title}"
+        type="application/atom+xml" />
+  
+  <!-- SEO Title -->
+  <th:block th:with="
+    pageTitle=${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : null)},
+    seoTitle=${theme.config.seo?.SEO_title ?: site.title},
+    fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (_title != null ? _title : seoTitle)}">
+    <title th:text="${fullTitle}"></title>
+  </th:block>
+  
+  <!-- Open Graph Meta Tags -->
+  <halo:head />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
+  <meta property="og:url" th:content="${post != null ? post.status.permalink : (singlePage != null ? singlePage.status.permalink : site.url)}" />
+  <meta property="og:site_name" th:content="${site.title}" />
+  <meta property="og:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.description)}" />
+  <meta property="og:locale" th:content="${#locale.language}" />
+  <meta property="og:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
+  <meta property="og:image" th:if="${singlePage != null && singlePage.spec.cover != null}" th:content="${singlePage.spec.cover}" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" th:if="${theme.config.seo?.twitter_id != null}" />
+  <meta name="twitter:site" th:if="${theme.config.seo?.twitter_id != null}" th:content="${'@' + theme.config.seo.twitter_id}" />
+  <meta name="twitter:title" th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
+  <meta name="twitter:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.description)}" />
+  <meta name="twitter:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
+  
+  <!-- Facebook Meta -->
+  <meta property="fb:admins" th:if="${theme.config.seo?.fb_admins != null}" th:content="${theme.config.seo.fb_admins}" />
+  <meta property="fb:app_id" th:if="${theme.config.seo?.fb_app_id != null}" th:content="${theme.config.seo.fb_app_id}" />
 
   <!-- Base preload polyfill -->
   <script>
@@ -153,7 +204,63 @@
 
   <th:block th:replace="~{modules/variables/site-config}" />
 
+  <!-- Algolia Search Configuration -->
+  <script th:if="${theme.config.algolia_search?.enable == true}" th:inline="javascript">
+    /*<![CDATA[*/
+    var algolia = {
+      applicationID: /*[[${theme.config.algolia_search.applicationID}]]*/ '',
+      apiKey: /*[[${theme.config.algolia_search.apiKey}]]*/ '',
+      indexName: /*[[${theme.config.algolia_search.indexName}]]*/ '',
+      hits: {
+        per_page: /*[[${theme.config.algolia_search.hits.per_page ?: 10}]]*/ 10
+      },
+      labels: {
+        input_placeholder: /*[[${theme.config.algolia_search.labels.input_placeholder ?: 'Search for Posts'}]]*/ 'Search for Posts',
+        hits_empty: /*[[${theme.config.algolia_search.labels.hits_empty ?: 'We did not find any results for the search: ${query}'}]]*/ 'We did not find any results for the search: ${query}',
+        hits_stats: /*[[${theme.config.algolia_search.labels.hits_stats ?: '${hits} results found in ${time} ms'}]]*/ '${hits} results found in ${time} ms'
+      }
+    };
+    /*]]>*/
+  </script>
+
+  <!-- Baidu Analytics -->
+  <script th:if="${!#strings.isEmpty(theme.config.analytics.baidu_analytics)}" th:inline="javascript">
+    /*<![CDATA[*/
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = /*[[@{'https://hm.baidu.com/hm.js?' + ${theme.config.analytics.baidu_analytics}}]]*/ '';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    /*]]>*/
+  </script>
+
+  <!-- CNZZ Analytics -->
+  <script th:if="${!#strings.isEmpty(theme.config.analytics.CNZZ_analytics)}" th:inline="javascript">
+    /*<![CDATA[*/
+    var cnzz_s_tag = document.createElement('script');
+    cnzz_s_tag.type = 'text/javascript';
+    cnzz_s_tag.async = true;
+    cnzz_s_tag.charset = 'utf-8';
+    cnzz_s_tag.src = /*[[@{'https://w.cnzz.com/c.php?id=' + ${theme.config.analytics.CNZZ_analytics} + '&async=1'}]]*/ '';
+    var root_s = document.getElementsByTagName('script')[0];
+    root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+    /*]]>*/
+  </script>
+
+  <!-- Google Analytics (gtag.js) -->
+  <script th:if="${!#strings.isEmpty(theme.config.analytics.google_analytics)}" th:src="|https://www.googletagmanager.com/gtag/js?id=${theme.config.analytics.google_analytics}|" async></script>
+  <script th:if="${!#strings.isEmpty(theme.config.analytics.google_analytics)}" th:inline="javascript">
+    /*<![CDATA[*/
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', /*[[${theme.config.analytics.google_analytics}]]*/ '');
+    /*]]>*/
+  </script>
+
   <style th:if="${not #strings.isEmpty(theme.config.custom.code_css)}" th:utext="${theme.config.custom.code_css}"></style>
   <th:block th:if="${_head != null}" th:replace="${_head}" />
   <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}"></th:block>
-</th:block>
+</head>
