@@ -1,60 +1,159 @@
-<head th:fragment="head">
+<th:block th:fragment="head(_title, _head)">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="renderer" content="webkit" />
-  <meta name="force-rendering" content="webkit" />
-  <title th:text="${site_title}"></title>
-  <link rel="shortcut icon" th:href="${site.favicon}" title="Favicon" />
-  <link rel="apple-touch-icon-precomposed" th:href="${site.logo}" />
-  <meta name="robots" content="max-image-preview:large" />
-  <meta name="application-name" th:content="${site.title}" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" th:content="${site.title}" />
-  <meta itemprop="name" th:content="${site.title}" />
-  <meta name="keywords" th:content="${theme.config.custom.keywords}" />
-  <meta itemprop="image" th:content="${site.logo}" />
-  <link rel="alternate" type="application/rss+xml" th:title="|${site.title} » rss|" href="/rss.xml" />
-  <link
-    rel="stylesheet"
-    id="iconfont-css"
-    th:href="@{https://at.alicdn.com/t/c/font_4938099_o2toxo8ypx.css?ver={version}(version=${theme.spec.version})}"
-    type="text/css"
-    media="all"
+  <meta name="author" th:content="${theme.config.profile.author ?: site.title}" />
+  <meta name="copyright" th:content="${theme.config.profile.author ?: site.title}" />
+  <meta
+    name="keywords"
+    th:content="${#strings.isEmpty(theme.config.custom.keywords) ? site.title + ',' + (theme.config.profile.author ?: site.title) : theme.config.custom.keywords}"
   />
+  <meta name="description" th:content="${#strings.isEmpty(site.description) ? site.title : site.description}" />
+  <meta http-equiv="Cache-control" content="no-cache" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <link
-    rel="stylesheet"
-    id="sansfont-css"
-    th:href="@{/assets/fonts/kuaikanshijieti/result.css?(v=${theme.spec.version})}"
-    type="text/css"
-    media="all"
-  />
-  <link
-    rel="stylesheet"
-    id="fancybox-css"
-    th:href="@{/assets/fancy/fancybox/fancybox.css?ver={version}(version=${theme.spec.version})}"
-    type="text/css"
-    media="all"
-  />
-  <link
-    rel="stylesheet"
-    id="carousel-css"
-    th:href="@{/assets/fancy/carousel/carousel.css?ver={version}(version=${theme.spec.version})}"
-    type="text/css"
-    media="all"
-  />
-  <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
+  <link rel="icon" th:href="${theme.config.basic.favicon ?: site.favicon}" />
+  <title th:text="${_title != null ? _title : (theme.config.seo?.SEO_title ?: site.title)}"></title>
 
-  <th:block th:if="${_head != null}">
-    <th:block th:replace="${_head}" />
-  </th:block>
-  <style
-    type="text/css"
-    th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
-    th:utext="${theme.config.custom.code_css}"
-  ></style>
+  <!-- Base preload polyfill -->
+  <script>
+    (function (w) {
+      'use strict'
+      if (!w.loadCSS) {
+        w.loadCSS = function () {}
+      }
+      var rp = (loadCSS.relpreload = {})
+      rp.support = (function () {
+        var ret
+        try {
+          ret = w.document.createElement('link').relList.supports('preload')
+        } catch (e) {
+          ret = false
+        }
+        return function () {
+          return ret
+        }
+      })()
+      rp.bindMediaToggle = function (link) {
+        var finalMedia = link.media || 'all'
+        function enableStylesheet() {
+          link.media = finalMedia
+        }
+        if (link.addEventListener) {
+          link.addEventListener('load', enableStylesheet)
+        } else if (link.attachEvent) {
+          link.attachEvent('onload', enableStylesheet)
+        }
+        setTimeout(function () {
+          link.rel = 'stylesheet'
+          link.media = 'only x'
+        })
+        setTimeout(enableStylesheet, 3000)
+      }
+      rp.poly = function () {
+        if (rp.support()) {
+          return
+        }
+        var links = w.document.getElementsByTagName('link')
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i]
+          if (link.rel === 'preload' && link.getAttribute('as') === 'style' && !link.getAttribute('data-loadcss')) {
+            link.setAttribute('data-loadcss', true)
+            rp.bindMediaToggle(link)
+          }
+        }
+      }
+      if (!rp.support()) {
+        rp.poly()
+        var run = w.setInterval(rp.poly, 500)
+        if (w.addEventListener) {
+          w.addEventListener('load', function () {
+            rp.poly()
+            w.clearInterval(run)
+          })
+        } else if (w.attachEvent) {
+          w.attachEvent('onload', function () {
+            rp.poly()
+            w.clearInterval(run)
+          })
+        }
+      }
+      if (typeof exports !== 'undefined') {
+        exports.loadCSS = loadCSS
+      } else {
+        w.loadCSS = loadCSS
+      }
+    })(typeof global !== 'undefined' ? global : this)
+  </script>
+
+  <!-- Stylesheets -->
+  <link
+    id="stylesheet-fancybox"
+    rel="preload"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" />
+  </noscript>
+  <link
+    id="stylesheet-base"
+    rel="preload"
+    th:href="@{/assets/css/style.css}"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+  </noscript>
+  <link
+    id="stylesheet-mobile"
+    rel="preload"
+    th:href="@{/assets/css/mobile.css}"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'"
+  />
+  <noscript>
+    <link rel="stylesheet" th:href="@{/assets/css/mobile.css}" media="screen and (max-width: 960px)" />
+  </noscript>
+  <link
+    id="stylesheet-theme-dark"
+    rel="preload"
+    th:href="@{/assets/css/dark.css}"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" th:href="@{/assets/css/dark.css}" />
+  </noscript>
+
+  <!-- Fonts -->
+  <link
+    rel="preload"
+    href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
+    as="script"
+  />
+  <link rel="preload" th:href="@{/assets/scripts/main.js}" as="script" />
+  <link
+    rel="preload"
+    th:href="@{/assets/font/Oswald-Regular.ttf}"
+    as="font"
+    type="font/ttf"
+    crossorigin
+  />
+  <link
+    rel="preload"
+    href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff"
+    as="font"
+    type="font/woff"
+    crossorigin
+  />
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.css" />
+
   <th:block th:replace="~{modules/variables/site-config}" />
-  <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}">
-  </th:block>
-</head>
+
+  <style th:if="${not #strings.isEmpty(theme.config.custom.code_css)}" th:utext="${theme.config.custom.code_css}"></style>
+  <th:block th:if="${_head != null}" th:replace="${_head}" />
+  <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}"></th:block>
+</th:block>
