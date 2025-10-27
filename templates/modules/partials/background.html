@@ -34,10 +34,10 @@
             : (theme.config.basic.main_title != null ? theme.config.basic.main_title : site.title))))))))}">
         </h1>
         <p class="intro-subtitle"
-          th:utext="${templateId == 'index' ? (theme.config.basic.subtitle != null ? theme.config.basic.subtitle : site.subtitle)
+          th:utext="${templateId == 'index' ? (theme.config.basic.subtitle != null ? theme.config.basic.subtitle : '')
             : (templateId == 'post' ? (post != null && post.status != null && !#strings.isEmpty(post.status.excerpt) ? post.status.excerpt : '')
             : ((templateId == 'about' or templateId == 'page') ? (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt : '')
-            : (templateId == '404' ? (site.description != null ? site.description : 'Page not found') : ''))}">
+            : (templateId == '404' ? 'Page not found' : ''))}">
         </p>
         <div class="post-intros" th:if="${templateId == 'post'}">
           <th:block th:if="${(theme.config.style.show_categories == true && post != null && not #lists.isEmpty(post.categories)) or (post != null && not #lists.isEmpty(post.tags))}">

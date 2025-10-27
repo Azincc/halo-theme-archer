@@ -46,12 +46,5 @@
             标签总数: <strong th:text="${stats.tag}">0</strong>
         </span>
     </div>
-    <!-- busuanzi  -->
-    <div class="busuanzi-container" th:if="${theme.config.analytics.busuanzi.enable == true}">
-        <th:block th:with="sloganPieces = ${#strings.arraySplit(theme.config.analytics.busuanzi.slug, '${count}')}">
-            <span id="busuanzi_container_site_pv" th:if="${theme.config.analytics.busuanzi.pv_or_uv == 'pv'}" th:utext="${sloganPieces[0]} + '<span id=&quot;busuanzi_value_site_pv&quot;></span>' + ${sloganPieces[1]}"></span>
-            <span id="busuanzi_container_site_uv" th:if="${theme.config.analytics.busuanzi.pv_or_uv == 'uv'}" th:utext="${sloganPieces[0]} + '<span id=&quot;busuanzi_value_site_uv&quot;></span>' + ${sloganPieces[1]}"></span>
-        </th:block>
-    </div>
     <halo:footer />
 </footer>
