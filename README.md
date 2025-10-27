@@ -68,3 +68,4 @@ halo文件夹是halo的源代码，不需要访问。
 
 * **2024-10-27**：根据 Halo 官方文档校验首页模板结构，修复 `templates/index.html` 的标签嵌套与闭合问题，确保主题首页在 Halo 中正常渲染。
 * **2024-10-27**：重构全局布局，新增背景、个人信息、赞赏弹窗等核心模块，统一 Archives/Categories/Tags/404/Post/Page 页面以适配 Halo 布局。
+* **2024-10-27**：根据 Halo 主题结构规范，将 `_partial` 文件夹迁移至 `templates/modules/partials/` 目录，修复所有模板中的引用路径（从 `~{_partial/...}` 更新为 `~{modules/partials/...}`）。已验证静态资源引用符合 Halo 规范。添加了 `.gitignore` 文件。成功克隆 hexo-theme-archer 原始仓库至 `/home/hexo-theme-archer` 供参考。
