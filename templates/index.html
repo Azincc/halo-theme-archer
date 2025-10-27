@@ -8,13 +8,15 @@
               class="blur-before relative mt-1 flex h-16 w-16 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
             >
               <img
-                th:src="${theme.config.layout.home_avatar}"
+                th:src="${theme.config.layout?.home_avatar ?: theme.config.profile.avatar}"
                 alt="avatar"
                 class="h-14 w-14 rounded-full bg-zinc-100 object-cover dark:bg-zinc-800"
               />
             </div>
             <div class="max-w-2xl">
-              <th:block th:with="keywords=${#strings.listSplit(theme.config.layout.blogger_keywords ?: '', ',')}">
+              <th:block
+                th:with="keywords=${#strings.listSplit(theme.config.layout?.blogger_keywords ?: theme.config.seo?.SEO_keywords ?: theme.config.basic.main_title ?: site.title, ',')}"
+              >
                 <h1 class="blur-before text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
                   <span class="group" th:if="${keywords.size() > 0}">
                     <span class="font-mono">&lt;</span>[[${keywords[0]}]]<span class="font-mono">/&gt;</span>
@@ -80,9 +82,9 @@
                   </span>
                 </h1>
               </th:block>
-              <p class="blur-before home-slogan mt-6 text-base text-zinc-600 dark:text-zinc-400" th:utext="${theme.config.layout.home_slogan}"></p>
+              <p class="blur-before home-slogan mt-6 text-base text-zinc-600 dark:text-zinc-400" th:utext="${theme.config.layout?.home_slogan ?: theme.config.basic.subtitle}"></p>
 
-              <div class="blur-before author-links mt-[1em] flex items-center gap-6">
+              <div class="blur-before author-links mt-[1em] flex items-center gap-6" th:if="${theme.config.layout?.home_links != null}">
                 <th:block th:each="link : ${theme.config.layout.home_links}">
                   <a th:if="${link.home_links_url}" th:href="${link.home_links_url}" target="_blank" class="group -m-1 p-1">
                     <i
@@ -107,7 +109,7 @@
           </hgroup>
         </div>
       </figure>
-      <th:block th:with="featured_focus_num=${#conversions.convert(theme.config.layout.featured_focus_num, 'java.lang.Integer')}">
+      <th:block th:with="featured_focus_num=${#conversions.convert(theme.config.layout?.featured_focus_num ?: 6, 'java.lang.Integer')}">
         <th:block th:if="${featured_focus_num > 0}" th:with="featuredPosts=${postFinder.list(1, featured_focus_num)}">
           <div
             th:if="${featuredPosts.total > 0}"

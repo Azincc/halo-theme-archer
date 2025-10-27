@@ -71,7 +71,7 @@
       defer
     ></script>
 
-    <th:block th:if="${theme.config.algolia_search.enable}">
+    <th:block th:if="${theme.config.algolia_search?.enable == true}">
       <script th:inline="javascript">
         window.algolia = {
           applicationID: /*[[${theme.config.algolia_search.applicationID}]]*/ '',
@@ -84,7 +84,7 @@
       <script th:src="@{/assets/scripts/search.js}" async></script>
     </th:block>
 
-    <th:block th:if="${theme.config.analytics.busuanzi.enable}">
+    <th:block th:if="${theme.config.analytics?.busuanzi?.enable == true}">
       <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
     </th:block>
 
