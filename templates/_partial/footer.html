@@ -13,9 +13,9 @@
             <a href="https://beian.miit.gov.cn/" target="_blank" th:text="${theme.config.other.website_approve.icp_approve}"></a>
         </span>
         <th:block th:if="${theme.config.other.website_approve.beian_approve != null && theme.config.other.website_approve.beian_img != null}">
-            <img class="beian-img" th:src="@{${theme.config.other.website_approve.beian_img}}" />
+            <img class="beian-img" th:src="${theme.config.other.website_approve.beian_img}" />
             <span id="beian-approve" class="beian-approve">
-                <a th:href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + ${theme.config.other.website_approve.beian_approve}" target="_blank" th:text="'京公网安备 ' + ${theme.config.other.website_approve.beian_approve} + '号'"></a>
+
             </span>
         </th:block>
     </div>

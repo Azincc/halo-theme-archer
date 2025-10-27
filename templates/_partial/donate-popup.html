@@ -1,0 +1,17 @@
+<th:block th:fragment="donatePopup">
+  <th:block th:if="${theme.config.donate.enable}">
+    <div class="donate-popup donate-popup--hidden">
+      <div class="donate-popup__title" th:text="${theme.config.donate.title}"></div>
+      <div class="donate-popup__content">
+        <div class="donate-popup__content-description" th:utext="${theme.config.donate.description}"></div>
+        <img
+          th:each="qr, indexStat : ${theme.config.donate.qr_codes}"
+          class="donate-popup__content-qrCode"
+          th:title="${qr.alt ?: 'Donate QR ' + (indexStat.index + 1)}"
+          th:alt="${qr.alt ?: 'Donate QR ' + (indexStat.index + 1)}"
+          th:src="${qr.image}"
+        />
+      </div>
+    </div>
+  </th:block>
+</th:block>

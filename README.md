@@ -65,3 +65,6 @@ halo文件夹是halo的源代码，不需要访问。
     * 已阅读theme-dev-doc,了解halo主题的基本写法
     * 已将所有模板文件转换为Thymeleaf语法并验证其正确性。
     * 已完成所有页面的迁移。
+
+* **2024-10-27**：根据 Halo 官方文档校验首页模板结构，修复 `templates/index.html` 的标签嵌套与闭合问题，确保主题首页在 Halo 中正常渲染。
+* **2024-10-27**：重构全局布局，新增背景、个人信息、赞赏弹窗等核心模块，统一 Archives/Categories/Tags/404/Post/Page 页面以适配 Halo 布局。

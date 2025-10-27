@@ -1,7 +1,7 @@
 <article class="fade-before" th:fragment="post-card(post)">
   <a
     class="post-card group relative z-[1] flex h-full w-full transform-cpu flex-col rounded-3xl bg-transparent ring-2 ring-[--post-image-bg] transition-transform hover:-translate-y-1"
-    th:href="@{${post.status.permalink}}"
+    th:href="${post.status.permalink}"
     th:title="${post.spec.title}"
   >
     <div class="relative aspect-[240/135] w-full">
