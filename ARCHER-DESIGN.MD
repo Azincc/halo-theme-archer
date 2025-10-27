@@ -17,6 +17,15 @@
 
 ---
 
+## 迁移进度概览
+
+- ✅ 已将 Hexo 主题 `_partial` 目录中的 13 个核心片段迁移并重命名为 Halo 规范的 `templates/modules/partials/`，同时完成所有模板引用更新（`~{_partial/...}` → `~{modules/partials/...}`）。
+- ✅ 已校验静态资源引用方式，确认所有文件均从 `templates/assets/` 提供，并符合 Halo 官方《静态资源》文档要求。
+- ✅ 在 `/home/hexo-theme-archer` 克隆原始 Hexo 主题仓库，作为后续功能比对与迁移的参考基准。
+- ✅ **已完成 `modules/head.html` 重构**：整合 SEO 优化（动态 title/keywords/description）、Open Graph / Twitter Card / Facebook 元标签、RSS Feed、Algolia 搜索配置、百度/谷歌/CNZZ 统计等，现已成为功能完备的 `<head>` 片段。
+- ⏳ 尚未迁移 Hexo 主题中的脚本、评论、数学公式等扩展子目录（`_partial/script`, `_partial/comment`, `_partial/math`, `_partial/critical-css` 等），后续需按需评估并转换为 Halo 模板或静态资源。
+- ❌ 暂无计划迁移 Hexo 中的开发支撑配置（如 `dev/`, `docs/`, `gulpfile.js` 等），这些对 Halo 主题运行并非必需，可按需要另行评估。
+
 ## 核心布局 (`layout.ejs`)
 
 `layout.ejs` 是整个 Archer 主题的骨架和入口文件，它定义了所有页面的通用 HTML 结构、资源加载顺序和核心组件布局。
@@ -162,35 +171,64 @@
 
 ## 核心子模块 (`_partial`) 分析
 
+**⚠️ 迁移状态说明**：原 Hexo `_partial` 目录已按 Halo 主题结构规范迁移至 `templates/modules/partials/`，以下分析内容仍以原始 Hexo 代码为基础，实际迁移文件采用 Thymeleaf 模板语法且结构有所调整。
+
 `_partial` 目录是 Archer 主题模块化设计的核心，包含了所有可重用的 UI 组件。
+
+### 已迁移的核心组件 (13 个文件)
+
+| 原 Hexo 路径 (参考) | Halo 迁移路径 | 状态 | 说明 |
+| --------------------- | -------------- | ------ | ------ |
+| `_partial/base-head.ejs` | `templates/modules/head.html` | ✅ 已迁移 | 迁移并增强 SEO / OG / 分析脚本 |
+| `_partial/base-background-image.ejs` | `templates/modules/partials/background.html` | ✅ 已迁移 | 背景图与文章头图控制 |
+| `_partial/base-title-tags.ejs` | `templates/modules/partials/base-title-tags.html` | ✅ 已迁移 | 分类和标签显示组件 |
+| - | `templates/modules/partials/category-tree.html` | ✅ 已迁移 | 分类树递归渲染（Halo 新增） |
+| `_partial/custom-font.ejs` | `templates/modules/partials/custom-font.html` | ✅ 已迁移 | 自定义字体加载器 |
+| `_partial/donate-popup.ejs` | `templates/modules/partials/donate-popup.html` | ✅ 已迁移 | 赞赏弹窗 |
+| - | `templates/modules/partials/font-loader.html` | ✅ 已迁移 | WebFont 异步加载器（Halo 新增） |
+| `_partial/base-footer-fixed.ejs` | `templates/modules/partials/footer-fixed.html` | ✅ 已迁移 | 固定底部工具栏 |
+| `_partial/base-footer.ejs` | `templates/modules/partials/footer.html` | ✅ 已迁移 | 页脚版权与统计 |
+| `_partial/base-header.ejs` | `templates/modules/partials/header.html` | ✅ 已迁移 | 顶部导航与进度条 |
+| `_partial/base-profile.ejs` | `templates/modules/partials/profile.html` | ✅ 已迁移 | 首页个人信息卡片 |
+| `_partial/base-sidebar.ejs` | `templates/modules/partials/sidebar.html` | ✅ 已迁移 | 侧边栏（归档/标签/分类） |
+| `_partial/site-meta.ejs` | `templates/modules/partials/site-meta.html` | ✅ 已迁移 | 站点元数据脚本 |
+| `_partial/base-social.ejs` | `templates/modules/partials/social.html` | ✅ 已迁移 | 社交链接组件 |
+
+### 尚未迁移的 Hexo 扩展模块
+
+| 原 Hexo 路径 | 迁移优先级 | 说明 |
+| -------------- | ----------- | ------ |
+| `_partial/algolia.ejs` | ✅ 已集成 | Algolia 搜索配置已整合到 `modules/head.html` |
+| `_partial/comment/*` | 🟡 中 | 评论系统集成（Disqus/Gitalk/Valine 等），Halo 有原生评论方案 |
+| `_partial/math/*` | 🟢 低 | MathJax/KaTeX 支持，可作为增强功能后续添加 |
+| `_partial/script/*` | 🟢 低 | 额外脚本集成，需评估是否适用于 Halo |
+| `_partial/critical-css/*` | 🟢 低 | 关键 CSS 内联优化，可作为性能优化项后续处理 |
 
 ### `_partial/base-head.ejs`
 
-此文件负责生成 HTML 文档的 `<head>` 部分，是 SEO 优化、样式和关键脚本加载的集中地。
+此文件负责生成 HTML 文档的 `<head>` 部分，是 SEO 优化、样式和关键脚本加载的集中地。Halo 版本已重构为 `templates/modules/head.html`，并保留/增强了以下能力：
 
-#### 结构化分析
+#### 迁移亮点
 
-1.  **动态标题和 SEO**:
-    *   **标题 (`<title>`)**: 动态生成页面标题。如果是文章页，格式为 `文章标题 · SEO标题`；否则直接使用 `SEO_title`。`SEO_title` 在 `_config.yml` 中配置。
-    *   **关键词 (`keywords`)**: 聚合了文章自身的 `keywords` 和主题配置中的 `SEO_keywords`。
-    *   **描述 (`description`)**: 直接使用 `config.description`。
-    *   **Open Graph & 其他元数据**: 使用 Hexo 的 `open_graph()` 辅助函数生成社交媒体分享所需的元数据。
+1.  **动态标题与 SEO 元信息**
+    * 根据实际页面（文章/自定义页面/列表）生成 `标题 · 站点标题`。
+    * 支持文章与页面标签自动注入 `keywords`，否则回退至主题配置中的 SEO 关键词或站点标题。
+    * 描述优先使用内容摘要，其次为站点描述或标题。
+    * 输出 Open Graph、Twitter Card、Facebook (`fb:admins`、`fb:app_id`) 等社交元数据。
 
-2.  **样式表加载**:
-    *   **预加载 (`preload`)**: 主题对所有主要 CSS 文件都使用了 `<link rel="preload" as="style">`，这是一种性能优化技术，可以告知浏览器提前加载这些关键资源。
-    *   **加载顺序与逻辑**:
-        1.  **Fancybox CSS**: 从 CDN 加载图片灯箱的样式。
-        2.  **主样式 (`style.css`)**: 主题的核心样式文件。
-        3.  **移动端样式 (`mobile.css`)**: 使用 `media='screen and (max-width: 960px)'` 实现响应式设计，仅在屏幕宽度小于 960px 时应用。
-        4.  **暗黑模式 (`dark.css`)**: 暗黑主题的样式文件。
-    *   **`onload` 技巧**: 通过 `onload="this.onload=null;this.rel='stylesheet'"`，实现了 CSS 的异步加载，避免了 CSS 加载阻塞页面渲染，提升了首次绘制速度 (First Paint)。
+2.  **RSS Feed 支持**
+    * 提供可选的 `rel="alternate"` 链接，路径可通过主题设置自定义。
 
-3.  **脚本与字体预加载**:
-    *   同样使用 `preload` 来优化 jQuery、`main.js` 以及主题所用字体的加载速度。
+3.  **样式与字体预加载**
+    * 复刻 Hexo 版本的预加载逻辑，配合 Polyfill 实现向下兼容。
+    * 对 Fancybox、主样式、移动端样式、暗黑主题样式和字体资源进行 `preload + noscript` 处理。
 
-4.  **第三方服务集成**:
-    *   **Algolia**: 如果启用，会在这里生成 Algolia 搜索所需的 JavaScript 配置对象。
-    *   **百度统计 & 谷歌统计 (GA)**: 如果在 `_config.yml` 中配置了对应的 ID，会自动插入跟踪代码。
+4.  **第三方服务与搜索**
+    * 将 Algolia 搜索配置迁移至 Halo，配置项与 Hexo 版本保持一致。
+    * 同步接入百度统计、谷歌统计、CNZZ 统计（可按需启用）。
+
+5.  **自定义注入**
+    * 延续 Hexo 主题对自定义 CSS (`code_css`) 与 `<head>` 片段 (`head_html`) 的注入能力。
 
 ### `_partial/base-header.ejs`
 
@@ -316,3 +354,12 @@ Archer 主题的交互体验由多个 JavaScript 文件共同驱动，它们各�
     *   **事件监听**: 监听文章页底部分享按钮的点击事件。
     *   **动态 URL 生成**: 根据不同社交平台（如微博、Twitter、Facebook）的分享 API，动态生成包含当前文章标题和链接的分享 URL。
     *   **弹出窗口**: 调用 `window.open()` 在一个新窗口中打开分享链接，提供更好的用户体验。
+
+## Halo 迁移注意事项与下一步建议
+
+1. **模板命名与引用**：Halo 不允许在 `templates/` 下使用以下划线开头的目录，因此所有可复用组件应放置于 `templates/modules/`（或其子目录）中，引用语法统一为 `~{modules/...}`。新建片段时务必沿用现有结构和命名。
+2. **静态资源管理**：所有样式、脚本和图片均需放在 `templates/assets/` 下。引用资源时首选 `@{/assets/...}`，并准备好本地兜底资源以应对 CDN 失败（参考 `font-loader.html` 与 `layout.html` 中的写法）。
+3. **Hexo 专属功能代替方案**：Algolia 搜索、第三方评论、多语言等 Hexo 插件特性需要重新评估 Halo 的对应实现。若 Halo 已提供原生方案，可优先迁移至官方能力，必要时再考虑自定义实现。
+4. **脚本兼容性**：迁移 JavaScript 逻辑时需关注 Halo 站点运行环境（可能存在 CSP、模块化加载等差异）。建议统一放置于 `templates/assets/scripts/`，并视情况使用 `th:inline="javascript"` 注入配置。
+5. **未迁移片段的处理**：对于迁移优先级较低的模块（如 `_partial/critical-css`、`_partial/script`），可在 Halo 主题稳定运行后再按需引入，避免在初期引入过多不必要的复杂度。
+6. **文档同步**：当前文档已记录迁移清单和状态，后续每次迁移或取舍决策，建议继续在本文件中更新，保持团队对整体进度的一致认知。

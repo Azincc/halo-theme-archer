@@ -5,7 +5,7 @@
             <span class="category-list-count" th:text="${category.status.visiblePostCount}"></span>
         </a>
         <th:block th:if="${!#lists.isEmpty(category.children)}">
-            <th:block th:replace="~{_partial/category-tree :: category-tree(${category.children})}"></th:block>
+            <th:block th:replace="~{modules/partials/category-tree :: category-tree(${category.children})}"></th:block>
         </th:block>
     </li>
 </ul>

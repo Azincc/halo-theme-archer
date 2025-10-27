@@ -10,7 +10,7 @@
     <div class="profile-signature" th:if="${not #strings.isEmpty(theme.config.profile.signature)}" th:utext="${theme.config.profile.signature}"></div>
 
     <div class="profile-social" th:if="${theme.config.profile.social != null && !theme.config.profile.social.isEmpty()}">
-      <th:block th:replace="~{_partial/social :: social}" />
+      <th:block th:replace="~{modules/partials/social :: social}" />
     </div>
 
     <div class="friends" th:if="${theme.config.profile.friends != null && !theme.config.profile.friends.isEmpty()}">

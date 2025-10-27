@@ -1,7 +1,7 @@
 <th:block th:fragment="footerFixed(templateId)">
   <footer class="footer-fixed" th:classappend="${templateId == 'index'} ? ' index-footer-fixed'">
     <th:block th:if="${templateId == 'post' and theme.config.donate.enable}">
-      <th:block th:replace="~{_partial/donate-popup :: donatePopup}" />
+      <th:block th:replace="~{modules/partials/donate-popup :: donatePopup}" />
       <div
         title="Donate to the author"
         class="footer-fixed-btn footer-fixed-btn--hidden donate-btn"
