@@ -19,7 +19,7 @@
   <th:block
     th:with="description=${post != null && post.status != null && !#strings.isEmpty(post.status.excerpt) ? post.status.excerpt
       : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt
-      : (!#strings.isEmpty(site.description) ? site.description : site.title))}"
+      : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
   >
     <meta name="description" th:content="${description}" />
   </th:block>
@@ -51,7 +51,7 @@
   <meta property="og:title" th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
   <meta property="og:url" th:content="${post != null ? post.status.permalink : (singlePage != null ? singlePage.status.permalink : site.url)}" />
   <meta property="og:site_name" th:content="${site.title}" />
-  <meta property="og:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.description)}" />
+  <meta property="og:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}" />
   <meta property="og:locale" th:content="${#locale.language}" />
   <meta property="og:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
   <meta property="og:image" th:if="${singlePage != null && singlePage.spec.cover != null}" th:content="${singlePage.spec.cover}" />
@@ -60,7 +60,7 @@
   <meta name="twitter:card" content="summary_large_image" th:if="${theme.config.seo?.twitter_id != null}" />
   <meta name="twitter:site" th:if="${theme.config.seo?.twitter_id != null}" th:content="${'@' + theme.config.seo.twitter_id}" />
   <meta name="twitter:title" th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
-  <meta name="twitter:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.description)}" />
+  <meta name="twitter:description" th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}" />
   <meta name="twitter:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
   
   <!-- Facebook Meta -->

@@ -20,72 +20,6 @@ spec:
           label: 网站图标
           value: "/assets/favicon.ico"
 
-    - group: layout
-      label: 首页布局
-      formSchema:
-        - $formkit: attachment
-          name: home_avatar
-          id: home_avatar
-          key: home_avatar
-          label: 首页展示头像
-          value: ""
-        - $formkit: code
-          language: html
-          height: 200px
-          name: home_slogan
-          id: home_slogan
-          key: home_slogan
-          label: 首页介绍词
-
-        - $formkit: number
-          name: featured_focus_num
-          id: featured_focus_num
-          key: featured_focus_num
-          label: 推荐阅读｜数量
-          value: 6
-          min: 0
-          help: 默认 6 条。输入 0 则关闭该板块。
-          validation: required
-
-        - $formkit: text
-          name: blogger_keywords
-          id: blogger_keywords
-          key: blogger_keywords
-          label: 博主介绍关键词
-          value: 开发者,攻城狮,细节控,写博客
-          help: "必须使用英文逗号分隔，最多四个词语"
-
-        - $formkit: repeater
-          name: home_links
-          label: 社交链接
-          value:
-            - value: twitter
-            - value: youtube
-            - value: bilibili
-            - value: github
-            - value: telegram
-            - value: email
-          children:
-            - $formkit: select
-              name: value
-              label: 类型
-              options:
-                - label: Twitter链接
-                  value: twitter
-                - label: Youtube链接
-                  value: youtube
-                - label: Bilibili链接
-                  value: bilibili
-                - label: Github链接
-                  value: github
-                - label: Telegram链接
-                  value: telegram
-                - label: 首页邮箱
-                  value: email
-            - $formkit: text
-              name: home_links_url
-              label: 链接
-
     - group: profile
       label: 个人资料
       formSchema:
@@ -327,45 +261,6 @@ spec:
               value: "/rss.xml"
               help: RSS feed 的路径
 
-    - group: algolia_search
-      label: Algolia 搜索
-      formSchema:
-        - $formkit: checkbox
-          name: enable
-          label: 启用
-          value: false
-        - $formkit: text
-          name: applicationID
-          label: Application ID
-        - $formkit: text
-          name: apiKey
-          label: API Key
-        - $formkit: text
-          name: indexName
-          label: Index Name
-        - $formkit: group
-          name: hits
-          children:
-            - $formkit: number
-              name: per_page
-              label: 每页命中数
-              value: 10
-        - $formkit: group
-          name: labels
-          children:
-            - $formkit: text
-              name: input_placeholder
-              label: 输入框占位符
-              value: "Search for Posts"
-            - $formkit: text
-              name: hits_empty
-              label: 空结果提示
-              value: "We did not find any results for the search: ${query}"
-            - $formkit: text
-              name: hits_stats
-              label: 结果统计
-              value: "${hits} results found in ${time} ms"
-
     - group: donate
       label: 赞赏设置
       formSchema:
@@ -394,26 +289,6 @@ spec:
     - group: analytics
       label: 分析统计
       formSchema:
-        - $formkit: group
-          name: busuanzi
-          children:
-            - $formkit: checkbox
-              name: enable
-              label: 启用不蒜子统计
-              value: true
-            - $formkit: radio
-              name: pv_or_uv
-              label: "PV or UV"
-              options:
-                - label: "pv"
-                  value: "pv"
-                - label: "uv"
-                  value: "uv"
-              value: "pv"
-            - $formkit: text
-              name: slug
-              label: "自定义分析标语"
-              value: "PV: ${count} :)"
         - $formkit: text
           name: baidu_analytics
           label: 百度统计 ID
