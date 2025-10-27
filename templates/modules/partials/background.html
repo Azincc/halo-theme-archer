@@ -41,7 +41,7 @@
         </p>
         <div class="post-intros" th:if="${templateId == 'post'}">
           <th:block th:if="${(theme.config.style.show_categories == true && post != null && not #lists.isEmpty(post.categories)) or (post != null && not #lists.isEmpty(post.tags))}">
-            <th:block th:replace="~{_partial/base-title-tags :: base-title-tags(${post}, 'post-intro-tags')}" />
+            <th:block th:replace="~{modules/partials/base-title-tags :: base-title-tags(${post}, 'post-intro-tags')}" />
           </th:block>
           <div class="post-intro-read" th:if="${theme.config.style.reading_info == true && post != null && post.stats != null}">
             <span>

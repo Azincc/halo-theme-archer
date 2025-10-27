@@ -30,7 +30,7 @@
         <div class="sidebar-categories">
             <th:block th:with="categories = ${finder.find('categories', 1, 100)}">
                 <ul class="sidebar-category-list">
-                    <th:block th:replace="~{_partial/category-tree :: category-tree(${categories.items})}"></th:block>
+                    <th:block th:replace="~{modules/partials/category-tree :: category-tree(${categories.items})}"></th:block>
                 </ul>
             </th:block>
         </div>
