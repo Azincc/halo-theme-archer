@@ -20,12 +20,8 @@
       }
     </script>
 
-    <th:block th:replace="~{modules/partials/header :: header(${templateId})}" />
-    <th:block th:replace="~{modules/partials/footer-fixed :: footerFixed(${templateId})}" />
 
     <div class="wrapper">
-      <th:block th:replace="~{modules/partials/background :: background(${templateId})}" />
-      <th:block th:replace="~{modules/partials/font-loader :: fontLoader}" />
 
       <img
         class="loading"
@@ -36,10 +32,7 @@
 
       <div class="container container-unloaded">
         <th:block th:replace="${content}" />
-        <th:block th:if="${templateId == 'index'}" th:replace="~{modules/partials/profile :: profile}" />
       </div>
-
-      <th:block th:replace="~{modules/partials/footer :: footer}" />
     </div>
 
     <th:block
@@ -54,10 +47,6 @@
         <th:block th:utext="${tocHtml}"></th:block>
       </div>
     </th:block>
-
-    <th:block th:replace="~{modules/partials/sidebar :: sidebar}" />
-    <th:block th:replace="~{modules/partials/site-meta :: siteMeta}" />
-    <th:block th:replace="~{modules/partials/custom-font :: customFont}" />
 
     <script th:src="@{/assets/scripts/main.js}" type="text/javascript"></script>
     <script th:inline="javascript">

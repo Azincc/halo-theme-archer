@@ -186,7 +186,6 @@
     href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
     as="script"
   />
-  <link rel="preload" th:href="@{/assets/scripts/main.js}" as="script" />
   <link
     rel="preload"
     th:href="@{/assets/font/Oswald-Regular.ttf}"
@@ -203,7 +202,6 @@
   />
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.css" />
 
-  <th:block th:replace="~{modules/variables/site-config}" />
 
   <!-- Algolia Search Configuration -->
   <script th:if="${theme.config.algolia_search?.enable == true}" th:inline="javascript">
@@ -262,6 +260,5 @@
   </script>
 
   <style th:if="${not #strings.isEmpty(theme.config.custom.code_css)}" th:utext="${theme.config.custom.code_css}"></style>
-  <th:block th:if="${_head != null}" th:replace="${_head}" />
   <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}"></th:block>
 </head>
