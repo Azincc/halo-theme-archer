@@ -1,31 +1,35 @@
-<main class="main archives-page">
-    <div class="archives-container">
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Archives', null, 'archives')}">
+  <th:block th:fragment="content">
+    <main class="main archives-page">
+      <div class="archives-container">
         <th:block th:each="archive : ${archives.items}">
-            <div class="archive-year">
-                <h2 class="archive-year-title" th:text="${archive.year}"></h2>
+          <div class="archive-year">
+            <h2 class="archive-year-title" th:text="${archive.year}"></h2>
+          </div>
+          <th:block th:each="month : ${archive.months}">
+            <div class="archive-month">
+              <h3 class="archive-month-title" th:text="${#dates.monthName(month.month)}"></h3>
+              <ul class="archive-posts">
+                <li class="archive-post" th:each="post : ${month.posts}">
+                  <a th:href="${post.status.permalink}">
+                    <span class="archive-post-date" th:text="${#dates.format(post.spec.publishTime, 'MM-dd')}"></span>
+                    <span class="archive-post-title" th:text="${post.spec.title}"></span>
+                  </a>
+                </li>
+              </ul>
             </div>
-            <th:block th:each="month : ${archive.months}">
-                <div class="archive-month">
-                    <h3 class="archive-month-title" th:text="${#dates.monthName(month.month)}"></h3>
-                    <ul class="archive-posts">
-                        <li class="archive-post" th:each="post : ${month.posts}">
-                            <a th:href="@{${post.status.permalink}}">
-                                <span class="archive-post-date" th:text="${#dates.format(post.spec.publishTime, 'MM-dd')}"></span>
-                                <span class="archive-post-title" th:text="${post.spec.title}"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </th:block>
+          </th:block>
         </th:block>
-    </div>
+      </div>
 
-    <!-- paginator -->
-    <nav class="page-nav" th:if="${archives.totalPages > 1}">
-        <a class="page-number" th:href="@{${archives.prevUrl}}" th:if="${archives.hasPrevious()}">[[#{pagination.prev}]]</a>
+      <nav class="page-nav" th:if="${archives.totalPages > 1}">
+        <a class="page-number" th:href="${archives.prevUrl}" th:if="${archives.hasPrevious()}">上一页</a>
         <th:block th:each="i : ${#numbers.sequence(1, archives.totalPages)}">
-            <a class="page-number" th:href="@{${archives.getUrlForPage(i)}}" th:text="${i}" th:classappend="${i == archives.page} ? 'current'"></a>
+          <a class="page-number" th:href="${archives.getUrlForPage(i)}" th:text="${i}" th:classappend="${i == archives.page} ? 'current'"></a>
         </th:block>
-        <a class="page-number" th:href="@{${archives.nextUrl}}" th:if="${archives.hasNext()}">[[#{pagination.next}]]</a>
-    </nav>
-</main>
+        <a class="page-number" th:href="${archives.nextUrl}" th:if="${archives.hasNext()}">下一页</a>
+      </nav>
+    </main>
+  </th:block>
+  <th:block th:fragment="page_js"></th:block>
+</th:block>
