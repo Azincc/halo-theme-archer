@@ -2,6 +2,12 @@ import Sidebar from './sidebar.js'
 import InitSidebarLink from './tag.js'
 
 const initSidebar = () => {
+  // Check if sidebar element exists before initialization
+  if (!document.querySelector('.sidebar')) {
+    console.warn('Sidebar element not found. Skipping sidebar initialization.')
+    return { sidebar: null, metas: null }
+  }
+
   // create sidebar object
   const sidebar = new Sidebar({
     sidebar: '.sidebar',
