@@ -7,21 +7,32 @@ class MetaInfo {
     this.isInited = false
     this.postsArr = null
     this.metaName = metaName
-    this.labelsContainer = $(labelsContainer)[0]
-    this.postContainer = $(postContainer)[0]
+    this.labelsContainer = $(labelsContainer)[0] || null
+    this.postContainer = $(postContainer)[0] || null
     this.indexMap = new Map()
+    this.isValid = Boolean(this.labelsContainer && this.postContainer)
+    if (!this.isValid) {
+      console.warn(
+        `Sidebar meta "${metaName}" containers not found. Skipping initialization.`,
+      )
+      return
+    }
     this._bindLabelClick()
   }
 
   changeLabel(currLabelName) {
-    if (typeof currLabelName === 'string') {
-      this.currLabelName = currLabelName
-      this._changeList()
-      this._changeFocus()
+    if (!this.isValid || typeof currLabelName !== 'string') {
+      return
     }
+    this.currLabelName = currLabelName
+    this._changeList()
+    this._changeFocus()
   }
 
   _bindLabelClick() {
+    if (!this.isValid) {
+      return
+    }
     this.labelsContainer.addEventListener('click', (e) => {
       const currLabelName = e.target.getAttribute(`data-${this.metaName}`)
       this.changeLabel(currLabelName)
@@ -29,6 +40,9 @@ class MetaInfo {
   }
 
   _changeFocus(label) {
+    if (!this.isValid) {
+      return
+    }
     const currFocus = this.labelsContainer.getElementsByClassName(
       'sidebar-label-focus',
     )
@@ -43,6 +57,9 @@ class MetaInfo {
   }
 
   _changeList() {
+    if (!this.isValid) {
+      return
+    }
     const indexArr = this.indexMap.get(this.currLabelName)
     try {
       const corrArr = indexArr.map((index) => {
@@ -57,6 +74,9 @@ class MetaInfo {
   }
 
   _createPostsDom(corrArr) {
+    if (!this.isValid) {
+      return
+    }
     const frag = document.createDocumentFragment()
     this.postContainer.innerHTML = ''
     for (let i = 0; i < corrArr.length; i++) {
@@ -88,6 +108,7 @@ class MetaInfo {
 
   tryInit(postsArr) {
     if (
+      !this.isValid ||
       this.isInited ||
       Object.prototype.toString.call(postsArr) === '[object Null]'
     ) {
@@ -118,9 +139,11 @@ class MetaInfo {
     }
 
     if (!this.indexMap.size) {
-      document
-        .getElementsByClassName(`sidebar-${this.metaName}-empty`)[0]
-        .classList.add(`sidebar-${this.metaName}-empty-active`)
+      const emptyState = document.getElementsByClassName(
+        `sidebar-${this.metaName}-empty`,
+      )[0]
+      emptyState &&
+        emptyState.classList.add(`sidebar-${this.metaName}-empty-active`)
     }
 
     this.postsArr = postsArr
@@ -150,6 +173,9 @@ class SidebarMeta {
       para.labelsContainer,
       para.postsContainer,
     )
+    if (!newMeta.isValid) {
+      return
+    }
     newMeta.tryInit(this.postsArr)
     this.metas.push(newMeta)
   }
