@@ -33,9 +33,9 @@
         <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
       </div>
 
-      <div th:if="${(theme.config.other.math.mathjax.enable == true) or (post.spec.extra != null and post.spec.extra.mathjax == true)}">
+      <div th:if="${theme.config.other.math?.mathjax?.enable == true}">
         <script type="text/javascript" async 
-          th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math.mathjax.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
+          th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
         </script>
       </div>
     </main>
