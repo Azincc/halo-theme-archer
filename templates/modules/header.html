@@ -1,5 +1,6 @@
 <header
-  class="site-header fixed top-[1rem] z-50 w-full md:top-[3rem]"
+  th:fragment="header"
+  class="site-header header fixed top-[1rem] z-50 w-full md:top-[3rem]"
   th:with="menu = ${menuFinder.getPrimary()}"
   x-data="{ open : false,show:false }"
 >
