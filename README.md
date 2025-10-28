@@ -71,3 +71,4 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-10-27**：根据 Halo 主题结构规范，将 `_partial` 文件夹迁移至 `templates/modules/partials/` 目录，修复所有模板中的引用路径（从 `~{_partial/...}` 更新为 `~{modules/partials/...}`）。已验证静态资源引用符合 Halo 规范。添加了 `.gitignore` 文件。成功克隆 hexo-theme-archer 原始仓库至 `/home/hexo-theme-archer` 供参考。
 * **2024-10-27**：完成 `modules/head.html` 重构，整合 SEO 优化、Open Graph / Twitter Card / Facebook 元数据、RSS Feed、Algolia 搜索配置、百度/谷歌/CNZZ 统计等功能。更新 `settings.yaml` 增加 SEO 相关配置字段（Twitter ID、Facebook 配置、RSS Feed 开关等）。更新 `ARCHER-DESIGN.MD` 标记 `base-head.ejs` 迁移已完成。
 * **2024-10-27**：完成 `settings.yaml` 配置项校验与修复。✅ 已修复：`footer.sfooter_info`（底部信息）、`footer.show_stats`（站点统计）、`style.truncate_length`（摘要截断长度）的引用。✅ 已确认使用：`style.reading_info`（字数和阅读时间）已在 background.html 中实现。⚠️ 预留功能：`pluginPage` 组的特殊页面配置（豆瓣/瞬间/装备/图库）为未来扩展功能预留，暂不影响主题正常使用。已生成详细的配置使用情况报告 `CONFIG_USAGE_REPORT.md`。
+* **2024-10-28**：修复前端脚本在缺少侧边栏或站点简介元素时的运行错误：为 PerfectScrollbar、侧边栏标签、滚动交互等模块增加空节点校验与降级逻辑，将站点封面图加载异常从报错调整为警告，避免控制台出现未捕获异常。

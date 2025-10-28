@@ -15,14 +15,9 @@ const init = function () {
       typeof bgCSS === 'string' ? bgCSS.match(/url\("*([^"]*)"*\)/) : null
 
   if (!$introImg.length || !bgRegResult || bgRegResult.length < 2) {
-    console.error(
-      "Error while loading site intro image. Please check image's url.",
+    console.warn(
+      "Site intro image element not found or background image not set. This is expected if the current page doesn't have an intro image.",
     )
-    console.log({
-      hasIntroImage: $introImg.length > 0,
-      backgroundCSS: bgCSS,
-      regexResult: bgRegResult,
-    })
   } else {
     const bgURL = bgRegResult[1],
       img = new Image()

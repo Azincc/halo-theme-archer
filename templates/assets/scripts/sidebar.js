@@ -108,7 +108,12 @@ class Sidebar {
 
   // 阻止sidebarContent在滚动到顶部或底部时继续滚动
   perfectScrollbar() {
-    const ps = new PerfectScrollbar('.sidebar', {
+    const sidebarElement = document.querySelector('.sidebar')
+    if (!sidebarElement) {
+      console.warn('Sidebar element not found. Skipping PerfectScrollbar initialization.')
+      return
+    }
+    const ps = new PerfectScrollbar(sidebarElement, {
       suppressScrollX: true,
     })
   }

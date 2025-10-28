@@ -13,8 +13,17 @@ const initScroll = () => {
     $tocCatalog = $tocWrapper.find('.toc-catalog'),
     $progressBar = $('.read-progress')
 
-  const bgTitleHeight =
-    $bgEle.offset().top + $bgEle.outerHeight() - $header.height() / 2
+  const hasIntro = $bgEle.length && $header.length
+
+  if (!hasIntro) {
+    console.warn(
+      'Site intro or header element not found. Some scroll features will be skipped.',
+    )
+  }
+
+  const bgTitleHeight = hasIntro
+    ? $bgEle.offset().top + $bgEle.outerHeight() - $header.height() / 2
+    : 0
 
   // toc 的收缩
   $tocCatalog.on('click', () => {
@@ -43,8 +52,11 @@ const initScroll = () => {
 
   // 是否在向上或向下滚动
   let crossingState = -1
-  let isHigherThanIntro = true
+  let isHigherThanIntro = hasIntro
   const isCrossingIntro = (currTop) => {
+    if (!hasIntro) {
+      return 0
+    }
     // 向下滑动超过 intro
     if (currTop > bgTitleHeight) {
       if (crossingState !== 1) {
@@ -91,6 +103,9 @@ const initScroll = () => {
   }
 
   const updateReadProgress = (readPercent) => {
+    if (!$progressBar.length) {
+      return
+    }
     const restPercent = readPercent - 100 <= 0 ? readPercent - 100 : 0
     $progressBar[0].style.opacity = '1'
     $progressBar[0].style.transform = `translate3d(${restPercent}%, 0, 0)`
