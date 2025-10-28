@@ -48,11 +48,20 @@
       </div>
     </th:block>
 
-    <script th:src="@{/assets/scripts/main.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/scripts/main.js}" type="module"></script>
     <script th:inline="javascript">
-      if (window.main && typeof main.initializeColorScheme === 'function') {
-        main.initializeColorScheme(/*[[${theme.config.style.color_scheme}]]*/ 'system');
-      }
+      (function () {
+        var scheme = /*[[${theme.config.style.color_scheme}]]*/ 'system';
+        window.__archerMainCallbacks = window.__archerMainCallbacks || [];
+        window.__archerMainCallbacks.push(function (mainModule) {
+          if (mainModule && typeof mainModule.initializeColorScheme === 'function') {
+            mainModule.initializeColorScheme(scheme);
+          }
+        });
+        if (window.main && typeof window.main.initializeColorScheme === 'function') {
+          window.main.initializeColorScheme(scheme);
+        }
+      })();
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"
@@ -70,7 +79,7 @@
           labels: /*[[${#json.toJson(theme.config.algolia_search.labels)}]]*/ {}
         };
       </script>
-      <script th:src="@{/assets/scripts/search.js}" async></script>
+      <script th:src="@{/assets/scripts/search.js}" type="module"></script>
     </th:block>
 
     <th:block th:if="${theme.config.analytics?.busuanzi?.enable == true}">
@@ -78,7 +87,7 @@
     </th:block>
 
     <th:block th:if="${templateId == 'post'}">
-      <script th:src="@{/assets/scripts/share.js}" async></script>
+      <script th:src="@{/assets/scripts/share.js}" type="module"></script>
     </th:block>
 
     <th:block th:if="${templateId == 'post' and theme.config.other.mermaid.enable}">
