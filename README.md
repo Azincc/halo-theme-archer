@@ -73,3 +73,4 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-10-27**：完成 `settings.yaml` 配置项校验与修复。✅ 已修复：`footer.sfooter_info`（底部信息）、`footer.show_stats`（站点统计）、`style.truncate_length`（摘要截断长度）的引用。✅ 已确认使用：`style.reading_info`（字数和阅读时间）已在 background.html 中实现。⚠️ 预留功能：`pluginPage` 组的特殊页面配置（豆瓣/瞬间/装备/图库）为未来扩展功能预留，暂不影响主题正常使用。已生成详细的配置使用情况报告 `CONFIG_USAGE_REPORT.md`。
 * **2024-10-28**：修复前端脚本在缺少侧边栏或站点简介元素时的运行错误：为 PerfectScrollbar、侧边栏标签、滚动交互等模块增加空节点校验与降级逻辑，将站点封面图加载异常从报错调整为警告，避免控制台出现未捕获异常。
 * **2024-10-28**：重构 index.html 页面，添加完整的站点简介(site-intro)、个人资料侧边栏(profile)和文章列表结构；修复 layout.html 缺少 header 的问题。确保页面包含所有 JavaScript 所需的 DOM 元素。调整首页布局：头图区域在main内部、左侧显示profile、右侧显示文章列表，符合Archer主题的原始设计。
+* **2024-12-27**：修复 post.html 模板报错：移除 post.prev/post.next 的前后文导航功能。由于 Halo PostVo 结构不包含 prev/next 字段，原模板尝试访问这些不存在的属性导致 SpringEL 表达式异常（EL1008E）。已删除前后文导航区块以解决此问题。
