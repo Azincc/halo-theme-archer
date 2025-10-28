@@ -10,14 +10,19 @@ const init = function () {
   // Remove site intro image placeholder
   const $introImg = $('.site-intro-img:first'),
     $introPlaceholder = $('.site-intro-placeholder:first'),
-    bgCSS = $introImg.css('background-image'),
-    bgRegResult = bgCSS.match(/url\("*([^"]*)"*\)/)
+    bgCSS = $introImg.length ? $introImg.css('background-image') : undefined,
+    bgRegResult =
+      typeof bgCSS === 'string' ? bgCSS.match(/url\("*([^"]*)"*\)/) : null
 
-  if (bgRegResult.length < 2) {
+  if (!$introImg.length || !bgRegResult || bgRegResult.length < 2) {
     console.error(
       "Error while loading site intro image. Please check image's url.",
     )
-    console.log(bgRegResult)
+    console.log({
+      hasIntroImage: $introImg.length > 0,
+      backgroundCSS: bgCSS,
+      regexResult: bgRegResult,
+    })
   } else {
     const bgURL = bgRegResult[1],
       img = new Image()
