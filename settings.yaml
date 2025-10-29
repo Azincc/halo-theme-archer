@@ -298,6 +298,28 @@ spec:
         - $formkit: text
           name: CNZZ_analytics
           label: "CNZZ 统计 ID"
+        - $formkit: group
+          name: busuanzi
+          label: "不蒜子统计"
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: "启用"
+              value: false
+            - $formkit: radio
+              name: pv_or_uv
+              label: "统计类型"
+              options:
+                - label: "浏览量 (PV)"
+                  value: "pv"
+                - label: "访客数 (UV)"
+                  value: "uv"
+              value: "pv"
+            - $formkit: text
+              name: slug
+              label: "显示文本"
+              value: "本站访客数${count}人次"
+              help: "使用 ${count} 作为占位符显示统计数字"
 
     - group: footer
       label: 页脚
