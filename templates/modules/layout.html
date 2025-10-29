@@ -2,10 +2,9 @@
 <html
   th:lang="${#locale.toLanguageTag}"
   xmlns:th="http://www.thymeleaf.org"
-  th:fragment="html (content, page_js, _title, _head, _templateId)"
-  th:with="templateId=${_templateId != null ? _templateId : 'index'}"
+  th:fragment="html (content, page_js = null, title = null, head = null, templateId = 'index')"
 >
-  <head th:replace="~{modules/head :: head(${_title}, ${_head})}"></head>
+  <head th:replace="~{modules/head :: head(title = ${title}, head = ${head})}"></head>
   <body
     th:with="bodyClass=${templateId == 'index' ? 'home-body' : templateId == 'post' ? 'post-body' : templateId == 'about' ? 'about-body' : templateId == '404' ? 'four-zero-four-body' : ''}"
     th:class="${bodyClass}"
