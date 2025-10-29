@@ -74,3 +74,4 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-10-28**：修复前端脚本在缺少侧边栏或站点简介元素时的运行错误：为 PerfectScrollbar、侧边栏标签、滚动交互等模块增加空节点校验与降级逻辑，将站点封面图加载异常从报错调整为警告，避免控制台出现未捕获异常。
 * **2024-10-28**：重构 index.html 页面，添加完整的站点简介(site-intro)、个人资料侧边栏(profile)和文章列表结构；修复 layout.html 缺少 header 的问题。确保页面包含所有 JavaScript 所需的 DOM 元素。调整首页布局：头图区域在main内部、左侧显示profile、右侧显示文章列表，符合Archer主题的原始设计。
 * **2024-12-27**：修复 post.html 模板报错：移除 post.prev/post.next 的前后文导航功能。由于 Halo PostVo 结构不包含 prev/next 字段，原模板尝试访问这些不存在的属性导致 SpringEL 表达式异常（EL1008E）。已删除前后文导航区块以解决此问题。
+* **2024-12-27**：修复 post.html 页面 SpEL 表达式错误：移除了不存在的 `post.spec.extra` 字段引用，将 MathJax 加载改为仅依赖主题配置 `theme.config.other.math?.mathjax?.enable`。同时，按照 hexo-theme-archer 原始设计，为 post.html 添加了完整的文章头部区域（site-intro），包括：文章标题、副标题、封面图片、分类/标签链接、字数统计、阅读时长、发布日期、Busuanzi 页面浏览量统计、社交分享按钮等元素，确保文章页面样式与 Archer 主题保持一致。
