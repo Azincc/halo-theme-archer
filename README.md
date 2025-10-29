@@ -75,3 +75,8 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-10-28**：重构 index.html 页面，添加完整的站点简介(site-intro)、个人资料侧边栏(profile)和文章列表结构；修复 layout.html 缺少 header 的问题。确保页面包含所有 JavaScript 所需的 DOM 元素。调整首页布局：头图区域在main内部、左侧显示profile、右侧显示文章列表，符合Archer主题的原始设计。
 * **2024-12-27**：修复 post.html 模板报错：移除 post.prev/post.next 的前后文导航功能。由于 Halo PostVo 结构不包含 prev/next 字段，原模板尝试访问这些不存在的属性导致 SpringEL 表达式异常（EL1008E）。已删除前后文导航区块以解决此问题。
 * **2024-12-27**：修复 post.html 页面 SpEL 表达式错误：移除了不存在的 `post.spec.extra` 字段引用，将 MathJax 加载改为仅依赖主题配置 `theme.config.other.math?.mathjax?.enable`。同时，按照 hexo-theme-archer 原始设计，为 post.html 添加了完整的文章头部区域（site-intro），包括：文章标题、副标题、封面图片、分类/标签链接、字数统计、阅读时长、发布日期、Busuanzi 页面浏览量统计、社交分享按钮等元素，确保文章页面样式与 Archer 主题保持一致。
+* **2024-12-27**：全面检查并修复所有模板文件中错误的 Halo 元数据字段引用。根据 Halo 2.21 官方文档修复如下问题：
+  - `post.html`：修复 `post.content.wordCount` 和 `post.content.readingTime`（ContentVo 无此字段），改为使用 Thymeleaf 计算字数和阅读时长；修复 `post.spec.owner` 应使用 `post.owner.displayName` 显示作者名称。
+  - `index.html` 和 `post-card.html`：修复 `post.content.content`（ListedPostVo 无 content 字段），改为使用 `post.status.excerpt` 或 `post.spec.excerpt.raw` 作为摘要回退。
+  - `modules/layout.html`：移除 `post.content.toc`（ContentVo 无 toc 字段），TOC 功能需通过 JavaScript 实现或使用插件。
+  - 确保所有模板文件遵循 Halo 官方 PostVo、ListedPostVo、ContentVo、ContributorVo 等数据结构规范。

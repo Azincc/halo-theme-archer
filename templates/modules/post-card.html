@@ -34,8 +34,12 @@
         <th:block th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></th:block>
         <th:block 
           th:unless="${post.status.excerpt}" 
-          th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300}"
-          th:utext="${#strings.abbreviate(#strings.stripHtml(post.status.content), truncateLen)}">
+          th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
+                   fallbackExcerpt=${post.spec.excerpt?.raw}">
+          <span th:if="${not #strings.isEmpty(fallbackExcerpt)}"
+                th:utext="${#strings.abbreviate(#strings.stripHtml(fallbackExcerpt), truncateLen)}"></span>
+          <span th:if="${#strings.isEmpty(fallbackExcerpt)}"
+                th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
         </th:block>
       </div>
       <span
