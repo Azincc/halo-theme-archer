@@ -1,4 +1,4 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Categories', null, 'categories')}">
+<th:block th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = 'Categories', templateId = 'categories')}">
   <th:block th:fragment="content">
     <main class="main categories-page">
       <div class="categories-container">

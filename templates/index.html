@@ -1,4 +1,4 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${site.title}, null, 'index')}">
+<th:block th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = ${site.title}, templateId = 'index')}">
   <th:block th:fragment="content" th:with="postPage=${posts != null ? posts : postFinder.list(1,10)}">
     <main class="main index-page">
 
