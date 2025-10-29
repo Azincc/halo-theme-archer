@@ -39,10 +39,16 @@
               </th:block>
             </div>
             <!-- Reading Info -->
-            <div class="post-intro-read" th:if="${theme.config.style?.reading_info == true}">
+            <div
+              class="post-intro-read"
+              th:if="${theme.config.style?.reading_info == true}"
+              th:with="plainText=${#strings.stripHtml(post.content.content)},
+                       wordCount=${#strings.length(#strings.trimAllWhitespace(plainText))},
+                       readingMinutes=${wordCount > 0 ? T(java.lang.Math).max(1, T(java.lang.Math).ceil(wordCount / 400.0)) : 0}"
+            >
               <span>
-                字数统计: <span class="post-count word-count" th:text="${post.content.wordCount ?: 0}">0</span>
-                阅读时长: <span class="post-count reading-time" th:text="|${post.content.readingTime ?: 0} min|">0 min</span>
+                字数统计: <span class="post-count word-count" th:text="${wordCount}">0</span>
+                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">0 min</span>
               </span>
             </div>
             <!-- Post Meta: Date and Stats -->
@@ -78,8 +84,8 @@
         <p>
           Author:
           <a
-            th:href="${post.status.permalink}"
-            th:text="${post.spec.owner != null ? post.spec.owner : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"
+            th:href="${post.owner?.permalink != null ? post.owner.permalink : post.status.permalink}"
+            th:text="${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"
           ></a>
         </p>
         <p>
