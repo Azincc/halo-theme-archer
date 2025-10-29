@@ -72,8 +72,7 @@ const main = () => {
   }
 
   const $toc = $('.toc')
-  const $article = $('article.article-entry')
-
+  const $article = $('post.content.content')
   // #region Toc onscroll listener
   const getInitTocOnScrollFun = () => {
     const $banner = $('.banner:first')

@@ -63,7 +63,7 @@ function init() {
   const sDesc =
     document.querySelector('.article-entry') &&
     document.querySelector('.article-entry').innerText.substring(0, 30) + '...'
-  const sAuthor = window.siteMeta.author
+  const sAuthor = "${post.spec.owner}"
   const param = {
     sURL,
     sTitle,
