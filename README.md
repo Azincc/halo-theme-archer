@@ -80,3 +80,9 @@ halo文件夹是halo的源代码，不需要访问。
   - `index.html` 和 `post-card.html`：修复 `post.content.content`（ListedPostVo 无 content 字段），改为使用 `post.status.excerpt` 或 `post.spec.excerpt.raw` 作为摘要回退。
   - `modules/layout.html`：移除 `post.content.toc`（ContentVo 无 toc 字段），TOC 功能需通过 JavaScript 实现或使用插件。
   - 确保所有模板文件遵循 Halo 官方 PostVo、ListedPostVo、ContentVo、ContributorVo 等数据结构规范。
+* **2024-12-27**：对比 hexo-theme-archer 原始主题，补充缺失的页脚（footer）和固定页脚（footer-fixed）模块：
+  - 新增 `modules/footer.html`：包含社交链接、版权信息、网站备案信息、不蒜子访客统计等元素。
+  - 新增 `modules/footer-fixed.html`：包含赞赏弹窗（donate-popup）、返回顶部按钮（back-top）等浮动按钮。
+  - 更新 `modules/layout.html`：在页面中引入 footer 和 footer-fixed 模块，确保页面结构完整。
+  - 更新 `settings.yaml`：新增 busuanzi 统计配置组，包括启用开关、统计类型（PV/UV）、显示文本等配置项。
+  - 确保所有页脚元素与原始 Archer 主题保持一致，同时使用正确的 Halo Thymeleaf 语法。
