@@ -19,6 +19,14 @@
         document.write('<script src="' + localJquery + '"><\\/script>');
       }
     </script>
+    
+    <script th:inline="javascript">
+      window.siteMeta = Object.assign({}, window.siteMeta, {
+        root: /*[[ @{/} ]]*/ '/',
+        author: /*[[${theme.config.profile.author ?: site.title}]]*/ '',
+        title: /*[[${site.title}]]*/ ''
+      });
+    </script>
 
     <th:block th:replace="~{modules/header :: header}"></th:block>
 

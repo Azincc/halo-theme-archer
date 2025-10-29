@@ -63,7 +63,19 @@
               <span class="share-wrapper">
                 <span class="iconfont-archer share-icon">&#xe71d;</span>
                 <span class="share-text">Share</span>
-                <ul class="share-list">
+                <ul
+                  class="share-list"
+                  th:with="plainText=${#strings.stripHtml(post.content.content)},
+                           excerptText=${#strings.stripHtml(post.spec.excerpt?.raw)},
+                           combinedDesc=${not #strings.isEmpty(excerptText) ? excerptText : plainText},
+                           trimmedDesc=${combinedDesc != null ? #strings.trim(combinedDesc) : ''},
+                           shareDesc=${trimmedDesc != null && #strings.length(trimmedDesc) > 120 ? #strings.substring(trimmedDesc, 0, 120) + '...' : trimmedDesc}"
+                  th:attr="data-url=${post.status.permalink},
+                           data-title=${post.spec.title ?: ''},
+                           data-desc=${shareDesc ?: ''},
+                           data-cover=${post.spec.cover ?: ''},
+                           data-author=${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"
+                >
                   <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
                     <div class="share-qrcode"></div>
                   </li>

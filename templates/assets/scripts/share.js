@@ -48,22 +48,69 @@ function handleShareClick(type, param) {
   }
 }
 
+function resolveAbsoluteUrl(url, baseUrl = window.location.href) {
+  if (!url) {
+    return ''
+  }
+  if (/^https?:\/\//i.test(url)) {
+    return url
+  }
+  if (url.startsWith('//')) {
+    return `${window.location.protocol}${url}`
+  }
+  try {
+    return new URL(url, baseUrl).href
+  } catch (error) {
+    console.warn('Failed to resolve absolute URL for share asset:', url, error)
+    return url
+  }
+}
+
+function getArticleExcerpt(limit = 120) {
+  const article = document.querySelector('.article-entry')
+  if (!article) {
+    return ''
+  }
+  const text = article.innerText.replace(/\s+/g, ' ').trim()
+  if (!text) {
+    return ''
+  }
+  if (text.length <= limit) {
+    return text
+  }
+  return `${text.substring(0, limit)}...`
+}
+
 function init() {
-  const sURL = window.location.href
-  const sTitle = document.querySelector('title').innerHTML
-  let sImg =
-    document.querySelector('.article-entry img') &&
-    document.querySelector('.article-entry img').getAttribute('src')
-  sImg =
-    window.location.protocol +
-    '//' +
-    window.location.hostname +
-    (window.location.port ? ':' + window.location.port : '') +
-    sImg
-  const sDesc =
-    document.querySelector('.article-entry') &&
-    document.querySelector('.article-entry').innerText.substring(0, 30) + '...'
-  const sAuthor = window.siteMeta.author
+  const shareWrapper = document.querySelector('.share-list')
+  if (!shareWrapper) {
+    return
+  }
+
+  // Get share data from template-provided data attributes
+  const dataset = shareWrapper.dataset || {}
+  const sURL = resolveAbsoluteUrl(dataset.url) || window.location.href
+  const titleElement = document.querySelector('title')
+  const fallbackTitle = titleElement?.textContent || document.title
+  const sTitle = dataset.title || fallbackTitle || ''
+  const sDesc = dataset.desc || getArticleExcerpt(120)
+
+  const metaAuthor = document
+    .querySelector('meta[name="author"]')
+    ?.getAttribute('content')
+  const sAuthor = dataset.author || metaAuthor || (window.siteMeta?.author || '')
+
+  // Get image from data-cover attribute or fallback to first article image
+  let sImg = dataset.cover || ''
+  if (!sImg) {
+    const firstImg = document.querySelector('.article-entry img')
+    if (firstImg) {
+      sImg = firstImg.getAttribute('src') || ''
+    }
+  }
+  // Resolve to absolute URL
+  sImg = resolveAbsoluteUrl(sImg, sURL)
+
   const param = {
     sURL,
     sTitle,
@@ -72,16 +119,13 @@ function init() {
     sAuthor,
   }
 
-  const shareWrapper = document.querySelector('.share-list')
-  if (!shareWrapper) {
-    return
-  }
-  initQR(sURL)
+  initQR(param.sURL)
   shareWrapper.addEventListener('click', function (e) {
-    if (!e.target.getAttribute('data-type')) {
+    const type = e.target.getAttribute('data-type')
+    if (!type) {
       return
     }
-    handleShareClick(e.target.getAttribute('data-type'), param)
+    handleShareClick(type, param)
   })
 }
 

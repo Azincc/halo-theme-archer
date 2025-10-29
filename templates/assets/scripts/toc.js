@@ -27,6 +27,9 @@ function hideAllOl(root) {
 
 // back to default state
 function initFold(toc) {
+  if (!toc || !toc.children) {
+    return
+  }
   ;[...toc.children].forEach((child) => {
     hideAllOl(child)
   })
@@ -73,6 +76,12 @@ const main = () => {
 
   const $toc = $('.toc')
   const $article = $('article.article-entry')
+
+  // Skip initialization if TOC element doesn't exist
+  if (!$toc.length || !$toc[0]) {
+    console.info('TOC element not found. Skipping TOC initialization.')
+    return
+  }
 
   // #region Toc onscroll listener
   const getInitTocOnScrollFun = () => {
