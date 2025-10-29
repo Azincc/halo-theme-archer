@@ -1,4 +1,4 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${site.title}, null, 'index')}">
+<th:block th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = ${site.title}, templateId = 'index')}">
   <th:block th:fragment="content" th:with="postPage=${posts != null ? posts : postFinder.list(1,10)}">
     <main class="main index-page">
 
@@ -84,8 +84,13 @@
 
               <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
               <div class="abstract-content" th:unless="${post.status.excerpt}"
-                   th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300}"
-                   th:utext="${#strings.abbreviate(#strings.stripHtml(post.content.content), truncateLen)}"></div>
+                   th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
+                            fallbackExcerpt=${post.spec.excerpt?.raw}">
+                <span th:if="${not #strings.isEmpty(fallbackExcerpt)}"
+                      th:utext="${#strings.abbreviate(#strings.stripHtml(fallbackExcerpt), truncateLen)}"></span>
+                <span th:if="${#strings.isEmpty(fallbackExcerpt)}"
+                      th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
+              </div>
 
               <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
                 <a th:href="${post.status.permalink}">

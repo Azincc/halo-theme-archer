@@ -74,3 +74,20 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-10-28**：修复前端脚本在缺少侧边栏或站点简介元素时的运行错误：为 PerfectScrollbar、侧边栏标签、滚动交互等模块增加空节点校验与降级逻辑，将站点封面图加载异常从报错调整为警告，避免控制台出现未捕获异常。
 * **2024-10-28**：重构 index.html 页面，添加完整的站点简介(site-intro)、个人资料侧边栏(profile)和文章列表结构；修复 layout.html 缺少 header 的问题。确保页面包含所有 JavaScript 所需的 DOM 元素。调整首页布局：头图区域在main内部、左侧显示profile、右侧显示文章列表，符合Archer主题的原始设计。
 * **2024-12-27**：修复 post.html 模板报错：移除 post.prev/post.next 的前后文导航功能。由于 Halo PostVo 结构不包含 prev/next 字段，原模板尝试访问这些不存在的属性导致 SpringEL 表达式异常（EL1008E）。已删除前后文导航区块以解决此问题。
+* **2024-12-27**：修复 post.html 页面 SpEL 表达式错误：移除了不存在的 `post.spec.extra` 字段引用，将 MathJax 加载改为仅依赖主题配置 `theme.config.other.math?.mathjax?.enable`。同时，按照 hexo-theme-archer 原始设计，为 post.html 添加了完整的文章头部区域（site-intro），包括：文章标题、副标题、封面图片、分类/标签链接、字数统计、阅读时长、发布日期、Busuanzi 页面浏览量统计、社交分享按钮等元素，确保文章页面样式与 Archer 主题保持一致。
+* **2024-12-27**：全面检查并修复所有模板文件中错误的 Halo 元数据字段引用。根据 Halo 2.21 官方文档修复如下问题：
+  - `post.html`：修复 `post.content.wordCount` 和 `post.content.readingTime`（ContentVo 无此字段），改为使用 Thymeleaf 计算字数和阅读时长；修复 `post.spec.owner` 应使用 `post.owner.displayName` 显示作者名称。
+  - `index.html` 和 `post-card.html`：修复 `post.content.content`（ListedPostVo 无 content 字段），改为使用 `post.status.excerpt` 或 `post.spec.excerpt.raw` 作为摘要回退。
+  - `modules/layout.html`：移除 `post.content.toc`（ContentVo 无 toc 字段），TOC 功能需通过 JavaScript 实现或使用插件。
+  - 确保所有模板文件遵循 Halo 官方 PostVo、ListedPostVo、ContentVo、ContributorVo 等数据结构规范。
+* **2024-12-27**：对比 hexo-theme-archer 原始主题，补充缺失的页脚（footer）和固定页脚（footer-fixed）模块：
+  - 新增 `modules/footer.html`：包含社交链接、版权信息、网站备案信息、不蒜子访客统计等元素。
+  - 新增 `modules/footer-fixed.html`：包含赞赏弹窗（donate-popup）、返回顶部按钮（back-top）等浮动按钮。
+  - 更新 `modules/layout.html`：在页面中引入 footer 和 footer-fixed 模块，确保页面结构完整。
+  - 更新 `settings.yaml`：新增 busuanzi 统计配置组，包括启用开关、统计类型（PV/UV）、显示文本等配置项。
+  - 确保所有页脚元素与原始 Archer 主题保持一致，同时使用正确的 Halo Thymeleaf 语法。
+* **2024-12-27**：重构所有模板文件，使用 Thymeleaf 命名参数方式调用 fragment，提高代码可读性和可维护性：
+  - 修改 `modules/layout.html`：将 fragment 定义从 `html(content, page_js, _title, _head, _templateId)` 改为 `html(content, page_js = null, title = null, head = null, templateId = 'index')`，使用命名参数和默认值。
+  - 修改 `modules/head.html`：将 fragment 定义从 `head(_title, _head)` 改为 `head(title = null, head = null)`，统一命名参数风格。
+  - 更新所有页面模板（index.html, post.html, page.html, 404.html, archives.html, categories.html, tags.html）：使用命名参数方式调用 layout，例如 `content = ~{::content}, page_js = ~{::page_js}, title = ${site.title}, templateId = 'index'`。
+  - 消除了所有 `_templateId`、`_title`、`_head` 等带下划线的内部参数，统一使用清晰的命名参数，符合 Halo 主题开发最佳实践。
