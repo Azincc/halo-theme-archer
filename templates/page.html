@@ -1,5 +1,4 @@
-<th:block th:with="pageTemplate=${singlePage.spec.slug != null && singlePage.spec.slug == 'about' ? 'about' : 'page'}"
-          th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = ${singlePage.spec.title}, templateId = ${pageTemplate})}">
+<th:block th:with="pageTemplate=${singlePage.spec.slug != null && singlePage.spec.slug == 'about' ? 'about' : 'page'}" th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${singlePage.spec.title}, null, ${pageTemplate})}">
   <th:block th:fragment="content">
     <main class="main about-page">
       <article class="article-entry" th:utext="${singlePage.content.content}"></article>

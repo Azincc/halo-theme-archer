@@ -1,4 +1,4 @@
-<th:block th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = 'Page Not Found', templateId = '404')}">
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Page Not Found', null, '404')}">
   <th:block th:fragment="content">
     <main class="main four-zero-four-page">
       <section class="error-page text-center">

@@ -1,4 +1,4 @@
-<head th:fragment="head(title = null, head = null)">
+<head th:fragment="head(_title, _head)">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="renderer" content="webkit" />
@@ -41,7 +41,7 @@
   <th:block th:with="
     pageTitle=${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : null)},
     seoTitle=${theme.config.seo?.SEO_title ?: site.title},
-    fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (title != null ? title : seoTitle)}">
+    fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (_title != null ? _title : seoTitle)}">
     <title th:text="${fullTitle}"></title>
   </th:block>
   
@@ -261,5 +261,4 @@
 
   <style th:if="${not #strings.isEmpty(theme.config.custom.code_css)}" th:utext="${theme.config.custom.code_css}"></style>
   <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}" th:utext="${theme.config.custom.head_html}"></th:block>
-  <th:block th:if="${head != null}" th:replace="${head}"></th:block>
 </head>

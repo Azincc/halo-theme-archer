@@ -1,4 +1,4 @@
-<th:block th:replace="~{modules/layout :: html(content = ~{::content}, page_js = ~{::page_js}, title = ${post.spec.title}, templateId = 'post')}">
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, null, 'post')}">
   <th:block th:fragment="content">
     <main class="main post-page">
       <!-- Post Intro - Header Image Area -->

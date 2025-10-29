@@ -86,8 +86,3 @@ halo文件夹是halo的源代码，不需要访问。
   - 更新 `modules/layout.html`：在页面中引入 footer 和 footer-fixed 模块，确保页面结构完整。
   - 更新 `settings.yaml`：新增 busuanzi 统计配置组，包括启用开关、统计类型（PV/UV）、显示文本等配置项。
   - 确保所有页脚元素与原始 Archer 主题保持一致，同时使用正确的 Halo Thymeleaf 语法。
-* **2024-12-27**：重构所有模板文件，使用 Thymeleaf 命名参数方式调用 fragment，提高代码可读性和可维护性：
-  - 修改 `modules/layout.html`：将 fragment 定义从 `html(content, page_js, _title, _head, _templateId)` 改为 `html(content, page_js = null, title = null, head = null, templateId = 'index')`，使用命名参数和默认值。
-  - 修改 `modules/head.html`：将 fragment 定义从 `head(_title, _head)` 改为 `head(title = null, head = null)`，统一命名参数风格。
-  - 更新所有页面模板（index.html, post.html, page.html, 404.html, archives.html, categories.html, tags.html）：使用命名参数方式调用 layout，例如 `content = ~{::content}, page_js = ~{::page_js}, title = ${site.title}, templateId = 'index'`。
-  - 消除了所有 `_templateId`、`_title`、`_head` 等带下划线的内部参数，统一使用清晰的命名参数，符合 Halo 主题开发最佳实践。
