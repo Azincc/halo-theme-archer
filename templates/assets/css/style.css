@@ -236,13 +236,12 @@ body {
     min-width: 42.8125rem;
     flex-grow: 0;
     padding: 0 0 0 0;
-    margin-left: 3rem
-
+    margin-left: 0
 }
 
 .container {
     display: flex;
-    padding: 3rem 0 0 0;
+    padding: 0 0 0 0;
     position: relative;
     background-color: #fff;
     top: 0;
@@ -739,6 +738,9 @@ ul, li {
 }
 
 header.header {
+    background-color: rgba(0, 0, 0, .4);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
     position: fixed;
     top: 0;
     width: 100%;
