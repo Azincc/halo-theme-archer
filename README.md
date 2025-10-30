@@ -86,3 +86,9 @@ halo文件夹是halo的源代码，不需要访问。
   - 更新 `modules/layout.html`：在页面中引入 footer 和 footer-fixed 模块，确保页面结构完整。
   - 更新 `settings.yaml`：新增 busuanzi 统计配置组，包括启用开关、统计类型（PV/UV）、显示文本等配置项。
   - 确保所有页脚元素与原始 Archer 主题保持一致，同时使用正确的 Halo Thymeleaf 语法。
+* **2024-12-27**：修复缺失的 header-sidebar-menu 和 header-actions 组件：
+  - 重构 `modules/header.html`：按照原始 Archer 主题结构，添加了顶部阅读进度条、侧边栏菜单按钮、主题切换按钮、返回首页链接和 banner 区域。
+  - 新增 `modules/sidebar.html`：实现完整的侧边栏功能，包括归档（Archives）、标签（Tags）和分类（Categories）三个面板，支持点击标签/分类名称动态显示对应文章列表。
+  - 更新 `modules/layout.html`：在页面中引入 sidebar 模块和 site-meta 脚本，为 JavaScript 提供必要的站点元数据。
+  - 侧边栏支持通过点击 `.header-sidebar-menu` 按钮从左侧滑入，完全还原原始 Archer 主题的交互体验。
+  - 所有 CSS 样式已存在于 `assets/css/style.css` 中，JavaScript 交互逻辑已在 `assets/scripts/sidebar.js` 和 `initSidebar.js` 中实现。
