@@ -44,6 +44,12 @@
     <!-- The content.toc field does not exist in ContentVo structure -->
     <!-- If TOC is needed, implement it using JavaScript parsing of article headings -->
 
+    <!-- Sidebar -->
+    <th:block th:replace="~{modules/sidebar :: sidebar}"></th:block>
+
+    <!-- Site metadata for sidebar JavaScript -->
+    <th:block th:replace="~{modules/sidebar :: site-meta}"></th:block>
+
     <script th:src="@{/assets/scripts/main.js}" type="module"></script>
     <script th:inline="javascript">
       (function () {
