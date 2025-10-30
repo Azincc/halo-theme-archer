@@ -70,10 +70,20 @@
     <div class="sidebar-panel-tags">
       <div class="sidebar-tags-name">
         <th:block th:each="tag : ${allTags}">
-          <span class="sidebar-tag-name" th:data-tags="${tag.spec.displayName}">
-            <span class="iconfont-archer">&#xe606;</span>
-            <span th:text="${tag.spec.displayName}">Tag</span>
-          </span>
+          <a
+            class="sidebar-tag-name"
+            th:attr="data-tags=${tag.spec.displayName}"
+            th:href="@{${tag.status.permalink}}"
+          >
+            <span
+              class="iconfont-archer"
+              th:attr="data-tags=${tag.spec.displayName}"
+            >&#xe606;</span>
+            <span
+              th:text="${tag.spec.displayName}"
+              th:attr="data-tags=${tag.spec.displayName}"
+            >Tag</span>
+          </a>
         </th:block>
       </div>
       <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -90,13 +100,20 @@
     <div class="sidebar-panel-categories">
       <div class="sidebar-categories-name">
         <th:block th:each="category : ${allCategories}">
-          <span
+          <a
             class="sidebar-category-name"
-            th:data-categories="${category.spec.displayName}"
+            th:attr="data-categories=${category.spec.displayName}"
+            th:href="@{${category.status.permalink}}"
           >
-            <span class="iconfont-archer">&#xe60a;</span>
-            <span th:text="${category.spec.displayName}">Category</span>
-          </span>
+            <span
+              class="iconfont-archer"
+              th:attr="data-categories=${category.spec.displayName}"
+            >&#xe60a;</span>
+            <span
+              th:text="${category.spec.displayName}"
+              th:attr="data-categories=${category.spec.displayName}"
+            >Category</span>
+          </a>
         </th:block>
       </div>
       <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
