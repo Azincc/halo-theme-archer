@@ -109,59 +109,11 @@
 <script
   th:fragment="site-meta"
   th:inline="javascript"
-  th:with="
-    allPosts = ${postFinder.list(1, 1000).items},
-    allTags = ${tagFinder.listAll()},
-    allCategories = ${categoryFinder.listAll()}"
 >
+  /*<![CDATA[*/
   window.siteMeta = {
-    root: /*[[${theme.spec.repo ?: '/'}]]*/ '/',
-    author: /*[[${site.title}]]*/ 'Site Title',
-    categories: [
-      /*[# th:each="category,iterStat : ${allCategories}"]*/
-      {
-        name: /*[[${category.spec.displayName}]]*/ '',
-        slug: /*[[${category.spec.slug}]]*/ '',
-        permalink: /*[[${category.status.permalink}]]*/ ''
-      }/*[(${!iterStat.last} ? ',' : '')]]*/
-      /*[/]*/
-    ],
-    tags: [
-      /*[# th:each="tag,iterStat : ${allTags}"]*/
-      {
-        name: /*[[${tag.spec.displayName}]]*/ '',
-        slug: /*[[${tag.spec.slug}]]*/ '',
-        permalink: /*[[${tag.status.permalink}]]*/ ''
-      }/*[(${!iterStat.last} ? ',' : '')]]*/
-      /*[/]*/
-    ]
+    root: '/*[[${theme.spec.repo ?: '/'}]]*/',
+    author: '/*[[${site.title}]]*/'
   };
-  
-  // Build posts by tag
-  window.postsByTag = {};
-  /*[# th:each="tag : ${allTags}"]*/
-  window.postsByTag[/*[[${tag.spec.displayName}]]*/ ''] = [
-    /*[# th:each="post,iterStat : ${postFinder.listByTag(1, 1000, tag.metadata.name).items}"]*/
-    {
-      title: /*[[${post.spec.title}]]*/ '',
-      permalink: /*[[${post.status.permalink}]]*/ '',
-      date: /*[[${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}]]*/ ''
-    }/*[(${!iterStat.last} ? ',' : '')]]*/
-    /*[/]*/
-  ];
-  /*[/]*/
-  
-  // Build posts by category
-  window.postsByCategory = {};
-  /*[# th:each="category : ${allCategories}"]*/
-  window.postsByCategory[/*[[${category.spec.displayName}]]*/ ''] = [
-    /*[# th:each="post,iterStat : ${postFinder.listByCategory(1, 1000, category.metadata.name).items}"]*/
-    {
-      title: /*[[${post.spec.title}]]*/ '',
-      permalink: /*[[${post.status.permalink}]]*/ '',
-      date: /*[[${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}]]*/ ''
-    }/*[(${!iterStat.last} ? ',' : '')]]*/
-    /*[/]*/
-  ];
-  /*[/]*/
+  /*]]>*/
 </script>
