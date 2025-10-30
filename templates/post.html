@@ -9,14 +9,14 @@
           th:style="${post.spec.cover != null} ? |background-image: url(${post.spec.cover});| : (${theme.config.style.site_header_image != null} ? |background-image: url(${theme.config.style.site_header_image});| : '')">
         </div>
         <div class="site-intro-meta">
-          <h1 class="intro-title" th:text="${post.spec.title ?: '[Untitled Post]'}">
+          <h1 class="intro-title intro-fade-in" th:text="${post.spec.title ?: '[Untitled Post]'}">
             Post Title
           </h1>
-          <p class="intro-subtitle" th:if="${not #strings.isEmpty(post.spec.excerpt?.raw)}" th:text="${post.spec.excerpt.raw}">
+          <p class="intro-subtitle intro-fade-in" th:if="${not #strings.isEmpty(post.spec.excerpt?.raw)}" th:text="${post.spec.excerpt.raw}">
             Post Subtitle
           </p>
           <!-- Post Metadata -->
-          <div class="post-intros">
+          <div class="post-intros post-fade-in">
             <!-- Tags and Categories -->
             <div class="post-intro-tags" th:if="${(not #lists.isEmpty(post.tags)) or (not #lists.isEmpty(post.categories))}">
               <th:block th:if="${not #lists.isEmpty(post.categories)}">
