@@ -92,6 +92,6 @@ halo文件夹是halo的源代码，不需要访问。
   - 更新 `modules/layout.html`：在页面中引入 sidebar 模块和 site-meta 脚本，为 JavaScript 提供必要的站点元数据。
   - 侧边栏支持通过点击 `.header-sidebar-menu` 按钮从左侧滑入，完全还原原始 Archer 主题的交互体验。
   - 所有 CSS 样式已存在于 `assets/css/style.css` 中，JavaScript 交互逻辑已在 `assets/scripts/sidebar.js` 和 `initSidebar.js` 中实现。
-* **2024-12-27**：修复 header 和 sidebar 的两个问题：
-  - **修复 header 背景模糊效果**：在 `modules/header.html` 中添加 `.header-background` 元素，并在 `assets/css/style.css` 中添加相应样式，使用 `backdrop-filter: blur(12px)` 实现毛玻璃模糊效果，解决了 PC 宽屏模式下白色按钮与背景混在一起难以分辨的问题。
+* **2024-12-27**：修复 sidebar 导航链接问题：
   - **修复 sidebar 导航链接**：将 `modules/sidebar.html` 中的标签和分类从 `<span>` 改为 `<a>` 元素，并正确绑定到 `tag.status.permalink` 和 `category.status.permalink`，使得点击标签/分类名称能够正确导航到对应页面（如 `/tags/halo`、`/categories/default`）。
+  - 使用 `th:attr="data-tags=..."` 和 `th:attr="data-categories=..."` 确保自定义属性正确设置，保留了原有的 JavaScript 交互功能。
