@@ -2,15 +2,13 @@ const THEME_DARK_STYLESHEET_ID = 'stylesheet-theme-dark'
 const $themeModeSwitchBtn = $('.header-theme-btn')
 
 const ensureDarkStylesheet = () => {
-  const root = window.siteMeta?.root || '/'
-  const normalizedRoot = root.endsWith('/') ? root : `${root}/`
   if ($(`link#${THEME_DARK_STYLESHEET_ID}`).length === 0) {
     $('<link>')
       .attr({
         id: THEME_DARK_STYLESHEET_ID,
         rel: 'stylesheet',
         type: 'text/css',
-        href: `${normalizedRoot}assets/css/dark.css`,
+        href: `/themes/halo-theme-archer/assets/css/dark.css`,
       })
       .appendTo('head')
   }
