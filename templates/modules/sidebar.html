@@ -38,28 +38,30 @@
       </div>
       <div class="post-archive">
         <th:block
-          th:with="postsByYear = ${postFinder.archives(1, 1000)}"
-          th:if="${not #lists.isEmpty(postsByYear.items)}"
+          th:with="archivesData = ${postFinder.archives(1, 1000)}"
+          th:if="${archivesData != null and not #lists.isEmpty(archivesData.items)}"
         >
-          <th:block th:each="yearGroup : ${postsByYear.items}">
-            <div class="archive-year" th:text="${yearGroup.year}">2024</div>
+          <th:block th:each="archive : ${archivesData.items}">
+            <div class="archive-year" th:text="${archive.year}">2024</div>
             <ul class="year-list">
-              <li
-                th:each="post : ${yearGroup.posts}"
-                class="archive-post-item"
-              >
-                <span
-                  class="archive-post-date"
-                  th:text="${#temporals.format(post.spec.publishTime, 'MM/dd')}"
-                  >01/01</span
+              <th:block th:each="month : ${archive.months}">
+                <li
+                  th:each="post : ${month.posts}"
+                  class="archive-post-item"
                 >
-                <a
-                  class="archive-post-title"
-                  th:href="@{${post.status.permalink}}"
-                  th:text="${post.spec.title}"
-                  >[Untitled Post]</a
-                >
-              </li>
+                  <span
+                    class="archive-post-date"
+                    th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
+                    >01/01</span
+                  >
+                  <a
+                    class="archive-post-title"
+                    th:href="${post.status.permalink}"
+                    th:text="${post.spec.title}"
+                    >[Untitled Post]</a
+                  >
+                </li>
+              </th:block>
             </ul>
           </th:block>
         </th:block>

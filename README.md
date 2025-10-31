@@ -95,3 +95,11 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-12-27**：修复 sidebar 导航链接问题：
   - **修复 sidebar 导航链接**：将 `modules/sidebar.html` 中的标签和分类从 `<span>` 改为 `<a>` 元素，并正确绑定到 `tag.status.permalink` 和 `category.status.permalink`，使得点击标签/分类名称能够正确导航到对应页面（如 `/tags/halo`、`/categories/default`）。
   - 使用 `th:attr="data-tags=..."` 和 `th:attr="data-categories=..."` 确保自定义属性正确设置，保留了原有的 JavaScript 交互功能。
+* **2024-12-27**：修复 sidebar archives 和 tags 页面的问题：
+  - **修复 sidebar archives 显示**：调整 `modules/sidebar.html` 中的 archives 数据结构，正确遍历 `archive.months` 和 `month.posts`，使归档列表能够正确显示所有文章。使用 `#dates.format()` 替代 `#temporals.format()` 以兼容 Halo 的日期格式化方法。
+  - **修复 tags 页面错误**：修改 `templates/tags.html`，将不存在的 `#numbers.random()` 方法替换为使用 `iterStat.index % 19` 的方式生成伪随机字体大小（12-30px），解决了 `Method random(java.lang.Integer,java.lang.Integer) cannot be found` 的 SpEL 错误。
+* **2024-12-27**：新增 tag 和 category 单页模板：
+  - **新增 `templates/tag.html`**：创建单个标签的文章聚合页面，显示该标签下的所有文章列表，包含 Site Intro 头图区域、左侧个人资料和右侧文章流，完整复刻 Archer 主题的布局风格。
+  - **新增 `templates/category.html`**：创建单个分类的文章聚合页面，显示该分类下的所有文章列表，布局与 tag 页面保持一致。
+  - 两个页面都支持分页功能，使用 `posts.hasPrevious()`、`posts.hasNext()` 等方法实现翻页导航。
+  - 页面标题显示为"标签名/分类名 - Tags/Categories"，头图区域显示对应图标和文章数量统计。

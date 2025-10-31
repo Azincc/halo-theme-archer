@@ -4,11 +4,11 @@
       <div class="tags-container">
         <div class="tag-cloud">
           <a
-            th:each="tag : ${tags}"
+            th:each="tag, iterStat : ${tags}"
             th:href="${tag.status.permalink}"
             class="tag-cloud-item"
             th:text="${tag.spec.displayName}"
-            th:style="${'font-size: ' + #numbers.random(12, 30) + 'px;'}"
+            th:style="${'font-size: ' + (12 + (iterStat.index % 19)) + 'px;'}"
           ></a>
         </div>
       </div>
