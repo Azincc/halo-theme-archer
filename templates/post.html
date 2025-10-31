@@ -42,13 +42,14 @@
             <div
               class="post-intro-read"
               th:if="${theme.config.style?.reading_info == true}"
-              th:with="plainText=${#strings.stripHtml(post.content.content)},
-                       wordCount=${#strings.length(#strings.trimAllWhitespace(plainText))},
-                       readingMinutes=${wordCount > 0 ? T(java.lang.Math).max(1, T(java.lang.Math).ceil(wordCount / 400.0)) : 0}"
+              th:with="contentText=${post.content.content != null ? post.content.content : ''},
+                       plainText=${#strings.replace(#strings.replace(contentText, '<', ' <'), '>', '> ')},
+                       wordCount=${#strings.length(#strings.replace(plainText, ' ', ''))},
+                       readingMinutes=${wordCount > 0 ? T(java.lang.Math).max(1, T(java.lang.Math).ceil(wordCount / 400.0)) : 1}"
             >
               <span>
                 字数统计: <span class="post-count word-count" th:text="${wordCount}">0</span>
-                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">0 min</span>
+                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">1 min</span>
               </span>
             </div>
             <!-- Post Meta: Date and Stats -->
