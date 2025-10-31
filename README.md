@@ -103,3 +103,8 @@ halo文件夹是halo的源代码，不需要访问。
   - **新增 `templates/category.html`**：创建单个分类的文章聚合页面，显示该分类下的所有文章列表，布局与 tag 页面保持一致。
   - 两个页面都支持分页功能，使用 `posts.hasPrevious()`、`posts.hasNext()` 等方法实现翻页导航。
   - 页面标题显示为"标签名/分类名 - Tags/Categories"，头图区域显示对应图标和文章数量统计。
+* **2024-12-27**：修复 `#strings.stripHtml()` 方法不存在的问题：
+  - **问题**：Thymeleaf 的 `#strings` 工具对象没有 `stripHtml()` 方法，导致在 `post.html`、`index.html`、`tag.html`、`category.html` 和 `modules/post-card.html` 中使用时报错。
+  - **解决方案**：使用 `#strings.replace()` 方法在 HTML 标签前后添加空格，然后移除所有空格来简化文本，用于字数统计和阅读时间计算。
+  - 在 `post.html` 中的阅读时间计算：使用简化的字符计数方式，将字数除以 400 来估算阅读分钟数（中文阅读速度约 400 字/分钟）。
+  - 在摘要显示中：使用 `th:text` 替代 `th:utext` 来避免 HTML 标签显示问题，确保摘要文本正确截断。

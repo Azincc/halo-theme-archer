@@ -86,10 +86,11 @@
               <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
               <div class="abstract-content" th:unless="${post.status.excerpt}"
                    th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-                            fallbackExcerpt=${post.spec.excerpt?.raw}">
-                <span th:if="${not #strings.isEmpty(fallbackExcerpt)}"
-                      th:utext="${#strings.abbreviate(#strings.stripHtml(fallbackExcerpt), truncateLen)}"></span>
-                <span th:if="${#strings.isEmpty(fallbackExcerpt)}"
+                            fallbackExcerpt=${post.spec.excerpt?.raw},
+                            sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
+                <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
+                      th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
+                <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
                       th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
               </div>
 
