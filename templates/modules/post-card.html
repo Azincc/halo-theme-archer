@@ -32,16 +32,17 @@
       </h2>
       <div class="z-20 mt-2 line-clamp-3 text-sm text-white/70">
         <th:block th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></th:block>
-        <th:block 
-          th:unless="${post.status.excerpt}" 
+        <th:block
+          th:unless="${post.status.excerpt}"
           th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-                   fallbackExcerpt=${post.spec.excerpt?.raw}">
-          <span th:if="${not #strings.isEmpty(fallbackExcerpt)}"
-                th:utext="${#strings.abbreviate(#strings.stripHtml(fallbackExcerpt), truncateLen)}"></span>
-          <span th:if="${#strings.isEmpty(fallbackExcerpt)}"
+                   fallbackExcerpt=${post.spec.excerpt?.raw},
+                   sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
+          <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
+                th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
+          <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
                 th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
         </th:block>
-      </div>
+
       <span
         class="relative z-20 mt-auto flex flex-wrap items-center justify-between opacity-50 transition-opacity group-hover:opacity-80"
       >
