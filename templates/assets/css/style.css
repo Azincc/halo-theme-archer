@@ -8,6 +8,13 @@
     src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
 }
 
+@font-face {
+    font-family: "Oswald-Regular";
+    src: url('/themes/halo-theme-archer/assets/font/Oswald-Regular.ttf');
+    font-weight: normal; /* 或者 400 */
+    font-style: normal;
+}
+
 .iconfont-archer {
     font-family: "iconfont-archer" !important;
     font-size: 1rem;
@@ -2657,7 +2664,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     max-width: 13rem
 }
 
-.post-paginator .nextTitle, .post-paginator .prevTitle {
+.post-paginator .nextTitle, .prevTitle {
     font-size: 1.2rem;
     color: #ccc
 }
