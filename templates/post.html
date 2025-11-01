@@ -84,28 +84,46 @@
       <article class="article-entry" th:utext="${post.content.content}"></article>
 
       <!-- Previous/Next Post Navigation -->
-      <ul
-        class="post-paginator"
-        th:with="postCursor = ${postFinder.cursor(post.metadata.name)}"
-        th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}"
-      >
-        <li th:if="${postCursor.hasPrevious()}">
-          <a class="nextTitle" th:href="@{${postCursor.previous.status.permalink}}">上一篇</a>
-          <a
-            class="nextSlogan"
-            th:href="@{${postCursor.previous.status.permalink}}"
-            th:text="${postCursor.previous.spec.title}"
-          >上一篇文章</a>
-        </li>
-        <li th:if="${postCursor.hasNext()}">
-          <a class="prevTitle" th:href="@{${postCursor.next.status.permalink}}">下一篇</a>
-          <a
-            class="prevSlogan"
-            th:href="@{${postCursor.next.status.permalink}}"
-            th:text="${postCursor.next.spec.title}"
-          >下一篇文章</a>
-        </li>
-      </ul>
+      <th:block th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
+        <ul
+          class="post-paginator"
+          th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}"
+        >
+          <li th:if="${postCursor.hasPrevious()}">
+            <a class="nextTitle" th:href="@{${postCursor.previous.status.permalink}}">上一篇</a>
+            <a
+              class="nextSlogan"
+              th:href="@{${postCursor.previous.status.permalink}}"
+              th:text="${postCursor.previous.spec.title}"
+            >上一篇文章</a>
+          </li>
+          <li th:if="${postCursor.hasNext()}">
+            <a class="prevTitle" th:href="@{${postCursor.next.status.permalink}}">下一篇</a>
+            <a
+              class="prevSlogan"
+              th:href="@{${postCursor.next.status.permalink}}"
+              th:text="${postCursor.next.spec.title}"
+            >下一篇文章</a>
+          </li>
+        </ul>
+        <script th:inline="javascript" th:if="${postCursor != null}">
+          console.log('=== PostCursor Debug Info ===');
+          console.log('postCursor:', /*[[${postCursor}]]*/ null);
+          console.log('hasPrevious():', /*[[${postCursor.hasPrevious()}]]*/ false);
+          console.log('hasNext():', /*[[${postCursor.hasNext()}]]*/ false);
+          /*[# th:if="${postCursor.hasPrevious()}"]*/
+          console.log('previous:', /*[[${postCursor.previous}]]*/ null);
+          console.log('previous.spec.title:', /*[[${postCursor.previous.spec.title}]]*/ '');
+          console.log('previous.status.permalink:', /*[[${postCursor.previous.status.permalink}]]*/ '');
+          /*[/]*/
+          /*[# th:if="${postCursor.hasNext()}"]*/
+          console.log('next:', /*[[${postCursor.next}]]*/ null);
+          console.log('next.spec.title:', /*[[${postCursor.next.spec.title}]]*/ '');
+          console.log('next.status.permalink:', /*[[${postCursor.next.status.permalink}]]*/ '');
+          /*[/]*/
+          console.log('=== End PostCursor Debug Info ===');
+        </script>
+      </th:block>
 
       <div class="license-wrapper" th:if="${theme.config.other.copyright?.enable == true}">
         <p>
