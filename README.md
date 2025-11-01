@@ -111,3 +111,8 @@ halo文件夹是halo的源代码，不需要访问。
 * **2024-12-27**：修复暗黑模式切换失败的问题：
   - **问题**：点击顶部的切换按钮时，由于暗黑样式表路径错误（引用了 `/css/dark.css`），导致样式文件加载失败，同时暗黑样式未完整覆盖页面背景颜色。
   - **解决方案**：更新 `assets/scripts/theme.js`，通过解析已经加载的主样式表路径自动推断资源基础路径，并回退到 `siteMeta.root`，确保动态加载的 `assets/css/dark.css` 始终指向正确位置；同时在 `assets/css/dark.css` 中仅覆盖 `body`、`.background-holder`、`.container` 的背景色，与原始 Archer 主题保持一致，避免误伤其他模块的配色。
+* **2025-11-01**：新增文章前后文导航按钮功能：
+  - **功能**：在文章详情页的正文底部添加了前后文导航按钮（previous/next post navigation），允许读者快速跳转到上一篇和下一篇文章。
+  - **实现**：使用 Halo 的 `postFinder.cursor(post.metadata.name)` API 获取当前文章的导航光标对象，通过 `postCursor.hasPrevious()` 和 `postCursor.hasNext()` 判断是否存在前后文章，并使用 `postCursor.previous` 和 `postCursor.next` 获取相邻文章的标题和链接。
+  - **样式**：复用原始 Archer 主题中已存在的 `.post-paginator`、`.nextTitle`、`.prevTitle`、`.nextSlogan`、`.prevSlogan` 等 CSS 样式类，确保视觉效果与原主题保持一致。
+  - **参考文档**：Halo 官方文档 - [文章 Finder API](https://docs.halo.run/developer-guide/theme/finder-apis/post) 中的 `cursor()` 方法和 NavigationPostVo 类型定义。
