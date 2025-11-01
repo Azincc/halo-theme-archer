@@ -89,21 +89,17 @@
           class="post-paginator"
           th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}"
         >
-          <li th:if="${postCursor.hasPrevious()}">
-            <a class="nextTitle" th:href="@{${postCursor.previous.status.permalink}}">上一篇</a>
-            <a
-              class="nextSlogan"
-              th:href="@{${postCursor.previous.status.permalink}}"
-              th:text="${postCursor.previous.spec.title}"
-            >上一篇文章</a>
+          <li class="next" th:if="${postCursor.hasNext()}">
+            <div class="nextSlogan">Next Post</div>
+            <a th:href="@{${postCursor.next.status.permalink}}" th:title="${postCursor.next.spec.title}">
+              <div class="nextTitle" th:text="${postCursor.next.spec.title}">Next Post Title</div>
+            </a>
           </li>
-          <li th:if="${postCursor.hasNext()}">
-            <a class="prevTitle" th:href="@{${postCursor.next.status.permalink}}">下一篇</a>
-            <a
-              class="prevSlogan"
-              th:href="@{${postCursor.next.status.permalink}}"
-              th:text="${postCursor.next.spec.title}"
-            >下一篇文章</a>
+          <li class="previous" th:if="${postCursor.hasPrevious()}">
+            <div class="prevSlogan">Previous Post</div>
+            <a th:href="@{${postCursor.previous.status.permalink}}" th:title="${postCursor.previous.spec.title}">
+              <div class="prevTitle" th:text="${postCursor.previous.spec.title}">Previous Post Title</div>
+            </a>
           </li>
         </ul>
         <script th:inline="javascript" th:if="${postCursor != null}">
