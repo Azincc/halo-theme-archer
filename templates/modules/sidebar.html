@@ -1,0 +1,138 @@
+<!-- Sidebar component for Archer theme -->
+<div
+  th:fragment="sidebar"
+  class="sidebar sidebar-hide"
+  th:with="
+    allPosts = ${postFinder.list(1, 1000).items},
+    allTags = ${tagFinder.listAll()},
+    allCategories = ${categoryFinder.listAll()}"
+>
+  <ul class="sidebar-tabs sidebar-tabs-active-0">
+    <li class="sidebar-tab-archives">
+      <span class="iconfont-archer">&#xe67d;</span>
+      <span class="tab-name">Archive</span>
+    </li>
+    <li class="sidebar-tab-tags">
+      <span class="iconfont-archer">&#xe61b;</span>
+      <span class="tab-name">Tag</span>
+    </li>
+    <li class="sidebar-tab-categories">
+      <span class="iconfont-archer">&#xe666;</span>
+      <span class="tab-name">Cate</span>
+    </li>
+  </ul>
+  <div class="sidebar-content sidebar-content-show-archive">
+    <!-- Archives Panel -->
+    <div class="sidebar-panel-archives">
+      <div class="total-and-search">
+        <div class="total-archive">
+          Total : <span th:text="${#lists.size(allPosts)}">0</span>
+        </div>
+        <!-- search -->
+        <div
+          th:if="${theme.config.algolia_search?.enable == true}"
+          class="site-search site-search-loading popup-trigger"
+        >
+          <span class="iconfont-archer search-icon">&#xe627;</span>
+        </div>
+      </div>
+      <div class="post-archive">
+        <th:block
+          th:with="archivesData = ${postFinder.archives(1, 1000)}"
+          th:if="${archivesData != null and not #lists.isEmpty(archivesData.items)}"
+        >
+          <th:block th:each="archive : ${archivesData.items}">
+            <div class="archive-year" th:text="${archive.year}">2024</div>
+            <ul class="year-list">
+              <th:block th:each="month : ${archive.months}">
+                <li
+                  th:each="post : ${month.posts}"
+                  class="archive-post-item"
+                >
+                  <span
+                    class="archive-post-date"
+                    th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
+                    >01/01</span
+                  >
+                  <a
+                    class="archive-post-title"
+                    th:href="${post.status.permalink}"
+                    th:text="${post.spec.title}"
+                    >[Untitled Post]</a
+                  >
+                </li>
+              </th:block>
+            </ul>
+          </th:block>
+        </th:block>
+      </div>
+    </div>
+
+    <!-- Tags Panel -->
+    <div class="sidebar-panel-tags">
+      <div class="sidebar-tags-name">
+        <th:block th:each="tag : ${allTags}">
+          <a
+            class="sidebar-tag-name"
+            th:attr="data-tags=${tag.spec.displayName}"
+            th:href="@{${tag.status.permalink}}"
+          >
+            <span
+              class="iconfont-archer"
+              th:attr="data-tags=${tag.spec.displayName}"
+            >&#xe606;</span>
+            <span
+              th:text="${tag.spec.displayName}"
+              th:attr="data-tags=${tag.spec.displayName}"
+            >Tag</span>
+          </a>
+        </th:block>
+      </div>
+      <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+      <div
+        class="tag-load-fail"
+        style="display: none; color: #ccc; font-size: 0.6rem"
+      >
+        缺失模块，请参考主题文档进行安装配置
+      </div>
+      <div class="sidebar-tags-list"></div>
+    </div>
+
+    <!-- Categories Panel -->
+    <div class="sidebar-panel-categories">
+      <div class="sidebar-categories-name">
+        <th:block th:each="category : ${allCategories}">
+          <a
+            class="sidebar-category-name"
+            th:attr="data-categories=${category.spec.displayName}"
+            th:href="@{${category.status.permalink}}"
+          >
+            <span
+              class="iconfont-archer"
+              th:attr="data-categories=${category.spec.displayName}"
+            >&#xe60a;</span>
+            <span
+              th:text="${category.spec.displayName}"
+              th:attr="data-categories=${category.spec.displayName}"
+            >Category</span>
+          </a>
+        </th:block>
+      </div>
+      <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+      <div class="sidebar-categories-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Site metadata for JavaScript -->
+<script
+  th:fragment="site-meta"
+  th:inline="javascript"
+>
+  /*<![CDATA[*/
+  window.siteMeta = {
+    root: '/*[[${theme.spec.repo ?: '/'}]]*/',
+    author: '/*[[${site.title}]]*/'
+  };
+  /*]]>*/
+</script>

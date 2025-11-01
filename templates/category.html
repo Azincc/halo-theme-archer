@@ -1,7 +1,6 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${site.title}, 'index')}">
-  <th:block th:fragment="content" th:with="postPage=${posts != null ? posts : postFinder.list(1,10)}">
-    <main class="main index-page">
-
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${category.spec.displayName + ' - Categories'}, 'category')}">
+  <th:block th:fragment="content">
+    <main class="main category-page">
       <!-- Site Intro - Header Image Area -->
       <div class="site-intro" th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|">
         <div class="site-intro-placeholder"></div>
@@ -10,11 +9,12 @@
           th:style="${theme.config.style.site_header_image != null} ? |background-image: url(${theme.config.style.site_header_image});| : ''">
         </div>
         <div class="site-intro-meta">
-          <h1 class="intro-title intro-fade-in" th:text="${theme.config.basic.main_title ?: site.title}">
-            Main Title
+          <h1 class="intro-title intro-fade-in">
+            <span class="iconfont-archer">&#xe666;</span>
+            <span th:text="${category.spec.displayName}">Category</span>
           </h1>
-          <h2 class="intro-subtitle intro-fade-in" th:text="${theme.config.basic.subtitle ?: ''}">
-            Subtitle
+          <h2 class="intro-subtitle intro-fade-in">
+            共 <span th:text="${posts.total}">0</span> 篇文章
           </h2>
         </div>
       </div>
@@ -55,34 +55,29 @@
         </aside>
 
         <!-- 右侧文章流 -->
-        <section class="main">
-          <th:block th:each="post, postStat : ${postPage.items}">
+        <section class="content-wrapper">
+          <th:block th:each="post, postStat : ${posts.items}">
             <article class="index-post">
               <a class="abstract-title" th:href="${post.status.permalink}">
                 <span class="iconfont-archer stick-top" th:if="${post.spec.pinned}">&#xe63d;</span>
                 <span class="abstract-title-text" th:text="${post.spec.title ?: '[Untitled Post]'}">Post Title</span>
               </a>
 
-              <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
-
               <div class="abstract-post-meta">
                 <div>
-                  <span class="iconfont-archer abstract-calander"></span>
+                  <span class="iconfont-archer abstract-calander">&#xe616;</span>
                   <span th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
-                  <th:block th:if="${not #lists.isEmpty(post.categories)} and ${theme.config.style.show_categories}">
-                    <span class="post-category" th:data-categories="${post.categories[0].metadata.name}">
-                      <span class="iconfont-archer post-category-icon">&#xe606;</span>
-                      <span class="post-category-text" th:text="${post.categories[0].spec.displayName}">Category</span>
-                    </span>
-                  </th:block>
-                </div>
-                <div class="abstract-tags" th:if="${not #lists.isEmpty(post.tags)}">
-                  <a class="post-tag"
-                     th:each="tag : ${post.tags}"
-                     th:data-tags="${tag.metadata.name}"
-                     th:text="${tag.spec.displayName}">Tag</a>
+                  <div class="abstract-tags" th:if="${not #lists.isEmpty(post.tags)}">
+                    <a class="post-tag"
+                       th:each="postTag : ${post.tags}"
+                       th:href="${postTag.status.permalink}"
+                       th:data-tags="${postTag.metadata.name}"
+                       th:text="${postTag.spec.displayName}">Tag</a>
+                  </div>
                 </div>
               </div>
+
+              <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
               <div class="abstract-content" th:unless="${post.status.excerpt}"
                    th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
                             fallbackExcerpt=${post.spec.excerpt?.raw},
@@ -99,27 +94,30 @@
                 </a>
               </div>
             </article>
-
-            <div class="index-post-divider" th:unless="${postStat.last}"></div>
           </th:block>
 
-          <nav class="page-nav" th:if="${postPage.totalPages > 1}">
-            <a th:if="${postPage.hasPrevious()}" th:href="${postPage.prevUrl}"><span>&lt; PREV</span></a>
-            <th:block th:each="i : ${#numbers.sequence(1, postPage.totalPages)}">
-              <a th:href="${postPage.getUrlForPage(i)}"
-                 th:text="${i}" th:classappend="${i == postPage.page} ? 'current' : ''"></a>
-            </th:block>
-            <a th:if="${postPage.hasNext()}" th:href="${postPage.nextUrl}"><span>NEXT &gt;</span></a>
+          <!-- 分页 -->
+          <nav class="paginator" th:if="${posts.total > 0}">
+            <a class="prev" th:if="${posts.hasPrevious()}" th:href="${posts.prevUrl}">
+              <span class="iconfont-archer">&#xe60a;</span>
+              <span class="prev-text">PREV</span>
+            </a>
+            <div class="page-number">
+              <span th:text="${'Page ' + posts.page + ' of ' + posts.totalPages}">Page 1 of 1</span>
+            </div>
+            <a class="next" th:if="${posts.hasNext()}" th:href="${posts.nextUrl}">
+              <span class="next-text">NEXT</span>
+              <span class="iconfont-archer">&#xe60b;</span>
+            </a>
           </nav>
+
+          <!-- 无文章提示 -->
+          <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">
+            <p>该分类下暂无文章</p>
+          </div>
         </section>
       </div>
     </main>
-
-    <!-- 内联样式 -->
-    <style>
-
-    </style>
-
   </th:block>
   <th:block th:fragment="page_js"></th:block>
 </th:block>

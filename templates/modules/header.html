@@ -1,268 +1,53 @@
 <header
   th:fragment="header"
-  class="site-header header fixed top-[1rem] z-50 w-full md:top-[3rem]"
-  th:with="menu = ${menuFinder.getPrimary()}"
-  x-data="{ open : false,show:false }"
+  class="header header-mobile"
+  th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'"
 >
-  <div class="relative mx-auto flex max-w-7xl gap-4 px-4 lg:px-16">
-    <div class="site-logo relative z-[1] flex flex-1 items-center">
-      <a
-        href="/"
-        class="router-link-active router-link-exact-active logo"
-        role="button"
-        title="首页"
-        rel="home"
-        aria-current="page"
-      >
-        <img th:src="${site.logo}" alt="" width="36" height="36"
-      /></a>
-    </div>
-    <div class="site-menu flex flex-1 justify-end md:justify-center">
-      <div class="pointer-events-auto relative z-[1] flex items-center md:hidden" x-data="{ showMobileNav: false }">
-        <button
-          class="group mr-3 flex items-center rounded-full bg-gradient-to-b from-zinc-50/20 to-white/80 px-4 py-2 text-sm font-medium leading-[1] text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md focus:outline-none focus-visible:ring-2 dark:from-zinc-900/30 dark:to-zinc-800/80 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 dark:focus-visible:ring-yellow-500/80"
-          type="button"
-          aria-expanded="false"
-          data-headlessui-state=""
-          @click="showMobileNav = !showMobileNav"
-        >
-          前往 <i class="iconfont icon-caret-down-solid ml-1 !text-xs !leading-[1]"></i>
-        </button>
-        <!-- panel -->
-        <template x-teleport="body">
-          <div
-            x-show="showMobileNav"
-            x-transition
-            class="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur dark:bg-black/80"
-          ></div>
-        </template>
-        <template x-teleport="body">
-          <div
-            x-show="showMobileNav"
-            x-transition
-            class="fixed inset-x-4 top-8 z-[1] origin-top rounded-3xl bg-gradient-to-b from-zinc-100/75 to-white p-8 ring-1 ring-zinc-900/5 dark:from-zinc-900/50 dark:to-zinc-900 dark:ring-zinc-800"
-            id="headlessui-popover-panel-:r55:"
-            tabindex="-1"
-            data-headlessui-state="open"
-          >
-            <div class="flex flex-row-reverse items-center justify-between">
-              <button
-                @click="showMobileNav = false"
-                aria-label="关闭菜单"
-                type="button"
-                data-headlessui-state="open"
-                class="iconfont icon-close -m-1 p-1 text-zinc-600 dark:text-zinc-400"
-              ></button>
-              <h2 class="text-sm font-medium text-zinc-600 dark:text-zinc-400">站内导航</h2>
-            </div>
-            <ul
-              th:with="menuItems = ${menu.menuItems}"
-              class="-my-2 mt-6 divide-y divide-zinc-500/20 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300"
-            >
-              <li th:each="menuItem : ${menu.menuItems}">
-                <a
-                  @click="showMobileNav = false"
-                  class="block py-2"
-                  data-headlessui-state="open"
-                  aria-current="page"
-                  th:href="@{${menuItem.status.href}}"
-                  th:target="${menuItem.spec.target?.value}"
-                >
-                  [[${menuItem.status.displayName}]]
-                </a>
-
-                <ul
-                  th:if="${not #lists.isEmpty(menuItem.children)}"
-                  class="divide-y divide-zinc-500/20 pl-[2em] text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300"
-                >
-                  <li th:each="childMenuItem : ${menuItem.children}">
-                    <a
-                      class="block py-2"
-                      aria-current="page"
-                      th:href="@{${childMenuItem.status.href}}"
-                      th:target="${childMenuItem.spec.target?.value}"
-                    >
-                      [[${childMenuItem.status.displayName}]]
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </template>
-      </div>
-      <nav
-        class="menu-nav group pointer-events-auto relative z-50 hidden rounded-full bg-gradient-to-b from-zinc-50/70 to-white/90 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur [--spotlight-color:rgb(236_252_203_/_0.6)] md:block dark:from-zinc-900/70 dark:to-zinc-800/90 dark:ring-zinc-100/10 dark:[--spotlight-color:rgb(217_249_157_/_0.07)]"
-      >
-        <div
-          class="nav-mask pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          aria-hidden="true"
-        ></div>
-        <ul
-          th:with="menuItems = ${menu.menuItems}"
-          class="flex list-none bg-transparent px-3 text-sm font-medium text-zinc-800 dark:text-zinc-200"
-        >
-          <li th:each="menuItem : ${menu.menuItems}" class="site-nav relative">
-            <a
-              class="header-menu-link block whitespace-nowrap px-3 py-2 transition before:absolute before:inset-x-1 before:-bottom-px before:h-[1px] before:bg-gradient-to-r before:from-lime-700/0 before:via-lime-700/70 before:to-lime-700/0 before:opacity-0 before:content-[''] hover:text-lime-600 before:dark:from-lime-400/0 before:dark:via-lime-400/40 before:dark:to-lime-400/0 dark:hover:text-lime-400"
-              aria-current="page"
-              th:href="@{${menuItem.status.href}}"
-              th:target="${menuItem.spec.target?.value}"
-            >
-              [[${menuItem.status.displayName}]]
-            </a>
-            <div
-              th:if="${not #lists.isEmpty(menuItem.children)}"
-              class="submenu no-move absolute left-[50%] z-10 min-w-[10em] max-w-52 py-2 opacity-0 before:bg-zinc-50/90 before:dark:bg-zinc-900/80"
-            >
-              <div
-                class="no-move divide-y divide-dashed divide-zinc-900/5 rounded-2xl bg-gradient-to-b from-zinc-50/70 to-white/90 px-2 py-1 text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:divide-zinc-100/10 dark:border-zinc-700/40 dark:from-zinc-900/70 dark:to-zinc-800/90 dark:text-zinc-100 dark:ring-zinc-100/10"
-              >
-                <a
-                  th:each="childMenuItem : ${menuItem.children}"
-                  class="header-menu-link no-move flex items-center gap-x-3.5 px-3 py-2 text-sm transition duration-300 hover:text-lime-600 dark:hover:text-lime-400"
-                  th:href="@{${childMenuItem.status.href}}"
-                  th:text="${childMenuItem.status.displayName}"
-                  th:target="${childMenuItem.spec.target?.value}"
-                >
-                </a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <!-- top read progress line -->
+  <div class="header-element">
     <div
-      class="site-icons relative z-[1] flex items-center justify-end gap-3 text-zinc-800 md:flex-1 dark:text-zinc-200"
+      th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
+      class="read-progress"
+    ></div>
+  </div>
+  
+  <!-- sidebar menu button -->
+  <div class="header-element">
+    <div
+      class="header-sidebar-menu"
+      th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
     >
-      <div
-        class="search-anim-box relative flex items-center"
-        x-data="{keyword:'', open: false}"
-        @click.away="open = false; keyword = ''"
-      >
-        <input
-          id="site-header-search-input"
-          @keyup.enter="doSearch(keyword)"
-          x-model="keyword"
-          x-ref="searchInput"
-          type="text"
-          autocomplete="off"
-          class="search-anim-input group h-[2rem] rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 text-sm shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-          x-bind:class="{show:open}"
-          placeholder="搜索…"
-        />
-        <button
-          id="search-btn"
-          type="button"
-          @click="open = !open; $nextTick(() => { if(open) $refs.searchInput.focus() })"
-          aria-label="搜索"
-          class="group rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 leading-[1] shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-          data-state="closed"
-        >
-          <i class="iconfont icon-search-fill h-[16px] w-[16px]"></i>
-        </button>
-      </div>
-      <button
-        type="button"
-        aria-label="切换浅色模式"
-        data-tooltip="切换浅色模式"
-        id="theme-toggle"
-        class="group rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-        data-state="closed"
-      >
-        <a id="theme-toggle-icon" class="iconfont has-tip" title="切换浅色模式" role="button"></a>
-      </button>
-
-      <a href="/console" target="_blank" th:data-tooltip="${roleName == 'super-'?'登录':'去后台'}">
-        <th:block th:if="${roleName == 'super-'}">
-          <img
-            th:src="@{/assets/imgs/default.jpg}"
-            alt="登录"
-            class="size-8 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:ring-white/10 dark:hover:ring-white/20"
-          />
-        </th:block>
-        <th:block th:if="${roleName != 'super-'}">
-          <img
-            th:if="${not #strings.isEmpty(contributor.avatar)}"
-            th:src="${contributor.avatar}"
-            alt="去后台"
-            class="size-8 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:ring-white/10 dark:hover:ring-white/20"
-          />
-          <img
-            th:if="${#strings.isEmpty(contributor.avatar)}"
-            th:src="@{/assets/imgs/default.jpg}"
-            alt="去后台"
-            class="size-8 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:ring-white/10 dark:hover:ring-white/20"
-          />
-        </th:block>
-      </a>
+      <th:block th:if="${theme.config.style?.float_button_theme == 'rounded'}">
+        <i class="fas fa-bars"></i>
+      </th:block>
+      <th:block th:unless="${theme.config.style?.float_button_theme == 'rounded'}">
+        <div style="padding-left: 1px;">&#xe775;</div>
+      </th:block>
     </div>
   </div>
-  <div th:if="${pluginFinder.available('editor-hyperlink-card')}" id="enable-hyperlink" style="display: none"></div>
+  
+  <!-- header actions -->
+  <div class="header-actions">
+    <!-- theme mode switch button -->
+    <span class="header-theme-btn header-element">
+      <i class="fas fa-adjust"></i>
+    </span>
+    <!-- back to home page text -->
+    <span class="home-link header-element">
+      <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Home</a>
+    </span>
+  </div>
+  
+  <!-- toggle banner -->
+  <div
+    class="banner"
+    th:classappend="${theme.config.style?.post_banner_theme == 'clean'} ? ' banner-clean'"
+  >
+    <div class="blog-title header-element">
+      <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Blog Title</a>
+    </div>
+    <div class="post-title header-element">
+      <a href="#" class="post-name" th:text="${post?.spec?.title ?: page?.title ?: ''}"></a>
+    </div>
+  </div>
 </header>
-<script>
-  function doSearch(keyword) {
-    location.href = `/search?keyword=${keyword}`;
-  }
-
-  const enable_hyperlink = document.getElementById("enable-hyperlink");
-  if (enable_hyperlink) {
-    localStorage.setItem("enable_hyperlink", "true");
-  } else {
-    localStorage.setItem("enable_hyperlink", "false");
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    async function initImgColor() {
-      const targets = document.querySelectorAll(".post-card");
-      const imgs = document.querySelectorAll(".post-card-cover");
-      imgs.forEach(async (img, idx) => {
-        const colorThief = await window.getImgColor(img.src);
-        const styleStr = `--post-image-fg: '#fff'; --post-image: url(${img.src});--post-image-bg:${colorThief["--default"]}`;
-        targets[idx].style = styleStr;
-      });
-    }
-    // 优化后的代码
-    function updateActiveMenu() {
-      const currentPath = window.location.pathname;
-      const menuLinks = document.querySelectorAll(".header-menu-link");
-
-      menuLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        const submenu = link.nextElementSibling;
-
-        // 检查当前链接是否匹配
-        if (href === currentPath) {
-          link.classList.add("text-lime-600", "dark:text-lime-400", "active");
-          return; // 如果匹配，无需继续检查子菜单
-        }
-        // 确保上一层菜单已经添加了active类
-        setTimeout(() => {
-          // 检查子菜单中是否有活动项
-          if (submenu && submenu.classList.contains("submenu")) {
-            const hasActiveChild = submenu.querySelectorAll(".active");
-            if (hasActiveChild.length) {
-              link.classList.add("text-lime-600", "dark:text-lime-400", "active");
-            }
-          }
-        }, 1);
-      });
-    }
-
-    function navMousemove(e) {
-      if (e.target.classList.contains("no-move")) return;
-      const target = document.querySelector(".menu-nav");
-      const mask = document.querySelector(".nav-mask");
-      const { clientX, clientY, currentTarget } = e;
-      const bounds = currentTarget.getBoundingClientRect();
-      const mouseX = clientX - bounds.left;
-      const mouseY = clientY - bounds.top;
-      const radius = Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5;
-      mask.style.background = `radial-gradient(${radius}px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color) 0%, transparent 65%)`;
-    }
-    const el = document.querySelector(".menu-nav");
-    el.addEventListener("mousemove", navMousemove);
-    initImgColor();
-    updateActiveMenu();
-  });
-</script>

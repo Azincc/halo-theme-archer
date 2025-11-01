@@ -1,15 +1,28 @@
 const THEME_DARK_STYLESHEET_ID = 'stylesheet-theme-dark'
 const $themeModeSwitchBtn = $('.header-theme-btn')
 
-const ensureDarkStylesheet = () => {
+const resolveAssetsBasePath = () => {
+  const mainStylesheet = document.querySelector('link[href*="assets/css/style.css"]')
+  if (mainStylesheet) {
+    const href = mainStylesheet.getAttribute('href')
+    const index = href.indexOf('assets/css/style.css')
+    if (index !== -1) {
+      return href.substring(0, index)
+    }
+  }
   const root = window.siteMeta?.root || '/'
+  return root.endsWith('/') ? root : `${root}/`
+}
+
+const ensureDarkStylesheet = () => {
   if ($(`link#${THEME_DARK_STYLESHEET_ID}`).length === 0) {
+    const basePath = resolveAssetsBasePath()
     $('<link>')
       .attr({
         id: THEME_DARK_STYLESHEET_ID,
         rel: 'stylesheet',
         type: 'text/css',
-        href: `${root}css/dark.css`,
+        href: `${basePath}assets/css/dark.css`,
       })
       .appendTo('head')
   }

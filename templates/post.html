@@ -12,13 +12,15 @@
           <h1 class="intro-title intro-fade-in" th:text="${post.spec.title ?: '[Untitled Post]'}">
             Post Title
           </h1>
-          <p class="intro-subtitle intro-fade-in" th:if="${not #strings.isEmpty(post.spec.excerpt?.raw)}" th:text="${post.spec.excerpt.raw}">
+          <p class="intro-subtitle intro-fade-in" th:if="${not #strings.isEmpty(post.spec.excerpt?.raw)}"
+             th:text="${post.spec.excerpt.raw}">
             Post Subtitle
           </p>
           <!-- Post Metadata -->
           <div class="post-intros post-fade-in">
             <!-- Tags and Categories -->
-            <div class="post-intro-tags" th:if="${(not #lists.isEmpty(post.tags)) or (not #lists.isEmpty(post.categories))}">
+            <div class="post-intro-tags"
+                 th:if="${(not #lists.isEmpty(post.tags)) or (not #lists.isEmpty(post.categories))}">
               <th:block th:if="${not #lists.isEmpty(post.categories)}">
                 <a th:each="category, iterStat : ${post.categories}"
                    th:href="|/categories/${category.metadata.name}|"
@@ -33,7 +35,7 @@
                    th:href="|/tags/${tag.metadata.name}|"
                    class="post-tag"
                    th:data-tag="${tag.metadata.name}">
-                  <span class="iconfont-archer tag-icon">&#xe608;</span>
+                  <span class="iconfont-archer tag-icon"></span>
                   <span th:text="${tag.spec.displayName}">Tag</span>
                 </a>
               </th:block>
@@ -42,20 +44,21 @@
             <div
               class="post-intro-read"
               th:if="${theme.config.style?.reading_info == true}"
-              th:with="plainText=${#strings.stripHtml(post.content.content)},
-                       wordCount=${#strings.length(#strings.trimAllWhitespace(plainText))},
-                       readingMinutes=${wordCount > 0 ? T(java.lang.Math).max(1, T(java.lang.Math).ceil(wordCount / 400.0)) : 0}"
+              th:with="wordCount = ${#strings.length(post.content.raw)},
+                       readingMinutes=${T(java.lang.Math).max(1.0, T(java.lang.Math).ceil(wordCount / 400.0))} "
             >
               <span>
                 字数统计: <span class="post-count word-count" th:text="${wordCount}">0</span>
-                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">0 min</span>
+                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">1 min</span>
               </span>
             </div>
             <!-- Post Meta: Date and Stats -->
             <div class="post-intro-meta">
-              <span class="iconfont-archer post-intro-calander">&#xe616;</span>
-              <span class="post-intro-time" th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
-              <span id="busuanzi_container_page_pv" class="busuanzi-pv" th:if="${theme.config.analytics?.busuanzi?.enable == true}">
+              <span class="iconfont-archer post-intro-calander"></span>
+              <span class="post-intro-time"
+                    th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
+              <span id="busuanzi_container_page_pv" class="busuanzi-pv"
+                    th:if="${theme.config.analytics?.busuanzi?.enable == true}">
                 <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
                 <span id="busuanzi_value_page_pv"></span>
               </span>
@@ -111,8 +114,8 @@
       </div>
 
       <div th:if="${theme.config.other.math?.mathjax?.enable == true}">
-        <script type="text/javascript" async 
-          th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
+        <script type="text/javascript" async
+                th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
         </script>
       </div>
     </main>
@@ -120,23 +123,23 @@
 
   <th:block th:fragment="page_js">
     <script th:inline="javascript" th:if="${theme.config.other.outdated_threshold?.enable == true}">
-      (function () {
-        var time = document.getElementsByClassName('post-intro-time')[0];
-        var article = document.getElementsByTagName('article')[0];
+      (function() {
+        var time = document.getElementsByClassName('post-intro-time')[0]
+        var article = document.getElementsByTagName('article')[0]
         if (!time || !article) {
-          return;
+          return
         }
-        var pubTime = new Date(time.innerText);
-        var now = Date.now();
-        var interval = parseInt(now - pubTime);
-        var days = parseInt(interval / 86400000);
-        var threshold = parseInt(/*[[${theme.config.other.outdated_threshold.days}]]*/ 0);
+        var pubTime = new Date(time.innerText)
+        var now = Date.now()
+        var interval = parseInt(now - pubTime)
+        var days = parseInt(interval / 86400000)
+        var threshold = parseInt(/*[[${theme.config.other.outdated_threshold.days}]]*/ 0)
         if (interval > threshold * 24 * 3600 * 1000) {
           article.innerHTML = '<div class="note note-warning">' +
             '<div class="title">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。</p>' +
-            '</div>' + article.innerHTML;
+            '</div>' + article.innerHTML
         }
-      })();
+      })()
     </script>
   </th:block>
 </th:block>
