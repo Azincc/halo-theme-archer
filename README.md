@@ -114,5 +114,6 @@ halo文件夹是halo的源代码，不需要访问。
 * **2025-11-01**：新增文章前后文导航按钮功能：
   - **功能**：在文章详情页的正文底部添加了前后文导航按钮（previous/next post navigation），允许读者快速跳转到上一篇和下一篇文章。
   - **实现**：使用 Halo 的 `postFinder.cursor(post.metadata.name)` API 获取当前文章的导航光标对象，通过 `postCursor.hasPrevious()` 和 `postCursor.hasNext()` 判断是否存在前后文章，并使用 `postCursor.previous` 和 `postCursor.next` 获取相邻文章的标题和链接。
-  - **样式**：复用原始 Archer 主题中已存在的 `.post-paginator`、`.nextTitle`、`.prevTitle`、`.nextSlogan`、`.prevSlogan` 等 CSS 样式类，确保视觉效果与原主题保持一致。
+  - **样式**：复用原始 Archer 主题中已存在的 `.post-paginator`、`.nextTitle`、`.prevTitle`、`.nextSlogan`、`.prevSlogan` 等 CSS 样式类，确保视觉效果与原主题保持一致。采用与原主题相同的HTML结构：每个导航项（`<li class="next">` 和 `<li class="previous">`）包含标题slogan（`<div>`）和文章链接（`<a>`），链接内包含文章标题（`<div>`）。
+  - **调试输出**：添加了详细的控制台日志输出，包括 postCursor 对象、hasPrevious/hasNext 状态以及 previous/next 文章的详细信息，便于主题开发和故障排查。
   - **参考文档**：Halo 官方文档 - [文章 Finder API](https://docs.halo.run/developer-guide/theme/finder-apis/post) 中的 `cursor()` 方法和 NavigationPostVo 类型定义。
