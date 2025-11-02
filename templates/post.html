@@ -110,21 +110,6 @@
           </li>
         </ul>
         <script th:inline="javascript" th:if="${postCursor != null}">
-          console.log('=== PostCursor Debug Info ===')
-          console.log('postCursor:', /*[[${postCursor}]]*/ null)
-          console.log('hasPrevious():', /*[[${postCursor.hasPrevious()}]]*/ false)
-          console.log('hasNext():', /*[[${postCursor.hasNext()}]]*/ false)
-          /*[# th:if="${postCursor.hasPrevious()}"]*/
-          console.log('previous:', /*[[${postCursor.previous}]]*/ null)
-          console.log('previous.spec.title:', /*[[${postCursor.previous.spec.title}]]*/ '')
-          console.log('previous.status.permalink:', /*[[${postCursor.previous.status.permalink}]]*/ '')
-          /*[/]*/
-          /*[# th:if="${postCursor.hasNext()}"]*/
-          console.log('next:', /*[[${postCursor.next}]]*/ null)
-          console.log('next.spec.title:', /*[[${postCursor.next.spec.title}]]*/ '')
-          console.log('next.status.permalink:', /*[[${postCursor.next.status.permalink}]]*/ '')
-          /*[/]*/
-          console.log('=== End PostCursor Debug Info ===')
         </script>
       </th:block>
 
