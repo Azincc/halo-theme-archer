@@ -25,6 +25,9 @@
     <th:block th:replace="~{modules/footer-fixed :: footer-fixed(templateId=${templateId})}"></th:block>
 
     <div class="wrapper">
+      <div class="site-intro-wrapper">
+        <th:block th:replace="~{fragment/intro::html(${templateId})}" />
+      </div>
 
       <img
         class="loading"
