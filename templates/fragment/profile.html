@@ -1,0 +1,37 @@
+<aside class="profile"
+       th:fragment="profile-card"
+       th:classappend="${theme.config.style.profile_sticky} ? 'profile-sticky' : ''">
+
+  <th:block th:with="defaultAvatar=@{/assets/avatar/Misaka.jpg}">
+    <img class="profile-avatar"
+         th:classappend="${theme.config.style.avatar_border} ? '' : 'hide-border'"
+         th:src="${!#strings.isEmpty(theme.config.profile.avatar) ? theme.config.profile.avatar : defaultAvatar}"
+         th:alt="${!#strings.isEmpty(theme.config.profile.author) ? theme.config.profile.author : 'Avatar'}" />
+  </th:block>
+  <div class="profile-name" th:text="${theme.config.profile.author ?: 'Author'}">Author</div>
+  <div class="profile-signature" th:text="${theme.config.profile.signature ?: ''}"></div>
+
+  <div class="profile-social" th:if="${not #lists.isEmpty(theme.config.profile.social)}">
+    <a th:each="social : ${theme.config.profile.social}"
+       th:href="${social.url}" th:class="|iconfont-archer ${social.name}|"
+       target="_blank" rel="noopener noreferrer"></a>
+  </div>
+
+  <th:block th:if="${not #lists.isEmpty(theme.config.profile.profile_links)}">
+    <div class="profile-link-item" th:each="link : ${theme.config.profile.profile_links}">
+      <a th:href="${link.url}" target="_blank" rel="noopener noreferrer">
+        <i th:if="${not #strings.isEmpty(link.icon)}"
+           th:class="|profile-item-icon ${link.icon}|"></i>
+        <span th:text="${link.name}">Link Name</span>
+      </a>
+    </div>
+  </th:block>
+
+  <div class="friends" th:if="${not #lists.isEmpty(theme.config.profile.friends)}">
+    <div>Friends</div>
+    <a th:each="friend : ${theme.config.profile.friends}"
+       th:href="${friend.url}" th:text="${friend.name}"
+       target="_blank" rel="noopener noreferrer"></a>
+  </div>
+
+</aside>

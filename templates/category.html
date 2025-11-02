@@ -6,7 +6,8 @@
         <div class="site-intro-placeholder"></div>
         <div
           class="site-intro-img"
-          th:style="${theme.config.style.site_header_image != null} ? |background-image: url(${theme.config.style.site_header_image});| : ''">
+          th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|">
         </div>
         <div class="site-intro-meta">
           <h1 class="intro-title intro-fade-in">
@@ -22,78 +23,14 @@
       <!-- 主体区域 -->
       <div class="page-body">
         <!-- 左侧个人资料 -->
-        <aside class="profile" th:classappend="${theme.config.style.profile_sticky} ? 'profile-sticky' : ''">
-          <img class="profile-avatar"
-               th:classappend="${theme.config.style.avatar_border} ? '' : 'hide-border'"
-               th:src="${theme.config.profile.avatar ?: '/assets/imgs/default.jpg'}"
-               th:alt="${theme.config.profile.author ?: 'Avatar'}" />
-          <div class="profile-name" th:text="${theme.config.profile.author ?: 'Author'}">Author</div>
-          <div class="profile-signature" th:text="${theme.config.profile.signature ?: ''}"></div>
-
-          <div class="profile-social" th:if="${not #lists.isEmpty(theme.config.profile.social)}">
-            <a th:each="social : ${theme.config.profile.social}"
-               th:href="${social.url}" th:class="|iconfont-archer ${social.name}|"
-               target="_blank" rel="noopener noreferrer"></a>
-          </div>
-
-          <th:block th:if="${not #lists.isEmpty(theme.config.profile.profile_links)}">
-            <div class="profile-link-item" th:each="link : ${theme.config.profile.profile_links}">
-              <a th:href="${link.url}" target="_blank" rel="noopener noreferrer">
-                <i th:if="${not #strings.isEmpty(link.icon)}"
-                   th:class="|profile-item-icon ${link.icon}|"></i>
-                <span th:text="${link.name}">Link Name</span>
-              </a>
-            </div>
-          </th:block>
-
-          <div class="friends" th:if="${not #lists.isEmpty(theme.config.profile.friends)}">
-            <div>Friends</div>
-            <a th:each="friend : ${theme.config.profile.friends}"
-               th:href="${friend.url}" th:text="${friend.name}"
-               target="_blank" rel="noopener noreferrer"></a>
-          </div>
-        </aside>
+        <div th:replace="~{fragment/profile :: profile-card}">
+        </div>
 
         <!-- 右侧文章流 -->
-        <section class="content-wrapper">
+        <section class="main content-wrapper">
           <th:block th:each="post, postStat : ${posts.items}">
-            <article class="index-post">
-              <a class="abstract-title" th:href="${post.status.permalink}">
-                <span class="iconfont-archer stick-top" th:if="${post.spec.pinned}">&#xe63d;</span>
-                <span class="abstract-title-text" th:text="${post.spec.title ?: '[Untitled Post]'}">Post Title</span>
-              </a>
-
-              <div class="abstract-post-meta">
-                <div>
-                  <span class="iconfont-archer abstract-calander">&#xe616;</span>
-                  <span th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
-                  <div class="abstract-tags" th:if="${not #lists.isEmpty(post.tags)}">
-                    <a class="post-tag"
-                       th:each="postTag : ${post.tags}"
-                       th:href="${postTag.status.permalink}"
-                       th:data-tags="${postTag.metadata.name}"
-                       th:text="${postTag.spec.displayName}">Tag</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
-              <div class="abstract-content" th:unless="${post.status.excerpt}"
-                   th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-                            fallbackExcerpt=${post.spec.excerpt?.raw},
-                            sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
-                <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
-                      th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
-                <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
-                      th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
-              </div>
-
-              <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
-                <a th:href="${post.status.permalink}">
-                  阅读更多 <span class="iconfont-archer">&#xe600;</span>
-                </a>
-              </div>
-            </article>
+            <div th:replace="~{fragment/index-post :: index-post}"></div>
+            <div class="index-post-divider" th:unless="${postStat.last}"></div>
           </th:block>
 
           <!-- 分页 -->
