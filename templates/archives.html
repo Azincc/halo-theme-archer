@@ -23,11 +23,14 @@
       </div>
 
       <nav class="page-nav" th:if="${archives.totalPages > 1}">
-        <a class="page-number" th:href="${archives.prevUrl}" th:if="${archives.hasPrevious()}">上一页</a>
+        <a class="extend prev" rel="prev" th:if="${archives.hasPrevious()}" th:href="${archives.prevUrl}">&lt; PREV</a>
         <th:block th:each="i : ${#numbers.sequence(1, archives.totalPages)}">
-          <a class="page-number" th:href="${archives.getUrlForPage(i)}" th:text="${i}" th:classappend="${i == archives.page} ? 'current'"></a>
+          <span class="page-number current" th:if="${i == archives.page}" th:text="${i}">1</span>
+          <a class="page-number" th:if="${i != archives.page}"
+             th:href="${i == 1 ? '/archives' : '/archives/page/' + i + '/'}"
+             th:text="${i}">1</a>
         </th:block>
-        <a class="page-number" th:href="${archives.nextUrl}" th:if="${archives.hasNext()}">下一页</a>
+        <a class="extend next" rel="next" th:if="${archives.hasNext()}" th:href="${archives.nextUrl}">NEXT &gt;</a>
       </nav>
     </main>
   </th:block>

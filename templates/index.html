@@ -34,12 +34,14 @@
           </th:block>
 
           <nav class="page-nav" th:if="${postPage.totalPages > 1}">
-            <a th:if="${postPage.hasPrevious()}" th:href="${postPage.prevUrl}"><span>&lt; PREV</span></a>
+            <a class="extend prev" rel="prev" th:if="${postPage.hasPrevious()}" th:href="${postPage.prevUrl}">&lt; PREV</a>
             <th:block th:each="i : ${#numbers.sequence(1, postPage.totalPages)}">
-              <a th:href="${postPage.getUrlForPage(i)}"
-                 th:text="${i}" th:classappend="${i == postPage.page} ? 'current' : ''"></a>
+              <span class="page-number current" th:if="${i == postPage.page}" th:text="${i}">1</span>
+              <a class="page-number" th:if="${i != postPage.page}" 
+                 th:href="${i == 1 ? '/' : '/page/' + i + '/'}" 
+                 th:text="${i}">1</a>
             </th:block>
-            <a th:if="${postPage.hasNext()}" th:href="${postPage.nextUrl}"><span>NEXT &gt;</span></a>
+            <a class="extend next" rel="next" th:if="${postPage.hasNext()}" th:href="${postPage.nextUrl}">NEXT &gt;</a>
           </nav>
         </section>
       </div>
