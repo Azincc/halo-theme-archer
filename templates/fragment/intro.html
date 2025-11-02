@@ -12,7 +12,8 @@
       th:with="
         coverImage=${#strings.isEmpty(post.spec.cover) ? null : post.spec.cover},
         headerImage=${#strings.isEmpty(theme.config.style.site_header_image) ? null : theme.config.style.site_header_image},
-        backgroundImage=${coverImage != null ? coverImage : (headerImage != null ? headerImage : @{/assets/intro/post-bg.jpg})}"
+        defaultImage=@{/assets/intro/post-bg.jpg},
+        backgroundImage=${coverImage != null ? coverImage : (headerImage != null ? headerImage : defaultImage)}"
     >
       <div class="site-intro-placeholder"></div>
       <div class="site-intro-img" th:style="|background-image: url(${backgroundImage});|"></div>
@@ -111,7 +112,8 @@
       th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|"
       th:with="
         headerImage=${#strings.isEmpty(theme.config.style.site_header_image) ? null : theme.config.style.site_header_image},
-        backgroundImage=${headerImage != null ? headerImage : @{/assets/intro/index-bg.jpg}}"
+        defaultImage=@{/assets/intro/index-bg.jpg},
+        backgroundImage=${headerImage != null ? headerImage : defaultImage}"
     >
       <div class="site-intro-placeholder"></div>
       <div class="site-intro-img" th:style="|background-image: url(${backgroundImage});|"></div>
