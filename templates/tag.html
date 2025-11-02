@@ -56,7 +56,13 @@
             </article>
           </th:block>
 
-          <th:block th:replace="~{fragment/navigation :: paginator(pageData=${posts})}" />
+          <th:block
+            th:with="
+              baseUrl=${tag.status.permalink},
+              normalizedBase=${#strings.endsWith(baseUrl, '/') ? baseUrl : baseUrl + '/'},
+              pagePrefix=${normalizedBase + 'page/'}"
+            th:replace="~{fragment/navigation :: paginator(pageData=${posts}, firstPageUrl=${baseUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix='/')}"
+          />
 
           <!-- 无文章提示 -->
           <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">

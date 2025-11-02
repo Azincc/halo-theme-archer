@@ -5,7 +5,7 @@
 >
   <!-- ============================================== -->
   <!-- Page Navigation with All Page Numbers         -->
-  <!-- Used for: index, archives                      -->
+  <!-- Used for: index, archives, tag, category       -->
   <!-- ============================================== -->
   <nav
     th:fragment="page-nav (pageData, firstPageUrl, pageUrlPrefix, pageUrlSuffix)"
@@ -41,27 +41,8 @@
     >NEXT &gt;</a>
   </nav>
 
-  <!-- ============================================== -->
-  <!-- Simple Paginator with Prev/Next                -->
-  <!-- Used for: tag, category pages                  -->
-  <!-- ============================================== -->
-  <nav
-    th:fragment="paginator (pageData)"
-    class="paginator"
-    th:if="${pageData.total > 0}"
-  >
-    <a class="prev" th:if="${pageData.hasPrevious()}" th:href="${pageData.prevUrl}">
-      <span class="iconfont-archer">&#xe60a;</span>
-      <span class="prev-text">PREV</span>
-    </a>
-
-    <div class="page-number">
-      <span th:text="${'Page ' + pageData.page + ' of ' + pageData.totalPages}">Page 1 of 1</span>
-    </div>
-
-    <a class="next" th:if="${pageData.hasNext()}" th:href="${pageData.nextUrl}">
-      <span class="next-text">NEXT</span>
-      <span class="iconfont-archer">&#xe60b;</span>
-    </a>
-  </nav>
+  <th:block
+    th:fragment="paginator (pageData, firstPageUrl, pageUrlPrefix, pageUrlSuffix)"
+    th:replace="~{fragment/navigation :: page-nav(pageData=${pageData}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pageUrlPrefix}, pageUrlSuffix=${pageUrlSuffix})}"
+  />
 </html>
