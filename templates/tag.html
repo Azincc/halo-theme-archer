@@ -56,7 +56,7 @@
             </article>
           </th:block>
 
-          <th:block th:replace="~{assets/fragment/navigation :: paginator(pageData=${posts})}" />
+          <th:block th:replace="~{fragment/navigation :: paginator(pageData=${posts})}" />
 
           <!-- 无文章提示 -->
           <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">
