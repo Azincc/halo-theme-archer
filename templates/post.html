@@ -1,4 +1,5 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, 'post')}">
+<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, 'post')}"
+          xmlns:th="http://www.w3.org/1999/xhtml">
   <th:block th:fragment="content">
     <main class="main post-page">
       <!-- Post Intro - Header Image Area -->
@@ -6,7 +7,12 @@
         <div class="site-intro-placeholder"></div>
         <div
           class="site-intro-img"
-          th:style="${post.spec.cover != null} ? |background-image: url(${post.spec.cover});| : (${theme.config.style.site_header_image != null} ? |background-image: url(${theme.config.style.site_header_image});| : '')">
+          th:style="${post.spec.cover != null && post.spec.cover !=''} ?
+          |background-image: url(${post.spec.cover});| :
+           (${theme.config.style.site_header_image != null&&theme.config.style.site_header_image!='' } ?
+           |background-image: url(${theme.config.style.site_header_image});|
+           : |background-image: url(@{/assets/intro/post-bg.jpg});|)"
+        >
         </div>
         <div class="site-intro-meta">
           <h1 class="intro-title intro-fade-in" th:text="${post.spec.title ?: '[Untitled Post]'}">
@@ -104,21 +110,21 @@
           </li>
         </ul>
         <script th:inline="javascript" th:if="${postCursor != null}">
-          console.log('=== PostCursor Debug Info ===');
-          console.log('postCursor:', /*[[${postCursor}]]*/ null);
-          console.log('hasPrevious():', /*[[${postCursor.hasPrevious()}]]*/ false);
-          console.log('hasNext():', /*[[${postCursor.hasNext()}]]*/ false);
+          console.log('=== PostCursor Debug Info ===')
+          console.log('postCursor:', /*[[${postCursor}]]*/ null)
+          console.log('hasPrevious():', /*[[${postCursor.hasPrevious()}]]*/ false)
+          console.log('hasNext():', /*[[${postCursor.hasNext()}]]*/ false)
           /*[# th:if="${postCursor.hasPrevious()}"]*/
-          console.log('previous:', /*[[${postCursor.previous}]]*/ null);
-          console.log('previous.spec.title:', /*[[${postCursor.previous.spec.title}]]*/ '');
-          console.log('previous.status.permalink:', /*[[${postCursor.previous.status.permalink}]]*/ '');
+          console.log('previous:', /*[[${postCursor.previous}]]*/ null)
+          console.log('previous.spec.title:', /*[[${postCursor.previous.spec.title}]]*/ '')
+          console.log('previous.status.permalink:', /*[[${postCursor.previous.status.permalink}]]*/ '')
           /*[/]*/
           /*[# th:if="${postCursor.hasNext()}"]*/
-          console.log('next:', /*[[${postCursor.next}]]*/ null);
-          console.log('next.spec.title:', /*[[${postCursor.next.spec.title}]]*/ '');
-          console.log('next.status.permalink:', /*[[${postCursor.next.status.permalink}]]*/ '');
+          console.log('next:', /*[[${postCursor.next}]]*/ null)
+          console.log('next.spec.title:', /*[[${postCursor.next.spec.title}]]*/ '')
+          console.log('next.status.permalink:', /*[[${postCursor.next.status.permalink}]]*/ '')
           /*[/]*/
-          console.log('=== End PostCursor Debug Info ===');
+          console.log('=== End PostCursor Debug Info ===')
         </script>
       </th:block>
 

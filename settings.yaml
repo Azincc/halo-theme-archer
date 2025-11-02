@@ -120,19 +120,19 @@ spec:
         - $formkit: attachment
           name: site_header_image
           label: 首页顶部图片
-          value: "/intro/index-bg.jpg"
+          value: ""
         - $formkit: attachment
           name: post_header_image
           label: 文章页顶部图片
-          value: "/intro/post-bg.jpg"
+          value: ""
         - $formkit: attachment
           name: about_header_image
           label: 关于页顶部图片
-          value: "/intro/about-bg.jpg"
+          value: ""
         - $formkit: attachment
           name: _404_header_image
           label: 404页顶部图片
-          value: "/intro/404-bg.jpg"
+          value: ""
         - $formkit: number
           name: index_intro_height
           label: 首页简介高度
