@@ -92,7 +92,7 @@
       <script th:src="@{/assets/scripts/share.js}" type="module"></script>
     </th:block>
 
-    <th:block th:if="${templateId == 'post' and theme.config.other.mermaid.enable}">
+    <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid.enable?: false)}">
       <script
         th:src="|https://cdn.jsdelivr.net/npm/mermaid@${theme.config.other.mermaid.version}/dist/mermaid.min.js|"
         onload="window.mermaid && window.mermaid.initialize({theme: '[[${theme.config.other.mermaid.theme ?: "default"}]]'})"
