@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html
+  th:lang="${#locale.toLanguageTag}"
+  xmlns:th="http://www.thymeleaf.org"
+  th:fragment="html (_templateId)"
+  th:with="templateId=${_templateId != null ? _templateId : 'index'}"
+>
+<div
+  th:if="${templateId=='post'}"
+>
+  <div class="site-intro" th:style="|height: ${theme.config.style.post_intro_height ?: 50}vh;|">
+    <div class="site-intro-placeholder"></div>
+    <div
+      class="site-intro-img"
+      th:style="${post.spec.cover != null && post.spec.cover !=''} ?
+          |background-image: url(${post.spec.cover});| :
+           (${theme.config.style.site_header_image != null&&theme.config.style.site_header_image!='' } ?
+           |background-image: url(${theme.config.style.site_header_image});|
+           : |background-image: url(@{/assets/intro/post-bg.jpg});|)"
+    >
+    </div>
+    <div class="site-intro-meta">
+      <h1 class="intro-title intro-fade-in" th:text="${post.spec.title ?: '[Untitled Post]'}">
+        Post Title
+      </h1>
+      <p class="intro-subtitle intro-fade-in" th:if="${not #strings.isEmpty(post.spec.excerpt?.raw)}"
+         th:text="${post.spec.excerpt.raw}">
+        Post Subtitle
+      </p>
+      <!-- Post Metadata -->
+      <div class="post-intros post-fade-in">
+        <!-- Tags and Categories -->
+        <div class="post-intro-tags"
+             th:if="${(not #lists.isEmpty(post.tags)) or (not #lists.isEmpty(post.categories))}">
+          <th:block th:if="${not #lists.isEmpty(post.categories)}">
+            <a th:each="category, iterStat : ${post.categories}"
+               th:href="|/categories/${category.metadata.name}|"
+               class="post-category"
+               th:data-category="${category.metadata.name}">
+              <span class="iconfont-archer category-icon">&#xe606;</span>
+              <span th:text="${category.spec.displayName}">Category</span>
+            </a>
+          </th:block>
+          <th:block th:if="${not #lists.isEmpty(post.tags)}">
+            <a th:each="tag, iterStat : ${post.tags}"
+               th:href="|/tags/${tag.metadata.name}|"
+               class="post-tag"
+               th:data-tag="${tag.metadata.name}">
+              <span class="iconfont-archer tag-icon"></span>
+              <span th:text="${tag.spec.displayName}">Tag</span>
+            </a>
+          </th:block>
+        </div>
+        <!-- Reading Info -->
+        <div
+          class="post-intro-read"
+          th:if="${theme.config.style?.reading_info == true}"
+          th:with="wordCount = ${#strings.length(post.content.raw)},
+                       readingMinutes=${T(java.lang.Math).max(1.0, T(java.lang.Math).ceil(wordCount / 400.0))} "
+        >
+              <span>
+                字数统计: <span class="post-count word-count" th:text="${wordCount}">0</span>
+                阅读时长: <span class="post-count reading-time" th:text="|${readingMinutes} min|">1 min</span>
+              </span>
+        </div>
+        <!-- Post Meta: Date and Stats -->
+        <div class="post-intro-meta">
+          <span class="iconfont-archer post-intro-calander"></span>
+          <span class="post-intro-time"
+                th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
+          <span id="busuanzi_container_page_pv" class="busuanzi-pv"
+                th:if="${theme.config.analytics?.busuanzi?.enable == true}">
+                <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                <span id="busuanzi_value_page_pv"></span>
+              </span>
+          <!-- Share Buttons -->
+          <span class="share-wrapper">
+                <span class="iconfont-archer share-icon">&#xe71d;</span>
+                <span class="share-text">Share</span>
+                <ul class="share-list">
+                  <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                    <div class="share-qrcode"></div>
+                  </li>
+                  <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                  <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                  <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                  <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                </ul>
+              </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  th:if="${templateId=='index'}"
+>
+  <!-- Site Intro - Header Image Area -->
+  <div class="site-intro" th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|">
+    <div class="site-intro-placeholder"></div>
+    <div
+      class="site-intro-img"
+      th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|">
+    </div>
+    <div class="site-intro-meta">
+      <h1 class="intro-title intro-fade-in" th:text="${theme.config.basic.main_title ?: site.title}">
+        Main Title
+      </h1>
+      <h2 class="intro-subtitle intro-fade-in" th:text="${theme.config.basic.subtitle ?: ''}">
+        Subtitle
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div
+  th:if="${templateId=='tag'}"
+>
+  <!-- Site Intro - Header Image Area -->
+  <div class="site-intro" th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|">
+    <div class="site-intro-placeholder"></div>
+    <div
+      class="site-intro-img"
+      th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|">
+    </div>
+    <div class="site-intro-meta">
+      <h1 class="intro-title intro-fade-in">
+        <span class="iconfont-archer">&#xe61b;</span>
+        <span th:text="${tag.spec.displayName}">Tag</span>
+      </h1>
+      <h2 class="intro-subtitle intro-fade-in">
+        共 <span th:text="${posts.total}">0</span> 篇文章
+      </h2>
+    </div>
+  </div>
+
+</div>
+
+<div
+  th:if="${templateId=='catagory'}"
+>      <!-- Site Intro - Header Image Area -->
+  <div class="site-intro" th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|">
+    <div class="site-intro-placeholder"></div>
+    <div
+      class="site-intro-img"
+      th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|">
+    </div>
+    <div class="site-intro-meta">
+      <h1 class="intro-title intro-fade-in">
+        <span class="iconfont-archer">&#xe666;</span>
+        <span th:text="${category.spec.displayName}">Category</span>
+      </h1>
+      <h2 class="intro-subtitle intro-fade-in">
+        共 <span th:text="${posts.total}">0</span> 篇文章
+      </h2>
+    </div>
+  </div>
+
+</div>
+</html>
