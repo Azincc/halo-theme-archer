@@ -22,18 +22,15 @@
         </th:block>
       </div>
 
-      <nav class="paginator" th:if="${archives.totalPages > 1}">
-        <a class="prev" th:if="${archives.hasPrevious()}" th:href="${archives.prevUrl}">
-          <span class="iconfont-archer">&#xe60a;</span>
-          <span class="prev-text">PREV</span>
-        </a>
-        <div class="page-number">
-          <span th:text="${'Page ' + archives.page + ' of ' + archives.totalPages}">Page 1 of 1</span>
-        </div>
-        <a class="next" th:if="${archives.hasNext()}" th:href="${archives.nextUrl}">
-          <span class="next-text">NEXT</span>
-          <span class="iconfont-archer">&#xe60b;</span>
-        </a>
+      <nav class="page-nav" th:if="${archives.totalPages > 1}">
+        <a class="extend prev" rel="prev" th:if="${archives.hasPrevious()}" th:href="${archives.prevUrl}">&lt; PREV</a>
+        <th:block th:each="i : ${#numbers.sequence(1, archives.totalPages)}">
+          <span class="page-number current" th:if="${i == archives.page}" th:text="${i}">1</span>
+          <a class="page-number" th:if="${i != archives.page}"
+             th:href="${i == 1 ? '/archives' : '/archives/page/' + i + '/'}"
+             th:text="${i}">1</a>
+        </th:block>
+        <a class="extend next" rel="next" th:if="${archives.hasNext()}" th:href="${archives.nextUrl}">NEXT &gt;</a>
       </nav>
     </main>
   </th:block>

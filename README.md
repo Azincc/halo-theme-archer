@@ -119,6 +119,10 @@ halo文件夹是halo的源代码，不需要访问。
   - **调试输出**：添加了详细的控制台日志输出，包括 postCursor 对象、hasPrevious/hasNext 状态以及 previous/next 文章的详细信息，便于主题开发和故障排查。
   - **参考文档**：Halo 官方文档 - [文章 Finder API](https://docs.halo.run/developer-guide/theme/finder-apis/post) 中的 `cursor()` 方法和 NavigationPostVo 类型定义。
 * **2025-11-02**：修复首页与归档分页在 Halo 2.21 中的渲染异常：
-  - **问题**：`index.html` 和 `archives.html` 在生成分页页码时调用 `getUrlForPage()`，Halo 2.21 提供的 `UrlContextListResult` 类型已不再暴露该方法，导致首页在文章超过 10 篇时直接抛出 SpringEL 异常。
-  - **解决方案**：统一首页与归档分页实现，改用 `hasPrevious()`/`prevUrl`、`hasNext()`/`nextUrl` 以及当前页和总页数的信息展示分页状态，避免调用不存在的 API。
-  - **影响**：分页导航现在展示“PREV/NEXT + Page X of Y”的形式，与分类和标签页面保持一致，确保在 Halo 2.21 环境下稳定渲染。
+  - **问题**：`index.html` 和 `archives.html` 在生成分页页码时调用 `getUrlForPage()`，Halo 2.21 提供的 `UrlContextListResult` 类型已不再暴露该方法，导致首页在文章超过 10 篇时直接抛出 SpringEL 异常（`Method getUrlForPage(java.lang.Integer) cannot be found`）。
+  - **解决方案**：保留原有的分页样式（显示所有页码数字），但改用手动构建 URL 的方式替代 `getUrlForPage()` 方法：
+    - 首页：第 1 页使用 `/`，其他页使用 `/page/{n}/`
+    - 归档：第 1 页使用 `/archives`，其他页使用 `/archives/page/{n}/`
+    - 使用条件渲染：当前页显示 `<span class="page-number current">`，其他页显示 `<a class="page-number">`
+    - PREV/NEXT 按钮继续使用 `prevUrl` 和 `nextUrl` 字段
+  - **影响**：分页导航保持原始 Archer 主题的样式（`<nav class="page-nav">`），显示完整的页码列表和 PREV/NEXT 导航按钮，确保在 Halo 2.21 环境下稳定渲染且符合用户体验预期。
