@@ -118,3 +118,7 @@ halo文件夹是halo的源代码，不需要访问。
   - **布局说明**：左侧显示 `< Previous Post`（链接到 `postCursor.previous`），右侧显示 `Next Post >`（链接到 `postCursor.next`），与原 Archer 主题的布局保持一致。
   - **调试输出**：添加了详细的控制台日志输出，包括 postCursor 对象、hasPrevious/hasNext 状态以及 previous/next 文章的详细信息，便于主题开发和故障排查。
   - **参考文档**：Halo 官方文档 - [文章 Finder API](https://docs.halo.run/developer-guide/theme/finder-apis/post) 中的 `cursor()` 方法和 NavigationPostVo 类型定义。
+* **2025-11-02**：修复首页与归档分页在 Halo 2.21 中的渲染异常：
+  - **问题**：`index.html` 和 `archives.html` 在生成分页页码时调用 `getUrlForPage()`，Halo 2.21 提供的 `UrlContextListResult` 类型已不再暴露该方法，导致首页在文章超过 10 篇时直接抛出 SpringEL 异常。
+  - **解决方案**：统一首页与归档分页实现，改用 `hasPrevious()`/`prevUrl`、`hasNext()`/`nextUrl` 以及当前页和总页数的信息展示分页状态，避免调用不存在的 API。
+  - **影响**：分页导航现在展示“PREV/NEXT + Page X of Y”的形式，与分类和标签页面保持一致，确保在 Halo 2.21 环境下稳定渲染。
