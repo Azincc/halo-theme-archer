@@ -15,20 +15,7 @@
             <div class="index-post-divider" th:unless="${postStat.last}"></div>
           </th:block>
 
-          <!-- 分页 -->
-          <nav class="paginator" th:if="${posts.total > 0}">
-            <a class="prev" th:if="${posts.hasPrevious()}" th:href="${posts.prevUrl}">
-              <span class="iconfont-archer">&#xe60a;</span>
-              <span class="prev-text">PREV</span>
-            </a>
-            <div class="page-number">
-              <span th:text="${'Page ' + posts.page + ' of ' + posts.totalPages}">Page 1 of 1</span>
-            </div>
-            <a class="next" th:if="${posts.hasNext()}" th:href="${posts.nextUrl}">
-              <span class="next-text">NEXT</span>
-              <span class="iconfont-archer">&#xe60b;</span>
-            </a>
-          </nav>
+          <th:block th:replace="~{assets/fragment/navigation :: paginator(pageData=${posts})}" />
 
           <!-- 无文章提示 -->
           <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">

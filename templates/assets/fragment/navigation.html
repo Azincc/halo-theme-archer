@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html
+  th:lang="${#locale.toLanguageTag}"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <!-- ============================================== -->
+  <!-- Page Navigation with All Page Numbers         -->
+  <!-- Used for: index, archives                      -->
+  <!-- ============================================== -->
+  <nav
+    th:fragment="page-nav (pageData, firstPageUrl, pageUrlPrefix, pageUrlSuffix)"
+    class="page-nav"
+    th:if="${pageData.totalPages > 1}"
+    th:with="
+      resolvedFirst=${firstPageUrl != null ? firstPageUrl : '/'},
+      resolvedPrefix=${pageUrlPrefix != null ? pageUrlPrefix : '/page/'},
+      resolvedSuffix=${pageUrlSuffix != null ? pageUrlSuffix : '/'}"
+  >
+    <a
+      class="extend prev"
+      rel="prev"
+      th:if="${pageData.hasPrevious()}"
+      th:href="${pageData.prevUrl}"
+    >&lt; PREV</a>
+
+    <th:block th:each="i : ${#numbers.sequence(1, pageData.totalPages)}">
+      <span class="page-number current" th:if="${i == pageData.page}" th:text="${i}">1</span>
+      <a
+        class="page-number"
+        th:if="${i != pageData.page}"
+        th:href="${i == 1 ? resolvedFirst : resolvedPrefix + i + resolvedSuffix}"
+        th:text="${i}"
+      >1</a>
+    </th:block>
+
+    <a
+      class="extend next"
+      rel="next"
+      th:if="${pageData.hasNext()}"
+      th:href="${pageData.nextUrl}"
+    >NEXT &gt;</a>
+  </nav>
+
+  <!-- ============================================== -->
+  <!-- Simple Paginator with Prev/Next                -->
+  <!-- Used for: tag, category pages                  -->
+  <!-- ============================================== -->
+  <nav
+    th:fragment="paginator (pageData)"
+    class="paginator"
+    th:if="${pageData.total > 0}"
+  >
+    <a class="prev" th:if="${pageData.hasPrevious()}" th:href="${pageData.prevUrl}">
+      <span class="iconfont-archer">&#xe60a;</span>
+      <span class="prev-text">PREV</span>
+    </a>
+
+    <div class="page-number">
+      <span th:text="${'Page ' + pageData.page + ' of ' + pageData.totalPages}">Page 1 of 1</span>
+    </div>
+
+    <a class="next" th:if="${pageData.hasNext()}" th:href="${pageData.nextUrl}">
+      <span class="next-text">NEXT</span>
+      <span class="iconfont-archer">&#xe60b;</span>
+    </a>
+  </nav>
+</html>
