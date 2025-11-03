@@ -17,10 +17,10 @@
 
           <th:block
             th:with="
-              baseUrl=${category.status.permalink},
-              normalizedBase=${#strings.endsWith(baseUrl, '/') ? baseUrl : baseUrl + '/'},
-              pagePrefix=${normalizedBase + 'page/'}"
-            th:replace="~{fragment/navigation :: paginator(pageData=${posts}, firstPageUrl=${baseUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix='/')}"
+              slug=${category.metadata.name},
+              firstPageUrl=@{|/categories/${slug}|},
+              pagePrefix=@{|/categories/${slug}/page/|}"
+            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix='/')}"
           />
 
           <!-- 无文章提示 -->
