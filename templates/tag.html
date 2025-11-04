@@ -59,9 +59,10 @@
           <th:block
             th:with="
               slug=${tag.metadata.name},
-              firstPageUrl=@{|/tags/${slug}|},
-              pagePrefix=@{|/tags/${slug}/page/|}"
-            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix='/')}"
+              firstPageUrl=@{|/tags/${slug}/page/1|},
+              pagePrefix=@{|/tags/${slug}/page/|},
+              pageSuffix=''"
+            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix=${pageSuffix})}"
           />
 
           <!-- 无文章提示 -->
