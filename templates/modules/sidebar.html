@@ -3,11 +3,9 @@
   th:fragment="sidebar"
   class="sidebar sidebar-hide"
   th:with="
+    allPosts = ${postFinder.list(1, 1000).items},
     allTags = ${tagFinder.listAll()},
-    allCategories = ${categoryFinder.listAll()},
-    totalPosts = ${postFinder.count()},
-    pageSize = ${totalPosts > 0 ? T(java.lang.Long).valueOf(totalPosts).intValue() : 1},
-    archivesData = ${postFinder.archives(1, pageSize)}"
+    allCategories = ${categoryFinder.listAll()}"
 >
   <ul class="sidebar-tabs sidebar-tabs-active-0">
     <li class="sidebar-tab-archives">
@@ -28,7 +26,7 @@
     <div class="sidebar-panel-archives">
       <div class="total-and-search">
         <div class="total-archive">
-          Total : <span th:text="${totalPosts}">0</span>
+          Total : <span th:text="${#lists.size(allPosts)}">0</span>
         </div>
         <!-- search -->
         <div
@@ -39,39 +37,33 @@
         </div>
       </div>
       <div class="post-archive">
-        <th:block th:if="${archivesData != null and archivesData.total > 0}">
+        <th:block
+          th:with="archivesData = ${postFinder.archives(1, 1000)}"
+          th:if="${archivesData != null and not #lists.isEmpty(archivesData.items)}"
+        >
           <th:block th:each="archive : ${archivesData.items}">
             <div class="archive-year" th:text="${archive.year}">2024</div>
             <ul class="year-list">
-              <li class="archive-month-group" th:each="month : ${archive.months}">
-                <div class="archive-month-header">
-                  <span class="archive-month-name" th:text="${#dates.monthName(month.month)}">January</span>
-                </div>
-                <ul class="archive-month-posts">
-                  <li
-                    th:each="post : ${month.posts}"
-                    class="archive-post-item"
+              <th:block th:each="month : ${archive.months}">
+                <li
+                  th:each="post : ${month.posts}"
+                  class="archive-post-item"
+                >
+                  <span
+                    class="archive-post-date"
+                    th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
+                    >01/01</span
                   >
-                    <span
-                      class="archive-post-date"
-                      th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
-                    >01/01</span>
-                    <a
-                      class="archive-post-title"
-                      th:href="${post.status.permalink}"
-                      th:text="${post.spec.title}"
-                    >[Untitled Post]</a>
-                  </li>
-                </ul>
-              </li>
+                  <a
+                    class="archive-post-title"
+                    th:href="${post.status.permalink}"
+                    th:text="${post.spec.title}"
+                    >[Untitled Post]</a
+                  >
+                </li>
+              </th:block>
             </ul>
           </th:block>
-        </th:block>
-        <th:block th:if="${archivesData == null or archivesData.total == 0}">
-          <div class="sidebar-archives-empty" style="text-align: center; padding: 2rem; color: #999;">
-            <span class="iconfont-archer">&#xe678;</span>
-            <p>暂无归档文章</p>
-          </div>
         </th:block>
       </div>
     </div>
