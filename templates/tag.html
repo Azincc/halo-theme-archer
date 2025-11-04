@@ -56,14 +56,27 @@
             </article>
           </th:block>
 
+          <!-- Debug: Pagination URL Configuration -->
           <th:block
             th:with="
               slug=${tag.metadata.name},
               firstPageUrl=@{|/tags/${slug}/page/1|},
               pagePrefix=@{|/tags/${slug}/page/|},
               pageSuffix=''"
-            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix=${pageSuffix})}"
-          />
+          >
+            <!-- Debug Output -->
+            <div style="background: #f0f0f0; border: 1px solid #ccc; padding: 10px; margin: 10px 0; font-family: monospace;">
+              <strong>Debug - Tag Pagination URLs:</strong><br/>
+              slug: <span th:text="${slug}">-</span><br/>
+              firstPageUrl: <span th:text="${firstPageUrl}">-</span><br/>
+              pagePrefix: <span th:text="${pagePrefix}">-</span><br/>
+              pageSuffix: '<span th:text="${pageSuffix}">-</span>'<br/>
+              Current Page: <span th:text="${posts.page}">-</span><br/>
+              Total Pages: <span th:text="${posts.totalPages}">-</span>
+            </div>
+            
+            <th:block th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix=${pageSuffix})}" />
+          </th:block>
 
           <!-- 无文章提示 -->
           <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">
