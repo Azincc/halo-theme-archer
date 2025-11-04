@@ -18,15 +18,15 @@
           <!-- Debug: Pagination URL Configuration -->
           <th:block
             th:with="
-              slug=${category.metadata.name},
-              firstPageUrl=@{|/categories/${slug}/page/1|},
-              pagePrefix=@{|/categories/${slug}/page/|},
+              basePermalink=${category.status.permalink},
+              firstPageUrl=${basePermalink + '/page/1'},
+              pagePrefix=${basePermalink + '/page/'},
               pageSuffix=''"
           >
             <!-- Debug Output -->
             <div style="background: #f0f0f0; border: 1px solid #ccc; padding: 10px; margin: 10px 0; font-family: monospace;">
               <strong>Debug - Category Pagination URLs:</strong><br/>
-              slug: <span th:text="${slug}">-</span><br/>
+              category.status.permalink: <span th:text="${basePermalink}">-</span><br/>
               firstPageUrl: <span th:text="${firstPageUrl}">-</span><br/>
               pagePrefix: <span th:text="${pagePrefix}">-</span><br/>
               pageSuffix: '<span th:text="${pageSuffix}">-</span>'<br/>
