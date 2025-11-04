@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+  th:lang="${#locale.toLanguageTag}"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <!-- ============================================== -->
+  <!-- Page Navigation with All Page Numbers         -->
+  <!-- Used for: index, archives, tag, category       -->
+  <!-- ============================================== -->
+  <nav
+    th:fragment="page-nav (pageData, firstPageUrl, pageUrlPrefix, pageUrlSuffix)"
+    class="page-nav"
+    th:if="${pageData.totalPages > 1}"
+    th:with="
+      resolvedFirst=${firstPageUrl != null ? firstPageUrl : '/'},
+      resolvedPrefix=${pageUrlPrefix != null ? pageUrlPrefix : '/page/'},
+      resolvedSuffix=${pageUrlSuffix != null ? pageUrlSuffix : '/'}"
+  >
+    <a
+      class="extend prev"
+      rel="prev"
+      th:if="${pageData.hasPrevious()}"
+      th:href="${pageData.prevUrl}"
+    >&lt; PREV</a>
+
+    <th:block th:each="i : ${#numbers.sequence(1, pageData.totalPages)}">
+      <span class="page-number current" th:if="${i == pageData.page}" th:text="${i}">1</span>
+      <a
+        class="page-number"
+        th:if="${i != pageData.page}"
+        th:href="${i == 1 ? resolvedFirst : resolvedPrefix + i + resolvedSuffix}"
+        th:text="${i}"
+      >1</a>
+    </th:block>
+
+    <a
+      class="extend next"
+      rel="next"
+      th:if="${pageData.hasNext()}"
+      th:href="${pageData.nextUrl}"
+    >NEXT &gt;</a>
+  </nav>
+
+  <th:block
+    th:fragment="paginator (pageData, firstPageUrl, pageUrlPrefix, pageUrlSuffix)"
+    th:replace="~{fragment/navigation :: page-nav(pageData=${pageData}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pageUrlPrefix}, pageUrlSuffix=${pageUrlSuffix})}"
+  />
+</html>

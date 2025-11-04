@@ -9,7 +9,7 @@
         </div>
 
         <!-- 右侧文章流 -->
-        <section class="content-wrapper">
+        <section class="main content-wrapper">
           <th:block th:each="post, postStat : ${posts.items}">
             <article class="index-post">
               <a class="abstract-title" th:href="${post.status.permalink}">
@@ -19,7 +19,7 @@
 
               <div class="abstract-post-meta">
                 <div>
-                  <span class="iconfont-archer abstract-calander">&#xe616;</span>
+                  <span class="iconfont-archer abstract-calander"></span>
                   <span th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
                   <th:block th:if="${not #lists.isEmpty(post.categories)} and ${theme.config.style.show_categories}">
                     <span class="post-category" th:data-categories="${post.categories[0].metadata.name}">
@@ -56,20 +56,14 @@
             </article>
           </th:block>
 
-          <!-- 分页 -->
-          <nav class="paginator" th:if="${posts.total > 0}">
-            <a class="prev" th:if="${posts.hasPrevious()}" th:href="${posts.prevUrl}">
-              <span class="iconfont-archer">&#xe60a;</span>
-              <span class="prev-text">PREV</span>
-            </a>
-            <div class="page-number">
-              <span th:text="${'Page ' + posts.page + ' of ' + posts.totalPages}">Page 1 of 1</span>
-            </div>
-            <a class="next" th:if="${posts.hasNext()}" th:href="${posts.nextUrl}">
-              <span class="next-text">NEXT</span>
-              <span class="iconfont-archer">&#xe60b;</span>
-            </a>
-          </nav>
+          <th:block
+            th:with="
+              basePermalink=${tag.status.permalink},
+              firstPageUrl=${basePermalink + '/page/1'},
+              pagePrefix=${basePermalink + '/page/'},
+              pageSuffix=''"
+            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix=${pageSuffix})}"
+          />
 
           <!-- 无文章提示 -->
           <div class="no-posts" th:if="${posts.total == 0}" style="text-align: center; padding: 3rem; color: #999;">
