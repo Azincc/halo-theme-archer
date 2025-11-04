@@ -9,7 +9,7 @@
         </div>
 
         <!-- 右侧文章流 -->
-        <section class="content-wrapper">
+        <section class="main content-wrapper">
           <th:block th:each="post, postStat : ${posts.items}">
             <article class="index-post">
               <a class="abstract-title" th:href="${post.status.permalink}">
@@ -19,7 +19,7 @@
 
               <div class="abstract-post-meta">
                 <div>
-                  <span class="iconfont-archer abstract-calander">&#xe616;</span>
+                  <span class="iconfont-archer abstract-calander"></span>
                   <span th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
                   <th:block th:if="${not #lists.isEmpty(post.categories)} and ${theme.config.style.show_categories}">
                     <span class="post-category" th:data-categories="${post.categories[0].metadata.name}">
