@@ -38,24 +38,30 @@
       </div>
       <div class="post-archive">
         <th:block th:if="${allPosts != null and not #lists.isEmpty(allPosts)}">
-          <th:block th:each="year : ${#numbers.sequence(2100, 2000, -1)}">
-            <th:block th:with="yearPosts = ${allPosts.?[spec.publishTime != null and #dates.year(spec.publishTime) == year]}">
-              <th:block th:if="${not #lists.isEmpty(yearPosts)}">
-                <div class="archive-year" th:text="${year}">2024</div>
+          <th:block th:each="post, postStat : ${allPosts}">
+            <th:block th:with="currentYear=${post.spec.publishTime != null ? #dates.year(post.spec.publishTime) : 0},
+                              prevYear=${postStat.index > 0 and allPosts[postStat.index - 1].spec.publishTime != null ? #dates.year(allPosts[postStat.index - 1].spec.publishTime) : -1}">
+              <th:block th:if="${postStat.first or currentYear != prevYear}">
+                <th:block th:if="${not postStat.first}">
+                  </ul>
+                </th:block>
+                <div class="archive-year" th:text="${currentYear}">2024</div>
                 <ul class="year-list">
-                  <li th:each="post : ${yearPosts}" class="archive-post-item">
-                    <span
-                      class="archive-post-date"
-                      th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
-                      >01/01</span
-                    >
-                    <a
-                      class="archive-post-title"
-                      th:href="${post.status.permalink}"
-                      th:text="${post.spec.title}"
-                      >[Untitled Post]</a
-                    >
-                  </li>
+              </th:block>
+              <li class="archive-post-item">
+                <span
+                  class="archive-post-date"
+                  th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
+                  >01/01</span
+                >
+                <a
+                  class="archive-post-title"
+                  th:href="${post.status.permalink}"
+                  th:text="${post.spec.title}"
+                  >[Untitled Post]</a
+                >
+              </li>
+              <th:block th:if="${postStat.last}">
                 </ul>
               </th:block>
             </th:block>
