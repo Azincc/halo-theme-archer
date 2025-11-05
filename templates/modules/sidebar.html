@@ -38,20 +38,27 @@
       </div>
       <div class="post-archive">
         <th:block th:if="${allPosts != null and not #lists.isEmpty(allPosts)}">
-          <th:block th:each="post : ${allPosts}">
-            <div class="archive-post-item">
-              <span
-                class="archive-post-date"
-                th:text="${post.spec.publishTime != null ? #dates.format(post.spec.publishTime, 'yyyy/MM/dd') : 'N/A'}"
-                >2024/01/01</span
-              >
-              <a
-                class="archive-post-title"
-                th:href="${post.status.permalink}"
-                th:text="${post.spec.title}"
-                >[Untitled Post]</a
-              >
-            </div>
+          <th:block th:each="year : ${#numbers.sequence(2100, 2000, -1)}">
+            <th:block th:with="yearPosts = ${allPosts.?[spec.publishTime != null and #dates.year(spec.publishTime) == year]}">
+              <th:block th:if="${not #lists.isEmpty(yearPosts)}">
+                <div class="archive-year" th:text="${year}">2024</div>
+                <ul class="year-list">
+                  <li th:each="post : ${yearPosts}" class="archive-post-item">
+                    <span
+                      class="archive-post-date"
+                      th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
+                      >01/01</span
+                    >
+                    <a
+                      class="archive-post-title"
+                      th:href="${post.status.permalink}"
+                      th:text="${post.spec.title}"
+                      >[Untitled Post]</a
+                    >
+                  </li>
+                </ul>
+              </th:block>
+            </th:block>
           </th:block>
         </th:block>
       </div>
