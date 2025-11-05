@@ -5,7 +5,12 @@
 @font-face {
     font-family: "iconfont-archer";
     src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot");
-    src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"), url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
+    src: local("iconfont-archer"),
+         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
+         url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
+         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
+         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
+         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
 }
 
 @font-face {
@@ -760,6 +765,12 @@ header.header {
     transform: translate3d(0, 0, 0);
     transition: transform .3s ease-in 0s;
     pointer-events: none
+}
+
+header.index-header {
+    background-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none
 }
 
 header.header-sidebar-active {
