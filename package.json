@@ -1,0 +1,16 @@
+{
+  "name": "halo-theme-archer",
+  "version": "1.0.0",
+  "description": "A simple and modern theme for Halo with Vite bundling",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "qrcode-generator": "^1.4.4"
+  }
+}

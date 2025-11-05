@@ -53,7 +53,16 @@
     <!-- Site metadata for sidebar JavaScript -->
     <th:block th:replace="~{modules/sidebar :: site-meta}"></th:block>
 
-    <script th:src="@{/assets/scripts/main.js}" type="module"></script>
+    <!-- Page type detection for code splitting -->
+    <script th:inline="javascript">
+      window.PAGE = { 
+        isPost: [[${templateId == 'post'}]]
+      };
+    </script>
+
+    <!-- Load built app.js globally with defer and cache-busting -->
+    <script defer th:src="@{/assets/build/js/app.js(v=${theme.spec.version})}"></script>
+    
     <script th:inline="javascript">
       (function () {
         var scheme = /*[[${theme.config.style.color_scheme}]]*/ 'system';
@@ -91,9 +100,7 @@
       <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
     </th:block>
 
-    <th:block th:if="${templateId == 'post'}">
-      <script th:src="@{/assets/scripts/share.js}" type="module"></script>
-    </th:block>
+    <!-- Share.js is now included in post.js bundle via code splitting -->
 
     <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid.enable?: false)}">
       <script
