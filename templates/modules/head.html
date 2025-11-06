@@ -46,7 +46,6 @@
   </th:block>
   
   <!-- Open Graph Meta Tags -->
-  <halo:head />
   <meta property="og:type" content="website" />
   <meta property="og:title" th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
   <meta property="og:url" th:content="${post != null ? post.status.permalink : (singlePage != null ? singlePage.status.permalink : site.url)}" />
