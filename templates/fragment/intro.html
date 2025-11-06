@@ -123,8 +123,9 @@
     <div class="site-intro-placeholder"></div>
     <div
       class="site-intro-img"
-      th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
-          |background-image: url(@{/assets/intro/index-bg.jpg});|">
+      th:style="${theme.config.style.tag_header_image != null && theme.config.style.tag_header_image != ''} ? |background-image: url(${theme.config.style.tag_header_image});| :
+          (${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|)">
     </div>
     <div class="site-intro-meta">
       <h1 class="intro-title intro-fade-in">
@@ -141,13 +142,15 @@
 
 <div
   th:if="${templateId=='category'}"
->      <!-- Site Intro - Header Image Area -->
+>
+  <!-- Site Intro - Header Image Area -->
   <div class="site-intro" th:style="|height: ${theme.config.style.index_intro_height ?: 50}vh;|">
     <div class="site-intro-placeholder"></div>
     <div
       class="site-intro-img"
-      th:style="${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
-          |background-image: url(@{/assets/intro/index-bg.jpg});|">
+      th:style="${theme.config.style.category_header_image != null && theme.config.style.category_header_image != ''} ? |background-image: url(${theme.config.style.category_header_image});| :
+          (${theme.config.style.site_header_image != null && theme.config.style.site_header_image != ''} ? |background-image: url(${theme.config.style.site_header_image});| :
+          |background-image: url(@{/assets/intro/index-bg.jpg});|)">
     </div>
     <div class="site-intro-meta">
       <h1 class="intro-title intro-fade-in">

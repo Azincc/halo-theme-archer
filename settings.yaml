@@ -122,6 +122,14 @@ spec:
           label: 首页顶部图片
           value: ""
         - $formkit: attachment
+          name: tag_header_image
+          label: 标签页顶部图片
+          value: ""
+        - $formkit: attachment
+          name: category_header_image
+          label: 分类页顶部图片
+          value: ""
+        - $formkit: attachment
           name: post_header_image
           label: 文章页顶部图片
           value: ""
