@@ -1,28 +1,19 @@
 <th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${site.title}, 'index')}">
   <th:block th:fragment="content" th:with="postPage=${posts != null ? posts : postFinder.list(1,10)}">
-    <main class="main index-page">
-      <!-- 主体区域 -->
-      <div class="page-body">
-        <!-- 左侧个人资料 -->
-        <div th:replace="~{fragment/profile :: profile-card}">
-        </div>
+    <!-- 右侧文章流 -->
+    <section class="main index-page">
+      <th:block th:each="post, postStat : ${postPage.items}">
+        <div th:replace="~{fragment/index-post :: index-post}"></div>
+        <div class="index-post-divider" th:unless="${postStat.last}"></div>
+      </th:block>
 
-        <!-- 右侧文章流 -->
-        <section class="main">
-          <th:block th:each="post, postStat : ${postPage.items}">
-            <div th:replace="~{fragment/index-post :: index-post}"></div>
-            <div class="index-post-divider" th:unless="${postStat.last}"></div>
-          </th:block>
-
-          <th:block th:replace="~{fragment/navigation :: page-nav(pageData=${postPage}, firstPageUrl='/', pageUrlPrefix='/page/', pageUrlSuffix='/')}" />
-        </section>
-      </div>
-    </main>
-
-    <!-- 内联样式 -->
-    <style>
-
-    </style>
+      <th:block
+        th:replace="~{fragment/navigation :: page-nav(pageData=${postPage}, firstPageUrl='/', pageUrlPrefix='/page/', pageUrlSuffix='/')}" />
+    </section>
+    
+    <!-- 左侧个人资料 -->
+    <div th:replace="~{fragment/profile :: profile-card}">
+    </div>
 
   </th:block>
   <th:block th:fragment="page_js"></th:block>
