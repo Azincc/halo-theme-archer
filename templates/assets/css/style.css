@@ -244,11 +244,11 @@ body {
 
 .main {
     order: 1;
-    width: 100%;
+    width: 50%;
     min-width: 42.8125rem;
     flex-grow: 0;
     padding: 0 0 0 0;
-    margin-left: 0
+    margin-left: 3rem;
 }
 
 .container {
@@ -1019,8 +1019,8 @@ header .banner.banner-clean {
 }
 
 .index-post-divider {
-    border-bottom: 1px solid #333;
-    margin: 1.5rem 0;
+    margin: 0.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
 .site-intro-meta {
