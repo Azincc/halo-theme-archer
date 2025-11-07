@@ -37,6 +37,14 @@ const init = function () {
       $('.footer').removeClass('footer-unloaded')
       $('.loading').remove()
 
+      // 动态添加类实现动画效果
+      if ($('.site-intro-meta')) {
+        $('.intro-title, .intro-subtitle').addClass('intro-fade-in')
+        if ($('.post-intros')) {
+          $('.post-intros').addClass('post-fade-in')
+        }
+      }
+
       // Init anchors
       // https://www.bryanbraun.com/anchorjs/
       const anchors = new AnchorJS()
