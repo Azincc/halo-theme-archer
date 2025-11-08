@@ -1,4 +1,5 @@
 import archerUtil from './util.js'
+import createTOC from './createToc.js'
 
 const isPostPage = archerUtil.isPostPage()
 
@@ -71,8 +72,29 @@ const main = () => {
     return
   }
 
-  const $toc = $('.toc')
-  const $article = $('post.content.content')
+  // 生成 TOC 结构
+  const contentSelector = '.article-entry'
+  const tocSelector = '.toc-wrapper'
+  const tocGenerated = createTOC(contentSelector, tocSelector, 'h1, h2, h3, h4, h5, h6')
+  
+  if (!tocGenerated) {
+    console.warn('TOC generation failed, skipping TOC interaction initialization')
+    return
+  }
+
+  const $toc = $('.toc-wrapper')
+  const $article = $('article.article-entry')
+
+  if ($toc.length === 0) {
+    console.warn('TOC element not found with .toc selector, trying alternatives')
+    return
+  }
+
+  if ($article.length === 0) {
+    console.warn('Article content element not found')
+    return
+  }
+
   // #region Toc onscroll listener
   const getInitTocOnScrollFun = () => {
     const $banner = $('.banner:first')
