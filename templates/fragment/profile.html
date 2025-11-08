@@ -28,7 +28,11 @@
   </th:block>
 
   <div class="friends" th:if="${not #lists.isEmpty(theme.config.profile.friends)}">
-    <div>Friends</div>
+    <div>
+      <i th:if="${theme.config.profile.profile_icons?.enable == true}"
+         th:class="|profile-item-icon ${theme.config.profile.profile_icons.friends}|"></i>
+      Friends
+    </div>
     <a th:each="friend : ${theme.config.profile.friends}"
        th:href="${friend.url}" th:text="${friend.name}"
        target="_blank" rel="noopener noreferrer"></a>
