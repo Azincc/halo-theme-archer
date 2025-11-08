@@ -11,36 +11,41 @@
 
   <!-- powered by -->
   <div class="copyright">
-    <span id="hexo-power">Powered by <a href="https://halo.run/" target="_blank" rel="noopener noreferrer">Halo</a></span>
+    <span id="hexo-power">Powered by <a href="https://halo.run/" target="_blank"
+                                        rel="noopener noreferrer">Halo</a></span>
     <span class="iconfont-archer power">&#xe635;</span>
-    <span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="noopener noreferrer">Archer</a></span>
+    <span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank"
+                                   rel="noopener noreferrer">Archer</a></span>
   </div>
 
   <!-- website approve for Chinese user -->
   <div class="website-approve" th:if="${theme.config.other.website_approve?.enable == true}">
-    <span id="icp-approve" class="icp-approve" th:if="${not #strings.isEmpty(theme.config.other.website_approve.icp_approve)}">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" th:text="${theme.config.other.website_approve.icp_approve}"></a>
+    <span id="icp-approve" class="icp-approve"
+          th:if="${not #strings.isEmpty(theme.config.other.website_approve.icp_approve)}">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
+         th:text="${theme.config.other.website_approve.icp_approve}"></a>
     </span>
-    <th:block th:if="${not #strings.isEmpty(theme.config.other.website_approve.beian_approve) and not #strings.isEmpty(theme.config.other.website_approve.beian_img)}">
+    <th:block
+      th:if="${not #strings.isEmpty(theme.config.other.website_approve.beian_approve) and not #strings.isEmpty(theme.config.other.website_approve.beian_img)}">
       <img class="beian-img" th:src="${theme.config.other.website_approve.beian_img}" />
       <span id="beian-approve" class="beian-approve">
-        <a th:href="|http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${theme.config.other.website_approve.beian_approve}|" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           th:text="|京公网安备${theme.config.other.website_approve.beian_approve}号|"></a>
+        <a
+          th:href="|http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${theme.config.other.website_approve.beian_approve}|"
+          target="_blank"
+          rel="noopener noreferrer"
+          th:text="|京公网安备${theme.config.other.website_approve.beian_approve}号|"></a>
       </span>
     </th:block>
   </div>
 
   <!-- busuanzi -->
-  <div class="busuanzi-container" th:if="${theme.config.analytics?.busuanzi?.enable == true}">
+  <div class="busuanzi-container" th:if="${theme.config.analytics?.busuanzi?.enable == true}"
+       th:with="stats = ${siteStatsFinder.getStats()}">
     <th:block th:with="busuanziSlug=${theme.config.analytics.busuanzi?.slug ?: '本站访客数${count}人次'},
                        sloganPieces=${#strings.arraySplit(busuanziSlug, '${count}')}">
-      <span id="busuanzi_container_site_pv" th:if="${theme.config.analytics.busuanzi?.pv_or_uv == 'pv'}">
-        <span th:text="${sloganPieces[0]}"></span><span id="busuanzi_value_site_pv"></span><span th:text="${#arrays.length(sloganPieces) > 1 ? sloganPieces[1] : ''}"></span>
-      </span>
-      <span id="busuanzi_container_site_uv" th:if="${theme.config.analytics.busuanzi?.pv_or_uv == 'uv'}">
-        <span th:text="${sloganPieces[0]}"></span><span id="busuanzi_value_site_uv"></span><span th:text="${#arrays.length(sloganPieces) > 1 ? sloganPieces[1] : ''}"></span>
+      <span id="busuanzi_container_site_pv">
+        <span th:text="${sloganPieces[0]}"></span><span th:text="${stats.visit}"></span><span
+        th:text="${#arrays.length(sloganPieces) > 1 ? sloganPieces[1] : ''}"></span></span>
       </span>
     </th:block>
   </div>
