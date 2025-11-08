@@ -133,7 +133,7 @@ const createTOC = (contentSelector, tocSelector, headingSelector = "h1, h2, h3, 
     // Numbering span
     const spanNum = document.createElement("span");
     spanNum.className = "toc-number";
-    spanNum.textContent = numStr + ".";
+    spanNum.textContent = numStr + ". ";
 
     // Text span
     const spanText = document.createElement("span");
