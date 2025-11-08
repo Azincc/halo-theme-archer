@@ -173,7 +173,7 @@
     rel="preload"
     th:href="@{/assets/css/dark.css}"
     as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
+    onload="if(localStorage.preferredThemeMode === 'dark' || (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches)){this.onload=null; this.rel='stylesheet'}"
   />
   <noscript>
     <link rel="stylesheet" th:href="@{/assets/css/dark.css}" />
