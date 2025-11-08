@@ -22,7 +22,7 @@
         </th:block>
       </div>
 
-      <th:block th:replace="~{fragment/navigation :: page-nav(pageData=${archives}, firstPageUrl='/archives', pageUrlPrefix='/archives/page/', pageUrlSuffix='/')}" />
+      <th:block th:replace="~{fragment/navigation :: page-nav(pageData=${archives}, firstPageUrl='/archives', pageUrlPrefix='/archives/page/', pageUrlSuffix='/', basePermalink='/archives')}" />
     </main>
   </th:block>
   <th:block th:fragment="page_js"></th:block>

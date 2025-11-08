@@ -21,7 +21,7 @@
               firstPageUrl=${basePermalink + '/page/1'},
               pageUrlPrefix=${basePermalink + '/page/'},
               pageUrlSuffix=''"
-            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pageUrlPrefix}, pageUrlSuffix=${pageUrlSuffix})}"
+            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pageUrlPrefix}, pageUrlSuffix=${pageUrlSuffix}, basePermalink=${basePermalink})}"
           />
 
           <!-- 无文章提示 -->
