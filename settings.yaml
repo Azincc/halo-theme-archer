@@ -308,21 +308,12 @@ spec:
           label: "CNZZ 统计 ID"
         - $formkit: group
           name: busuanzi
-          label: "不蒜子统计"
+          label: "统计"
           children:
             - $formkit: checkbox
               name: enable
               label: "启用"
-              value: false
-            - $formkit: radio
-              name: pv_or_uv
-              label: "统计类型"
-              options:
-                - label: "浏览量 (PV)"
-                  value: "pv"
-                - label: "访客数 (UV)"
-                  value: "uv"
-              value: "pv"
+              value: true
             - $formkit: text
               name: slug
               label: "显示文本"
