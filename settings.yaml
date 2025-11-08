@@ -373,23 +373,6 @@ spec:
               label: 许可协议
               value: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
         - $formkit: group
-          name: website_approve
-          label: "网站审批"
-          children:
-            - $formkit: checkbox
-              name: enable
-              label: "启用"
-              value: false
-            - $formkit: text
-              name: icp_approve
-              label: "ICP 备案号"
-            - $formkit: text
-              name: beian_approve
-              label: "公安备案号"
-            - $formkit: attachment
-              name: beian_img
-              label: "公安备案图标"
-        - $formkit: group
           name: outdated_threshold
           label: "文章时效性提示"
           children:
