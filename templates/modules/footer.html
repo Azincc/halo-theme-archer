@@ -18,24 +18,46 @@
                                    rel="noopener noreferrer">Archer</a></span>
   </div>
 
-  <!-- website approve for Chinese user -->
-  <div class="website-approve" th:if="${theme.config.other.website_approve?.enable == true}">
-    <span id="icp-approve" class="icp-approve"
-          th:if="${not #strings.isEmpty(theme.config.other.website_approve.icp_approve)}">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
-         th:text="${theme.config.other.website_approve.icp_approve}"></a>
-    </span>
-    <th:block
-      th:if="${not #strings.isEmpty(theme.config.other.website_approve.beian_approve) and not #strings.isEmpty(theme.config.other.website_approve.beian_img)}">
-      <img class="beian-img" th:src="${theme.config.other.website_approve.beian_img}" />
-      <span id="beian-approve" class="beian-approve">
-        <a
-          th:href="|http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${theme.config.other.website_approve.beian_approve}|"
-          target="_blank"
-          rel="noopener noreferrer"
-          th:text="|京公网安备${theme.config.other.website_approve.beian_approve}号|"></a>
+  <!-- beian information -->
+  <th:block th:with="beianEnabled=${theme.config.footer?.beian?.enable == true and not #strings.isEmpty(theme.config.footer.beian.number)},
+                     legacyBeianEnabled=${theme.config.other.website_approve?.enable == true and not #strings.isEmpty(theme.config.other.website_approve.icp_approve) and not beianEnabled}">
+    <div class="website-approve" th:if="${beianEnabled or legacyBeianEnabled}">
+      <img class="beian-img" th:src="@{/assets/beian.png}" />
+      <span id="icp-approve" class="icp-approve">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
+           th:text="${beianEnabled ? theme.config.footer.beian.number : theme.config.other.website_approve.icp_approve}"></a>
       </span>
+    </div>
+  </th:block>
+
+  <!-- custom footer information -->
+  <div class="website-approve" th:if="${not #lists.isEmpty(theme.config.footer.sfooter_info)}">
+    <th:block th:each="info : ${theme.config.footer.sfooter_info}">
+      <th:block
+        th:if="${not #strings.isEmpty(info.sf_title) or not #strings.isEmpty(info.sf_img)}">
+        <img class="beian-img" th:if="${not #strings.isEmpty(info.sf_img)}" th:src="${info.sf_img}" />
+        <span class="icp-approve" th:if="${not #strings.isEmpty(info.sf_title)}">
+          <a th:if="${not #strings.isEmpty(info.sf_link)}"
+             th:href="${info.sf_link}"
+             target="_blank"
+             rel="noopener noreferrer"
+             th:text="${info.sf_title}"></a>
+          <span th:if="${#strings.isEmpty(info.sf_link)}" th:text="${info.sf_title}"></span>
+        </span>
+      </th:block>
     </th:block>
+  </div>
+
+  <!-- website approve for Chinese user -->
+  <div class="website-approve" th:if="${theme.config.other.website_approve?.enable == true and not #strings.isEmpty(theme.config.other.website_approve.beian_approve) and not #strings.isEmpty(theme.config.other.website_approve.beian_img)}">
+    <img class="beian-img" th:src="${theme.config.other.website_approve.beian_img}" />
+    <span id="beian-approve" class="beian-approve">
+      <a
+        th:href="|http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${theme.config.other.website_approve.beian_approve}|"
+        target="_blank"
+        rel="noopener noreferrer"
+        th:text="|京公网安备${theme.config.other.website_approve.beian_approve}号|"></a>
+    </span>
   </div>
 
   <!-- busuanzi -->

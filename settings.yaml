@@ -323,13 +323,21 @@ spec:
     - group: footer
       label: 页脚
       formSchema:
+        - $formkit: group
+          name: beian
+          label: 备案信息
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: 启用备案信息
+              value: false
+            - $formkit: text
+              name: number
+              label: 备案号
         - $formkit: repeater
           name: sfooter_info
-          label: 底部信息
-          value:
-            - sf_title: 鄂ICP备xxxxxxx号
-              sf_link: https://beian.miit.gov.cn/
-              sf_img: /themes/halo-theme-vapor/assets/imgs/icpb.webp
+          label: 自定义底部信息
+          value: []
           children:
             - $formkit: text
               name: sf_title
