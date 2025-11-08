@@ -323,13 +323,21 @@ spec:
     - group: footer
       label: 页脚
       formSchema:
+        - $formkit: group
+          name: beian
+          label: 备案信息
+          children:
+            - $formkit: checkbox
+              name: enable
+              label: 启用备案信息
+              value: false
+            - $formkit: text
+              name: number
+              label: 备案号
         - $formkit: repeater
           name: sfooter_info
-          label: 底部信息
-          value:
-            - sf_title: 鄂ICP备xxxxxxx号
-              sf_link: https://beian.miit.gov.cn/
-              sf_img: /themes/halo-theme-vapor/assets/imgs/icpb.webp
+          label: 自定义底部信息
+          value: []
           children:
             - $formkit: text
               name: sf_title
@@ -364,23 +372,6 @@ spec:
               name: license
               label: 许可协议
               value: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
-        - $formkit: group
-          name: website_approve
-          label: "网站审批"
-          children:
-            - $formkit: checkbox
-              name: enable
-              label: "启用"
-              value: false
-            - $formkit: text
-              name: icp_approve
-              label: "ICP 备案号"
-            - $formkit: text
-              name: beian_approve
-              label: "公安备案号"
-            - $formkit: attachment
-              name: beian_img
-              label: "公安备案图标"
         - $formkit: group
           name: outdated_threshold
           label: "文章时效性提示"
