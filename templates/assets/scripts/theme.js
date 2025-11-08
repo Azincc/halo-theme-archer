@@ -69,10 +69,8 @@ const switchThemeMode = () => {
   setThemeMode(nextMode)
 }
 
-export const initializeColorScheme = (mode = 'system') => {
-  const normalized =
-    mode === 'dark' || mode === 'light' ? mode : resolveSystemThemeMode()
-  setThemeMode(normalized)
+export const initializeColorScheme = () => {
+  setThemeMode(getPreferredThemeMode())
 }
 
 /** 初始化切换主题颜色模式功能 */
