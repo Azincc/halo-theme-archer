@@ -61,9 +61,9 @@
             th:with="
               basePermalink=${tag.status.permalink},
               firstPageUrl=${basePermalink + '/page/1'},
-              pagePrefix=${basePermalink + '/page/'},
-              pageSuffix=''"
-            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pagePrefix}, pageUrlSuffix=${pageSuffix})}"
+              pageUrlPrefix=${basePermalink + '/page/'},
+              pageUrlSuffix=''"
+            th:replace="~{fragment/navigation :: page-nav(pageData=${posts}, firstPageUrl=${firstPageUrl}, pageUrlPrefix=${pageUrlPrefix}, pageUrlSuffix=${pageUrlSuffix})}"
           />
 
           <!-- 无文章提示 -->
