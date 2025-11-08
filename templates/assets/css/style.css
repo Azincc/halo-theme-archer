@@ -265,9 +265,6 @@ body {
     opacity: 1;
     transform: translate3d(0, 0, 0)
 }
-.post-page {
-    width: 50%;
-}
 
 .container-unloaded {
     opacity: 0;
