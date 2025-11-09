@@ -1,6 +1,4 @@
-<article class="index-post"
-         th:fragment="index-post"
->
+<article class="index-post" th:fragment="index-post">
   <a class="abstract-title" th:href="${post.status.permalink}">
     <span class="iconfont-archer stick-top" th:if="${post.spec.pinned}">&#xe63d;</span>
     <span class="abstract-title-text" th:text="${post.spec.title ?: '[Untitled Post]'}">Post Title</span>
@@ -8,37 +6,36 @@
 
   <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
 
+  <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
+    <a th:href="${post.status.permalink}">
+      <span style="margin-right: 0.2rem;">阅读更多</span>
+      <i class="fas fa-angle-right"></i>
+    </a>
+  </div>
+
   <div class="abstract-post-meta">
     <div>
       <span class="iconfont-archer abstract-calander"></span>
       <span th:text="${#dates.format(post.spec.publishTime, 'yyyy/MM/dd')}">2024/01/01</span>
       <th:block th:if="${not #lists.isEmpty(post.categories)} and ${theme.config.style.show_categories}">
-                    <span class="post-category" th:data-categories="${post.categories[0].metadata.name}">
-                      <span class="iconfont-archer post-category-icon">&#xe606;</span>
-                      <span class="post-category-text" th:text="${post.categories[0].spec.displayName}">Category</span>
-                    </span>
+        <span class="post-category" th:data-categories="${post.categories[0].metadata.name}">
+          <span class="iconfont-archer post-category-icon">&#xe606;</span>
+          <span class="post-category-text" th:text="${post.categories[0].spec.displayName}">Category</span>
+        </span>
       </th:block>
     </div>
     <div class="abstract-tags" th:if="${not #lists.isEmpty(post.tags)}">
-      <a class="post-tag"
-         th:each="tag : ${post.tags}"
-         th:data-tags="${tag.metadata.name}"
-         th:text="${tag.spec.displayName}">Tag</a>
+      <a class="post-tag" th:each="tag : ${post.tags}" th:data-tags="${tag.metadata.name}"
+        th:text="${tag.spec.displayName}">Tag</a>
     </div>
   </div>
   <div class="abstract-content" th:unless="${post.status.excerpt}"
-       th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-                            fallbackExcerpt=${post.spec.excerpt?.raw},
-                            sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
-                <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
-                      th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
+    th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
+    fallbackExcerpt=${post.spec.excerpt?.raw},
+    sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
+    <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
+      th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
     <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
-          th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
-  </div>
-
-  <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
-    <a th:href="${post.status.permalink}">
-      阅读更多 <span class="iconfont-archer">&#xe775;</span>
-    </a>
+      th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
   </div>
 </article>
