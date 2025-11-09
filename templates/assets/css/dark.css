@@ -339,20 +339,21 @@ header .banner .post-title a {
     border-left-color: #f75357
 }
 
-.abstract-content .table-container table, .abstract-content > table, .article-entry .table-container table, .article-entry > table {
+.abstract-content table, .article-entry table {
+    color: rgba(255, 255, 255, .87);
     border-color: #1e1e1e;
     box-shadow: 2px 2px 2px rgba(255, 255, 255, .125)
 }
 
-.abstract-content .table-container table thead tr, .abstract-content > table thead tr, .article-entry .table-container table thead tr, .article-entry > table thead tr {
+.abstract-content table th, .article-entry table th {
     background: #1e1e1e
 }
 
-.abstract-content .table-container table tbody tr:hover, .abstract-content > table tbody tr:hover, .article-entry .table-container table tbody tr:hover, .article-entry > table tbody tr:hover {
+.abstract-content table tr:not(:first-child):hover, .article-entry table tr:not(:first-child):hover {
     background: #242424
 }
 
-.abstract-content .table-container table td, .abstract-content .table-container table th, .abstract-content > table td, .abstract-content > table th, .article-entry .table-container table td, .article-entry .table-container table th, .article-entry > table td, .article-entry > table th {
+.abstract-content table td, .abstract-content table th, .article-entry table td, .article-entry table th {
     border-color: #2a2a2a
 }
 
