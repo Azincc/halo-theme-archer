@@ -2809,27 +2809,28 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin-bottom: 0
 }
 
-.abstract-content .table-container table, .abstract-content > table, .article-entry .table-container table, .article-entry > table {
+.abstract-content table, .article-entry table {
     width: 100%;
+    color: #23394d;
     border: 1px solid #ddd;
     margin: 1rem 0;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .125)
 }
 
-.abstract-content .table-container table tr, .abstract-content .table-container table td, .abstract-content > table tr, .abstract-content > table td, .article-entry .table-container table tr, .article-entry .table-container table td, .article-entry > table tr, .article-entry > table td {
+.abstract-content table tr, .abstract-content table td, .article-entry table tr, .article-entry table td{
     height: 2rem
 }
 
-.abstract-content .table-container table thead tr, .abstract-content > table thead tr, .article-entry .table-container table thead tr, .article-entry > table thead tr {
+.abstract-content table th, .article-entry table th {
     background: #f8f8f8
 }
 
-.abstract-content .table-container table tbody tr:hover, .abstract-content > table tbody tr:hover, .article-entry .table-container table tbody tr:hover, .article-entry > table tbody tr:hover {
+.abstract-content table tr :not(:first-child):hover, .article-entry table tr:not(:first-child):hover {
     background: #efefef
 }
 
-.abstract-content .table-container table td, .abstract-content .table-container table th, .abstract-content > table td, .abstract-content > table th, .article-entry .table-container table td, .article-entry .table-container table th, .article-entry > table td, .article-entry > table th {
+.abstract-content table td, .abstract-content table th, .article-entry table td, .article-entry table th {
     border: 1px solid #dedede;
     padding: .2rem 1rem 0 1rem
 }
