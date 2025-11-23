@@ -6,6 +6,20 @@
 
   <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
 
+  <div class="abstract-content" th:if="${#strings.isEmpty(post.status.excerpt)}"
+    th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
+             fallbackExcerpt=${post.spec.excerpt?.raw},
+             sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
+    
+    <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
+          th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}">
+    </span>
+
+    <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
+          th:utext="${#strings.abbreviate(postFinder.content(post.metadata.name).content, truncateLen)}">
+    </span>
+</div>
+
   <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
     <a th:href="${post.status.permalink}">
       <span style="margin-right: 0.2rem;">阅读更多</span>
@@ -28,14 +42,5 @@
       <a class="post-tag" th:each="tag : ${post.tags}" th:data-tags="${tag.metadata.name}"
         th:text="${tag.spec.displayName}">Tag</a>
     </div>
-  </div>
-  <div class="abstract-content" th:unless="${post.status.excerpt}"
-    th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-    fallbackExcerpt=${post.spec.excerpt?.raw},
-    sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
-    <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
-      th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
-    <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
-      th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
   </div>
 </article>
