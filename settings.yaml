@@ -117,6 +117,14 @@ spec:
               value: dark
             - label: 浅色
               value: light
+        - $formkit: color
+          name: main_color_light
+          label: 浅色主题强调色
+          value: "#f75357"
+        - $formkit: color
+          name: main_color_dark
+          label: 深色主题强调色
+          value: "#f75357"
         - $formkit: attachment
           name: site_header_image
           label: 首页顶部图片
