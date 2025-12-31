@@ -6,11 +6,11 @@
     font-family: "iconfont-archer";
     src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot");
     src: local("iconfont-archer"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
-         url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
+        url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
 }
 
 .iconfont-archer {
@@ -34,12 +34,12 @@ body {
 }
 
 ::-moz-selection {
-    background: #f75357;
+    background: var(--main-color, #f75357);
     color: snow
 }
 
 ::selection {
-    background: #f75357;
+    background: var(--main-color, #f75357);
     color: snow
 }
 
@@ -61,10 +61,11 @@ body {
 }
 
 .copyright a {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
-#busuanzi_container_site_pv, #busuanzi_container_site_uv {
+#busuanzi_container_site_pv,
+#busuanzi_container_site_uv {
     color: rgba(255, 255, 255, .38)
 }
 
@@ -79,11 +80,13 @@ body {
     background-color: #121212
 }
 
-.footer-fixed-btn--rounded:hover, .footer-fixed-btn--rounded--active {
+.footer-fixed-btn--rounded:hover,
+.footer-fixed-btn--rounded--active {
     color: #333
 }
 
-.footer-fixed-btn:hover, .footer-fixed-btn--active {
+.footer-fixed-btn:hover,
+.footer-fixed-btn--active {
     background-color: rgba(255, 255, 255, .87);
     color: #121212
 }
@@ -93,7 +96,7 @@ body {
 }
 
 .read-progress-feature {
-    background-color: #f75357
+    background-color: var(--main-color, #f75357)
 }
 
 header .banner {
@@ -106,7 +109,7 @@ header .banner .blog-title a {
 }
 
 header .banner .blog-title a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 header .banner .post-title a {
@@ -125,7 +128,7 @@ header .banner .post-title a {
 
 .header-sidebar-menu-rounded.header-sidebar-menu-active {
     background-color: rgba(0, 0, 0, 0);
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .header-sidebar-menu-black {
@@ -147,7 +150,7 @@ header .banner .post-title a {
 
     .header-sidebar-menu-rounded:hover {
         background-color: rgba(0, 0, 0, 0);
-        color: #f75357
+        color: var(--main-color, #f75357)
     }
 
     .header-sidebar-menu-black:hover {
@@ -182,7 +185,7 @@ header .banner .post-title a {
 }
 
 .friends a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .profile-link-item {
@@ -194,7 +197,7 @@ header .banner .post-title a {
 }
 
 .profile-link-item a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .popup {
@@ -222,49 +225,53 @@ header .banner .post-title a {
 }
 
 .popup-btn-close {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .algolia-hit-item-link em {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .ais-Pagination-item--selected a {
     color: rgba(255, 255, 255, .87)
 }
 
-.abstract-content code, .article-entry code {
+.abstract-content code,
+.article-entry code {
     background: #282c34
 }
 
 .archive-post-item:hover {
-    border-left-color: #f75357
+    border-left-color: var(--main-color, #f75357)
 }
 
-.archive-post-item:hover .archive-post-date, .archive-post-item:hover .archive-post-title {
-    color: #f75357
+.archive-post-item:hover .archive-post-date,
+.archive-post-item:hover .archive-post-title {
+    color: var(--main-color, #f75357)
 }
 
 .site-search .search-icon {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
-.archive-year, .total-archive {
-    color: #f75357
+.archive-year,
+.total-archive {
+    color: var(--main-color, #f75357)
 }
 
-.sidebar-tag-name:hover, .sidebar-category-name:hover {
-    border-color: #f75357;
-    color: #f75357
+.sidebar-tag-name:hover,
+.sidebar-category-name:hover {
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
 }
 
 .sidebar-label-focus {
-    border-color: #f75357;
-    color: #f75357
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
 }
 
 .sidebar-tabs::after {
-    background-color: #f75357
+    background-color: var(--main-color, #f75357)
 }
 
 .index-post {
@@ -281,7 +288,7 @@ header .banner .post-title a {
 }
 
 .abstract-title:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .index-post .abstract-read-more-button a {
@@ -289,7 +296,7 @@ header .banner .post-title a {
 }
 
 .index-post .abstract-read-more-button a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .abstract-post-meta {
@@ -323,46 +330,56 @@ header .banner .post-title a {
 }
 
 .anchorjs-archer {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .article-entry {
     background-color: #181818
 }
 
-.abstract-content, .article-entry {
+.abstract-content,
+.article-entry {
     color: rgba(255, 255, 255, .87)
 }
 
-.abstract-content blockquote, .article-entry blockquote {
+.abstract-content blockquote,
+.article-entry blockquote {
     background-color: #1e1e1e;
-    border-left-color: #f75357
+    border-left-color: var(--main-color, #f75357)
 }
 
-.abstract-content table, .article-entry table {
+.abstract-content table,
+.article-entry table {
     color: rgba(255, 255, 255, .87);
     border-color: #1e1e1e;
     box-shadow: 2px 2px 2px rgba(255, 255, 255, .125)
 }
 
-.abstract-content table th, .article-entry table th {
+.abstract-content table th,
+.article-entry table th {
     background: #1e1e1e
 }
 
-.abstract-content table tr:not(:first-child):hover, .article-entry table tr:not(:first-child):hover {
+.abstract-content table tr:not(:first-child):hover,
+.article-entry table tr:not(:first-child):hover {
     background: #242424
 }
 
-.abstract-content table td, .abstract-content table th, .article-entry table td, .article-entry table th {
+.abstract-content table td,
+.abstract-content table th,
+.article-entry table td,
+.article-entry table th {
     border-color: #2a2a2a
 }
 
-.abstract-content a, .article-entry a {
-    color: #f75357
+.abstract-content a,
+.article-entry a {
+    color: var(--main-color, #f75357)
 }
 
-.abstract-content a:hover, .article-entry a:hover {
-    border-bottom-color: #f75357
+.abstract-content a:hover,
+.article-entry a:hover {
+    border-bottom-color: var(--main-color, #f75357)
 }
 
 .license-wrapper {
@@ -374,11 +391,11 @@ header .banner .post-title a {
 }
 
 .license-wrapper a {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .toc-wrapper .toc-active {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .toc-wrapper a {
@@ -386,22 +403,25 @@ header .banner .post-title a {
 }
 
 .toc-wrapper a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .toc-catalog:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
-.post-paginator .nextTitle, .post-paginator .prevTitle {
+.post-paginator .nextTitle,
+.post-paginator .prevTitle {
     color: rgba(255, 255, 255, .38)
 }
 
-.post-paginator .nextTitle:hover, .post-paginator .prevTitle:hover {
-    color: #f75357
+.post-paginator .nextTitle:hover,
+.post-paginator .prevTitle:hover {
+    color: var(--main-color, #f75357)
 }
 
-.post-paginator .nextSlogan, .post-paginator .prevSlogan {
+.post-paginator .nextSlogan,
+.post-paginator .prevSlogan {
     color: rgba(255, 255, 255, .6)
 }
 
@@ -409,12 +429,16 @@ header .banner .post-title a {
     color: rgba(255, 255, 255, .87)
 }
 
-#gitalk-container textarea, #gitalk-container .gt-header-preview *, #gitalk-container .gt-comment-content *, #gitalk-container .gt-action *, #gitalk-container .gt-version {
+#gitalk-container textarea,
+#gitalk-container .gt-header-preview *,
+#gitalk-container .gt-comment-content *,
+#gitalk-container .gt-action *,
+#gitalk-container .gt-version {
     color: #333
 }
 
 #gitalk-container a {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container a:hover {
@@ -423,17 +447,17 @@ header .banner .post-title a {
 }
 
 #gitalk-container .gt-svg svg {
-    fill: #f75357 !important
+    fill: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-spinner::before {
     border-color: #fff !important;
-    border-top-color: #f75357 !important
+    border-top-color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-btn {
-    background-color: #f75357 !important;
-    border-color: #f75357 !important;
+    background-color: var(--main-color, #f75357) !important;
+    border-color: var(--main-color, #f75357) !important;
     color: #fff !important
 }
 
@@ -444,7 +468,7 @@ header .banner .post-title a {
 
 #gitalk-container .gt-btn-preview {
     background-color: #fff !important;
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-btn-preview:hover {
@@ -453,7 +477,7 @@ header .banner .post-title a {
 }
 
 #gitalk-container .gt-btn-preview .gt-btn-text {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-btn-public:hover {
@@ -482,3 +506,8 @@ header .banner .post-title a {
 }
 
 /*# sourceMappingURL=dark.css.map */
+
+.footer .social .github:hover::before,
+.profile-social .github:hover::before {
+    color: #fff
+}

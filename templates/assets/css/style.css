@@ -6,17 +6,18 @@
     font-family: "iconfont-archer";
     src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot");
     src: local("iconfont-archer"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
-         url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
-         url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
+        url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
 }
 
 @font-face {
     font-family: "Oswald-Regular";
     src: url('/themes/halo-theme-archer/assets/font/Oswald-Regular.ttf');
-    font-weight: normal; /* 或者 400 */
+    font-weight: normal;
+    /* 或者 400 */
     font-style: normal;
 }
 
@@ -38,11 +39,26 @@ body {
     margin: 0
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
     display: block
 }
 
-audio, canvas, progress, video {
+audio,
+canvas,
+progress,
+video {
     display: inline-block;
     vertical-align: baseline
 }
@@ -52,7 +68,8 @@ audio:not([controls]) {
     height: 0
 }
 
-[hidden], template {
+[hidden],
+template {
     display: none
 }
 
@@ -60,7 +77,8 @@ a {
     background-color: rgba(0, 0, 0, 0)
 }
 
-a:active, a:hover {
+a:active,
+a:hover {
     outline: 0
 }
 
@@ -68,7 +86,8 @@ abbr[title] {
     border-bottom: 1px dotted
 }
 
-b, strong {
+b,
+strong {
     font-weight: bold
 }
 
@@ -90,7 +109,8 @@ small {
     font-size: 80%
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -126,12 +146,19 @@ pre {
     overflow: auto
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
     font-family: monospace, monospace;
     font-size: 1em
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
     color: inherit;
     font: inherit;
     margin: 0
@@ -141,20 +168,26 @@ button {
     overflow: visible
 }
 
-button, select {
+button,
+select {
     text-transform: none
 }
 
-button, html input[type=button], input[type=reset], input[type=submit] {
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
     -webkit-appearance: button;
     cursor: pointer
 }
 
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
     cursor: default
 }
 
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
     border: 0;
     padding: 0
 }
@@ -163,12 +196,14 @@ input {
     line-height: normal
 }
 
-input[type=checkbox], input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
     box-sizing: border-box;
     padding: 0
 }
 
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     height: auto
 }
 
@@ -177,7 +212,8 @@ input[type=searcher] {
     box-sizing: content-box
 }
 
-input[type=searcher]::-webkit-searcher-cancel-button, input[type=searcher]::-webkit-searcher-decoration {
+input[type=searcher]::-webkit-searcher-cancel-button,
+input[type=searcher]::-webkit-searcher-decoration {
     -webkit-appearance: none
 }
 
@@ -205,7 +241,8 @@ table {
     border-spacing: 0
 }
 
-td, th {
+td,
+th {
     padding: 0
 }
 
@@ -275,17 +312,18 @@ a {
     text-decoration: none
 }
 
-ul, li {
+ul,
+li {
     list-style-type: none
 }
 
 ::-moz-selection {
-    background: #f75357;
+    background: var(--main-color, #f75357);
     color: #eee
 }
 
 ::selection {
-    background: #f75357;
+    background: var(--main-color, #f75357);
     color: #eee
 }
 
@@ -331,7 +369,7 @@ ul, li {
 
 .donate-popup__title {
     font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    color: #f75357;
+    color: var(--main-color, #f75357);
     font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: .4rem
@@ -406,7 +444,8 @@ ul, li {
     opacity: 0
 }
 
-.footer-fixed-btn:hover, .footer-fixed-btn--active {
+.footer-fixed-btn:hover,
+.footer-fixed-btn--active {
     background-color: #121212;
     color: #fff
 }
@@ -702,7 +741,7 @@ ul, li {
 }
 
 .copyright a {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .power {
@@ -742,7 +781,8 @@ ul, li {
     text-align: center
 }
 
-#busuanzi_container_site_pv, #busuanzi_container_site_uv {
+#busuanzi_container_site_pv,
+#busuanzi_container_site_uv {
     display: block;
     text-align: center;
     font: .6rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
@@ -790,7 +830,7 @@ header .header-element {
 
 
 .read-progress-feature {
-    background-color: #f75357
+    background-color: var(--main-color, #f75357)
 }
 
 .header-sidebar-menu {
@@ -831,7 +871,7 @@ header .header-element {
 
 .header-sidebar-menu-rounded.header-sidebar-menu-active {
     background-color: rgba(0, 0, 0, 0);
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .header-sidebar-menu-black {
@@ -853,7 +893,7 @@ header .header-element {
 
     .header-sidebar-menu-rounded:hover {
         background-color: rgba(0, 0, 0, 0);
-        color: #f75357
+        color: var(--main-color, #f75357)
     }
 
     .header-sidebar-menu-black:hover {
@@ -874,7 +914,7 @@ header .header-element {
     display: none
 }
 
-.header-actions > span {
+.header-actions>span {
     margin-left: 1rem;
     padding: .5rem
 }
@@ -903,11 +943,11 @@ header .header-element {
 
 @media not all and (hover: none) {
     .header-actions .header-theme-btn:hover {
-        color: #f75357
+        color: var(--main-color, #f75357)
     }
 
     .header-actions .home-link a:hover {
-        color: #f75357
+        color: var(--main-color, #f75357)
     }
 }
 
@@ -967,7 +1007,7 @@ header .banner .blog-title a {
 }
 
 header .banner .blog-title a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 header .banner.banner-show {
@@ -1026,7 +1066,8 @@ header .banner.banner-clean {
     align-items: center
 }
 
-.intro-title, .intro-subtitle {
+.intro-title,
+.intro-subtitle {
     font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
     color: #fff;
     margin: 0;
@@ -1050,7 +1091,8 @@ header .banner.banner-clean {
     transform: translate(0, 0)
 }
 
-.home-body .intro-title, .home-body .intro-subtitle {
+.home-body .intro-title,
+.home-body .intro-subtitle {
     text-align: center;
     margin-top: 0
 }
@@ -1061,7 +1103,7 @@ header .banner.banner-clean {
     justify-content: center
 }
 
-.page-nav > * {
+.page-nav>* {
     font: 1.4rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
     color: #252525;
     vertical-align: middle;
@@ -1108,7 +1150,7 @@ header .banner.banner-clean {
     transition: color .1s ease-in
 }
 
-.profile > *:last-child {
+.profile>*:last-child {
     border-bottom: none
 }
 
@@ -1412,11 +1454,13 @@ header .banner.banner-clean {
     color: #e53935
 }
 
-.wechat, .qq {
+.wechat,
+.qq {
     cursor: pointer
 }
 
-.wechat:hover .profile-qr, .qq:hover .profile-qr {
+.wechat:hover .profile-qr,
+.qq:hover .profile-qr {
     opacity: 1;
     visibility: visible
 }
@@ -1454,7 +1498,7 @@ header .banner.banner-clean {
 }
 
 .friends a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .profile-link-item {
@@ -1469,7 +1513,7 @@ header .banner.banner-clean {
 }
 
 .profile-link-item a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .profile-item-icon {
@@ -1477,52 +1521,126 @@ header .banner.banner-clean {
     width: 1.2rem !important
 }
 
-html::-webkit-scrollbar, .sidebar-panel-archives::-webkit-scrollbar, .sidebar-tags-name::-webkit-scrollbar, .sidebar-categories-name::-webkit-scrollbar, .sidebar-tags-list::-webkit-scrollbar, .sidebar-categories-list::-webkit-scrollbar, .highlight::-webkit-scrollbar {
+html::-webkit-scrollbar,
+.sidebar-panel-archives::-webkit-scrollbar,
+.sidebar-tags-name::-webkit-scrollbar,
+.sidebar-categories-name::-webkit-scrollbar,
+.sidebar-tags-list::-webkit-scrollbar,
+.sidebar-categories-list::-webkit-scrollbar,
+.highlight::-webkit-scrollbar {
     background-color: rgba(0, 0, 0, .5);
     width: 5px
 }
 
-html::-webkit-scrollbar-corner, .sidebar-panel-archives::-webkit-scrollbar-corner, .sidebar-tags-name::-webkit-scrollbar-corner, .sidebar-categories-name::-webkit-scrollbar-corner, .sidebar-tags-list::-webkit-scrollbar-corner, .sidebar-categories-list::-webkit-scrollbar-corner, .highlight::-webkit-scrollbar-corner {
+html::-webkit-scrollbar-corner,
+.sidebar-panel-archives::-webkit-scrollbar-corner,
+.sidebar-tags-name::-webkit-scrollbar-corner,
+.sidebar-categories-name::-webkit-scrollbar-corner,
+.sidebar-tags-list::-webkit-scrollbar-corner,
+.sidebar-categories-list::-webkit-scrollbar-corner,
+.highlight::-webkit-scrollbar-corner {
     display: none
 }
 
-html::-webkit-scrollbar-button, .sidebar-panel-archives::-webkit-scrollbar-button, .sidebar-tags-name::-webkit-scrollbar-button, .sidebar-categories-name::-webkit-scrollbar-button, .sidebar-tags-list::-webkit-scrollbar-button, .sidebar-categories-list::-webkit-scrollbar-button, .highlight::-webkit-scrollbar-button {
+html::-webkit-scrollbar-button,
+.sidebar-panel-archives::-webkit-scrollbar-button,
+.sidebar-tags-name::-webkit-scrollbar-button,
+.sidebar-categories-name::-webkit-scrollbar-button,
+.sidebar-tags-list::-webkit-scrollbar-button,
+.sidebar-categories-list::-webkit-scrollbar-button,
+.highlight::-webkit-scrollbar-button {
     display: none
 }
 
-html::-webkit-scrollbar-button:start:increment, html::-webkit-scrollbar-button:end:decrement, .sidebar-panel-archives::-webkit-scrollbar-button:start:increment, .sidebar-panel-archives::-webkit-scrollbar-button:end:decrement, .sidebar-tags-name::-webkit-scrollbar-button:start:increment, .sidebar-tags-name::-webkit-scrollbar-button:end:decrement, .sidebar-categories-name::-webkit-scrollbar-button:start:increment, .sidebar-categories-name::-webkit-scrollbar-button:end:decrement, .sidebar-tags-list::-webkit-scrollbar-button:start:increment, .sidebar-tags-list::-webkit-scrollbar-button:end:decrement, .sidebar-categories-list::-webkit-scrollbar-button:start:increment, .sidebar-categories-list::-webkit-scrollbar-button:end:decrement, .highlight::-webkit-scrollbar-button:start:increment, .highlight::-webkit-scrollbar-button:end:decrement {
+html::-webkit-scrollbar-button:start:increment,
+html::-webkit-scrollbar-button:end:decrement,
+.sidebar-panel-archives::-webkit-scrollbar-button:start:increment,
+.sidebar-panel-archives::-webkit-scrollbar-button:end:decrement,
+.sidebar-tags-name::-webkit-scrollbar-button:start:increment,
+.sidebar-tags-name::-webkit-scrollbar-button:end:decrement,
+.sidebar-categories-name::-webkit-scrollbar-button:start:increment,
+.sidebar-categories-name::-webkit-scrollbar-button:end:decrement,
+.sidebar-tags-list::-webkit-scrollbar-button:start:increment,
+.sidebar-tags-list::-webkit-scrollbar-button:end:decrement,
+.sidebar-categories-list::-webkit-scrollbar-button:start:increment,
+.sidebar-categories-list::-webkit-scrollbar-button:end:decrement,
+.highlight::-webkit-scrollbar-button:start:increment,
+.highlight::-webkit-scrollbar-button:end:decrement {
     display: none
 }
 
-html::-webkit-scrollbar-thumb, .sidebar-panel-archives::-webkit-scrollbar-thumb, .sidebar-tags-name::-webkit-scrollbar-thumb, .sidebar-categories-name::-webkit-scrollbar-thumb, .sidebar-tags-list::-webkit-scrollbar-thumb, .sidebar-categories-list::-webkit-scrollbar-thumb, .highlight::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background-color: rgba(0, 0, 0, .2)
 }
 
-html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb, .sidebar-panel-archives::-webkit-scrollbar-track, .sidebar-panel-archives::-webkit-scrollbar-thumb, .sidebar-tags-name::-webkit-scrollbar-track, .sidebar-tags-name::-webkit-scrollbar-thumb, .sidebar-categories-name::-webkit-scrollbar-track, .sidebar-categories-name::-webkit-scrollbar-thumb, .sidebar-tags-list::-webkit-scrollbar-track, .sidebar-tags-list::-webkit-scrollbar-thumb, .sidebar-categories-list::-webkit-scrollbar-track, .sidebar-categories-list::-webkit-scrollbar-thumb, .highlight::-webkit-scrollbar-track, .highlight::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-track,
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-track,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-track,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-track,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-track,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-track,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-track,
+.highlight::-webkit-scrollbar-thumb {
     border: none
 }
 
-html::-webkit-scrollbar-thumb, .sidebar-panel-archives::-webkit-scrollbar-thumb, .sidebar-tags-name::-webkit-scrollbar-thumb, .sidebar-categories-name::-webkit-scrollbar-thumb, .sidebar-tags-list::-webkit-scrollbar-thumb, .sidebar-categories-list::-webkit-scrollbar-thumb, .highlight::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, .2);
     border-radius: 0px
 }
 
-html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-track:hover, .sidebar-tags-name::-webkit-scrollbar-track:hover, .sidebar-categories-name::-webkit-scrollbar-track:hover, .sidebar-tags-list::-webkit-scrollbar-track:hover, .sidebar-categories-list::-webkit-scrollbar-track:hover, .highlight::-webkit-scrollbar-track:hover {
+html::-webkit-scrollbar-track:hover,
+.sidebar-panel-archives::-webkit-scrollbar-track:hover,
+.sidebar-tags-name::-webkit-scrollbar-track:hover,
+.sidebar-categories-name::-webkit-scrollbar-track:hover,
+.sidebar-tags-list::-webkit-scrollbar-track:hover,
+.sidebar-categories-list::-webkit-scrollbar-track:hover,
+.highlight::-webkit-scrollbar-track:hover {
     background-color: rgba(0, 0, 0, .1)
 }
 
-.sidebar-archive::-webkit-scrollbar-thumb, .sidebar-tags-name::-webkit-scrollbar-thumb, .sidebar-categories-name::-webkit-scrollbar-thumb, .sidebar-tags-list::-webkit-scrollbar-thumb, .sidebar-categories-list::-webkit-scrollbar-thumb {
+.sidebar-archive::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background-color: rgba(255, 255, 255, .7)
 }
 
-.sidebar-archive::-webkit-scrollbar-thumb, .sidebar-tags-name::-webkit-scrollbar-thumb, .sidebar-categories-name::-webkit-scrollbar-thumb, .sidebar-tags-list::-webkit-scrollbar-thumb, .sidebar-categories-list::-webkit-scrollbar-thumb {
+.sidebar-archive::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, .7);
     border-radius: 0px
 }
 
-.sidebar-archive::-webkit-scrollbar-track:hover, .sidebar-tags-name::-webkit-scrollbar-track:hover, .sidebar-categories-name::-webkit-scrollbar-track:hover, .sidebar-tags-list::-webkit-scrollbar-track:hover, .sidebar-categories-list::-webkit-scrollbar-track:hover {
+.sidebar-archive::-webkit-scrollbar-track:hover,
+.sidebar-tags-name::-webkit-scrollbar-track:hover,
+.sidebar-categories-name::-webkit-scrollbar-track:hover,
+.sidebar-tags-list::-webkit-scrollbar-track:hover,
+.sidebar-categories-list::-webkit-scrollbar-track:hover {
     background-color: rgba(255, 255, 255, .7)
 }
 
@@ -1586,7 +1704,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 
 .popup-btn-close {
     display: inline-block;
-    color: #f75357;
+    color: var(--main-color, #f75357);
     cursor: pointer
 }
 
@@ -1745,7 +1863,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 
 .algolia-hit-item-link em {
     font-style: normal;
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .ais-Pagination-list {
@@ -1762,7 +1880,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .ais-Pagination-item a {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .ais-Pagination-item--selected a {
@@ -1790,7 +1908,10 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     backdrop-filter: blur(2px)
 }
 
-.abstract-content pre, .abstract-content .highlight, .article-entry pre, .article-entry .highlight {
+.abstract-content pre,
+.abstract-content .highlight,
+.article-entry pre,
+.article-entry .highlight {
     margin: .8rem 0;
     padding: .7rem .7rem;
     overflow: auto;
@@ -1798,16 +1919,25 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     line-height: 1.3rem
 }
 
-.abstract-content .highlight .gutter pre, .abstract-content .highlight .gutter pre .line, .abstract-content .gist .gist-file .gist-data .line-numbers, .article-entry .highlight .gutter pre, .article-entry .highlight .gutter pre .line, .article-entry .gist .gist-file .gist-data .line-numbers {
+.abstract-content .highlight .gutter pre,
+.abstract-content .highlight .gutter pre .line,
+.abstract-content .gist .gist-file .gist-data .line-numbers,
+.article-entry .highlight .gutter pre,
+.article-entry .highlight .gutter pre .line,
+.article-entry .gist .gist-file .gist-data .line-numbers {
     color: #666
 }
 
-.abstract-content pre, .abstract-content code, .article-entry pre, .article-entry code {
+.abstract-content pre,
+.abstract-content code,
+.article-entry pre,
+.article-entry code {
     font-family: "Source Code Pro", Consolas, Menlo, Monaco, "Courier New", monospace;
     font-weight: 400
 }
 
-.abstract-content code, .article-entry code {
+.abstract-content code,
+.article-entry code {
     background: #eee;
     padding: 1px .4rem;
     border-radius: 2px;
@@ -1817,116 +1947,193 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     word-break: break-all
 }
 
-.abstract-content pre code, .article-entry pre code {
+.abstract-content pre code,
+.article-entry pre code {
     background: none;
     text-shadow: none;
     padding: 0;
     color: #657b83
 }
 
-.abstract-content .highlight, .article-entry .highlight {
+.abstract-content .highlight,
+.article-entry .highlight {
     border-radius: 4px
 }
 
-.abstract-content .highlight pre, .article-entry .highlight pre {
+.abstract-content .highlight pre,
+.article-entry .highlight pre {
     border: none;
     margin: 0;
     padding: 0
 }
 
-.abstract-content .highlight table, .article-entry .highlight table {
+.abstract-content .highlight table,
+.article-entry .highlight table {
     margin: 0;
     width: auto
 }
 
-.abstract-content .highlight td, .article-entry .highlight td {
+.abstract-content .highlight td,
+.article-entry .highlight td {
     border: none;
     padding: 0
 }
 
-.abstract-content .highlight figcaption, .article-entry .highlight figcaption {
+.abstract-content .highlight figcaption,
+.article-entry .highlight figcaption {
     color: highlight-comment;
     line-height: 1em;
     margin-bottom: 1em
 }
 
-.abstract-content .highlight figcaption:before, .abstract-content .highlight figcaption:after, .article-entry .highlight figcaption:before, .article-entry .highlight figcaption:after {
+.abstract-content .highlight figcaption:before,
+.abstract-content .highlight figcaption:after,
+.article-entry .highlight figcaption:before,
+.article-entry .highlight figcaption:after {
     content: "";
     display: table
 }
 
-.abstract-content .highlight figcaption:after, .article-entry .highlight figcaption:after {
+.abstract-content .highlight figcaption:after,
+.article-entry .highlight figcaption:after {
     clear: both
 }
 
-.abstract-content .highlight figcaption a, .article-entry .highlight figcaption a {
+.abstract-content .highlight figcaption a,
+.article-entry .highlight figcaption a {
     float: right
 }
 
-.abstract-content .highlight .gutter pre, .article-entry .highlight .gutter pre {
+.abstract-content .highlight .gutter pre,
+.article-entry .highlight .gutter pre {
     text-align: right;
     padding-right: 20px
 }
 
-.abstract-content .highlight .gutter pre .line, .article-entry .highlight .gutter pre .line {
+.abstract-content .highlight .gutter pre .line,
+.article-entry .highlight .gutter pre .line {
     text-shadow: none
 }
 
-.abstract-content .highlight .line, .article-entry .highlight .line {
+.abstract-content .highlight .line,
+.article-entry .highlight .line {
     min-height: 19px
 }
 
-.abstract-content .highlight, .abstract-content pre, .article-entry .highlight, .article-entry pre {
+.abstract-content .highlight,
+.abstract-content pre,
+.article-entry .highlight,
+.article-entry pre {
     color: #abb2bf;
     background: #282c34
 }
 
-.abstract-content .highlight pre .comment, .abstract-content .highlight pre .quote, .article-entry .highlight pre .comment, .article-entry .highlight pre .quote {
+.abstract-content .highlight pre .comment,
+.abstract-content .highlight pre .quote,
+.article-entry .highlight pre .comment,
+.article-entry .highlight pre .quote {
     color: #5c6370;
     font-style: italic
 }
 
-.abstract-content .highlight pre .doctag, .abstract-content .highlight pre .keyword, .abstract-content .highlight pre .formula, .article-entry .highlight pre .doctag, .article-entry .highlight pre .keyword, .article-entry .highlight pre .formula {
+.abstract-content .highlight pre .doctag,
+.abstract-content .highlight pre .keyword,
+.abstract-content .highlight pre .formula,
+.article-entry .highlight pre .doctag,
+.article-entry .highlight pre .keyword,
+.article-entry .highlight pre .formula {
     color: #c678dd
 }
 
-.abstract-content .highlight pre .section, .abstract-content .highlight pre .name, .abstract-content .highlight pre .selector-tag, .abstract-content .highlight pre .deletion, .abstract-content .highlight pre .subst, .article-entry .highlight pre .section, .article-entry .highlight pre .name, .article-entry .highlight pre .selector-tag, .article-entry .highlight pre .deletion, .article-entry .highlight pre .subst {
+.abstract-content .highlight pre .section,
+.abstract-content .highlight pre .name,
+.abstract-content .highlight pre .selector-tag,
+.abstract-content .highlight pre .deletion,
+.abstract-content .highlight pre .subst,
+.article-entry .highlight pre .section,
+.article-entry .highlight pre .name,
+.article-entry .highlight pre .selector-tag,
+.article-entry .highlight pre .deletion,
+.article-entry .highlight pre .subst {
     color: #e06c75
 }
 
-.abstract-content .highlight pre .literal, .article-entry .highlight pre .literal {
+.abstract-content .highlight pre .literal,
+.article-entry .highlight pre .literal {
     color: #56b6c2
 }
 
-.abstract-content .highlight pre .string, .abstract-content .highlight pre .regexp, .abstract-content .highlight pre .addition, .abstract-content .highlight pre .attribute, .abstract-content .highlight pre .meta-string, .article-entry .highlight pre .string, .article-entry .highlight pre .regexp, .article-entry .highlight pre .addition, .article-entry .highlight pre .attribute, .article-entry .highlight pre .meta-string {
+.abstract-content .highlight pre .string,
+.abstract-content .highlight pre .regexp,
+.abstract-content .highlight pre .addition,
+.abstract-content .highlight pre .attribute,
+.abstract-content .highlight pre .meta-string,
+.article-entry .highlight pre .string,
+.article-entry .highlight pre .regexp,
+.article-entry .highlight pre .addition,
+.article-entry .highlight pre .attribute,
+.article-entry .highlight pre .meta-string {
     color: #98c379
 }
 
-.abstract-content .highlight pre .built_in, .abstract-content .highlight pre .class pre .title, .article-entry .highlight pre .built_in, .article-entry .highlight pre .class pre .title {
+.abstract-content .highlight pre .built_in,
+.abstract-content .highlight pre .class pre .title,
+.article-entry .highlight pre .built_in,
+.article-entry .highlight pre .class pre .title {
     color: #e6c07b
 }
 
-.abstract-content .highlight pre .attr, .abstract-content .highlight pre .variable, .abstract-content .highlight pre .template-variable, .abstract-content .highlight pre .type, .abstract-content .highlight pre .selector-class, .abstract-content .highlight pre .selector-attr, .abstract-content .highlight pre .selector-pseudo, .abstract-content .highlight pre .number, .article-entry .highlight pre .attr, .article-entry .highlight pre .variable, .article-entry .highlight pre .template-variable, .article-entry .highlight pre .type, .article-entry .highlight pre .selector-class, .article-entry .highlight pre .selector-attr, .article-entry .highlight pre .selector-pseudo, .article-entry .highlight pre .number {
+.abstract-content .highlight pre .attr,
+.abstract-content .highlight pre .variable,
+.abstract-content .highlight pre .template-variable,
+.abstract-content .highlight pre .type,
+.abstract-content .highlight pre .selector-class,
+.abstract-content .highlight pre .selector-attr,
+.abstract-content .highlight pre .selector-pseudo,
+.abstract-content .highlight pre .number,
+.article-entry .highlight pre .attr,
+.article-entry .highlight pre .variable,
+.article-entry .highlight pre .template-variable,
+.article-entry .highlight pre .type,
+.article-entry .highlight pre .selector-class,
+.article-entry .highlight pre .selector-attr,
+.article-entry .highlight pre .selector-pseudo,
+.article-entry .highlight pre .number {
     color: #d19a66
 }
 
-.abstract-content .highlight pre .symbol, .abstract-content .highlight pre .bullet, .abstract-content .highlight pre .link, .abstract-content .highlight pre .meta, .abstract-content .highlight pre .selector-id, .abstract-content .highlight pre .title, .article-entry .highlight pre .symbol, .article-entry .highlight pre .bullet, .article-entry .highlight pre .link, .article-entry .highlight pre .meta, .article-entry .highlight pre .selector-id, .article-entry .highlight pre .title {
+.abstract-content .highlight pre .symbol,
+.abstract-content .highlight pre .bullet,
+.abstract-content .highlight pre .link,
+.abstract-content .highlight pre .meta,
+.abstract-content .highlight pre .selector-id,
+.abstract-content .highlight pre .title,
+.article-entry .highlight pre .symbol,
+.article-entry .highlight pre .bullet,
+.article-entry .highlight pre .link,
+.article-entry .highlight pre .meta,
+.article-entry .highlight pre .selector-id,
+.article-entry .highlight pre .title {
     color: #61aeee
 }
 
-.abstract-content .highlight pre .emphasis, .article-entry .highlight pre .emphasis {
+.abstract-content .highlight pre .emphasis,
+.article-entry .highlight pre .emphasis {
     font-style: italic
 }
 
-.abstract-content .highlight pre .strong, .article-entry .highlight pre .strong {
+.abstract-content .highlight pre .strong,
+.article-entry .highlight pre .strong {
     font-weight: bold
 }
 
-.abstract-content .highlight pre .link, .article-entry .highlight pre .link {
+.abstract-content .highlight pre .link,
+.article-entry .highlight pre .link {
     text-decoration: underline
 }
 
-.abstract-content .gist, .article-entry .gist {
+.abstract-content .gist,
+.article-entry .gist {
     margin: 0 -20px;
     border-style: solid;
     border-color: #ddd;
@@ -1935,34 +2142,40 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     padding: 15px 20px 15px 0
 }
 
-.abstract-content .gist .gist-file, .article-entry .gist .gist-file {
+.abstract-content .gist .gist-file,
+.article-entry .gist .gist-file {
     border: none;
     font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
     margin: 0
 }
 
-.abstract-content .gist .gist-file .gist-data, .article-entry .gist .gist-file .gist-data {
+.abstract-content .gist .gist-file .gist-data,
+.article-entry .gist .gist-file .gist-data {
     background: none;
     border: none
 }
 
-.abstract-content .gist .gist-file .gist-data .line-numbers, .article-entry .gist .gist-file .gist-data .line-numbers {
+.abstract-content .gist .gist-file .gist-data .line-numbers,
+.article-entry .gist .gist-file .gist-data .line-numbers {
     background: none;
     border: none;
     padding: 0 20px 0 0
 }
 
-.abstract-content .gist .gist-file .gist-data .line-data, .article-entry .gist .gist-file .gist-data .line-data {
+.abstract-content .gist .gist-file .gist-data .line-data,
+.article-entry .gist .gist-file .gist-data .line-data {
     padding: 0 !important
 }
 
-.abstract-content .gist .gist-file .highlight, .article-entry .gist .gist-file .highlight {
+.abstract-content .gist .gist-file .highlight,
+.article-entry .gist .gist-file .highlight {
     margin: 0;
     padding: 0;
     border: none
 }
 
-.abstract-content .gist .gist-file .gist-meta, .article-entry .gist .gist-file .gist-meta {
+.abstract-content .gist .gist-file .gist-meta,
+.article-entry .gist .gist-file .gist-meta {
     background: #272822;
     color: highlight-comment;
     font: .85em "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1972,12 +2185,14 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin-left: 20px
 }
 
-.abstract-content .gist .gist-file .gist-meta a, .article-entry .gist .gist-file .gist-meta a {
+.abstract-content .gist .gist-file .gist-meta a,
+.article-entry .gist .gist-file .gist-meta a {
     color: #258fb8;
     font-weight: normal
 }
 
-.abstract-content .gist .gist-file .gist-meta a:hover, .article-entry .gist .gist-file .gist-meta a:hover {
+.abstract-content .gist .gist-file .gist-meta a:hover,
+.article-entry .gist .gist-file .gist-meta a:hover {
     text-decoration: underline
 }
 
@@ -2000,7 +2215,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin: 0
 }
 
-.ps__rail-x, .ps__rail-y {
+.ps__rail-x,
+.ps__rail-y {
     display: none !important
 }
 
@@ -2008,7 +2224,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     overflow-y: auto
 }
 
-.archive-post-item, .meta-post-item {
+.archive-post-item,
+.meta-post-item {
     font-family: var(--base-font-family);
     display: flex;
     align-items: baseline;
@@ -2017,12 +2234,20 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     padding: .2rem 0 .3rem .5rem
 }
 
-.archive-post-item:hover, .meta-post-item:hover {
-    border-left-color: #f75357
+.archive-post-item:hover,
+.meta-post-item:hover {
+    border-left-color: var(--main-color, #f75357)
 }
 
-.archive-post-item:hover .archive-post-date, .archive-post-item:hover .meta-post-date, .meta-post-item:hover .archive-post-date, .meta-post-item:hover .meta-post-date, .archive-post-item:hover .archive-post-title, .archive-post-item:hover .meta-post-title, .meta-post-item:hover .archive-post-title, .meta-post-item:hover .meta-post-title {
-    color: #f75357
+.archive-post-item:hover .archive-post-date,
+.archive-post-item:hover .meta-post-date,
+.meta-post-item:hover .archive-post-date,
+.meta-post-item:hover .meta-post-date,
+.archive-post-item:hover .archive-post-title,
+.archive-post-item:hover .meta-post-title,
+.meta-post-item:hover .archive-post-title,
+.meta-post-item:hover .meta-post-title {
+    color: var(--main-color, #f75357)
 }
 
 .total-and-search {
@@ -2035,16 +2260,17 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 
 .site-search .search-icon {
     cursor: pointer;
-    color: #f75357;
+    color: var(--main-color, #f75357);
     line-height: 2.3rem;
     font-size: 1.4rem;
     position: relative;
     margin-left: .5rem
 }
 
-.archive-year, .total-archive {
+.archive-year,
+.total-archive {
     font: 1.2rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .archive-year {
@@ -2052,12 +2278,14 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin: .3rem 0 .3rem 0
 }
 
-.archive-post-date, .meta-post-date {
+.archive-post-date,
+.meta-post-date {
     font: .9rem/1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
     color: #999
 }
 
-.archive-post-title, .meta-post-title {
+.archive-post-title,
+.meta-post-title {
     font-size: 1rem;
     line-height: 1.4rem;
     margin-left: .8rem;
@@ -2065,20 +2293,23 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     color: #ccc
 }
 
-.sidebar-panel-tags, .sidebar-panel-categories {
+.sidebar-panel-tags,
+.sidebar-panel-categories {
     padding: 1rem 1rem 5px 1rem;
     position: relative;
     display: flex;
     flex-direction: column
 }
 
-.sidebar-tags-name, .sidebar-categories-name {
+.sidebar-tags-name,
+.sidebar-categories-name {
     padding: 0 0 1rem 0;
     max-height: 30%;
     overflow-y: auto
 }
 
-.sidebar-tag-name, .sidebar-category-name {
+.sidebar-tag-name,
+.sidebar-category-name {
     display: inline-block;
     border: 1px solid #fff;
     border-radius: 5rem;
@@ -2090,12 +2321,14 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     color: #fff
 }
 
-.sidebar-tag-name:hover, .sidebar-category-name:hover {
-    border-color: #f75357;
-    color: #f75357
+.sidebar-tag-name:hover,
+.sidebar-category-name:hover {
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
 }
 
-.sidebar-tag-name .iconfont-archer, .sidebar-category-name .iconfont-archer {
+.sidebar-tag-name .iconfont-archer,
+.sidebar-category-name .iconfont-archer {
     pointer-events: none;
     transform: translateY(-1rem);
     font-size: .6rem;
@@ -2106,11 +2339,13 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-size: 16px
 }
 
-.sidebar-tags-empty, .sidebar-categories-empty {
+.sidebar-tags-empty,
+.sidebar-categories-empty {
     display: none
 }
 
-.sidebar-tags-empty-active, .sidebar-categories-empty-active {
+.sidebar-tags-empty-active,
+.sidebar-categories-empty-active {
     display: block;
     font-size: 6rem !important;
     margin-top: 7rem;
@@ -2122,11 +2357,12 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .sidebar-label-focus {
-    border-color: #f75357;
-    color: #f75357
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
 }
 
-.sidebar-tags-list, .sidebar-categories-list {
+.sidebar-tags-list,
+.sidebar-categories-list {
     padding: 1rem 1rem 0 0;
     overflow-y: auto
 }
@@ -2172,12 +2408,14 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     height: 2px;
     left: 0;
     top: 100%;
-    background-color: #f75357;
+    background-color: var(--main-color, #f75357);
     transform: translate3d(0, 0, 0);
     transition: transform .2s ease-out 0s
 }
 
-.sidebar-tab-archives, .sidebar-tab-tags, .sidebar-tab-categories {
+.sidebar-tab-archives,
+.sidebar-tab-tags,
+.sidebar-tab-categories {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2187,7 +2425,9 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     cursor: pointer
 }
 
-.sidebar-tab-archives .iconfont-archer, .sidebar-tab-tags .iconfont-archer, .sidebar-tab-categories .iconfont-archer {
+.sidebar-tab-archives .iconfont-archer,
+.sidebar-tab-tags .iconfont-archer,
+.sidebar-tab-categories .iconfont-archer {
     pointer-events: none;
     margin: 0 .5rem 0 0rem;
     font-size: 1.5rem
@@ -2223,7 +2463,9 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     transform: translate3d(0, 0, 0)
 }
 
-.sidebar-panel-archives, .sidebar-panel-tags, .sidebar-panel-categories {
+.sidebar-panel-archives,
+.sidebar-panel-tags,
+.sidebar-panel-categories {
     overflow-x: hidden;
     overflow-y: auto;
     flex-shrink: 0;
@@ -2268,7 +2510,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h1 .headerlink, .index-post .abstract-content h1 .anchorjs-link {
+.index-post .abstract-content h1 .headerlink,
+.index-post .abstract-content h1 .anchorjs-link {
     display: none
 }
 
@@ -2276,7 +2519,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h2 .headerlink, .index-post .abstract-content h2 .anchorjs-link {
+.index-post .abstract-content h2 .headerlink,
+.index-post .abstract-content h2 .anchorjs-link {
     display: none
 }
 
@@ -2284,7 +2528,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h3 .headerlink, .index-post .abstract-content h3 .anchorjs-link {
+.index-post .abstract-content h3 .headerlink,
+.index-post .abstract-content h3 .anchorjs-link {
     display: none
 }
 
@@ -2292,7 +2537,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h4 .headerlink, .index-post .abstract-content h4 .anchorjs-link {
+.index-post .abstract-content h4 .headerlink,
+.index-post .abstract-content h4 .anchorjs-link {
     display: none
 }
 
@@ -2300,7 +2546,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h5 .headerlink, .index-post .abstract-content h5 .anchorjs-link {
+.index-post .abstract-content h5 .headerlink,
+.index-post .abstract-content h5 .anchorjs-link {
     display: none
 }
 
@@ -2308,7 +2555,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-weight: normal
 }
 
-.index-post .abstract-content h6 .headerlink, .index-post .abstract-content h6 .anchorjs-link {
+.index-post .abstract-content h6 .headerlink,
+.index-post .abstract-content h6 .anchorjs-link {
     display: none
 }
 
@@ -2322,7 +2570,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .abstract-title:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .abstract-title .stick-top {
@@ -2349,7 +2597,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .index-post .abstract-read-more-button a:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .abstract-post-meta {
@@ -2443,23 +2691,26 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     border-bottom: 1px dashed rgba(0, 0, 0, .2)
 }
 
-.post-body main, .about-body main {
+.post-body main,
+.about-body main {
     margin: 0
 }
 
 .anchorjs-archer {
-    color: #f75357;
+    color: var(--main-color, #f75357);
     border: none !important
 }
 
-.post-body .site-intro-meta, .about-body .site-intro-meta {
+.post-body .site-intro-meta,
+.about-body .site-intro-meta {
     width: 50%;
     min-width: 42.8125rem;
     margin: 0 auto;
     align-items: flex-start
 }
 
-.post-body .intro-title, .about-body .intro-title {
+.post-body .intro-title,
+.about-body .intro-title {
     font: 4rem/5.3rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
     color: #fff;
     margin: 0
@@ -2578,7 +2829,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin-right: .5rem
 }
 
-.busuanzi-pv, .busuanzi-uv {
+.busuanzi-pv,
+.busuanzi-uv {
     font-size: .9rem;
     margin-right: .4rem
 }
@@ -2672,16 +2924,19 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     max-width: 13rem
 }
 
-.post-paginator .nextTitle, .prevTitle {
+.post-paginator .nextTitle,
+.prevTitle {
     font-size: 1.2rem;
     color: #ccc
 }
 
-.post-paginator .nextTitle:hover, .post-paginator .prevTitle:hover {
-    color: #f75357
+.post-paginator .nextTitle:hover,
+.post-paginator .prevTitle:hover {
+    color: var(--main-color, #f75357)
 }
 
-.post-paginator .nextSlogan, .post-paginator .prevSlogan {
+.post-paginator .nextSlogan,
+.post-paginator .prevSlogan {
     font: bold 1.4rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
     color: #252525
 }
@@ -2696,7 +2951,8 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     font-size: 1.7rem
 }
 
-.post-paginator .prevTitle, .post-paginator .prevSlogan {
+.post-paginator .prevTitle,
+.post-paginator .prevSlogan {
     text-align: right
 }
 
@@ -2716,100 +2972,124 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     margin-bottom: 0
 }
 
-.abstract-content, .article-entry {
+.abstract-content,
+.article-entry {
     position: relative;
     font-weight: lighter;
     font-weight: 400;
     color: #23394d
 }
 
-.abstract-content li, .article-entry li {
+.abstract-content li,
+.article-entry li {
     word-wrap: break-all;
     line-height: 1.625
 }
 
-.abstract-content li p, .article-entry li p {
+.abstract-content li p,
+.article-entry li p {
     margin: 0
 }
 
-.abstract-content ul, .abstract-content ul li, .article-entry ul, .article-entry ul li {
+.abstract-content ul,
+.abstract-content ul li,
+.article-entry ul,
+.article-entry ul li {
     list-style-type: initial;
     margin-top: .25em
 }
 
-.abstract-content ol, .abstract-content ol li, .article-entry ol, .article-entry ol li {
+.abstract-content ol,
+.abstract-content ol li,
+.article-entry ol,
+.article-entry ol li {
     list-style-type: decimal-leading-zero;
     margin-top: .25em
 }
 
-.abstract-content h1 .headerlink, .article-entry h1 .headerlink {
+.abstract-content h1 .headerlink,
+.article-entry h1 .headerlink {
     display: none
 }
 
-.abstract-content h2 .headerlink, .article-entry h2 .headerlink {
+.abstract-content h2 .headerlink,
+.article-entry h2 .headerlink {
     display: none
 }
 
-.abstract-content h3 .headerlink, .article-entry h3 .headerlink {
+.abstract-content h3 .headerlink,
+.article-entry h3 .headerlink {
     display: none
 }
 
-.abstract-content h4 .headerlink, .article-entry h4 .headerlink {
+.abstract-content h4 .headerlink,
+.article-entry h4 .headerlink {
     display: none
 }
 
-.abstract-content h5 .headerlink, .article-entry h5 .headerlink {
+.abstract-content h5 .headerlink,
+.article-entry h5 .headerlink {
     display: none
 }
 
-.abstract-content h6 .headerlink, .article-entry h6 .headerlink {
+.abstract-content h6 .headerlink,
+.article-entry h6 .headerlink {
     display: none
 }
 
-.abstract-content h5, .article-entry h5 {
+.abstract-content h5,
+.article-entry h5 {
     font-size: 1rem;
     margin: 1rem 0
 }
 
-.abstract-content h6, .article-entry h6 {
+.abstract-content h6,
+.article-entry h6 {
     font-size: .8rem;
     margin: 1rem 0
 }
 
-.abstract-content p, .article-entry p {
+.abstract-content p,
+.article-entry p {
     line-height: 1.625
 }
 
-.abstract-content em, .article-entry em {
+.abstract-content em,
+.article-entry em {
     font-style: italic
 }
 
-.abstract-content img, .article-entry img {
+.abstract-content img,
+.article-entry img {
     display: block;
     max-width: 100%;
     margin: 1rem auto 1rem;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, .2)
 }
 
-.abstract-content blockquote, .article-entry blockquote {
+.abstract-content blockquote,
+.article-entry blockquote {
     margin: 1.5em 0;
     padding: 1rem 1.5rem;
     position: relative;
     background-color: #f6f6f6;
-    border-left: .35rem solid #f75357;
+    border-left: .35rem solid var(--main-color, #f75357);
     border-radius: .35rem;
     transition: all .5s ease-out
 }
 
-.abstract-content blockquote :first-child, .article-entry blockquote :first-child {
+.abstract-content blockquote :first-child,
+.article-entry blockquote :first-child {
     margin-top: 0
 }
 
-.abstract-content blockquote :last-child, .article-entry blockquote :last-child {
+.abstract-content blockquote :last-child,
+.article-entry blockquote :last-child {
     margin-bottom: 0
 }
 
-.abstract-content table, .article-entry table {
+.abstract-content table,
+.article-entry table {
     width: 100%;
     color: #23394d;
     border: 1px solid #ddd;
@@ -2818,41 +3098,53 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .125)
 }
 
-.abstract-content table tr, .abstract-content table td, .article-entry table tr, .article-entry table td{
+.abstract-content table tr,
+.abstract-content table td,
+.article-entry table tr,
+.article-entry table td {
     height: 2rem
 }
 
-.abstract-content table th, .article-entry table th {
+.abstract-content table th,
+.article-entry table th {
     background: #f8f8f8
 }
 
-.abstract-content table tr :not(:first-child):hover, .article-entry table tr:not(:first-child):hover {
+.abstract-content table tr :not(:first-child):hover,
+.article-entry table tr:not(:first-child):hover {
     background: #efefef
 }
 
-.abstract-content table td, .abstract-content table th, .article-entry table td, .article-entry table th {
+.abstract-content table td,
+.abstract-content table th,
+.article-entry table td,
+.article-entry table th {
     border: 1px solid #dedede;
     padding: .2rem 1rem 0 1rem
 }
 
-.abstract-content a, .article-entry a {
-    color: #f75357;
+.abstract-content a,
+.article-entry a {
+    color: var(--main-color, #f75357);
     padding: 0 2px;
     word-break: break-all
 }
 
-.abstract-content a:has(code), .article-entry a:has(code) {
+.abstract-content a:has(code),
+.article-entry a:has(code) {
     padding: 0
 }
 
-.abstract-content a:hover, .article-entry a:hover {
+.abstract-content a:hover,
+.article-entry a:hover {
     text-decoration-line: underline;
-    text-decoration-color: #f75357;
+    text-decoration-color: var(--main-color, #f75357);
     text-decoration-thickness: 2px;
     text-underline-offset: 4px
 }
 
-.abstract-content a.fancybox, .article-entry a.fancybox {
+.abstract-content a.fancybox,
+.article-entry a.fancybox {
     border: 0
 }
 
@@ -2873,7 +3165,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .license-wrapper a {
-    color: #f75357;
+    color: var(--main-color, #f75357);
     word-break: break-all
 }
 
@@ -2899,7 +3191,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .toc-wrapper .toc-active {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .toc-wrapper-loding {
@@ -2918,7 +3210,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .toc-catalog:hover {
-    color: #f75357
+    color: var(--main-color, #f75357)
 }
 
 .catalog-icon {
@@ -2936,14 +3228,15 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     display: none
 }
 
-.toc, .toc-child {
+.toc,
+.toc-child {
     padding-left: 0;
     margin: 0 0 0 0;
     padding-top: 2px;
     z-index: 1
 }
 
-.toc-wrapper > * {
+.toc-wrapper>* {
     transform: translate(0, 0);
     transition: transform .3s ease-out, opacity .3s ease-out, color .2s ease-out;
     opacity: 1
@@ -2962,10 +3255,10 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 .toc-wrapper a:hover {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
-.toc-hide-children > * {
+.toc-hide-children>* {
     transform: translate(20%, 0);
     opacity: 0
 }
@@ -3048,12 +3341,13 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
     color: #ddd
 }
 
-.four-zero-four-body #busuanzi_container_site_pv, .four-zero-four-body #busuanzi_container_site_uv {
+.four-zero-four-body #busuanzi_container_site_pv,
+.four-zero-four-body #busuanzi_container_site_uv {
     color: #ddd
 }
 
 #gitalk-container a {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container a:hover {
@@ -3062,17 +3356,17 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 #gitalk-container .gt-svg svg {
-    fill: #f75357 !important
+    fill: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-spinner::before {
     border-color: #fff !important;
-    border-top-color: #f75357 !important
+    border-top-color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-btn {
-    background-color: #f75357 !important;
-    border-color: #f75357 !important;
+    background-color: var(--main-color, #f75357) !important;
+    border-color: var(--main-color, #f75357) !important;
     color: #fff !important
 }
 
@@ -3083,7 +3377,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 
 #gitalk-container .gt-btn-preview {
     background-color: #fff !important;
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-btn-preview:hover {
@@ -3097,23 +3391,23 @@ html::-webkit-scrollbar-track:hover, .sidebar-panel-archives::-webkit-scrollbar-
 }
 
 #gitalk-container .gt-link {
-    border-bottom-color: #f75357 !important
+    border-bottom-color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-user .is--poping .gt-ico svg {
-    fill: #f75357 !important
+    fill: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-popup .gt-action.is--active:before {
-    background: #f75357 !important
+    background: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-header-controls-tip {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 #gitalk-container .gt-comment-username {
-    color: #f75357 !important
+    color: var(--main-color, #f75357) !important
 }
 
 /*# sourceMappingURL=style.css.map */
