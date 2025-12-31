@@ -9,7 +9,7 @@ spec:
     name: fi3ework
     website: https://github.com/fi3ework
   description: A simple and modern theme for Halo.
-  logo: templates/assets/favicon.ico
+  logo: /themes/halo-theme-archer/assets/Archer.webp
   website: https://github.com/Azincc/halo-theme-archer
   repo: https://github.com/Azincc/halo-theme-archer.git
   settingName: halo-theme-archer-setting

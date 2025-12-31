@@ -1,4 +1,5 @@
 # Halo-theme-archer
+![logo](img/Archer.webp)
 
 ![preview.jpg](img/preview.jpg)
 
