@@ -4,9 +4,9 @@ metadata:
   name: halo-theme-archer
 spec:
   displayName: Archer
-  version: 1.0.0
+  version: 0.0.3
   author:
-    name: fi3ework
+    name: Azincc
     website: https://github.com/fi3ework
   description: A simple and modern theme for Halo.
   logo: /themes/halo-theme-archer/assets/Archer.webp
@@ -17,5 +17,5 @@ spec:
   supportedVersions:
     - ">=2.11.0"
   license:
-    - name: "CC BY-NC 4.0"
-      url: "http://creativecommons.org/licenses/by-nc/4.0/"
+    - name: "MIT (Modifications)"
+      url: "https://opensource.org/licenses/MIT"
