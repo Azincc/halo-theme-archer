@@ -23,10 +23,14 @@ jobs:
       - name: Get Tag Message
         id: tag_msg
         run: |
-          TAG_MSG=$(git tag -l --format='%(contents)' ${{ github.ref_name }})
-          echo "TAG_MSG<<EOF" >> $GITHUB_ENV
-          echo "$TAG_MSG" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # 获取 tag 消息并保存到文件
+          git tag -l --format='%(contents)' ${{ github.ref_name }} > tag_message.txt
+          # 使用 GITHUB_OUTPUT 传递多行内容
+          {
+            echo 'body<<EOF'
+            cat tag_message.txt
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
 
       - name: Update theme.yaml version
         run: |
@@ -45,7 +49,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.VERSION }}
-          body: ${{ env.TAG_MSG }}
+          body: ${{ steps.tag_msg.outputs.body }}
           files: halo-theme-archer-${{ env.VERSION }}.zip
           draft: false
           prerelease: false
