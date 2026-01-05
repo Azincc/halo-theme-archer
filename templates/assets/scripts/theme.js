@@ -57,8 +57,10 @@ const setThemeMode = (mode) => {
   const normalizedMode = mode === 'dark' ? 'dark' : 'light'
   if (normalizedMode === 'dark') {
     ensureDarkStylesheet()
+    document.documentElement.classList.add('dark')
   } else {
     removeDarkStylesheet()
+    document.documentElement.classList.remove('dark')
   }
   localStorage.preferredThemeMode = normalizedMode
   setThemeModeSwitchBtnActive(true)

@@ -160,6 +160,16 @@
   </noscript>
   <link id="stylesheet-theme-dark" rel="preload" th:href="@{/assets/css/dark.css}" as="style"
     onload="if(localStorage.preferredThemeMode === 'dark' || (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches)){this.onload=null; this.rel='stylesheet'}" />
+  <script>
+    // 为代码高亮插件添加暗色模式支持（需在 CSS 加载前执行）
+    (function() {
+      var isDark = localStorage.preferredThemeMode === 'dark' ||
+        (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <noscript>
     <link rel="stylesheet" th:href="@{/assets/css/dark.css}" />
   </noscript>

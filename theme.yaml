@@ -14,6 +14,8 @@ spec:
   repo: https://github.com/Azincc/halo-theme-archer.git
   settingName: halo-theme-archer-setting
   configMapName: halo-theme-archer-configmap
+  issues: https://github.com/Azincc/halo-theme-archer/issues
+  homepage: https://archer.azin.cc
   supportedVersions:
     - ">=2.11.0"
   license:
