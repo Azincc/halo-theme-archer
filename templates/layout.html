@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title th:text="${page.title} ?: ${site.title}">Archer Halo Theme</title>
+  <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" th:href="@{/}">
+        <img th:if="${theme.logo}" th:src="${theme.logo}" alt="logo" style="height:36px;"/>
+        <span th:text="${site.title}">Site Title</span>
+      </a>
+      <nav class="site-nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/archives}">Archives</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main container" th:insert="${content}"></main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span th:text="${#dates.format(#dates.createNow(),'yyyy')}">2025</span> <span th:text="${site.title}">Site</span></p>
+    </div>
+  </footer>
+
+  <script th:src="@{/resources/js/main.js}"></script>
+</body>
+</html>
