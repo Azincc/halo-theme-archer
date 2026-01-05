@@ -1908,6 +1908,26 @@ html::-webkit-scrollbar-track:hover,
     backdrop-filter: blur(2px)
 }
 
+.article-entry input[type="checkbox"] {
+    pointer-events: none;
+    transform: scale(1.2);
+}
+
+.article-entry li[data-type="taskItem"] label {
+    pointer-events: none;
+    margin-right: 0.6rem;
+}
+
+.article-entry li[data-type="taskItem"] {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.article-entry li[data-type="taskItem"] div p {
+    margin: 0;
+}
+
 .abstract-content pre,
 .abstract-content .highlight,
 .article-entry pre,
