@@ -3,7 +3,7 @@ name: Release Theme
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   release:
@@ -23,10 +23,19 @@ jobs:
       - name: Get Tag Message
         id: tag_msg
         run: |
-           TAG_MSG=$(git tag -l --format='%(contents)' ${{ github.ref_name }})
-           echo "TAG_MSG<<EOF" >> $GITHUB_ENV
-           echo "$TAG_MSG" >> $GITHUB_ENV
-           echo "EOF" >> $GITHUB_ENV
+          TAG_MSG=$(git tag -l --format='%(contents)' ${{ github.ref_name }})
+          echo "TAG_MSG<<EOF" >> $GITHUB_ENV
+          echo "$TAG_MSG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Update theme.yaml version
+        run: |
+          if [[ "${{ env.VERSION }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Updating theme.yaml version to ${{ env.VERSION }}"
+            sed -i "s/^  version: .*/  version: ${{ env.VERSION }}/" theme.yaml
+          else
+            echo "Tag version format invalid, keeping original version"
+          fi
 
       - name: Package theme
         run: |
