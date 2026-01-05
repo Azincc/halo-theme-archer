@@ -2924,14 +2924,19 @@ html::-webkit-scrollbar-track:hover,
     max-width: 13rem
 }
 
+.post-paginator li a {
+    display: block;
+}
+
 .post-paginator .nextTitle,
 .prevTitle {
     font-size: 1.2rem;
-    color: #ccc
+    color: #ccc;
+    transition: color 0.3s;
 }
 
-.post-paginator .nextTitle:hover,
-.post-paginator .prevTitle:hover {
+.post-paginator li a:hover .nextTitle,
+.post-paginator li a:hover .prevTitle {
     color: var(--main-color, #f75357)
 }
 

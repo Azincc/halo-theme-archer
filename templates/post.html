@@ -1,5 +1,5 @@
 <th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, 'post')}"
-          xmlns:th="http://www.w3.org/1999/xhtml">
+  xmlns:th="http://www.w3.org/1999/xhtml">
   <th:block th:fragment="content">
     <main class="main post-page">
       <!-- Post Intro - Header Image Area -->
@@ -9,20 +9,18 @@
 
       <!-- Previous/Next Post Navigation -->
       <th:block th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
-        <ul
-          class="post-paginator"
-          th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}"
-        >
+        <ul class="post-paginator" th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}">
           <li class="next">
-            <div class="nextSlogan" th:if="${postCursor.hasPrevious()}">Next Post</div>
             <a th:href="@{${postCursor.previous.status.permalink}}" th:title="${postCursor.previous.spec.title}"
-               th:if="${postCursor.hasPrevious()}">
+              th:if="${postCursor.hasPrevious()}" class="next-link">
+              <div class="nextSlogan">Next Post</div>
               <div class="nextTitle" th:text="${postCursor.previous.spec.title}">Next Post Title</div>
             </a>
           </li>
           <li class="previous" th:if="${postCursor.hasNext()}">
-            <div class="prevSlogan">Previous Post</div>
-            <a th:href="@{${postCursor.next.status.permalink}}" th:title="${postCursor.next.spec.title}">
+            <a th:href="@{${postCursor.next.status.permalink}}" th:title="${postCursor.next.spec.title}"
+              class="prev-link">
+              <div class="prevSlogan">Previous Post</div>
               <div class="prevTitle" th:text="${postCursor.next.spec.title}">Previous Post Title</div>
             </a>
           </li>
@@ -34,10 +32,8 @@
       <div class="license-wrapper" th:if="${theme.config.other.copyright?.enable == true}">
         <p>
           Author:
-          <a
-            th:href="${post.owner?.permalink != null ? post.owner.permalink : post.status.permalink}"
-            th:text="${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"
-          ></a>
+          <a th:href="${post.owner?.permalink != null ? post.owner.permalink : post.status.permalink}"
+            th:text="${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"></a>
         </p>
         <p>
           Permalink:
@@ -63,15 +59,15 @@
 
       <div th:if="${theme.config.other.math?.mathjax?.enable == true}">
         <script type="text/javascript" async
-                th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
-        </script>
+          th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
+          </script>
       </div>
     </main>
   </th:block>
 
   <th:block th:fragment="page_js">
     <script th:inline="javascript" th:if="${theme.config.other.outdated_threshold?.enable == true}">
-      (function() {
+      (function () {
         var time = document.getElementsByClassName('post-intro-time')[0]
         var article = document.getElementsByTagName('article')[0]
         if (!time || !article) {
