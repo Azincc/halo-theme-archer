@@ -66,22 +66,6 @@ jobs:
           mkdir -p dist
           zip -r dist/halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
 
-      - name: Debug Tag Message
-        run: |
-          echo "=== Debug: release_body.md content START ==="
-          if [ -f release_body.md ]; then
-            cat release_body.md
-          else
-            echo "Error: release_body.md not found!"
-          fi
-          echo "=== Debug: release_body.md content END ==="
-          echo "=== Debug: Environment Variables ==="
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "VERSION: ${{ env.VERSION }}"
-          echo "Current Directory: $(pwd)"
-          ls -la
-
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
