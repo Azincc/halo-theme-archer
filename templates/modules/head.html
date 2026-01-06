@@ -148,30 +148,30 @@
   <noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" />
   </noscript>
-  <link id="stylesheet-base" rel="preload" th:href="@{/assets/css/style.css}" as="style"
+  <link id="stylesheet-base" rel="preload" th:href="@{/assets/dist/style.css}" as="style"
     onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/assets/dist/style.css}" />
   </noscript>
-  <link id="stylesheet-mobile" rel="preload" th:href="@{/assets/css/mobile.css}" as="style"
+  <link id="stylesheet-mobile" rel="preload" th:href="@{/assets/dist/mobile.css}" as="style"
     onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'" />
   <noscript>
-    <link rel="stylesheet" th:href="@{/assets/css/mobile.css}" media="screen and (max-width: 960px)" />
+    <link rel="stylesheet" th:href="@{/assets/dist/mobile.css}" media="screen and (max-width: 960px)" />
   </noscript>
-  <link id="stylesheet-theme-dark" rel="preload" th:href="@{/assets/css/dark.css}" as="style"
+  <link id="stylesheet-theme-dark" rel="preload" th:href="@{/assets/dist/dark.css}" as="style"
     onload="if(localStorage.preferredThemeMode === 'dark' || (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches)){this.onload=null; this.rel='stylesheet'}" />
   <script>
-    // 为代码高亮插件添加暗色模式支持（需在 CSS 加载前执行）
-    (function() {
-      var isDark = localStorage.preferredThemeMode === 'dark' ||
-        (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
+      // 为代码高亮插件添加暗色模式支持（需在 CSS 加载前执行）
+      (function () {
+        var isDark = localStorage.preferredThemeMode === 'dark' ||
+          (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
   </script>
   <noscript>
-    <link rel="stylesheet" th:href="@{/assets/css/dark.css}" />
+    <link rel="stylesheet" th:href="@{/assets/dist/dark.css}" />
   </noscript>
 
   <!-- Fonts -->

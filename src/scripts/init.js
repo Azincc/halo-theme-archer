@@ -1,12 +1,7 @@
 import AnchorJS from 'https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/+esm'
 import toc from './toc.js'
-import ensureFontAwesome from './fontawsome.js'
 
 const init = function () {
-  ensureFontAwesome().catch((error) => {
-    console.error('Failed to load Font Awesome assets.', error)
-  })
-
   // Remove site intro image placeholder
   const $introImg = $('.site-intro-img:first'),
     $introPlaceholder = $('.site-intro-placeholder:first'),
@@ -54,10 +49,10 @@ const init = function () {
       }
       anchors.add()
 
-      // As headers' absolute offset-y can be queried properly
-      // after remove container's `container-unloaded` class,
-      // so we should init toc here for better performance.
-      toc()
+      // Initialize TOC
+      if (typeof toc === 'function') {
+        toc()
+      }
     },
     false,
   )
