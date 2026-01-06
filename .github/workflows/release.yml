@@ -46,6 +46,7 @@ jobs:
           zip -r halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
 
       - name: Create Release
+        id: create_release
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.VERSION }}
@@ -53,3 +54,12 @@ jobs:
           files: halo-theme-archer-${{ env.VERSION }}.zip
           draft: false
           prerelease: false
+
+      - name: Release to App Store
+        uses: halo-sigs/app-store-release-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          app-id: ${{ secrets.APP_ID }}
+          release-id: ${{ steps.create_release.outputs.id }}
+          halo-pat: ${{ secrets.HALO_PAT }}
+          assets-dir: .
