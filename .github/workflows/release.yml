@@ -35,15 +35,7 @@ jobs:
         id: tag_msg
         run: |
           # 获取 tag 消息并保存到文件
-          git tag -l --format='%(contents)' ${{ github.ref_name }} > tag_message.txt
-          # Ensure there is a trailing newline so the EOF delimiter is recognized
-          echo "" >> tag_message.txt
-          # 使用 GITHUB_OUTPUT 传递多行内容
-          {
-            echo 'body<<EOF'
-            cat tag_message.txt
-            echo 'EOF'
-          } >> $GITHUB_OUTPUT
+          git tag -l --format='%(contents)' ${{ github.ref_name }} > release_body.md
 
       - name: Update theme.yaml version
         run: |
@@ -64,7 +56,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.VERSION }}
-          body: ${{ steps.tag_msg.outputs.body }}
+          body_path: release_body.md
           files: dist/halo-theme-archer-${{ env.VERSION }}.zip
           draft: false
           prerelease: false
