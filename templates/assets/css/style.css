@@ -300,7 +300,8 @@ body {
     width: 100%;
     transition: all .5s ease-out;
     opacity: 1;
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
+    z-index: 5;
 }
 
 .container-unloaded {
@@ -400,6 +401,9 @@ li {
     transition: transform .3s ease-in 0s;
     pointer-events: none
 }
+
+
+
 
 .footer-fixed-sidebar-active {
     transform: translate3d(400px, 0, 0)
