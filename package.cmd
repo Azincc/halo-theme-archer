@@ -1,16 +1,19 @@
 @echo off
-ECHO æ­£åœ¨å‡†å¤‡å‹ç¼©...
+ECHO ÕıÔÚ×¼±¸Ñ¹Ëõ...
 
-REM æ£€æŸ¥æ—§æ–‡ä»¶ï¼Œå¦‚æœå­˜åœ¨åˆ™åˆ é™¤ (å®ç° "è¦†ç›–" æ•ˆæœ)
+REM ¼ì²é¾ÉÎÄ¼ş£¬Èç¹û´æÔÚÔòÉ¾³ı (ÊµÏÖ "¸²¸Ç" Ğ§¹û)
 if exist "theme.zip" (
-    ECHO å‘ç°å·²å­˜åœ¨çš„ theme.zipï¼Œæ­£åœ¨åˆ é™¤...
+    ECHO ·¢ÏÖÒÑ´æÔÚµÄ theme.zip£¬ÕıÔÚÉ¾³ı...
     del "theme.zip"
 )
 
-ECHO æ­£åœ¨ä½¿ç”¨ tar å‹ç¼©æ–‡ä»¶...
-REM -a (è‡ªåŠ¨æ ¹æ®æ‰©å±•å .zip é€‰æ‹©å‹ç¼©æ ¼å¼)
-REM -c (åˆ›å»º Create)
-REM -f (æŒ‡å®šæ–‡ä»¶å File)
-tar.exe -a -c -f theme.zip templates settings.yaml theme.yaml
+ECHO ÕıÔÚ¹¹½¨Ç°¶Ë×ÊÔ´...
+call npm run build
 
-ECHO å‹ç¼©å®Œæˆ: theme.zip
+ECHO ÕıÔÚÊ¹ÓÃ tar Ñ¹ËõÎÄ¼ş...
+REM -a (×Ô¶¯¸ù¾İÀ©Õ¹Ãû .zip Ñ¡ÔñÑ¹Ëõ¸ñÊ½)
+REM -c (´´½¨ Create)
+REM -f (Ö¸¶¨ÎÄ¼şÃû File)
+tar.exe -a -c -f theme.zip templates settings.yaml theme.yaml README.md
+
+ECHO Ñ¹ËõÍê³É: theme.zip

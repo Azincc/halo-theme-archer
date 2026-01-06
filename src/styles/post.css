@@ -1,0 +1,805 @@
+/* Index/Abstract Post styles moved to base.css */
+
+.post-body main,
+.about-body main {
+    margin: 0
+}
+
+.anchorjs-archer {
+    color: var(--main-color, #f75357);
+    border: none !important
+}
+
+.post-body .site-intro-meta,
+.about-body .site-intro-meta {
+    width: 50%;
+    min-width: 42.8125rem;
+    margin: 0 auto;
+    align-items: flex-start
+}
+
+.post-body .intro-title,
+.about-body .intro-title {
+    font: 4rem/5.3rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #fff;
+    margin: 0
+}
+
+.post-intros {
+    opacity: 0;
+    transition: all .5s ease-out .5s;
+    transform: translate3d(0, -1rem, 0)
+}
+
+.post-intro-tags {
+    font: 1.2rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #fff
+}
+
+.post-intro-tags a {
+    color: #fff
+}
+
+.post-intro-tags .post-category {
+    cursor: pointer;
+    position: relative;
+    margin-left: 0;
+    margin-right: .5rem
+}
+
+.post-intro-tags .post-category::after {
+    content: "";
+    position: absolute;
+    left: calc((100% - 98%) / 2);
+    bottom: -15%;
+    transition: all .15s ease-in;
+    width: 98%;
+    height: 2px;
+    transform: translate(0, 0);
+    background-color: #fff;
+    opacity: 0
+}
+
+.post-intro-tags .post-category:hover::after {
+    transform: translate(0, -2px);
+    opacity: 1
+}
+
+.post-intro-tags .post-category-icon {
+    margin-right: 2px;
+    pointer-events: none
+}
+
+.post-intro-tags .post-category-text {
+    pointer-events: none
+}
+
+.post-intro-tags .post-tag {
+    position: relative;
+    margin-left: 0;
+    margin-right: .5rem
+}
+
+.post-intro-tags .post-tag::after {
+    content: "";
+    position: absolute;
+    left: calc((100% - 98%) / 2);
+    bottom: -15%;
+    transition: all .15s ease-in;
+    width: 98%;
+    height: 2px;
+    transform: translate(0, 0);
+    background-color: #fff;
+    opacity: 0
+}
+
+.post-intro-tags .post-tag:hover::after {
+    transform: translate(0, -2px);
+    opacity: 1
+}
+
+.post-intro-tags .post-tag::before {
+    margin-right: 2px;
+    content: "#"
+}
+
+.post-intro-meta {
+    margin-top: .2rem;
+    font: 1.1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center
+}
+
+.post-intro-read {
+    margin-top: .2rem;
+    font: .9rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center
+}
+
+.word-count {
+    margin-right: 1rem
+}
+
+.post-fade-in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+}
+
+.post-intro-calander {
+    font-size: .9rem !important;
+    margin-right: .3rem
+}
+
+.post-intro-time {
+    font-size: .9rem;
+    margin-right: .5rem
+}
+
+.busuanzi-pv,
+.busuanzi-uv {
+    font-size: .9rem;
+    margin-right: .4rem
+}
+
+.post-intro-busuanzi {
+    font-size: .9rem !important
+}
+
+.share-wrapper {
+    position: relative;
+    font-size: .9rem;
+    padding: 0 .5rem 0 0
+}
+
+.share-wrapper:hover .share-list {
+    visibility: visible;
+    opacity: 1
+}
+
+.share-icon {
+    font-size: .9rem !important;
+    cursor: pointer
+}
+
+.share-text {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    cursor: pointer
+}
+
+.share-list {
+    position: absolute;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    left: 100%;
+    bottom: 0;
+    display: flex;
+    opacity: 0;
+    transition: all .1s ease-in 0s
+}
+
+.share-list .iconfont-archer {
+    display: inline-block;
+    margin-right: 3px;
+    cursor: pointer
+}
+
+.share-list .iconfont-archer:hover {
+    color: #aaa
+}
+
+.share-list [data-type=weibo] {
+    position: relative;
+    top: -2px
+}
+
+.share-list [data-type=facebook] {
+    position: relative;
+    top: 1px
+}
+
+.share-qr {
+    position: relative
+}
+
+.share-qrcode {
+    position: absolute;
+    left: 0;
+    bottom: 1.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .1s ease-in 0s
+}
+
+.share-qr:hover .share-qrcode {
+    visibility: visible;
+    opacity: 1
+}
+
+.post-paginator {
+    overflow: hidden;
+    margin: 0;
+    list-style: none;
+    padding: 2.5rem 0 1rem 0;
+    display: flex;
+    justify-content: space-between
+}
+
+.post-paginator li {
+    position: relative;
+    max-width: 13rem
+}
+
+.post-paginator li a {
+    display: block;
+}
+
+.post-paginator .nextTitle,
+.prevTitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.post-paginator li a:hover .nextTitle,
+.post-paginator li a:hover .prevTitle {
+    color: var(--main-color, #f75357)
+}
+
+.post-paginator .nextSlogan,
+.post-paginator .prevSlogan {
+    font: bold 1.4rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #252525
+}
+
+.post-paginator .nextSlogan::before {
+    content: "< ";
+    font-size: 1.7rem
+}
+
+.post-paginator .prevSlogan::after {
+    content: " >";
+    font-size: 1.7rem
+}
+
+.post-paginator .prevTitle,
+.post-paginator .prevSlogan {
+    text-align: right
+}
+
+.article-entry {
+    background-color: #fdfdfd;
+    border-radius: .5rem .5rem 0 0;
+    padding: 2rem 1.5rem;
+    transition: background-color .5s ease-out;
+    overflow: hidden
+}
+
+.article-entry :first-child {
+    margin-top: 0
+}
+
+.article-entry :nth-last-child(2) {
+    margin-bottom: 0
+}
+
+/* Shared typography moved to base.css */
+
+.license-wrapper {
+    background-color: #fdfdfd;
+    border-radius: 0 0 .5rem .5rem;
+    padding: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    color: #23394d;
+    transition: all .5s ease-out
+}
+
+.license-wrapper p {
+    margin: .2rem 0
+}
+
+.license-wrapper a {
+    color: var(--main-color, #f75357);
+    word-break: break-all
+}
+
+.license-wrapper :first-child {
+    margin-top: 0
+}
+
+.license-wrapper :last-child {
+    margin-bottom: 0
+}
+
+.toc-wrapper {
+    display: block;
+    position: absolute;
+    width: 22%;
+    right: 1%;
+    opacity: 1;
+    max-width: calc((100% - 42.8125rem - 4rem) / 2);
+    z-index: 9998;
+    margin-top: calc(3.5rem + 1rem);
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s ease-out, opacity .4s ease-out
+}
+
+.toc-wrapper .toc-active {
+    color: var(--main-color, #f75357)
+}
+
+.toc-wrapper-loding {
+    opacity: 0
+}
+
+.toc-catalog {
+    color: #bbb;
+    padding: .5rem 0rem;
+    z-index: 2;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    font: bolder 1.2rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+.toc-catalog:hover {
+    color: var(--main-color, #f75357)
+}
+
+.catalog-icon {
+    position: relative;
+    top: -0.1rem;
+    margin-right: .3rem
+}
+
+.toc {
+    max-height: calc(100vh - 3.5rem - 5rem);
+    overflow: auto
+}
+
+.toc::-webkit-scrollbar {
+    display: none
+}
+
+.toc,
+.toc-child {
+    padding-left: 0;
+    margin: 0 0 0 0;
+    padding-top: 2px;
+    z-index: 1
+}
+
+.toc-wrapper>* {
+    transform: translate(0, 0);
+    transition: transform .3s ease-out, opacity .3s ease-out, color .2s ease-out;
+    opacity: 1
+}
+
+.toc-wrapper ol {
+    padding-left: 1rem
+}
+
+.toc-wrapper .toc-number {
+    font-weight: bold
+}
+
+.toc-wrapper a {
+    color: #ccc
+}
+
+.toc-wrapper a:hover {
+    color: var(--main-color, #f75357) !important
+}
+
+.toc-hide-children>* {
+    transform: translate(20%, 0);
+    opacity: 0
+}
+
+.toc-hide-children .toc-catalog {
+    display: block;
+    transform: none;
+    opacity: 1
+}
+
+.toc-fixed {
+    position: fixed;
+    top: 0rem !important
+}
+
+.toc-slide {
+    transform: translate3d(400px, 0, 0)
+}
+
+.toc-hide {
+    display: none
+}
+
+.toc-item {
+    margin-bottom: 2px
+}
+
+.post-comment {
+    margin: 1rem 0
+}
+
+#gitalk-container a {
+    color: var(--main-color, #f75357) !important
+}
+
+#gitalk-container a:hover {
+    color: #fcb4b6 !important;
+    border-color: #fcb4b6 !important
+}
+
+#gitalk-container .gt-svg svg {
+    fill: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-spinner::before {
+    border-color: #fff !important;
+    border-top-color: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-btn {
+    background-color: var(--main-color, #f75357) !important;
+    border-color: var(--main-color, #f75357) !important;
+    color: #fff !important
+}
+
+#gitalk-container .gt-btn-login:hover {
+    background-color: #fcb4b6 !important;
+    border-color: #fcb4b6 !important
+}
+
+#gitalk-container .gt-btn-preview {
+    background-color: #fff !important;
+    color: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-btn-preview:hover {
+    background-color: #f2f2f2 !important;
+    border-color: #fcb4b6 !important
+}
+
+#gitalk-container .gt-btn-public:hover {
+    background-color: #fcb4b6 !important;
+    border-color: #fcb4b6 !important
+}
+
+#gitalk-container .gt-link {
+    border-bottom-color: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-user .is--poping .gt-ico svg {
+    fill: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-popup .gt-action.is--active:before {
+    background: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-header-controls-tip {
+    color: var(--main-color, #f75357) !important
+}
+
+#gitalk-container .gt-comment-username {
+    color: var(--main-color, #f75357) !important
+}
+
+/* Checkbox and Task Item Styles */
+.article-entry input[type="checkbox"] {
+    pointer-events: none;
+    transform: scale(1.2);
+}
+
+.article-entry li[data-type="taskItem"] label {
+    pointer-events: none;
+    margin-right: 0.6rem;
+}
+
+.article-entry li[data-type="taskItem"] {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.article-entry li[data-type="taskItem"] div p {
+    margin: 0;
+}
+
+/* Highlight / Code Block Styles */
+.abstract-content pre,
+.abstract-content .highlight,
+.article-entry pre,
+.article-entry .highlight {
+    margin: .8rem 0;
+    padding: .7rem .7rem;
+    overflow: auto;
+    font-size: .9rem;
+    line-height: 1.3rem
+}
+
+.abstract-content .highlight .gutter pre,
+.abstract-content .highlight .gutter pre .line,
+.abstract-content .gist .gist-file .gist-data .line-numbers,
+.article-entry .highlight .gutter pre,
+.article-entry .highlight .gutter pre .line,
+.article-entry .gist .gist-file .gist-data .line-numbers {
+    color: #666
+}
+
+.abstract-content pre,
+.abstract-content code,
+.article-entry pre,
+.article-entry code {
+    font-family: "Source Code Pro", Consolas, Menlo, Monaco, "Courier New", monospace;
+    font-weight: 400
+}
+
+.abstract-content code,
+.article-entry code {
+    background: #eee;
+    padding: 1px .4rem;
+    border-radius: 2px;
+    margin: 0 .2rem;
+    border: none;
+    transition: all .5s ease-out;
+    word-break: break-all
+}
+
+.abstract-content pre code,
+.article-entry pre code {
+    background: none;
+    text-shadow: none;
+    padding: 0;
+    color: #657b83
+}
+
+.abstract-content .highlight,
+.article-entry .highlight {
+    border-radius: 4px
+}
+
+.abstract-content .highlight pre,
+.article-entry .highlight pre {
+    border: none;
+    margin: 0;
+    padding: 0
+}
+
+.abstract-content .highlight table,
+.article-entry .highlight table {
+    margin: 0;
+    width: auto
+}
+
+.abstract-content .highlight td,
+.article-entry .highlight td {
+    border: none;
+    padding: 0
+}
+
+.abstract-content .highlight figcaption,
+.article-entry .highlight figcaption {
+    color: highlight-comment;
+    line-height: 1em;
+    margin-bottom: 1em
+}
+
+.abstract-content .highlight figcaption:before,
+.abstract-content .highlight figcaption:after,
+.article-entry .highlight figcaption:before,
+.article-entry .highlight figcaption:after {
+    content: "";
+    display: table
+}
+
+.abstract-content .highlight figcaption:after,
+.article-entry .highlight figcaption:after {
+    clear: both
+}
+
+.abstract-content .highlight figcaption a,
+.article-entry .highlight figcaption a {
+    float: right
+}
+
+.abstract-content .highlight .gutter pre,
+.article-entry .highlight .gutter pre {
+    text-align: right;
+    padding-right: 20px
+}
+
+.abstract-content .highlight .gutter pre .line,
+.article-entry .highlight .gutter pre .line {
+    text-shadow: none
+}
+
+.abstract-content .highlight .line,
+.article-entry .highlight .line {
+    min-height: 19px
+}
+
+.abstract-content .highlight,
+.abstract-content pre,
+.article-entry .highlight,
+.article-entry pre {
+    color: #abb2bf;
+    background: #282c34
+}
+
+.abstract-content .highlight pre .comment,
+.abstract-content .highlight pre .quote,
+.article-entry .highlight pre .comment,
+.article-entry .highlight pre .quote {
+    color: #5c6370;
+    font-style: italic
+}
+
+.abstract-content .highlight pre .doctag,
+.abstract-content .highlight pre .keyword,
+.abstract-content .highlight pre .formula,
+.article-entry .highlight pre .doctag,
+.article-entry .highlight pre .keyword,
+.article-entry .highlight pre .formula {
+    color: #c678dd
+}
+
+.abstract-content .highlight pre .section,
+.abstract-content .highlight pre .name,
+.abstract-content .highlight pre .selector-tag,
+.abstract-content .highlight pre .deletion,
+.abstract-content .highlight pre .subst,
+.article-entry .highlight pre .section,
+.article-entry .highlight pre .name,
+.article-entry .highlight pre .selector-tag,
+.article-entry .highlight pre .deletion,
+.article-entry .highlight pre .subst {
+    color: #e06c75
+}
+
+.abstract-content .highlight pre .literal,
+.article-entry .highlight pre .literal {
+    color: #56b6c2
+}
+
+.abstract-content .highlight pre .string,
+.abstract-content .highlight pre .regexp,
+.abstract-content .highlight pre .addition,
+.abstract-content .highlight pre .attribute,
+.abstract-content .highlight pre .meta-string,
+.article-entry .highlight pre .string,
+.article-entry .highlight pre .regexp,
+.article-entry .highlight pre .addition,
+.article-entry .highlight pre .attribute,
+.article-entry .highlight pre .meta-string {
+    color: #98c379
+}
+
+.abstract-content .highlight pre .built_in,
+.abstract-content .highlight pre .class pre .title,
+.article-entry .highlight pre .built_in,
+.article-entry .highlight pre .class pre .title {
+    color: #e6c07b
+}
+
+.abstract-content .highlight pre .attr,
+.abstract-content .highlight pre .variable,
+.abstract-content .highlight pre .template-variable,
+.abstract-content .highlight pre .type,
+.abstract-content .highlight pre .selector-class,
+.abstract-content .highlight pre .selector-attr,
+.abstract-content .highlight pre .selector-pseudo,
+.abstract-content .highlight pre .number,
+.article-entry .highlight pre .attr,
+.article-entry .highlight pre .variable,
+.article-entry .highlight pre .template-variable,
+.article-entry .highlight pre .type,
+.article-entry .highlight pre .selector-class,
+.article-entry .highlight pre .selector-attr,
+.article-entry .highlight pre .selector-pseudo,
+.article-entry .highlight pre .number {
+    color: #d19a66
+}
+
+.abstract-content .highlight pre .symbol,
+.abstract-content .highlight pre .bullet,
+.abstract-content .highlight pre .link,
+.abstract-content .highlight pre .meta,
+.abstract-content .highlight pre .selector-id,
+.abstract-content .highlight pre .title,
+.article-entry .highlight pre .symbol,
+.article-entry .highlight pre .bullet,
+.article-entry .highlight pre .link,
+.article-entry .highlight pre .meta,
+.article-entry .highlight pre .selector-id,
+.article-entry .highlight pre .title {
+    color: #61aeee
+}
+
+.abstract-content .highlight pre .emphasis,
+.article-entry .highlight pre .emphasis {
+    font-style: italic
+}
+
+.abstract-content .highlight pre .strong,
+.article-entry .highlight pre .strong {
+    font-weight: bold
+}
+
+.abstract-content .highlight pre .link,
+.article-entry .highlight pre .link {
+    text-decoration: underline
+}
+
+.abstract-content .gist,
+.article-entry .gist {
+    margin: 0 -20px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px 0;
+    background: #272822;
+    padding: 15px 20px 15px 0
+}
+
+.abstract-content .gist .gist-file,
+.article-entry .gist .gist-file {
+    border: none;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    margin: 0
+}
+
+.abstract-content .gist .gist-file .gist-data,
+.article-entry .gist .gist-file .gist-data {
+    background: none;
+    border: none
+}
+
+.abstract-content .gist .gist-file .gist-data .line-numbers,
+.article-entry .gist .gist-file .gist-data .line-numbers {
+    background: none;
+    border: none;
+    padding: 0 20px 0 0
+}
+
+.abstract-content .gist .gist-file .gist-data .line-data,
+.article-entry .gist .gist-file .gist-data .line-data {
+    padding: 0 !important
+}
+
+.abstract-content .gist .gist-file .highlight,
+.article-entry .gist .gist-file .highlight {
+    margin: 0;
+    padding: 0;
+    border: none
+}
+
+.abstract-content .gist .gist-file .gist-meta,
+.article-entry .gist .gist-file .gist-meta {
+    background: #272822;
+    color: highlight-comment;
+    font: .85em "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow: 0 0;
+    padding: 0;
+    margin-top: 1em;
+    margin-left: 20px
+}
+
+.abstract-content .gist .gist-file .gist-meta a,
+.article-entry .gist .gist-file .gist-meta a {
+    color: #258fb8;
+    font-weight: normal
+}
+
+.abstract-content .gist .gist-file .gist-meta a:hover,
+.article-entry .gist .gist-file .gist-meta a:hover {
+    text-decoration: underline
+}

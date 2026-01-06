@@ -25,3 +25,5 @@ yarn-error.log*
 # Halo source code (for reference only)
 halo/
 *.zip
+node_modules/
+templates/assets/dist/

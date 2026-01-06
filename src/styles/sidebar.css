@@ -1,0 +1,789 @@
+/* Sidebar & Profile Styles */
+.profile {
+    padding-top: 1rem;
+    order: 0;
+    vertical-align: top;
+    flex-shrink: 0;
+    width: 200px;
+    font: 1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #777;
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
+}
+
+.profile a {
+    transition: color .1s ease-in
+}
+
+.profile>*:last-child {
+    border-bottom: none
+}
+
+.profile.profile-sticky {
+    position: sticky;
+    top: 3.5rem
+}
+
+.profile-avatar {
+    display: block;
+    border-radius: 1rem;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .1)
+}
+
+.profile-avatar.hide-border {
+    border: unset
+}
+
+.profile-name {
+    font-size: 2rem;
+    line-height: 3rem;
+    padding: .5rem 0 0 0;
+    color: #333;
+    text-align: center
+}
+
+.profile-signature {
+    font-size: 1rem;
+    text-align: center
+}
+
+.profile-social {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    line-height: 1.7rem;
+    padding: .5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
+}
+
+.profile-social .iconfont-archer {
+    position: relative
+}
+
+.profile-social .iconfont-archer {
+    display: inline-block;
+    text-align: center
+}
+
+.profile-social .iconfont-archer::before {
+    display: inline-block;
+    color: #777;
+    font-size: 1.5rem;
+    margin: 0 .4rem 0 0
+}
+
+.profile-social .iconfont-archer:last-of-child::before {
+    margin: 0
+}
+
+.profile-social .email {
+    top: 2px
+}
+
+.profile-social .email::before {
+    content: ""
+}
+
+.profile-social .email:hover::before {
+    color: #0cb49d
+}
+
+.profile-social .github::before {
+    font-size: 1.6rem;
+    content: ""
+}
+
+.profile-social .github:hover::before {
+    color: #24292e
+}
+
+.profile-social .wechat {
+    top: 2px
+}
+
+.profile-social .wechat::before {
+    font-size: 1.4rem;
+    content: ""
+}
+
+.profile-social .wechat:hover::before {
+    color: #42ae3c
+}
+
+.profile-social .qq {
+    top: 2px
+}
+
+.profile-social .qq::before {
+    font-size: 1.4rem;
+    content: ""
+}
+
+.profile-social .qq:hover::before {
+    color: #4f4e71
+}
+
+.profile-social .telegram {
+    top: 1.25px
+}
+
+.profile-social .telegram::before {
+    font-size: 1.3rem;
+    content: ""
+}
+
+.profile-social .telegram:hover::before {
+    color: #36a1d3
+}
+
+.profile-social .weibo::before {
+    font-size: 1.6rem;
+    content: ""
+}
+
+.profile-social .weibo:hover::before {
+    color: #d52a2a
+}
+
+.profile-social .zhihu {
+    top: 1.5px
+}
+
+.profile-social .zhihu::before {
+    font-size: 1.35rem;
+    content: ""
+}
+
+.profile-social .zhihu:hover::before {
+    color: #0f88eb
+}
+
+.profile-social .douban {
+    top: 1px
+}
+
+.profile-social .douban::before {
+    font-size: 1.25rem;
+    content: ""
+}
+
+.profile-social .douban:hover::before {
+    color: #071
+}
+
+.profile-social .facebook {
+    top: 2.5px
+}
+
+.profile-social .facebook::before {
+    font-size: 1.5rem;
+    content: ""
+}
+
+.profile-social .facebook:hover::before {
+    color: #3b5998
+}
+
+.profile-social .twitter {
+    top: 1px
+}
+
+.profile-social .twitter::before {
+    content: ""
+}
+
+.profile-social .twitter:hover::before {
+    color: #1da1f2
+}
+
+.profile-social .instagram {
+    top: 2px
+}
+
+.profile-social .instagram::before {
+    content: "";
+    font-size: 1.4rem
+}
+
+.profile-social .instagram:hover::before {
+    color: #8042b6
+}
+
+.profile-social .stack-overflow {
+    top: .5px
+}
+
+.profile-social .stack-overflow::before {
+    font-size: 1.15rem;
+    content: ""
+}
+
+.profile-social .stack-overflow:hover::before {
+    color: #f37f23
+}
+
+.profile-social .segmentFault {
+    top: 2px
+}
+
+.profile-social .segmentFault::before {
+    font-size: 1.5rem;
+    content: ""
+}
+
+.profile-social .segmentFault:hover::before {
+    color: #f37f23
+}
+
+.profile-social .juejin {
+    top: .5px
+}
+
+.profile-social .juejin::before {
+    font-size: 1.35rem;
+    content: ""
+}
+
+.profile-social .juejin:hover::before {
+    color: #f37f23
+}
+
+.profile-social .v2ex::before {
+    font-size: 1.1rem;
+    content: ""
+}
+
+.profile-social .v2ex:hover::before {
+    color: #171718
+}
+
+.profile-social .bilibili {
+    top: 3px
+}
+
+.profile-social .bilibili::before {
+    font-size: 1.75rem;
+    content: ""
+}
+
+.profile-social .bilibili:hover::before {
+    color: #2cb2f9
+}
+
+.profile-social .linkedin {
+    top: -0.5px
+}
+
+.profile-social .linkedin::before {
+    font-size: 1.25rem;
+    content: ""
+}
+
+.profile-social .linkedin:hover::before {
+    color: #0077b5
+}
+
+.profile-social .steam {
+    top: 1px
+}
+
+.profile-social .steam::before {
+    font-size: 1.25rem;
+    content: ""
+}
+
+.profile-social .steam:hover::before {
+    color: #010101
+}
+
+.profile-social .others {
+    top: -0.5px
+}
+
+.profile-social .others::before {
+    font-size: 1.1rem;
+    content: ""
+}
+
+.profile-social .others:hover::before {
+    color: #8090b0
+}
+
+.profile-social .rss::before {
+    font-size: 1.05rem;
+    content: ""
+}
+
+.profile-social .rss:hover::before {
+    color: #e53935
+}
+
+.wechat,
+.qq {
+    cursor: pointer
+}
+
+.wechat:hover .profile-qr,
+.qq:hover .profile-qr {
+    opacity: 1;
+    visibility: visible
+}
+
+.profile-qr {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 2.5rem;
+    border: 3px solid #fff;
+    border-radius: 3px;
+    z-index: 99;
+    background-color: #fff;
+    width: 7rem;
+    padding: .5rem;
+    opacity: 0;
+    transition: all .1s ease-in 0s
+}
+
+.friends {
+    padding: .5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    text-align: left
+}
+
+.friends div {
+    font-size: 1.2rem;
+    text-align: left;
+    font-weight: bold
+}
+
+.friends a {
+    margin-right: .6rem;
+    color: #777
+}
+
+.friends a:hover {
+    color: var(--main-color, #f75357)
+}
+
+.profile-link-item {
+    padding: .5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
+}
+
+.profile-link-item a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #777
+}
+
+.profile-link-item a:hover {
+    color: var(--main-color, #f75357)
+}
+
+.profile-item-icon {
+    margin-right: .4rem;
+    width: 1.2rem !important
+}
+
+html::-webkit-scrollbar,
+.sidebar-panel-archives::-webkit-scrollbar,
+.sidebar-tags-name::-webkit-scrollbar,
+.sidebar-categories-name::-webkit-scrollbar,
+.sidebar-tags-list::-webkit-scrollbar,
+.sidebar-categories-list::-webkit-scrollbar,
+.highlight::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, .5);
+    width: 5px
+}
+
+html::-webkit-scrollbar-corner,
+.sidebar-panel-archives::-webkit-scrollbar-corner,
+.sidebar-tags-name::-webkit-scrollbar-corner,
+.sidebar-categories-name::-webkit-scrollbar-corner,
+.sidebar-tags-list::-webkit-scrollbar-corner,
+.sidebar-categories-list::-webkit-scrollbar-corner,
+.highlight::-webkit-scrollbar-corner {
+    display: none
+}
+
+html::-webkit-scrollbar-button,
+.sidebar-panel-archives::-webkit-scrollbar-button,
+.sidebar-tags-name::-webkit-scrollbar-button,
+.sidebar-categories-name::-webkit-scrollbar-button,
+.sidebar-tags-list::-webkit-scrollbar-button,
+.sidebar-categories-list::-webkit-scrollbar-button,
+.highlight::-webkit-scrollbar-button {
+    display: none
+}
+
+html::-webkit-scrollbar-button:start:increment,
+html::-webkit-scrollbar-button:end:decrement,
+.sidebar-panel-archives::-webkit-scrollbar-button:start:increment,
+.sidebar-panel-archives::-webkit-scrollbar-button:end:decrement,
+.sidebar-tags-name::-webkit-scrollbar-button:start:increment,
+.sidebar-tags-name::-webkit-scrollbar-button:end:decrement,
+.sidebar-categories-name::-webkit-scrollbar-button:start:increment,
+.sidebar-categories-name::-webkit-scrollbar-button:end:decrement,
+.sidebar-tags-list::-webkit-scrollbar-button:start:increment,
+.sidebar-tags-list::-webkit-scrollbar-button:end:decrement,
+.sidebar-categories-list::-webkit-scrollbar-button:start:increment,
+.sidebar-categories-list::-webkit-scrollbar-button:end:decrement,
+.highlight::-webkit-scrollbar-button:start:increment,
+.highlight::-webkit-scrollbar-button:end:decrement {
+    display: none
+}
+
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, .2)
+}
+
+html::-webkit-scrollbar-track,
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-track,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-track,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-track,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-track,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-track,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-track,
+.highlight::-webkit-scrollbar-thumb {
+    border: none
+}
+
+html::-webkit-scrollbar-thumb,
+.sidebar-panel-archives::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 0px
+}
+
+html::-webkit-scrollbar-track:hover,
+.sidebar-panel-archives::-webkit-scrollbar-track:hover,
+.sidebar-tags-name::-webkit-scrollbar-track:hover,
+.sidebar-categories-name::-webkit-scrollbar-track:hover,
+.sidebar-tags-list::-webkit-scrollbar-track:hover,
+.sidebar-categories-list::-webkit-scrollbar-track:hover,
+.highlight::-webkit-scrollbar-track:hover {
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.sidebar-archive::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, .7)
+}
+
+.sidebar-archive::-webkit-scrollbar-thumb,
+.sidebar-tags-name::-webkit-scrollbar-thumb,
+.sidebar-categories-name::-webkit-scrollbar-thumb,
+.sidebar-tags-list::-webkit-scrollbar-thumb,
+.sidebar-categories-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 0px
+}
+
+.sidebar-archive::-webkit-scrollbar-track:hover,
+.sidebar-tags-name::-webkit-scrollbar-track:hover,
+.sidebar-categories-name::-webkit-scrollbar-track:hover,
+.sidebar-tags-list::-webkit-scrollbar-track:hover,
+.sidebar-categories-list::-webkit-scrollbar-track:hover {
+    background-color: rgba(255, 255, 255, .7)
+}
+
+
+.sidebar-panel-archives {
+    padding: 1rem
+}
+
+.sidebar-panel-archives ul {
+    padding: 0;
+    margin: 0
+}
+
+.ps__rail-x,
+.ps__rail-y {
+    display: none !important
+}
+
+.post-archive {
+    overflow-y: auto
+}
+
+.archive-post-item,
+.meta-post-item {
+    font-family: var(--base-font-family);
+    display: flex;
+    align-items: baseline;
+    border-left: 1px solid #bbb;
+    margin-left: .3rem;
+    padding: .2rem 0 .3rem .5rem
+}
+
+.archive-post-item:hover,
+.meta-post-item:hover {
+    border-left-color: var(--main-color, #f75357)
+}
+
+.archive-post-item:hover .archive-post-date,
+.archive-post-item:hover .meta-post-date,
+.meta-post-item:hover .archive-post-date,
+.meta-post-item:hover .meta-post-date,
+.archive-post-item:hover .archive-post-title,
+.archive-post-item:hover .meta-post-title,
+.meta-post-item:hover .archive-post-title,
+.meta-post-item:hover .meta-post-title {
+    color: var(--main-color, #f75357)
+}
+
+.total-and-search {
+    display: flex
+}
+
+.site-search.site-search-loading {
+    display: none
+}
+
+.site-search .search-icon {
+    cursor: pointer;
+    color: var(--main-color, #f75357);
+    line-height: 2.3rem;
+    font-size: 1.4rem;
+    position: relative;
+    margin-left: .5rem
+}
+
+.archive-year,
+.total-archive {
+    font: 1.2rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: var(--main-color, #f75357)
+}
+
+.archive-year {
+    font-size: 1rem;
+    margin: .3rem 0 .3rem 0
+}
+
+.archive-post-date,
+.meta-post-date {
+    font: .9rem/1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #999
+}
+
+.archive-post-title,
+.meta-post-title {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    margin-left: .8rem;
+    text-align: left;
+    color: #ccc
+}
+
+.sidebar-panel-tags,
+.sidebar-panel-categories {
+    padding: 1rem 1rem 5px 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column
+}
+
+.sidebar-tags-name,
+.sidebar-categories-name {
+    padding: 0 0 1rem 0;
+    max-height: 30%;
+    overflow-y: auto
+}
+
+.sidebar-tag-name,
+.sidebar-category-name {
+    display: inline-block;
+    border: 1px solid #fff;
+    border-radius: 5rem;
+    padding: .07rem .4rem .1rem .4rem;
+    margin: .2rem 0;
+    white-space: nowrap;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fff
+}
+
+.sidebar-tag-name:hover,
+.sidebar-category-name:hover {
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
+}
+
+.sidebar-tag-name .iconfont-archer,
+.sidebar-category-name .iconfont-archer {
+    pointer-events: none;
+    transform: translateY(-1rem);
+    font-size: .6rem;
+    margin: 0 .3rem 0 .1rem
+}
+
+.sidebar-category-name .iconfont-archer {
+    font-size: 16px
+}
+
+.sidebar-tags-empty,
+.sidebar-categories-empty {
+    display: none
+}
+
+.sidebar-tags-empty-active,
+.sidebar-categories-empty-active {
+    display: block;
+    font-size: 6rem !important;
+    margin-top: 7rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    text-align: center;
+    color: #fff
+}
+
+.sidebar-label-focus {
+    border-color: var(--main-color, #f75357);
+    color: var(--main-color, #f75357)
+}
+
+.sidebar-tags-list,
+.sidebar-categories-list {
+    padding: 1rem 1rem 0 0;
+    overflow-y: auto
+}
+
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    top: 0;
+    z-index: -9999;
+    height: 100%;
+    width: 400px;
+    transition: all .3s ease-in 0s;
+    overflow-x: hidden;
+    background-color: #222
+}
+
+.sidebar-hide {
+    display: none
+}
+
+.sidebar-tabs {
+    display: flex;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 4rem;
+    width: 100%;
+    z-index: 1001;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    flex-grow: 0;
+    color: #eee;
+    border-bottom: 2px solid #666
+}
+
+.sidebar-tabs::after {
+    content: "";
+    position: absolute;
+    width: 33.33%;
+    height: 2px;
+    left: 0;
+    top: 100%;
+    background-color: var(--main-color, #f75357);
+    transform: translate3d(0, 0, 0);
+    transition: transform .2s ease-out 0s
+}
+
+.sidebar-tab-archives,
+.sidebar-tab-tags,
+.sidebar-tab-categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    width: 33.33%;
+    height: 100%;
+    cursor: pointer
+}
+
+.sidebar-tab-archives .iconfont-archer,
+.sidebar-tab-tags .iconfont-archer,
+.sidebar-tab-categories .iconfont-archer {
+    pointer-events: none;
+    margin: 0 .5rem 0 0rem;
+    font-size: 1.5rem
+}
+
+.tab-name {
+    pointer-events: none;
+    font-size: 1.5rem;
+    margin-left: .2rem
+}
+
+.sidebar-tabs-active-0::after {
+    transform: translate3d(0, 0, 0)
+}
+
+.sidebar-tabs-active-1::after {
+    transform: translate3d(100%, 0, 0)
+}
+
+.sidebar-tabs-active-2::after {
+    transform: translate3d(200%, 0, 0)
+}
+
+.sidebar-content {
+    position: relative;
+    display: flex;
+    width: 300%;
+    height: calc(100% - 4rem);
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: transform .3s ease-out 0s;
+    transform: translate3d(0, 0, 0)
+}
+
+.sidebar-panel-archives,
+.sidebar-panel-tags,
+.sidebar-panel-categories {
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-shrink: 0;
+    width: calc(33.33% - 2rem);
+    -webkit-overflow-scrolling: touch
+}
+
+.sidebar-content-active-0 {
+    transform: translate3d(0, 0, 0)
+}
+
+.sidebar-content-active-1 {
+    transform: translate3d(-33.33%, 0, 0)
+}
+
+.sidebar-content-active-2 {
+    transform: translate3d(-66.67%, 0, 0)
+}

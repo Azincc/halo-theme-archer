@@ -23,15 +23,14 @@
       <!-- Tags and Categories -->
       <div class="post-intro-tags" th:if="${(not #lists.isEmpty(post.tags)) or (not #lists.isEmpty(post.categories))}">
         <th:block th:if="${not #lists.isEmpty(post.categories)}">
-          <a th:each="category, iterStat : ${post.categories}" th:href="|/categories/${category.metadata.name}|"
-            class="post-category" th:data-category="${category.metadata.name}">
+          <a th:each="category, iterStat : ${post.categories}" class="post-category"
+            th:href="${category.status.permalink}">
             <span class="iconfont-archer category-icon">&#xe606;</span>
             <span th:text="${category.spec.displayName}">Category</span>
           </a>
         </th:block>
         <th:block th:if="${not #lists.isEmpty(post.tags)}">
-          <a th:each="tag, iterStat : ${post.tags}" th:href="|/tags/${tag.metadata.name}|" class="post-tag"
-            th:data-tag="${tag.metadata.name}">
+          <a th:each="tag, iterStat : ${post.tags}" class="post-tag" th:href="${tag.status.permalink}">
             <span class="iconfont-archer tag-icon"></span>
             <span th:text="${tag.spec.displayName}">Tag</span>
           </a>

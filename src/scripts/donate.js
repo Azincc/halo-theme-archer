@@ -1,13 +1,15 @@
 import archerUtil from './util.js'
 
-const $donatePopup = $('.donate-popup'),
-  $donateBtn = $('.donate-btn'),
-  $postBody = $('.post-body'),
-  $postPage = $('.post-page')
+
 
 const rem = archerUtil.rem()
 
 const initDonate = () => {
+  const $donatePopup = $('.donate-popup'),
+    $donateBtn = $('.donate-btn'),
+    $postBody = $('.post-body'),
+    $postPage = $('.post-page')
+
   const hideDonatePopup = () => {
     $donatePopup.addClass('donate-popup--hidden')
     $donateBtn.removeClass('footer-fixed-btn--active')
