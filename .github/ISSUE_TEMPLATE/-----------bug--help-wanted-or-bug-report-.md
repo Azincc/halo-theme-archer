@@ -10,7 +10,7 @@ about:
 **你是否已经阅读过以下内容，并确认你的行为是正确的，在 `[ ]` 中填入 `x` 选中（Ensure that you had consulted followings and confirm the validity of your operation, fill `x` in `[ ]` to select）**
 
 - [ ] [Hexo 文档 | Hexo document](https://hexo.io/docs/)
-- [ ] [Archer 文档 | hexo-theme-archer document](https://github.com/fi3ework/hexo-theme-archer)
+- [ ] [Archer 文档 | hexo-theme-archer document](https://github.com/azincc/halo-theme-archer)
 
 **如何复现（To Reproduce）**
 
