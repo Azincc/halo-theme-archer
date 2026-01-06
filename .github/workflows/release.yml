@@ -34,8 +34,23 @@ jobs:
       - name: Get Tag Message
         id: tag_msg
         run: |
-          # 获取 tag 消息并保存到文件
-          git tag -l --format='%(contents)' ${{ github.ref_name }} > release_body.md
+          echo "=== Debug: Inspecting Tag Object ==="
+          git cat-file -p ${{ github.ref_name }} || echo "Failed to cat-file"
+          echo "=== Debug: End Inspection ==="
+          
+          # Force fetch tags to ensure we have the annotated tag object
+          git fetch --tags --force
+          
+          # Explicitly look for the tag object contents
+          # We use refs/tags/${{ github.ref_name }} to map to the specific ref
+          echo "Extracting message from refs/tags/${{ github.ref_name }}"
+          git for-each-ref --format='%(contents)' refs/tags/${{ github.ref_name }} > release_body.md
+          
+          # Check if empty, fallback to log if needed (though we want the tag msg)
+          if [ ! -s release_body.md ]; then
+             echo "Warning: Extraction yielded empty file, falling back to simple log"
+             git show -s --format=%B ${{ github.ref_name }} > release_body.md
+          fi
 
       - name: Update theme.yaml version
         run: |
