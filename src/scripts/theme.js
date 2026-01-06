@@ -1,11 +1,11 @@
 const THEME_DARK_STYLESHEET_ID = 'stylesheet-theme-dark'
-const $themeModeSwitchBtn = $('.header-theme-btn')
+
 
 const resolveAssetsBasePath = () => {
-  const mainStylesheet = document.querySelector('link[href*="assets/css/style.css"]')
+  const mainStylesheet = document.querySelector('link[href*="assets/dist/base.css"]')
   if (mainStylesheet) {
     const href = mainStylesheet.getAttribute('href')
-    const index = href.indexOf('assets/css/style.css')
+    const index = href.indexOf('assets/dist/base.css')
     if (index !== -1) {
       return href.substring(0, index)
     }
@@ -22,7 +22,7 @@ const ensureDarkStylesheet = () => {
         id: THEME_DARK_STYLESHEET_ID,
         rel: 'stylesheet',
         type: 'text/css',
-        href: `${basePath}assets/css/dark.css`,
+        href: `${basePath}assets/dist/dark.css`,
       })
       .appendTo('head')
   }
@@ -45,6 +45,7 @@ const getPreferredThemeMode = () => {
 }
 
 const setThemeModeSwitchBtnActive = (active) => {
+  const $themeModeSwitchBtn = $('.header-theme-btn')
   if (active) {
     $themeModeSwitchBtn.removeClass('header-theme-btn-disabled')
   } else {
@@ -79,6 +80,7 @@ export const initializeColorScheme = () => {
 const initTheme = () => {
   setThemeMode(getPreferredThemeMode())
 
+  const $themeModeSwitchBtn = $('.header-theme-btn')
   $themeModeSwitchBtn.off('click.archer-theme')
   $themeModeSwitchBtn.on('click.archer-theme', () => {
     switchThemeMode()

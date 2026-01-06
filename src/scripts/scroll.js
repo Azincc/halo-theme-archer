@@ -83,7 +83,7 @@ const initScroll = () => {
     // 如果执行时动画已执行完毕
     articleHeight = $('.article-entry').outerHeight()
     // 如果执行时动画未执行完毕
-    articleHeight = $('.container')[0].addEventListener('transitionend', () => {
+    $('.container').on('transitionend', () => {
       articleHeight = $('.article-entry').outerHeight()
     })
   }
@@ -184,10 +184,10 @@ const initScroll = () => {
   onScroll()
   $(document).on('scroll', throttleOnScroll)
 
-  // 绑定返回顶部事件
-  ;[$postBanner, $backTop].forEach((ele) => {
-    ele.on('click', archerUtil.backTop)
-  })
+    // 绑定返回顶部事件
+    ;[$postBanner, $backTop].forEach((ele) => {
+      ele.on('click', archerUtil.backTop)
+    })
 }
 
 export default initScroll

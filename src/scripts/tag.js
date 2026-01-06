@@ -46,14 +46,14 @@ class MetaInfo {
     const currFocus = this.labelsContainer.getElementsByClassName(
       'sidebar-label-focus',
     )
-    ;[...currFocus].forEach((item) =>
-      item.classList.remove('sidebar-label-focus'),
-    )
-    ;[...this.labelsContainer.children].forEach((item) => {
-      if (item.getAttribute(`data-${this.metaName}`) === this.currLabelName) {
-        item.classList.add('sidebar-label-focus')
-      }
-    })
+      ;[...currFocus].forEach((item) =>
+        item.classList.remove('sidebar-label-focus'),
+      )
+      ;[...this.labelsContainer.children].forEach((item) => {
+        if (item.getAttribute(`data-${this.metaName}`) === this.currLabelName) {
+          item.classList.add('sidebar-label-focus')
+        }
+      })
   }
 
   _changeList() {
@@ -88,19 +88,19 @@ class MetaInfo {
   _createPostDom(postInfo) {
     const $tagItem = $(
       '<li class="meta-post-item"><span class="meta-post-date">' +
-        archerUtil.dateFormater(
-          new Date(Date.parse(postInfo.date)),
-          'yyyy/MM/dd',
-        ) +
-        '</span></li>',
+      archerUtil.dateFormater(
+        new Date(Date.parse(postInfo.date)),
+        'yyyy/MM/dd',
+      ) +
+      '</span></li>',
     )
     const $aItem = $(
       '<a class="meta-post-title" href="' +
-        siteMeta.root +
-        postInfo.path +
-        '">' +
-        postInfo.title +
-        '</a>',
+      siteMeta.root +
+      postInfo.path +
+      '">' +
+      postInfo.title +
+      '</a>',
     )
     $tagItem.append($aItem)
     return $tagItem[0]
@@ -230,7 +230,7 @@ class SidebarMeta {
   }
 
   _bindOtherClick() {
-    $('.post-tag').click((e) => {
+    $('.post-tag:not([href])').click((e) => {
       e.stopPropagation()
       this.sidebar.activateSidebar()
       this.sidebar.switchTo(1)
@@ -238,7 +238,7 @@ class SidebarMeta {
       const tagMeta = this.metas[0]
       tagMeta.changeLabel(this.currLabelName)
     })
-    $('.post-category').click((e) => {
+    $('.post-category:not([href])').click((e) => {
       e.stopPropagation()
       this.sidebar.activateSidebar()
       this.sidebar.switchTo(2)

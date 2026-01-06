@@ -1,0 +1,1589 @@
+:root {
+    --base-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+@font-face {
+    font-family: "iconfont-archer";
+    src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot");
+    src: local("iconfont-archer"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
+        url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
+        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
+}
+
+@font-face {
+    font-family: "Oswald-Regular";
+    src: url('/themes/halo-theme-archer/assets/font/Oswald-Regular.ttf');
+    font-weight: normal;
+    /* 或者 400 */
+    font-style: normal;
+}
+
+.iconfont-archer {
+    font-family: "iconfont-archer" !important;
+    font-size: 1rem;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block
+}
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block;
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden],
+template {
+    display: none
+}
+
+a {
+    background-color: rgba(0, 0, 0, 0)
+}
+
+a:active,
+a:hover {
+    outline: 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b,
+strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+small {
+    font-size: 80%
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 1em 40px
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0
+}
+
+pre {
+    overflow: auto
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible
+}
+
+button,
+select {
+    text-transform: none
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal
+}
+
+input[type=checkbox],
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type=searcher] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box
+}
+
+input[type=searcher]::-webkit-searcher-cancel-button,
+input[type=searcher]::-webkit-searcher-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    border: 1px solid silver;
+    margin: 0 2px;
+    padding: .35em .625em .75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto
+}
+
+optgroup {
+    font-weight: bold
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+td,
+th {
+    padding: 0
+}
+
+html {
+    font-size: 16px;
+    font-family: var(--base-font-family);
+    overflow-x: hidden
+}
+
+* {
+    font-family: inherit
+}
+
+body {
+    z-index: 100;
+    position: relative;
+    background-color: #fff;
+    transition: all .5s ease-out
+}
+
+.wrapper {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    transition: transform .3s ease-in;
+    transform: translate3d(0, 0, 0);
+    position: relative;
+    box-shadow: -3px 0 2px 0 rgba(0, 0, 0, .6)
+}
+
+.wrapper-sidebar-active {
+    transform: translate3d(400px, 0, 0)
+}
+
+.main {
+    order: 1;
+    width: 50%;
+    min-width: 42.8125rem;
+    flex-grow: 0;
+    padding: 0 0 0 0;
+    margin-left: 3rem;
+}
+
+.container {
+    display: flex;
+    padding: 3rem 0 0 0;
+    position: relative;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    transition: all .5s ease-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    z-index: 5;
+}
+
+.container-unloaded {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0)
+}
+
+a {
+    text-decoration: none
+}
+
+ul,
+li {
+    list-style-type: none
+}
+
+::-moz-selection {
+    background: var(--main-color, #f75357);
+    color: #eee
+}
+
+::selection {
+    background: var(--main-color, #f75357);
+    color: #eee
+}
+
+.fancy-link {
+    padding: 0 !important;
+    margin: 0 !important
+}
+
+.note {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: .35rem solid;
+    border-radius: .35rem;
+    transition: all .5s ease-out
+}
+
+.note .title {
+    font-weight: bold;
+    margin-top: 1rem
+}
+
+.note.note-warning {
+    background-color: #fdf8ea;
+    border-color: #f0ad4e
+}
+
+.donate-popup {
+    background: #fdfdfd;
+    padding: 1.5rem 1rem;
+    margin-left: -1rem;
+    margin-bottom: .5rem;
+    border-radius: .5rem;
+    max-width: 22rem;
+    box-shadow: 0 0 3px 1px #f0f0f0;
+    pointer-events: all;
+    line-height: 1.4
+}
+
+.donate-popup--hidden {
+    visibility: hidden;
+    pointer-events: none
+}
+
+.donate-popup__title {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: var(--main-color, #f75357);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: .4rem
+}
+
+.donate-popup__content-description {
+    color: #23394d;
+    margin-bottom: .8rem
+}
+
+.donate-popup__content-qrCode {
+    cursor: help;
+    width: 48%;
+    margin-right: 2%
+}
+
+.fancybox__container {
+    z-index: 10000
+}
+
+.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    padding: 1rem;
+    overflow: hidden;
+    z-index: 10;
+    transform: translate3d(0, 0, 0);
+    transition: transform .3s ease-in 0s;
+    pointer-events: none
+}
+
+
+
+
+.footer-fixed-sidebar-active {
+    transform: translate3d(400px, 0, 0)
+}
+
+.footer-fixed-btn {
+    pointer-events: auto;
+    display: block;
+    transition: all .3s ease;
+    font-family: "iconfont-archer";
+    z-index: 21;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    line-height: 1.5rem;
+    border: 2px solid #121212;
+    background-color: #fff;
+    cursor: pointer;
+    margin-bottom: 1rem
+}
+
+.footer-fixed-btn:last-child {
+    margin-bottom: 0
+}
+
+.footer-fixed-btn--rounded {
+    color: #333;
+    background-color: #fff;
+    width: 2.7rem;
+    height: 2.7rem;
+    line-height: 2.7rem;
+    border: unset;
+    border-radius: 50%
+}
+
+.footer-fixed-btn--rounded:hover {
+    color: #fff
+}
+
+.footer-fixed-btn--hidden {
+    pointer-events: none;
+    opacity: 0
+}
+
+.footer-fixed-btn:hover,
+.footer-fixed-btn--active {
+    background-color: #121212;
+    color: #fff
+}
+
+.footer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 0 1.5rem 0;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #fff;
+    transition: background-color .5s ease-out
+}
+
+.footer .social {
+    width: 50%;
+    min-width: 42.8125rem;
+    line-height: 2.5rem;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: text-bottom
+}
+
+.footer .social .iconfont-archer {
+    position: relative
+}
+
+.footer .social .iconfont-archer {
+    display: inline-block;
+    text-align: center
+}
+
+.footer .social .iconfont-archer::before {
+    display: inline-block;
+    color: #777;
+    font-size: 2.4rem;
+    margin: 0 .5rem 0 0
+}
+
+.footer .social .iconfont-archer:last-of-child::before {
+    margin: 0
+}
+
+.footer .social .email {
+    top: 3.2px
+}
+
+.footer .social .email::before {
+    content: ""
+}
+
+.footer .social .email:hover::before {
+    color: #0cb49d
+}
+
+.footer .social .github::before {
+    font-size: 2.56rem;
+    content: ""
+}
+
+.footer .social .github:hover::before {
+    color: #24292e
+}
+
+.footer .social .wechat {
+    top: 3.2px
+}
+
+.footer .social .wechat::before {
+    font-size: 2.24rem;
+    content: ""
+}
+
+.footer .social .wechat:hover::before {
+    color: #42ae3c
+}
+
+.footer .social .qq {
+    top: 3.2px
+}
+
+.footer .social .qq::before {
+    font-size: 2.24rem;
+    content: ""
+}
+
+.footer .social .qq:hover::before {
+    color: #4f4e71
+}
+
+.footer .social .telegram {
+    top: 2px
+}
+
+.footer .social .telegram::before {
+    font-size: 2.08rem;
+    content: ""
+}
+
+.footer .social .telegram:hover::before {
+    color: #36a1d3
+}
+
+.footer .social .weibo::before {
+    font-size: 2.56rem;
+    content: ""
+}
+
+.footer .social .weibo:hover::before {
+    color: #d52a2a
+}
+
+.footer .social .zhihu {
+    top: 2.4px
+}
+
+.footer .social .zhihu::before {
+    font-size: 2.16rem;
+    content: ""
+}
+
+.footer .social .zhihu:hover::before {
+    color: #0f88eb
+}
+
+.footer .social .douban {
+    top: 1.6px
+}
+
+.footer .social .douban::before {
+    font-size: 2rem;
+    content: ""
+}
+
+.footer .social .douban:hover::before {
+    color: #071
+}
+
+.footer .social .facebook {
+    top: 4px
+}
+
+.footer .social .facebook::before {
+    font-size: 2.4rem;
+    content: ""
+}
+
+.footer .social .facebook:hover::before {
+    color: #3b5998
+}
+
+.footer .social .twitter {
+    top: 1.6px
+}
+
+.footer .social .twitter::before {
+    content: ""
+}
+
+.footer .social .twitter:hover::before {
+    color: #1da1f2
+}
+
+.footer .social .instagram {
+    top: 3.2px
+}
+
+.footer .social .instagram::before {
+    content: "";
+    font-size: 2.24rem
+}
+
+.footer .social .instagram:hover::before {
+    color: #8042b6
+}
+
+.footer .social .stack-overflow {
+    top: .8px
+}
+
+.footer .social .stack-overflow::before {
+    font-size: 1.84rem;
+    content: ""
+}
+
+.footer .social .stack-overflow:hover::before {
+    color: #f37f23
+}
+
+.footer .social .segmentFault {
+    top: 3.2px
+}
+
+.footer .social .segmentFault::before {
+    font-size: 2.4rem;
+    content: ""
+}
+
+.footer .social .segmentFault:hover::before {
+    color: #f37f23
+}
+
+.footer .social .juejin {
+    top: .8px
+}
+
+.footer .social .juejin::before {
+    font-size: 2.16rem;
+    content: ""
+}
+
+.footer .social .juejin:hover::before {
+    color: #f37f23
+}
+
+.footer .social .v2ex::before {
+    font-size: 1.76rem;
+    content: ""
+}
+
+.footer .social .v2ex:hover::before {
+    color: #171718
+}
+
+.footer .social .bilibili {
+    top: 4.8px
+}
+
+.footer .social .bilibili::before {
+    font-size: 2.8rem;
+    content: ""
+}
+
+.footer .social .bilibili:hover::before {
+    color: #2cb2f9
+}
+
+.footer .social .linkedin {
+    top: -0.8px
+}
+
+.footer .social .linkedin::before {
+    font-size: 2rem;
+    content: ""
+}
+
+.footer .social .linkedin:hover::before {
+    color: #0077b5
+}
+
+.footer .social .steam {
+    top: 1.6px
+}
+
+.footer .social .steam::before {
+    font-size: 2rem;
+    content: ""
+}
+
+.footer .social .steam:hover::before {
+    color: #010101
+}
+
+.footer .social .others {
+    top: -0.8px
+}
+
+.footer .social .others::before {
+    font-size: 1.76rem;
+    content: ""
+}
+
+.footer .social .others:hover::before {
+    color: #8090b0
+}
+
+.footer .social .rss::before {
+    font-size: 1.68rem;
+    content: ""
+}
+
+.footer .social .rss:hover::before {
+    color: #e53935
+}
+
+.copyright {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    margin: .5rem auto;
+    text-align: center;
+    color: #777
+}
+
+.copyright a {
+    color: var(--main-color, #f75357)
+}
+
+.power {
+    position: relative;
+    vertical-align: baseline;
+    font-size: 1rem;
+    padding: 0 .2rem
+}
+
+.website-approve {
+    font-size: 14px;
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    margin: 0rem auto .5rem;
+    text-align: center;
+    color: #777
+}
+
+.website-approve a {
+    color: #777
+}
+
+.icp-approve {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+.beian-img {
+    position: relative;
+    vertical-align: middle;
+    padding: 0 .2rem .3rem .2rem
+}
+
+.beian-approve {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+.busuanzi-container {
+    text-align: center
+}
+
+#busuanzi_container_site_pv,
+#busuanzi_container_site_uv {
+    display: block;
+    text-align: center;
+    font: .6rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #ddd
+}
+
+header.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3.5rem;
+    overflow: hidden;
+    z-index: 10;
+    transform: translate3d(0, 0, 0);
+    transition: transform .3s ease-in 0s;
+    pointer-events: none
+}
+
+header.index-header {
+    background-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none
+}
+
+header.header-sidebar-active {
+    transform: translate3d(400px, 0, 0)
+}
+
+header .header-element {
+    pointer-events: auto
+}
+
+.read-progress {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background-color: rgba(0, 0, 0, .7);
+    transition: transform .1s ease-out, opacity .5s ease-in-out;
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+    z-index: 99999
+}
+
+
+.read-progress-feature {
+    background-color: var(--main-color, #f75357)
+}
+
+.header-sidebar-menu {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    border: 2px solid #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: translate(0, -50%);
+    transition: all .3s ease;
+    font-family: "iconfont-archer";
+    color: #fff;
+    text-align: center;
+    line-height: 1.5rem;
+    z-index: 21;
+    cursor: pointer
+}
+
+.header-sidebar-menu.header-sidebar-menu-active {
+    background-color: #fff;
+    color: #121212
+}
+
+.header-sidebar-menu-active {
+    transform: translate(0, -50%) rotate(180deg) !important
+}
+
+.header-sidebar-menu-rounded {
+    font-family: unset;
+    transform: translate(0, -50%);
+    width: 2.7rem;
+    height: 2.7rem;
+    line-height: 2.7rem;
+    border: unset;
+    border-radius: 50%
+}
+
+.header-sidebar-menu-rounded.header-sidebar-menu-active {
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--main-color, #f75357)
+}
+
+.header-sidebar-menu-black {
+    color: #121212;
+    background-color: #fff;
+    border-color: #121212
+}
+
+.header-sidebar-menu-black.header-sidebar-menu-active {
+    background-color: #121212;
+    color: #fff
+}
+
+@media not all and (hover: none) {
+    .header-sidebar-menu:hover {
+        background-color: #fff;
+        color: #121212
+    }
+
+    .header-sidebar-menu-rounded:hover {
+        background-color: rgba(0, 0, 0, 0);
+        color: var(--main-color, #f75357)
+    }
+
+    .header-sidebar-menu-black:hover {
+        background-color: #121212;
+        color: #fff
+    }
+}
+
+.header-actions {
+    position: absolute;
+    right: 1rem;
+    line-height: 2.7rem;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+
+.header-actions.header-actions-hide {
+    display: none
+}
+
+.header-actions>span {
+    margin-left: 1rem;
+    padding: .5rem
+}
+
+.header-actions .header-theme-btn {
+    color: #fff;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    transition: all .3s ease
+}
+
+.header-actions .header-theme-btn-disabled {
+    pointer-events: none
+}
+
+.header-actions .home-link {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+.header-actions .home-link a {
+    color: #fff;
+    transition: all .3s ease
+}
+
+@media not all and (hover: none) {
+    .header-actions .header-theme-btn:hover {
+        color: var(--main-color, #f75357)
+    }
+
+    .header-actions .home-link a:hover {
+        color: var(--main-color, #f75357)
+    }
+}
+
+header .banner {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: calc(100% - 1px);
+    border-bottom: 1px solid rgba(0, 0, 0, .8);
+    background-color: rgba(255, 255, 255, .8);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transform: translate3d(0, -100%, 0);
+    transition: transform .3s ease 0s
+}
+
+header .banner .post-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+    margin-left: 15%
+}
+
+header .banner .post-title a {
+    white-space: nowrap;
+    color: #333;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.5rem
+}
+
+header .banner .post-title.post-title-hide {
+    display: none
+}
+
+header .banner .blog-title {
+    display: flex;
+    position: absolute;
+    right: 1.5rem;
+    line-height: 2.7rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    justify-content: center;
+    align-items: center;
+    height: 100%
+}
+
+header .banner .blog-title a {
+    vertical-align: top;
+    white-space: nowrap;
+    color: #333;
+    font: 1rem/1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+header .banner .blog-title a:hover {
+    color: var(--main-color, #f75357)
+}
+
+header .banner.banner-show {
+    transform: translate3d(0, 0, 0)
+}
+
+header .banner.banner-clean {
+    border-bottom: unset
+}
+
+.site-intro-img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: calc(100% + 1px);
+    width: 100%;
+    filter: brightness(0.5);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0)
+}
+
+/* 顶部头图全宽 */
+.site-intro {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* 主体布局 */
+.page-body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 3rem 3%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.index-post-divider {
+    margin: 0.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.site-intro-meta {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.intro-title,
+.intro-subtitle {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #fff;
+    margin: 0;
+    opacity: 0;
+    transition: all .5s ease-out;
+    transform: translate(0, -1rem)
+}
+
+.intro-title {
+    font-size: 4rem
+}
+
+.intro-subtitle {
+    font-size: 2rem;
+    margin-top: .5rem;
+    transition-delay: .5s
+}
+
+.intro-fade-in {
+    opacity: 1;
+    transform: translate(0, 0)
+}
+
+.home-body .intro-title,
+.home-body .intro-subtitle {
+    text-align: center;
+    margin-top: 0
+}
+
+.page-nav {
+    padding: 1rem 0 .5rem 0;
+    display: flex;
+    justify-content: center
+}
+
+.page-nav>* {
+    font: 1.4rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #252525;
+    vertical-align: middle;
+    margin-right: .5rem;
+    text-align: center
+}
+
+.page-nav a {
+    position: relative;
+    color: #ccc;
+    overflow: visible
+}
+
+.page-nav a::after {
+    content: "";
+    position: absolute;
+    left: calc((100% - 98%) / 2);
+    bottom: -15%;
+    transition: all .15s ease-in;
+    width: 98%;
+    height: 2px;
+    transform: translate(0, 0);
+    background-color: #ccc;
+    opacity: 0
+}
+
+.page-nav a:hover::after {
+    transform: translate(0, -2px);
+    opacity: 1
+}
+
+.four-zero-four-body .loading {
+    display: none !important
+}
+
+.four-zero-four-body .site-intro {
+    height: 100%
+}
+
+.four-zero-four-body .site-intro-meta {
+    height: 80%
+}
+
+.four-zero-four-body .intro-title {
+    width: 80%;
+    text-align: center
+}
+
+.four-zero-four-body .intro-subtitle {
+    width: 90%;
+    text-align: center
+}
+
+.four-zero-four-body .wrapper {
+    height: 100vh;
+    padding-bottom: 0
+}
+
+.four-zero-four-body .container {
+    padding: 0
+}
+
+.four-zero-four-body .footer {
+    width: 100%;
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: 0
+}
+
+.four-zero-four-body .iconfont-archer::before {
+    color: rgba(255, 255, 255, .5)
+}
+
+.four-zero-four-body .copyright {
+    color: #ddd
+}
+
+.four-zero-four-body .website-approve a {
+    color: #ddd
+}
+
+.four-zero-four-body #busuanzi_container_site_pv,
+.four-zero-four-body #busuanzi_container_site_uv {
+    color: #ddd
+}
+
+.archer-float-left {
+    float: left;
+    margin-right: 1rem
+}
+
+.archer-float-right {
+    float: right;
+    margin-left: 1rem
+}
+
+/* Post Content Styles (Shared between Index and Article) */
+.index-post {
+    background-color: #fdfdfd;
+    border-radius: .5rem;
+    position: relative;
+    padding: 1rem;
+    z-index: 3;
+    transition: background-color .5s ease-out
+}
+
+.index-post .abstract-content {
+    color: #585858;
+    font-size: 1rem;
+    font-weight: 300;
+    word-break: break-word
+}
+
+.index-post .abstract-content img {
+    max-height: 60vh;
+    box-shadow: none
+}
+
+.index-post .abstract-content h1 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h1 .headerlink,
+.index-post .abstract-content h1 .anchorjs-link {
+    display: none
+}
+
+.index-post .abstract-content h2 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h2 .headerlink,
+.index-post .abstract-content h2 .anchorjs-link {
+    display: none
+}
+
+.index-post .abstract-content h3 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h3 .headerlink,
+.index-post .abstract-content h3 .anchorjs-link {
+    display: none
+}
+
+.index-post .abstract-content h4 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h4 .headerlink,
+.index-post .abstract-content h4 .anchorjs-link {
+    display: none
+}
+
+.index-post .abstract-content h5 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h5 .headerlink,
+.index-post .abstract-content h5 .anchorjs-link {
+    display: none
+}
+
+.index-post .abstract-content h6 {
+    font-weight: normal
+}
+
+.index-post .abstract-content h6 .headerlink,
+.index-post .abstract-content h6 .anchorjs-link {
+    display: none
+}
+
+.abstract-title {
+    display: flex;
+    align-items: baseline;
+    line-height: 1.625;
+    padding-top: .5rem;
+    transition: color .1s ease-in;
+    color: #333
+}
+
+.abstract-title:hover {
+    color: var(--main-color, #f75357)
+}
+
+.abstract-title .stick-top {
+    font-size: 1.3rem;
+    margin-right: .5rem
+}
+
+.abstract-title .abstract-title-text {
+    font-size: 1.7rem
+}
+
+.index-post .abstract-read-more-button {
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    font-size: 1rem
+}
+
+.index-post .abstract-read-more-button a {
+    color: #aaa;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: color .1s ease-in
+}
+
+.index-post .abstract-read-more-button a:hover {
+    color: var(--main-color, #f75357)
+}
+
+.abstract-post-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    color: #aaa
+}
+
+.abstract-post-meta a {
+    color: #aaa
+}
+
+.abstract-post-meta .abstract-calander {
+    position: relative;
+    top: -0.1rem;
+    margin-right: .3rem
+}
+
+.abstract-post-meta .abstract-tags {
+    text-align: right
+}
+
+.abstract-post-meta .post-category {
+    cursor: pointer;
+    position: relative;
+    margin-left: .4rem;
+    font-weight: lighter
+}
+
+.abstract-post-meta .post-category::after {
+    content: "";
+    position: absolute;
+    left: calc((100% - 98%) / 2);
+    bottom: -15%;
+    transition: all .15s ease-in;
+    width: 98%;
+    height: 2px;
+    transform: translate(0, 0);
+    background-color: #aaa;
+    opacity: 0
+}
+
+.abstract-post-meta .post-category:hover::after {
+    transform: translate(0, -2px);
+    opacity: 1
+}
+
+.abstract-post-meta .post-category-icon {
+    margin-right: 2px;
+    pointer-events: none
+}
+
+.abstract-post-meta .post-category-text {
+    pointer-events: none
+}
+
+.abstract-post-meta .post-tag {
+    position: relative;
+    margin-left: .4rem;
+    font-weight: lighter
+}
+
+.abstract-post-meta .post-tag::before {
+    margin-right: 2px;
+    content: "#"
+}
+
+.abstract-post-meta .post-tag::after {
+    content: "";
+    position: absolute;
+    left: calc((100% - 98%) / 2);
+    bottom: -15%;
+    transition: all .15s ease-in;
+    width: 98%;
+    height: 2px;
+    transform: translate(0, 0);
+    background-color: #aaa;
+    opacity: 0
+}
+
+.abstract-post-meta .post-tag:hover::after {
+    transform: translate(0, -2px);
+    opacity: 1
+}
+
+.index-post-divider {
+    margin: .5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, .2)
+}
+
+.abstract-content,
+.article-entry {
+    position: relative;
+    font-weight: lighter;
+    font-weight: 400;
+    color: #23394d
+}
+
+.abstract-content li,
+.article-entry li {
+    word-wrap: break-all;
+    line-height: 1.625
+}
+
+.abstract-content li p,
+.article-entry li p {
+    margin: 0
+}
+
+.abstract-content ul,
+.abstract-content ul li,
+.article-entry ul,
+.article-entry ul li {
+    list-style-type: initial;
+    margin-top: .25em
+}
+
+.abstract-content ol,
+.abstract-content ol li,
+.article-entry ol,
+.article-entry ol li {
+    list-style-type: decimal-leading-zero;
+    margin-top: .25em
+}
+
+.abstract-content h1 .headerlink,
+.article-entry h1 .headerlink {
+    display: none
+}
+
+.abstract-content h2 .headerlink,
+.article-entry h2 .headerlink {
+    display: none
+}
+
+.abstract-content h3 .headerlink,
+.article-entry h3 .headerlink {
+    display: none
+}
+
+.abstract-content h4 .headerlink,
+.article-entry h4 .headerlink {
+    display: none
+}
+
+.abstract-content h5 .headerlink,
+.article-entry h5 .headerlink {
+    display: none
+}
+
+.abstract-content h6 .headerlink,
+.article-entry h6 .headerlink {
+    display: none
+}
+
+.abstract-content h5,
+.article-entry h5 {
+    font-size: 1rem;
+    margin: 1rem 0
+}
+
+.abstract-content h6,
+.article-entry h6 {
+    font-size: .8rem;
+    margin: 1rem 0
+}
+
+.abstract-content p,
+.article-entry p {
+    line-height: 1.625
+}
+
+.abstract-content em,
+.article-entry em {
+    font-style: italic
+}
+
+.abstract-content img,
+.article-entry img {
+    display: block;
+    max-width: 100%;
+    margin: 1rem auto 1rem;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .2)
+}
+
+.abstract-content blockquote,
+.article-entry blockquote {
+    margin: 1.5em 0;
+    padding: 1rem 1.5rem;
+    position: relative;
+    background-color: #f6f6f6;
+    border-left: .35rem solid var(--main-color, #f75357);
+    border-radius: .35rem;
+    transition: all .5s ease-out
+}
+
+.abstract-content blockquote :first-child,
+.article-entry blockquote :first-child {
+    margin-top: 0
+}
+
+.abstract-content blockquote :last-child,
+.article-entry blockquote :last-child {
+    margin-bottom: 0
+}
+
+.abstract-content table,
+.article-entry table {
+    width: 100%;
+    color: #23394d;
+    border: 1px solid #ddd;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .125)
+}
+
+.abstract-content table tr,
+.abstract-content table td,
+.article-entry table tr,
+.article-entry table td {
+    height: 2rem
+}
+
+.abstract-content table th,
+.article-entry table th {
+    background: #f8f8f8
+}
+
+.abstract-content table tr :not(:first-child):hover,
+.article-entry table tr:not(:first-child):hover {
+    background: #efefef
+}
+
+.abstract-content table td,
+.abstract-content table th,
+.article-entry table td,
+.article-entry table th {
+    border: 1px solid #dedede;
+    padding: .2rem 1rem 0 1rem
+}
+
+.abstract-content a,
+.article-entry a {
+    color: var(--main-color, #f75357);
+    padding: 0 2px;
+    word-break: break-all
+}
+
+.abstract-content a:has(code),
+.article-entry a:has(code) {
+    padding: 0
+}
+
+.abstract-content a:hover,
+.article-entry a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: var(--main-color, #f75357);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px
+}
+
+.abstract-content a.fancybox,
+.article-entry a.fancybox {
+    border: 0
+}
