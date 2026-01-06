@@ -43,7 +43,8 @@ jobs:
 
       - name: Package theme
         run: |
-          zip -r halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
+          mkdir -p dist
+          zip -r dist/halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
 
       - name: Create Release
         id: create_release
@@ -51,7 +52,7 @@ jobs:
         with:
           name: ${{ env.VERSION }}
           body: ${{ steps.tag_msg.outputs.body }}
-          files: halo-theme-archer-${{ env.VERSION }}.zip
+          files: dist/halo-theme-archer-${{ env.VERSION }}.zip
           draft: false
           prerelease: false
 
@@ -62,4 +63,4 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           release-id: ${{ steps.create_release.outputs.id }}
           halo-pat: ${{ secrets.HALO_PAT }}
-          assets-dir: .
+          assets-dir: dist
