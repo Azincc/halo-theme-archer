@@ -282,7 +282,7 @@
     </style>
     <style
         th:if="${not #strings.isEmpty(theme.config.style.main_color_light) or not #strings.isEmpty(theme.config.style.main_color_dark)}"
-        th:utext="|:root{--main-color-light: ${theme.config.style.main_color_light ?: '#f75357'}; --main-color-dark: ${theme.config.style.main_color_dark ?: '#f75357'}; --main-color: var(--main-color-light);}|">
+        th:utext="|:root{--main-color-light: ${theme.config.style.main_color_light ?: '#f75357'}; --main-color-dark: ${theme.config.style.main_color_dark ?: '#f75357'}; --main-color: var(--main-color-light); --halo-search-widget-primary-color: var(--main-color);}|">
     </style>
     <script>
         (function () {
