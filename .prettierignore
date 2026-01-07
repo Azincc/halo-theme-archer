@@ -1,3 +1,4 @@
+.github
 node_modules
 dist
 theme.zip
@@ -6,7 +7,3 @@ templates/assets/lib
 templates/assets/font
 templates/assets/iconfont
 *.min.js
-.github/ISSUE_TEMPLATE
-
-
-
