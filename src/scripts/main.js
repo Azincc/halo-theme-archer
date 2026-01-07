@@ -5,6 +5,7 @@ import initImage from './image.js';
 import initScroll from './scroll.js';
 import initSidebar from './initSidebar.js';
 import initDonate from './donate.js';
+import initExcerpt from './excerpt.js';
 
 // print console info
 const logStyle = 'color: #fff; background: #f75357; padding: 1px; border-radius: 5px;';
@@ -37,6 +38,9 @@ initScroll();
 
 // donate
 initDonate();
+
+// excerpt
+initExcerpt();
 
 // Export the main module API for external access
 const mainModule = {

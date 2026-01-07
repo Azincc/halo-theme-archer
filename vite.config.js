@@ -18,7 +18,6 @@ export default defineConfig({
                 post: path.resolve(__dirname, 'src/styles/post.css'),
 
                 mobile: path.resolve(__dirname, 'src/styles/mobile.css'),
-                dark: path.resolve(__dirname, 'src/styles/dark.css'),
             },
             output: {
                 entryFileNames: `[name].js`,

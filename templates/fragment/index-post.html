@@ -4,17 +4,24 @@
         <span class="abstract-title-text" th:text="${post.spec.title ?: '[Untitled Post]'}">Post Title</span>
     </a>
 
-    <div class="abstract-content" th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
+    <th:block
+        th:with="postDepthStr=${post.metadata.annotations != null ? post.metadata.annotations['rich_excerpt_depth'] : null},
+                 isRich=${theme.config.style.enable_rich_excerpt and !#strings.isEmpty(postDepthStr)},
+                 finalDepth=${!#strings.isEmpty(postDepthStr) ? T(java.lang.Integer).parseInt(postDepthStr) : 0},
+                 fullContentVo=${isRich ? postFinder.content(post.metadata.name) : null}">
 
-    <div class="abstract-content" th:unless="${post.status.excerpt}"
-        th:with="truncateLen=${theme.config.style.truncate_length != null ? theme.config.style.truncate_length : 300},
-    fallbackExcerpt=${post.spec.excerpt?.raw},
-    sanitizedExcerpt=${fallbackExcerpt != null ? #strings.replace(#strings.replace(fallbackExcerpt, '<', ' <'), '>', '> ') : ''}">
-        <span th:if="${not #strings.isEmpty(sanitizedExcerpt)}"
-            th:text="${#strings.abbreviate(sanitizedExcerpt, truncateLen)}"></span>
-        <span th:if="${#strings.isEmpty(sanitizedExcerpt)}"
-            th:text="${#strings.abbreviate(post.spec.title ?: '[Untitled Post]', truncateLen)}"></span>
-    </div>
+        <div th:classappend="${finalDepth > 0} ? 'truncate' : ''"
+             th:attr="data-truncate-depth=${finalDepth > 0 ? finalDepth : ''}"
+             class="abstract-content rich-content" th:if="${isRich} and ${fullContentVo != null}">
+            <th:block th:utext="${fullContentVo.content}"></th:block>
+            <!-- Add a fade-out effect overlay if desired, or relying on height limit -->
+        </div>
+
+        <div class="abstract-content" th:unless="${isRich}">
+            <div th:if="${post.status.excerpt}" th:utext="${post.status.excerpt}"></div>
+            <div class="abstract-empty" th:if="${#strings.isEmpty(post.status.excerpt)}" style="height: 1rem;"></div>
+        </div>
+    </th:block>
 
     <div class="abstract-read-more-button" th:if="${theme.config.style.read_more_button}">
         <a th:href="${post.status.permalink}">

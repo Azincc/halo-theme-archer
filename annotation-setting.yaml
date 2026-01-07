@@ -1,0 +1,13 @@
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+    generateName: annotation-setting-
+spec:
+    targetRef:
+        group: content.halo.run
+        kind: Post
+    formSchema:
+        - $formkit: text
+          name: rich_excerpt_depth
+          label: 富文本摘要截取行数
+          help: 覆盖全局设置，留空则使用全局默认值

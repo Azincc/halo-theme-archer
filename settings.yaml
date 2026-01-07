@@ -200,10 +200,11 @@ spec:
                 name: show_categories
                 label: 显示文章分类
                 value: false
-              - $formkit: number
-                name: truncate_length
-                label: '摘要截断长度'
-                value: 300
+              - $formkit: checkbox
+                name: enable_rich_excerpt
+                label: '启用富文本摘要'
+                value: false
+
               - $formkit: checkbox
                 name: read_more_button
                 label: '显示阅读更多按钮'
@@ -216,8 +217,6 @@ spec:
                 name: reading_info
                 label: '显示字数和阅读时间'
                 value: false
-
-
 
         - group: seo
           label: SEO 设置
