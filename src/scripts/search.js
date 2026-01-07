@@ -7,7 +7,7 @@ const widgets = instantsearch.widgets || {};
 const { configure, searchBox, hits, stats, pagination } = widgets;
 
 const initAlgolia = () => {
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function () {
         if (!configure || !searchBox || !hits || !stats || !pagination) {
             console.error('InstantSearch widgets failed to load. Please check CDN availability.');
             return;
@@ -29,12 +29,12 @@ const initAlgolia = () => {
             indexName: algoliaSettings.indexName,
             searchClient,
             searchFunction: (helper) => {
-                const searchInput = $('#algolia-search-input').find('input');
+                const searchInput = document.querySelector('#algolia-search-input input');
 
                 const container = document.querySelector('.algolia-results');
                 container.style.display = helper.state.query === '' ? 'none' : '';
 
-                if (searchInput.val()) {
+                if (searchInput.value) {
                     helper.search();
                 }
             },
@@ -132,36 +132,47 @@ const initAlgolia = () => {
         search.start();
 
         const hidePopup = () => {
-            $('.ais-SearchBox-form').trigger('reset');
-            $('.popup').hide();
-            $('.algolia-pop-overlay').remove();
-            $('body').css('overflow', '');
+            document.querySelectorAll('.ais-SearchBox-form').forEach((form) => form.reset());
+            document.querySelector('.popup').style.display = 'none';
+            document.querySelector('.algolia-pop-overlay')?.remove();
+            document.body.style.overflow = '';
             archerUtil.stopBodyScroll(false);
         };
 
-        $('.popup-trigger').on('click', function (e) {
-            e.stopPropagation();
-            $('body').prepend('<div class="search-popup-overlay algolia-pop-overlay"></div>').css('overflow', 'hidden');
-            $('.popup').toggle();
-            $('#algolia-search-input').find('input').focus();
-            archerUtil.stopBodyScroll(true);
+        const popupTrigger = document.querySelector('.popup-trigger');
+        if (popupTrigger) {
+            popupTrigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const overlay = document.createElement('div');
+                overlay.className = 'search-popup-overlay algolia-pop-overlay';
+                document.body.prepend(overlay);
+                document.body.style.overflow = 'hidden';
 
-            $('.algolia-pop-overlay').click(function () {
-                hidePopup();
+                const popup = document.querySelector('.popup');
+                if (popup) {
+                    popup.style.display = popup.style.display === 'none' || !popup.style.display ? 'block' : 'none';
+                }
+
+                document.querySelector('#algolia-search-input input')?.focus();
+                archerUtil.stopBodyScroll(true);
+
+                overlay.addEventListener('click', function () {
+                    hidePopup();
+                });
             });
-        });
+        }
 
-        $('.popup-btn-close').click(function () {
+        document.querySelector('.popup-btn-close')?.addEventListener('click', function () {
             hidePopup();
         });
 
-        $(document).on('keydown', function (event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 hidePopup();
             }
         });
 
-        $('.site-search').removeClass('site-search-loading');
+        document.querySelector('.site-search')?.classList.remove('site-search-loading');
     });
 };
 

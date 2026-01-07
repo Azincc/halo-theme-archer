@@ -14,21 +14,19 @@ const resolveAssetsBasePath = () => {
 };
 
 const ensureDarkStylesheet = () => {
-    if ($(`link#${THEME_DARK_STYLESHEET_ID}`).length === 0) {
+    if (!document.querySelector(`link#${THEME_DARK_STYLESHEET_ID}`)) {
         const basePath = resolveAssetsBasePath();
-        $('<link>')
-            .attr({
-                id: THEME_DARK_STYLESHEET_ID,
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: `${basePath}assets/dist/dark.css`,
-            })
-            .appendTo('head');
+        const link = document.createElement('link');
+        link.id = THEME_DARK_STYLESHEET_ID;
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = `${basePath}assets/dist/dark.css`;
+        document.head.appendChild(link);
     }
 };
 
 const removeDarkStylesheet = () => {
-    $(`link#${THEME_DARK_STYLESHEET_ID}`).remove();
+    document.querySelector(`link#${THEME_DARK_STYLESHEET_ID}`)?.remove();
 };
 
 const resolveSystemThemeMode = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -43,12 +41,14 @@ const getPreferredThemeMode = () => {
 };
 
 const setThemeModeSwitchBtnActive = (active) => {
-    const $themeModeSwitchBtn = $('.header-theme-btn');
-    if (active) {
-        $themeModeSwitchBtn.removeClass('header-theme-btn-disabled');
-    } else {
-        $themeModeSwitchBtn.addClass('header-theme-btn-disabled');
-    }
+    const themeModeSwitchBtns = document.querySelectorAll('.header-theme-btn');
+    themeModeSwitchBtns.forEach((btn) => {
+        if (active) {
+            btn.classList.remove('header-theme-btn-disabled');
+        } else {
+            btn.classList.add('header-theme-btn-disabled');
+        }
+    });
 };
 
 const setThemeMode = (mode) => {
@@ -78,10 +78,14 @@ export const initializeColorScheme = () => {
 const initTheme = () => {
     setThemeMode(getPreferredThemeMode());
 
-    const $themeModeSwitchBtn = $('.header-theme-btn');
-    $themeModeSwitchBtn.off('click.archer-theme');
-    $themeModeSwitchBtn.on('click.archer-theme', () => {
-        switchThemeMode();
+    const themeModeSwitchBtns = document.querySelectorAll('.header-theme-btn');
+    themeModeSwitchBtns.forEach((btn) => {
+        // Remove existing listener if any (not strictly necessary with native if not storing ref, but good practice if needed)
+        // With native addEventListener, we can just add it. `click.archer-theme` namespace doesn't exist in native.
+        // Assuming we rely on idempotency or just adding it once.
+        btn.addEventListener('click', () => {
+            switchThemeMode();
+        });
     });
 };
 

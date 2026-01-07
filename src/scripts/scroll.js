@@ -1,29 +1,31 @@
 import archerUtil from './util.js';
 
 const initScroll = () => {
-    const $banner = $('.banner:first'),
-        $postBanner = $banner.find('.post-title a'),
-        $bgEle = $('.site-intro:first'),
-        $header = $('header.header'),
-        $headerActions = $('.header-actions'),
-        $donateBtn = $('.donate-btn'),
-        $backTop = $('.back-top:first'),
-        $sidebarMenu = $('.header-sidebar-menu:first'),
-        $tocWrapper = $('.toc-wrapper:first'),
-        $tocCatalog = $tocWrapper.find('.toc-catalog'),
-        $progressBar = $('.read-progress');
+    const banner = document.querySelector('.banner');
+    const postBanner = banner?.querySelector('.post-title a');
+    const bgEle = document.querySelector('.site-intro');
+    const header = document.querySelector('header.header');
+    const headerActions = document.querySelector('.header-actions');
+    const donateBtn = document.querySelector('.donate-btn');
+    const backTop = document.querySelector('.back-top');
+    const sidebarMenu = document.querySelector('.header-sidebar-menu');
+    const tocWrapper = document.querySelector('.toc-wrapper');
+    const tocCatalog = tocWrapper?.querySelector('.toc-catalog');
+    const progressBar = document.querySelector('.read-progress');
 
-    const hasIntro = $bgEle.length && $header.length;
+    const hasIntro = !!bgEle && !!header;
 
     if (!hasIntro) {
         console.warn('Site intro or header element not found. Some scroll features will be skipped.');
     }
 
-    const bgTitleHeight = hasIntro ? $bgEle.offset().top + $bgEle.outerHeight() - $header.height() / 2 : 0;
+    const bgTitleHeight = hasIntro
+        ? bgEle.getBoundingClientRect().top + window.scrollY + bgEle.offsetHeight - header.offsetHeight / 2
+        : 0;
 
     // toc 的收缩
-    $tocCatalog.on('click', () => {
-        $tocWrapper.toggleClass('toc-hide-children');
+    tocCatalog?.addEventListener('click', () => {
+        tocWrapper.classList.toggle('toc-hide-children');
     });
 
     // 滚动式切换文章标题和站点标题
@@ -78,13 +80,16 @@ const initScroll = () => {
     if (isPostPage) {
         // 使用 ResizeObserver 监听高度变化
         const updateDimensions = () => {
-            articleTop = hasIntro ? $bgEle.offset().top + $bgEle.outerHeight() - $header.height() / 2 : 0;
-            articleHeight = $('.article-entry').outerHeight();
+            articleTop = hasIntro
+                ? bgEle.getBoundingClientRect().top + window.scrollY + bgEle.offsetHeight - header.offsetHeight / 2
+                : 0;
+            const articleEntry = document.querySelector('.article-entry');
+            articleHeight = articleEntry ? articleEntry.offsetHeight : 0;
         };
 
         const resizeObserver = new ResizeObserver(() => {
             updateDimensions();
-            updateScroll($(document).scrollTop());
+            updateScroll(window.scrollY);
         });
 
         const articleEntry = document.querySelector('.article-entry');
@@ -118,12 +123,12 @@ const initScroll = () => {
     };
 
     const updateReadProgress = (readPercent) => {
-        if (!$progressBar.length) {
+        if (!progressBar) {
             return;
         }
         const restPercent = readPercent - 100 <= 0 ? readPercent - 100 : 0;
-        $progressBar[0].style.opacity = '1';
-        $progressBar[0].style.transform = `translate3d(${restPercent}%, 0, 0)`;
+        progressBar.style.opacity = '1';
+        progressBar.style.transform = `translate3d(${restPercent}%, 0, 0)`;
     };
 
     // rAF 操作
@@ -135,26 +140,26 @@ const initScroll = () => {
 
         // intro 边界切换
         if (crossingState === 1) {
-            $tocWrapper.addClass('toc-fixed');
-            $header.removeClass('header-mobile');
-            $headerActions.addClass('header-actions-hide');
-            $sidebarMenu.addClass('header-sidebar-menu-black');
-            $backTop.removeClass('footer-fixed-btn--hidden');
+            tocWrapper?.classList.add('toc-fixed');
+            header?.classList.remove('header-mobile');
+            headerActions?.classList.add('header-actions-hide');
+            sidebarMenu?.classList.add('header-sidebar-menu-black');
+            backTop?.classList.remove('footer-fixed-btn--hidden');
         } else if (crossingState === -1) {
-            $tocWrapper.removeClass('toc-fixed');
-            $header.addClass('header-mobile');
-            $headerActions.removeClass('header-actions-hide');
-            $banner.removeClass('banner-show');
-            $sidebarMenu.removeClass('header-sidebar-menu-black');
-            $backTop.addClass('footer-fixed-btn--hidden');
+            tocWrapper?.classList.remove('toc-fixed');
+            header?.classList.add('header-mobile');
+            headerActions?.classList.remove('header-actions-hide');
+            banner?.classList.remove('banner-show');
+            sidebarMenu?.classList.remove('header-sidebar-menu-black');
+            backTop?.classList.add('footer-fixed-btn--hidden');
         }
 
         if (isMobile) {
             // 移动端在所有页面的主内容区域时，显示 toggle banner
             if (isHigherThanIntro) {
-                $banner.removeClass('banner-show');
+                banner?.classList.remove('banner-show');
             } else {
-                $banner.addClass('banner-show');
+                banner?.classList.add('banner-show');
             }
         }
 
@@ -163,16 +168,16 @@ const initScroll = () => {
 
             // 仅在桌面端的 Post 页面，当从主内容区域向上滚动时，显示 toggle banner
             if (upDownState === 1) {
-                $banner.removeClass('banner-show');
+                banner?.classList.remove('banner-show');
             } else if (upDownState === -1 && !isHigherThanIntro) {
-                $banner.addClass('banner-show');
+                banner?.classList.add('banner-show');
             }
 
             // 仅在桌面端的 Post 页面，阅读进度大于等于 50% 时，显示 Donate 按钮
             if (readPercent >= 50) {
-                $donateBtn.removeClass('footer-fixed-btn--hidden');
-            } else if (crossingState === -1 && !$donateBtn.hasClass('footer-fixed-btn--active')) {
-                $donateBtn.addClass('footer-fixed-btn--hidden');
+                donateBtn?.classList.remove('footer-fixed-btn--hidden');
+            } else if (crossingState === -1 && !donateBtn?.classList.contains('footer-fixed-btn--active')) {
+                donateBtn?.classList.add('footer-fixed-btn--hidden');
             }
         }
 
@@ -187,18 +192,18 @@ const initScroll = () => {
 
     // scroll 回调
     const onScroll = () => {
-        const scrollTop = $(document).scrollTop();
+        const scrollTop = window.scrollY;
         const bindedUpdate = updateScroll.bind(null, scrollTop);
         archerUtil.rafTick(tickingScroll, bindedUpdate);
     };
     const throttleOnScroll = archerUtil.throttle(onScroll, 100);
 
     onScroll();
-    $(document).on('scroll', throttleOnScroll);
+    document.addEventListener('scroll', throttleOnScroll);
 
     // 绑定返回顶部事件
-    [$postBanner, $backTop].forEach((ele) => {
-        ele.on('click', archerUtil.backTop);
+    [postBanner, backTop].forEach((ele) => {
+        ele?.addEventListener('click', archerUtil.backTop);
     });
 };
 

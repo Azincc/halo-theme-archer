@@ -21,37 +21,37 @@ class Sidebar {
     }
 
     _initElements() {
-        this.$sidebar = $(this.options.sidebar);
-        this.$tabs = $(this.options.tabs);
-        this.$panels = $(this.options.panels);
-        this.$menuButton = $(this.options.menuButton);
-        this.$nav = $(this.options.nav);
-        this.$content = $(this.options.content);
+        this.sidebar = document.querySelector(this.options.sidebar);
+        this.tabs = document.querySelectorAll(this.options.tabs);
+        this.panels = document.querySelectorAll(this.options.panels);
+        this.menuButton = document.querySelector(this.options.menuButton);
+        this.nav = document.querySelector(this.options.nav);
+        this.content = document.querySelector(this.options.content);
     }
 
     _initTabs() {
-        this.$tabs.each((index, tab) => {
-            $(tab).data('tabIndex', index);
+        this.tabs.forEach((tab, index) => {
+            tab.setAttribute('data-tab-index', index);
         });
     }
 
     activateSidebar() {
-        this.$sidebar.removeClass('sidebar-hide');
-        $('.wrapper').addClass('wrapper-sidebar-active');
-        $('header.header').addClass('header-sidebar-active');
-        $('.footer-fixed').addClass('footer-fixed-sidebar-active');
-        $('.toc-wrapper').addClass('toc-slide');
-        this.$menuButton.addClass('header-sidebar-menu-active');
-        this.$sidebar.addClass('sidebar-active');
+        this.sidebar.classList.remove('sidebar-hide');
+        document.querySelector('.wrapper')?.classList.add('wrapper-sidebar-active');
+        document.querySelector('header.header')?.classList.add('header-sidebar-active');
+        document.querySelector('.footer-fixed')?.classList.add('footer-fixed-sidebar-active');
+        document.querySelector('.toc-wrapper')?.classList.add('toc-slide');
+        this.menuButton.classList.add('header-sidebar-menu-active');
+        this.sidebar.classList.add('sidebar-active');
     }
 
     _inactivateSidebar() {
-        $('.wrapper').removeClass('wrapper-sidebar-active');
-        $('header.header').removeClass('header-sidebar-active');
-        $('.footer-fixed').removeClass('footer-fixed-sidebar-active');
-        $('.toc-wrapper').removeClass('toc-slide');
-        this.$menuButton.removeClass('header-sidebar-menu-active');
-        this.$sidebar.removeClass(`sidebar-active`);
+        document.querySelector('.wrapper')?.classList.remove('wrapper-sidebar-active');
+        document.querySelector('header.header')?.classList.remove('header-sidebar-active');
+        document.querySelector('.footer-fixed')?.classList.remove('footer-fixed-sidebar-active');
+        document.querySelector('.toc-wrapper')?.classList.remove('toc-slide');
+        this.menuButton.classList.remove('header-sidebar-menu-active');
+        this.sidebar.classList.remove('sidebar-active');
     }
 
     switchTo(toIndex) {
@@ -61,9 +61,9 @@ class Sidebar {
     _switchTab(toIndex) {
         for (let i = 0; i < 3; i++) {
             if (i !== toIndex) {
-                this.$nav.removeClass(`sidebar-tabs-active-${i}`);
+                this.nav.classList.remove(`sidebar-tabs-active-${i}`);
             } else {
-                this.$nav.addClass(`sidebar-tabs-active-${i}`);
+                this.nav.classList.add(`sidebar-tabs-active-${i}`);
             }
         }
     }
@@ -71,9 +71,9 @@ class Sidebar {
     _switchPanel(toIndex) {
         for (let i = 0; i < 3; i++) {
             if (i !== toIndex) {
-                this.$content.removeClass(`sidebar-content-active-${i}`);
+                this.content.classList.remove(`sidebar-content-active-${i}`);
             } else {
-                this.$content.addClass(`sidebar-content-active-${i}`);
+                this.content.classList.add(`sidebar-content-active-${i}`);
             }
         }
     }
@@ -84,15 +84,18 @@ class Sidebar {
     }
 
     _bindTabsClick() {
-        this.$tabs.click((e) => {
-            const $target = $(e.target);
-            this.switchTo($target.data('tabIndex'));
+        this.tabs.forEach((tab) => {
+            tab.addEventListener('click', (e) => {
+                const target = e.currentTarget;
+                const index = parseInt(target.getAttribute('data-tab-index'), 10);
+                this.switchTo(index);
+            });
         });
     }
 
     _bindButtonClick() {
-        this.$menuButton.click((e) => {
-            if (this.$sidebar.hasClass('sidebar-active')) {
+        this.menuButton.addEventListener('click', (e) => {
+            if (this.sidebar.classList.contains('sidebar-active')) {
                 this._inactivateSidebar();
             } else {
                 this.activateSidebar();
@@ -101,7 +104,7 @@ class Sidebar {
     }
 
     _bindWrapperClick() {
-        $('.wrapper').click((e) => {
+        document.querySelector('.wrapper')?.addEventListener('click', (e) => {
             this._inactivateSidebar();
         });
     }
