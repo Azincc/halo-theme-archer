@@ -10,7 +10,7 @@ spec:
               - $formkit: text
                 name: main_title
                 label: 主标题
-                value: "fi3ework's Studio."
+                value: "Archer's Blog"
               - $formkit: text
                 name: subtitle
                 label: 副标题
@@ -30,7 +30,7 @@ spec:
               - $formkit: text
                 name: author
                 label: 作者名
-                value: 'fi3ework'
+                value: 'Azincc'
               - $formkit: text
                 name: signature
                 label: 个性签名
@@ -52,7 +52,7 @@ spec:
                       description: 'Font Awesome icon class, e.g., fab fa-github'
                 value:
                     - name: 'github'
-                      url: '//github.com/fi3ework'
+                      url: '//github.com/Azincc'
                       icon: 'fab fa-github'
                     - name: 'email'
                       url: 'mailto:12345@qq.com'
@@ -227,7 +227,7 @@ spec:
               - $formkit: text
                 name: url
                 label: '搜索 URL'
-                description: "例如：'fi3ework.github.io'"
+                description: "例如：'halo.run'"
               - $formkit: radio
                 name: engine
                 label: '搜索引擎'
@@ -246,12 +246,12 @@ spec:
               - $formkit: text
                 name: SEO_title
                 label: 网站标题
-                value: "fi3ework's Studio"
+                value: "Archer's Blog"
                 help: 用于 SEO 的网站标题，会显示在浏览器标签和搜索结果中
               - $formkit: text
                 name: SEO_keywords
                 label: 网站关键词
-                value: 'hexo,hexo-theme,hexo-blog'
+                value: 'halo,halo-theme,halo-blog'
                 help: 多个关键词用逗号分隔
               - $formkit: text
                 name: twitter_id

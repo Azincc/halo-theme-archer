@@ -9,14 +9,12 @@ import initDonate from './donate.js';
 // print console info
 const logStyle = 'color: #fff; background: #f75357; padding: 1px; border-radius: 5px;';
 const packageInfo = {
-    name: 'hexo-theme-archer',
-    version: '1.7.0',
-    versionDate: '20240720',
-    homepage: 'https://github.com/fi3ework/hexo-theme-archer',
+    name: 'halo-theme-archer',
+    version: '1.0.0',
+    homepage: 'https://github.com/Azincc/halo-theme-archer',
 };
 console.info(`%c 🎯 ${packageInfo.name} ⬇️ `, logStyle);
 console.info(`%c 🏷 Version: ${packageInfo.version} `, logStyle);
-console.info(`%c 📅 Version date: ${packageInfo.versionDate} `, logStyle);
 console.info(`%c 📦 ${packageInfo.homepage} `, logStyle);
 
 // site base

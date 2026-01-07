@@ -62,7 +62,7 @@ class MetaInfo {
             this._createPostsDom(corrArr);
         } catch (error) {
             console.error(
-                'Please make sure you have installed `hexo-generator-json-content`, and set `tags: true` and `categories: true`. More info: https://github.com/fi3ework/hexo-theme-archer/blob/master/README.md#%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85',
+                'Please make sure you have the content.json file generated correctly.',
             );
         }
     }
@@ -82,8 +82,8 @@ class MetaInfo {
     _createPostDom(postInfo) {
         const $tagItem = $(
             '<li class="meta-post-item"><span class="meta-post-date">' +
-                archerUtil.dateFormater(new Date(Date.parse(postInfo.date)), 'yyyy/MM/dd') +
-                '</span></li>',
+            archerUtil.dateFormater(new Date(Date.parse(postInfo.date)), 'yyyy/MM/dd') +
+            '</span></li>',
         );
         const $aItem = $(
             '<a class="meta-post-title" href="' + siteMeta.root + postInfo.path + '">' + postInfo.title + '</a>',
@@ -187,8 +187,7 @@ class SidebarMeta {
         xhr.onload = function () {
             if (this.status === 200 || this.status === 304) {
                 $loadFailed.remove();
-                // defensive programming if content.json formart is not correct
-                // pr: https://github.com/fi3ework/hexo-theme-archer/pull/37
+                // defensive programming if content.json format is not correct
                 const contentJSON = JSON.parse(this.responseText);
                 const posts = Array.isArray(contentJSON) ? contentJSON : contentJSON.posts;
                 if (posts && posts.length) {
