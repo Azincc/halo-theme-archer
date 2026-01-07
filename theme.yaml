@@ -1,23 +1,23 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: halo-theme-archer
+    name: halo-theme-archer
 spec:
-  displayName: Archer
-  version: 1.0.0
-  author:
-    name: Azincc
-    website: https://github.com/fi3ework
-  description: A simple and modern theme for Halo.
-  logo: /themes/halo-theme-archer/assets/Archer.webp
-  website: https://github.com/Azincc/halo-theme-archer
-  repo: https://github.com/Azincc/halo-theme-archer.git
-  settingName: halo-theme-archer-setting
-  configMapName: halo-theme-archer-configmap
-  issues: https://github.com/Azincc/halo-theme-archer/issues
-  homepage: https://archer.azin.cc
-  supportedVersions:
-    - ">=2.11.0"
-  license:
-    - name: "MIT (Modifications)"
-      url: "https://opensource.org/licenses/MIT"
+    displayName: Archer
+    version: 1.0.0
+    author:
+        name: Azincc
+        website: https://github.com/fi3ework
+    description: A simple and modern theme for Halo.
+    logo: /themes/halo-theme-archer/assets/Archer.webp
+    website: https://github.com/Azincc/halo-theme-archer
+    repo: https://github.com/Azincc/halo-theme-archer.git
+    settingName: halo-theme-archer-setting
+    configMapName: halo-theme-archer-configmap
+    issues: https://github.com/Azincc/halo-theme-archer/issues
+    homepage: https://archer.azin.cc
+    supportedVersions:
+        - '>=2.11.0'
+    license:
+        - name: 'MIT (Modifications)'
+          url: 'https://opensource.org/licenses/MIT'

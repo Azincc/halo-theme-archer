@@ -1,26 +1,28 @@
 {
-  "name": "halo-theme-archer",
-  "version": "1.0.0",
-  "description": "![preview.jpg](img/preview.jpg)",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Azincc/halo-theme-archer.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Azincc/halo-theme-archer/issues"
-  },
-  "homepage": "https://github.com/Azincc/halo-theme-archer#readme",
-  "devDependencies": {
-    "vite": "^7.3.0"
-  }
+    "name": "halo-theme-archer",
+    "version": "1.0.0",
+    "description": "![preview.jpg](img/preview.jpg)",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Azincc/halo-theme-archer.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/Azincc/halo-theme-archer/issues"
+    },
+    "homepage": "https://github.com/Azincc/halo-theme-archer#readme",
+    "devDependencies": {
+        "prettier": "^3.7.4",
+        "vite": "^7.3.0"
+    }
 }

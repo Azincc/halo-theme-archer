@@ -1,53 +1,50 @@
 <header
-  th:fragment="header"
-  class="header header-mobile"
-  th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'"
+    th:fragment="header"
+    class="header header-mobile"
+    th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'"
 >
-  <!-- top read progress line -->
-  <div class="header-element">
-    <div
-      th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
-      class="read-progress"
-    ></div>
-  </div>
-  
-  <!-- sidebar menu button -->
-  <div class="header-element">
-    <div
-      class="header-sidebar-menu"
-      th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
-    >
-      <th:block th:if="${theme.config.style?.float_button_theme == 'rounded'}">
-        <i class="fas fa-bars"></i>
-      </th:block>
-      <th:block th:unless="${theme.config.style?.float_button_theme == 'rounded'}">
-        <div style="padding-left: 1px;">&#xe775;</div>
-      </th:block>
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div
+            th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
+            class="read-progress"
+        ></div>
     </div>
-  </div>
-  
-  <!-- header actions -->
-  <div class="header-actions">
-    <!-- theme mode switch button -->
-    <span class="header-theme-btn header-element">
-      <i class="fas fa-adjust"></i>
-    </span>
-    <!-- back to home page text -->
-    <span class="home-link header-element">
-      <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Home</a>
-    </span>
-  </div>
-  
-  <!-- toggle banner -->
-  <div
-    class="banner"
-    th:classappend="${theme.config.style?.post_banner_theme == 'clean'} ? ' banner-clean'"
-  >
-    <div class="blog-title header-element">
-      <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Blog Title</a>
+
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div
+            class="header-sidebar-menu"
+            th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
+        >
+            <th:block th:if="${theme.config.style?.float_button_theme == 'rounded'}">
+                <i class="fas fa-bars"></i>
+            </th:block>
+            <th:block th:unless="${theme.config.style?.float_button_theme == 'rounded'}">
+                <div style="padding-left: 1px">&#xe775;</div>
+            </th:block>
+        </div>
     </div>
-    <div class="post-title header-element">
-      <a href="#" class="post-name" th:text="${post?.spec?.title ?: page?.title ?: ''}"></a>
+
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Home</a>
+        </span>
     </div>
-  </div>
+
+    <!-- toggle banner -->
+    <div class="banner" th:classappend="${theme.config.style?.post_banner_theme == 'clean'} ? ' banner-clean'">
+        <div class="blog-title header-element">
+            <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Blog Title</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name" th:text="${post?.spec?.title ?: page?.title ?: ''}"></a>
+        </div>
+    </div>
 </header>

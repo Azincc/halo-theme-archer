@@ -1,8 +1,7 @@
 ---
 name: '「请求帮助」或「反馈 Bug」（Help wanted or bug report）'
-about:
-  遇到问题需要帮助，或者是发现了 bug 提出反馈，尽量将以下信息填写完整即可（Encounter a problem and need help or
-  report bug. Fill the following as much as you can, please）
+about: 遇到问题需要帮助，或者是发现了 bug 提出反馈，尽量将以下信息填写完整即可（Encounter a problem and need help or
+    report bug. Fill the following as much as you can, please）
 ---
 
 **「描述遇到的问题」或「发现的 bug」（Describe the problem or bug you encounter）**

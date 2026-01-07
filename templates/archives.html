@@ -1,29 +1,34 @@
 <th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Archives', 'archives')}">
-  <th:block th:fragment="content">
-    <main class="main archives-page">
-      <div class="archives-container">
-        <th:block th:each="archive : ${archives.items}">
-          <div class="archive-year">
-            <h2 class="archive-year-title" th:text="${archive.year}"></h2>
-          </div>
-          <th:block th:each="month : ${archive.months}">
-            <div class="archive-month">
-              <h3 class="archive-month-title" th:text="${#dates.monthName(month.month)}"></h3>
-              <ul class="archive-posts">
-                <li class="archive-post" th:each="post : ${month.posts}">
-                  <a th:href="${post.status.permalink}">
-                    <span class="archive-post-date" th:text="${#dates.format(post.spec.publishTime, 'MM-dd')}"></span>
-                    <span class="archive-post-title" th:text="${post.spec.title}"></span>
-                  </a>
-                </li>
-              </ul>
+    <th:block th:fragment="content">
+        <main class="main archives-page">
+            <div class="archives-container">
+                <th:block th:each="archive : ${archives.items}">
+                    <div class="archive-year">
+                        <h2 class="archive-year-title" th:text="${archive.year}"></h2>
+                    </div>
+                    <th:block th:each="month : ${archive.months}">
+                        <div class="archive-month">
+                            <h3 class="archive-month-title" th:text="${#dates.monthName(month.month)}"></h3>
+                            <ul class="archive-posts">
+                                <li class="archive-post" th:each="post : ${month.posts}">
+                                    <a th:href="${post.status.permalink}">
+                                        <span
+                                            class="archive-post-date"
+                                            th:text="${#dates.format(post.spec.publishTime, 'MM-dd')}"
+                                        ></span>
+                                        <span class="archive-post-title" th:text="${post.spec.title}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </th:block>
+                </th:block>
             </div>
-          </th:block>
-        </th:block>
-      </div>
 
-      <th:block th:replace="~{fragment/navigation :: page-nav(pageData=${archives}, firstPageUrl='/archives', pageUrlPrefix='/archives/page/', pageUrlSuffix='/')}" />
-    </main>
-  </th:block>
-  <th:block th:fragment="page_js"></th:block>
+            <th:block
+                th:replace="~{fragment/navigation :: page-nav(pageData=${archives}, firstPageUrl='/archives', pageUrlPrefix='/archives/page/', pageUrlSuffix='/')}"
+            />
+        </main>
+    </th:block>
+    <th:block th:fragment="page_js"></th:block>
 </th:block>

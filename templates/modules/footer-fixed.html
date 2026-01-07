@@ -1,33 +1,44 @@
-<footer th:fragment="footer-fixed (templateId)" 
-        th:class="|footer-fixed ${templateId == 'index' ? 'index-footer-fixed' : ''}|">
-  
-  <!-- donate popup -->
-  <div class="donate-popup donate-popup--hidden" 
-       th:if="${templateId == 'post' and theme.config.donate?.enable == true}">
-    <div class="donate-popup__title" th:text="${theme.config.donate.title ?: 'Buy Me A Coffee'}"></div>
-    <div class="donate-popup__content">
-      <div class="donate-popup__content-description" 
-           th:text="${theme.config.donate.description ?: 'If this post helped you, please consider buying the author a cup of coffee.'}"></div>
-      <th:block th:if="${not #lists.isEmpty(theme.config.donate.qr_codes)}">
-        <img th:each="qrCode : ${theme.config.donate.qr_codes}"
-             class="donate-popup__content-qrCode"
-             th:title="${qrCode.alt ?: 'Donate'}"
-             th:alt="${qrCode.alt ?: 'Donate'}"
-             th:src="${qrCode.image}" />
-      </th:block>
+<footer
+    th:fragment="footer-fixed (templateId)"
+    th:class="|footer-fixed ${templateId == 'index' ? 'index-footer-fixed' : ''}|"
+>
+    <!-- donate popup -->
+    <div
+        class="donate-popup donate-popup--hidden"
+        th:if="${templateId == 'post' and theme.config.donate?.enable == true}"
+    >
+        <div class="donate-popup__title" th:text="${theme.config.donate.title ?: 'Buy Me A Coffee'}"></div>
+        <div class="donate-popup__content">
+            <div
+                class="donate-popup__content-description"
+                th:text="${theme.config.donate.description ?: 'If this post helped you, please consider buying the author a cup of coffee.'}"
+            ></div>
+            <th:block th:if="${not #lists.isEmpty(theme.config.donate.qr_codes)}">
+                <img
+                    th:each="qrCode : ${theme.config.donate.qr_codes}"
+                    class="donate-popup__content-qrCode"
+                    th:title="${qrCode.alt ?: 'Donate'}"
+                    th:alt="${qrCode.alt ?: 'Donate'}"
+                    th:src="${qrCode.image}"
+                />
+            </th:block>
+        </div>
     </div>
-  </div>
 
-  <!-- donate button -->
-  <div th:if="${templateId == 'post' and theme.config.donate?.enable == true}"
-       title="Donate to the author"
-       th:class="|footer-fixed-btn footer-fixed-btn--hidden ${theme.config.style.float_button_theme == 'rounded' ? 'footer-fixed-btn--rounded' : ''} donate-btn|">
-    <i class="fas fa-donate"></i>
-  </div>
+    <!-- donate button -->
+    <div
+        th:if="${templateId == 'post' and theme.config.donate?.enable == true}"
+        title="Donate to the author"
+        th:class="|footer-fixed-btn footer-fixed-btn--hidden ${theme.config.style.float_button_theme == 'rounded' ? 'footer-fixed-btn--rounded' : ''} donate-btn|"
+    >
+        <i class="fas fa-donate"></i>
+    </div>
 
-  <!-- back to top button -->
-  <div th:class="|footer-fixed-btn footer-fixed-btn--hidden ${theme.config.style.float_button_theme == 'rounded' ? 'footer-fixed-btn--rounded' : ''} back-top|">
-    <i th:if="${theme.config.style.float_button_theme == 'rounded'}" class="fas fa-chevron-up"></i>
-    <div th:unless="${theme.config.style.float_button_theme == 'rounded'}">&#xe639;</div>
-  </div>
+    <!-- back to top button -->
+    <div
+        th:class="|footer-fixed-btn footer-fixed-btn--hidden ${theme.config.style.float_button_theme == 'rounded' ? 'footer-fixed-btn--rounded' : ''} back-top|"
+    >
+        <i th:if="${theme.config.style.float_button_theme == 'rounded'}" class="fas fa-chevron-up"></i>
+        <div th:unless="${theme.config.style.float_button_theme == 'rounded'}">&#xe639;</div>
+    </div>
 </footer>

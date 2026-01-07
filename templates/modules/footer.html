@@ -1,60 +1,79 @@
 <footer th:fragment="footer" class="footer footer-unloaded">
-  <!-- social -->
-  <div class="social" th:if="${not #lists.isEmpty(theme.config.profile.social)}">
-    <a th:each="social : ${theme.config.profile.social}"
-       th:href="${social.url}"
-       th:class="|iconfont-archer ${social.name}|"
-       th:title="${social.name}"
-       target="_blank"
-       rel="noopener noreferrer"></a>
-  </div>
+    <!-- social -->
+    <div class="social" th:if="${not #lists.isEmpty(theme.config.profile.social)}">
+        <a
+            th:each="social : ${theme.config.profile.social}"
+            th:href="${social.url}"
+            th:class="|iconfont-archer ${social.name}|"
+            th:title="${social.name}"
+            target="_blank"
+            rel="noopener noreferrer"
+        ></a>
+    </div>
 
-  <!-- powered by -->
-  <div class="copyright">
-    <span id="hexo-power">Powered by <a href="https://halo.run/" target="_blank"
-                                        rel="noopener noreferrer">Halo</a></span>
-    <span class="iconfont-archer power">&#xe635;</span>
-    <span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank"
-                                   rel="noopener noreferrer">Archer</a></span>
-  </div>
-
-  <!-- beian information -->
-  <div class="website-approve"
-       th:if="${theme.config.footer?.beian?.enable == true and not #strings.isEmpty(theme.config.footer.beian.number)}">
-    <img class="beian-img" th:src="@{/assets/beian.png}" />
-    <span id="icp-approve" class="icp-approve">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
-         th:text="${theme.config.footer.beian.number}"></a>
-    </span>
-  </div>
-
-  <!-- custom footer information -->
-  <div class="website-approve" th:if="${not #lists.isEmpty(theme.config.footer.sfooter_info)}">
-    <th:block th:each="info : ${theme.config.footer.sfooter_info}">
-      <th:block
-        th:if="${not #strings.isEmpty(info.sf_title) or not #strings.isEmpty(info.sf_img)}">
-        <img class="beian-img" th:if="${not #strings.isEmpty(info.sf_img)}" th:src="${info.sf_img}" />
-        <span class="icp-approve" th:if="${not #strings.isEmpty(info.sf_title)}">
-          <a th:if="${not #strings.isEmpty(info.sf_link)}"
-             th:href="${info.sf_link}"
-             target="_blank"
-             rel="noopener noreferrer"
-             th:text="${info.sf_title}"></a>
-          <span th:if="${#strings.isEmpty(info.sf_link)}" th:text="${info.sf_title}"></span>
+    <!-- powered by -->
+    <div class="copyright">
+        <span id="hexo-power">
+            Powered by
+            <a href="https://halo.run/" target="_blank" rel="noopener noreferrer">Halo</a>
         </span>
-      </th:block>
-    </th:block>
-  </div>
+        <span class="iconfont-archer power">&#xe635;</span>
+        <span id="theme-info">
+            theme
+            <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank" rel="noopener noreferrer">Archer</a>
+        </span>
+    </div>
 
-  <!-- busuanzi -->
-  <div class="busuanzi-container" th:if="${theme.config.analytics?.busuanzi?.enable == true}"
-       th:with="stats = ${siteStatsFinder.getStats()}">
-    <th:block th:with="busuanziSlug=${theme.config.analytics.busuanzi?.slug ?: '本站访客数${count}人次'},
-                       sloganPieces=${#strings.arraySplit(busuanziSlug, '${count}')}">
-      <span id="busuanzi_container_site_pv">
-        <span th:text="${sloganPieces[0]}"></span><span th:text="${stats.visit}"></span><span
-        th:text="${#arrays.length(sloganPieces) > 1 ? sloganPieces[1] : ''}"></span></span>
-      </span>
-    </th:block>
-  </div>
+    <!-- beian information -->
+    <div
+        class="website-approve"
+        th:if="${theme.config.footer?.beian?.enable == true and not #strings.isEmpty(theme.config.footer.beian.number)}"
+    >
+        <img class="beian-img" th:src="@{/assets/beian.png}" />
+        <span id="icp-approve" class="icp-approve">
+            <a
+                href="https://beian.miit.gov.cn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                th:text="${theme.config.footer.beian.number}"
+            ></a>
+        </span>
+    </div>
+
+    <!-- custom footer information -->
+    <div class="website-approve" th:if="${not #lists.isEmpty(theme.config.footer.sfooter_info)}">
+        <th:block th:each="info : ${theme.config.footer.sfooter_info}">
+            <th:block th:if="${not #strings.isEmpty(info.sf_title) or not #strings.isEmpty(info.sf_img)}">
+                <img class="beian-img" th:if="${not #strings.isEmpty(info.sf_img)}" th:src="${info.sf_img}" />
+                <span class="icp-approve" th:if="${not #strings.isEmpty(info.sf_title)}">
+                    <a
+                        th:if="${not #strings.isEmpty(info.sf_link)}"
+                        th:href="${info.sf_link}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        th:text="${info.sf_title}"
+                    ></a>
+                    <span th:if="${#strings.isEmpty(info.sf_link)}" th:text="${info.sf_title}"></span>
+                </span>
+            </th:block>
+        </th:block>
+    </div>
+
+    <!-- busuanzi -->
+    <div
+        class="busuanzi-container"
+        th:if="${theme.config.analytics?.busuanzi?.enable == true}"
+        th:with="stats = ${siteStatsFinder.getStats()}"
+    >
+        <th:block
+            th:with="busuanziSlug=${theme.config.analytics.busuanzi?.slug ?: '本站访客数${count}人次'},
+                       sloganPieces=${#strings.arraySplit(busuanziSlug, '${count}')}"
+        >
+            <span id="busuanzi_container_site_pv">
+                <span th:text="${sloganPieces[0]}"></span>
+                <span th:text="${stats.visit}"></span>
+                <span th:text="${#arrays.length(sloganPieces) > 1 ? sloganPieces[1] : ''}"></span>
+            </span>
+        </th:block>
+    </div>
 </footer>

@@ -1,39 +1,35 @@
-import archerUtil from './util.js'
+import archerUtil from './util.js';
 
-
-
-const rem = archerUtil.rem()
+const rem = archerUtil.rem();
 
 const initDonate = () => {
-  const $donatePopup = $('.donate-popup'),
-    $donateBtn = $('.donate-btn'),
-    $postBody = $('.post-body'),
-    $postPage = $('.post-page')
+    const $donatePopup = $('.donate-popup'),
+        $donateBtn = $('.donate-btn'),
+        $postBody = $('.post-body'),
+        $postPage = $('.post-page');
 
-  const hideDonatePopup = () => {
-    $donatePopup.addClass('donate-popup--hidden')
-    $donateBtn.removeClass('footer-fixed-btn--active')
-  }
+    const hideDonatePopup = () => {
+        $donatePopup.addClass('donate-popup--hidden');
+        $donateBtn.removeClass('footer-fixed-btn--active');
+    };
 
-  const showDonatePopup = () => {
-    const popupWidth = Math.floor(
-      ($postBody.width() - $postPage.width()) / 2 + 4 * rem,
-    )
-    $donatePopup.css({ width: popupWidth })
+    const showDonatePopup = () => {
+        const popupWidth = Math.floor(($postBody.width() - $postPage.width()) / 2 + 4 * rem);
+        $donatePopup.css({ width: popupWidth });
 
-    $donatePopup.removeClass('donate-popup--hidden')
-    $donateBtn.addClass('footer-fixed-btn--active')
-  }
+        $donatePopup.removeClass('donate-popup--hidden');
+        $donateBtn.addClass('footer-fixed-btn--active');
+    };
 
-  $donateBtn.on('click', (e) => {
-    e.stopPropagation()
+    $donateBtn.on('click', (e) => {
+        e.stopPropagation();
 
-    if ($donatePopup.hasClass('donate-popup--hidden')) {
-      showDonatePopup()
-    } else {
-      hideDonatePopup()
-    }
-  })
-}
+        if ($donatePopup.hasClass('donate-popup--hidden')) {
+            showDonatePopup();
+        } else {
+            hideDonatePopup();
+        }
+    });
+};
 
-export default initDonate
+export default initDonate;

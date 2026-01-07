@@ -1,12 +1,12 @@
 <th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, 'Page Not Found', '404')}">
-  <th:block th:fragment="content">
-    <main class="main four-zero-four-page">
-      <section class="error-page text-center">
-        <h1>404</h1>
-        <p>抱歉，您访问的页面不存在。</p>
-        <a class="btn" th:href="@{/}">返回首页</a>
-      </section>
-    </main>
-  </th:block>
-  <th:block th:fragment="page_js"></th:block>
+    <th:block th:fragment="content">
+        <main class="main four-zero-four-page">
+            <section class="error-page text-center">
+                <h1>404</h1>
+                <p>抱歉，您访问的页面不存在。</p>
+                <a class="btn" th:href="@{/}">返回首页</a>
+            </section>
+        </main>
+    </th:block>
+    <th:block th:fragment="page_js"></th:block>
 </th:block>

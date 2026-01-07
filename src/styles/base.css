@@ -1,20 +1,24 @@
 :root {
-    --base-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+    --base-font-family:
+        -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', STHeiti,
+        'Microsoft YaHei', 'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN',
+        'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'WenQuanYi Micro Hei', SimSun, sans-serif;
 }
 
 @font-face {
-    font-family: "iconfont-archer";
-    src: url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot");
-    src: local("iconfont-archer"),
-        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix") format("embedded-opentype"),
-        url("/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix") format("embedded-opentype"),
-        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff") format("woff"),
-        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf") format("truetype"),
-        url("//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer") format("svg")
+    font-family: 'iconfont-archer';
+    src: url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot');
+    src:
+        local('iconfont-archer'),
+        url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix') format('embedded-opentype'),
+        url('/themes/halo-theme-archer/assets/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff') format('woff'),
+        url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer') format('svg');
 }
 
 @font-face {
-    font-family: "Oswald-Regular";
+    font-family: 'Oswald-Regular';
     src: url('/themes/halo-theme-archer/assets/font/Oswald-Regular.ttf');
     font-weight: normal;
     /* 或者 400 */
@@ -22,21 +26,21 @@
 }
 
 .iconfont-archer {
-    font-family: "iconfont-archer" !important;
+    font-family: 'iconfont-archer' !important;
     font-size: 1rem;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    margin: 0
+    margin: 0;
 }
 
 article,
@@ -52,7 +56,7 @@ menu,
 nav,
 section,
 summary {
-    display: block
+    display: block;
 }
 
 audio,
@@ -60,53 +64,53 @@ canvas,
 progress,
 video {
     display: inline-block;
-    vertical-align: baseline
+    vertical-align: baseline;
 }
 
 audio:not([controls]) {
     display: none;
-    height: 0
+    height: 0;
 }
 
 [hidden],
 template {
-    display: none
+    display: none;
 }
 
 a {
-    background-color: rgba(0, 0, 0, 0)
+    background-color: rgba(0, 0, 0, 0);
 }
 
 a:active,
 a:hover {
-    outline: 0
+    outline: 0;
 }
 
 abbr[title] {
-    border-bottom: 1px dotted
+    border-bottom: 1px dotted;
 }
 
 b,
 strong {
-    font-weight: bold
+    font-weight: bold;
 }
 
 dfn {
-    font-style: italic
+    font-style: italic;
 }
 
 h1 {
     font-size: 2em;
-    margin: .67em 0
+    margin: 0.67em 0;
 }
 
 mark {
     background: #ff0;
-    color: #000
+    color: #000;
 }
 
 small {
-    font-size: 80%
+    font-size: 80%;
 }
 
 sub,
@@ -114,36 +118,36 @@ sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
-    vertical-align: baseline
+    vertical-align: baseline;
 }
 
 sup {
-    top: -0.5em
+    top: -0.5em;
 }
 
 sub {
-    bottom: -0.25em
+    bottom: -0.25em;
 }
 
 img {
-    border: 0
+    border: 0;
 }
 
 svg:not(:root) {
-    overflow: hidden
+    overflow: hidden;
 }
 
 figure {
-    margin: 1em 40px
+    margin: 1em 40px;
 }
 
 hr {
     box-sizing: content-box;
-    height: 0
+    height: 0;
 }
 
 pre {
-    overflow: auto
+    overflow: auto;
 }
 
 code,
@@ -151,7 +155,7 @@ kbd,
 pre,
 samp {
     font-family: monospace, monospace;
-    font-size: 1em
+    font-size: 1em;
 }
 
 button,
@@ -161,106 +165,106 @@ select,
 textarea {
     color: inherit;
     font: inherit;
-    margin: 0
+    margin: 0;
 }
 
 button {
-    overflow: visible
+    overflow: visible;
 }
 
 button,
 select {
-    text-transform: none
+    text-transform: none;
 }
 
 button,
-html input[type=button],
-input[type=reset],
-input[type=submit] {
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
     -webkit-appearance: button;
-    cursor: pointer
+    cursor: pointer;
 }
 
 button[disabled],
 html input[disabled] {
-    cursor: default
+    cursor: default;
 }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
     border: 0;
-    padding: 0
+    padding: 0;
 }
 
 input {
-    line-height: normal
+    line-height: normal;
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type='checkbox'],
+input[type='radio'] {
     box-sizing: border-box;
-    padding: 0
+    padding: 0;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    height: auto
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    height: auto;
 }
 
-input[type=searcher] {
+input[type='searcher'] {
     -webkit-appearance: textfield;
-    box-sizing: content-box
+    box-sizing: content-box;
 }
 
-input[type=searcher]::-webkit-searcher-cancel-button,
-input[type=searcher]::-webkit-searcher-decoration {
-    -webkit-appearance: none
+input[type='searcher']::-webkit-searcher-cancel-button,
+input[type='searcher']::-webkit-searcher-decoration {
+    -webkit-appearance: none;
 }
 
 fieldset {
     border: 1px solid silver;
     margin: 0 2px;
-    padding: .35em .625em .75em
+    padding: 0.35em 0.625em 0.75em;
 }
 
 legend {
     border: 0;
-    padding: 0
+    padding: 0;
 }
 
 textarea {
-    overflow: auto
+    overflow: auto;
 }
 
 optgroup {
-    font-weight: bold
+    font-weight: bold;
 }
 
 table {
     border-collapse: collapse;
-    border-spacing: 0
+    border-spacing: 0;
 }
 
 td,
 th {
-    padding: 0
+    padding: 0;
 }
 
 html {
     font-size: 16px;
     font-family: var(--base-font-family);
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 * {
-    font-family: inherit
+    font-family: inherit;
 }
 
 body {
     z-index: 100;
     position: relative;
     background-color: #fff;
-    transition: all .5s ease-out
+    transition: all 0.5s ease-out;
 }
 
 .wrapper {
@@ -269,14 +273,14 @@ body {
     flex-direction: column;
     width: 100%;
     min-height: 100%;
-    transition: transform .3s ease-in;
+    transition: transform 0.3s ease-in;
     transform: translate3d(0, 0, 0);
     position: relative;
-    box-shadow: -3px 0 2px 0 rgba(0, 0, 0, .6)
+    box-shadow: -3px 0 2px 0 rgba(0, 0, 0, 0.6);
 }
 
 .wrapper-sidebar-active {
-    transform: translate3d(400px, 0, 0)
+    transform: translate3d(400px, 0, 0);
 }
 
 .main {
@@ -298,7 +302,7 @@ body {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    transition: all .5s ease-out;
+    transition: all 0.5s ease-out;
     opacity: 1;
     transform: translate3d(0, 0, 0);
     z-index: 5;
@@ -306,89 +310,108 @@ body {
 
 .container-unloaded {
     opacity: 0;
-    transform: translate3d(0, 1rem, 0)
+    transform: translate3d(0, 1rem, 0);
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
 }
 
 ul,
 li {
-    list-style-type: none
+    list-style-type: none;
 }
 
 ::-moz-selection {
     background: var(--main-color, #f75357);
-    color: #eee
+    color: #eee;
 }
 
 ::selection {
     background: var(--main-color, #f75357);
-    color: #eee
+    color: #eee;
 }
 
 .fancy-link {
     padding: 0 !important;
-    margin: 0 !important
+    margin: 0 !important;
 }
 
 .note {
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
-    border-left: .35rem solid;
-    border-radius: .35rem;
-    transition: all .5s ease-out
+    border-left: 0.35rem solid;
+    border-radius: 0.35rem;
+    transition: all 0.5s ease-out;
 }
 
 .note .title {
     font-weight: bold;
-    margin-top: 1rem
+    margin-top: 1rem;
 }
 
 .note.note-warning {
     background-color: #fdf8ea;
-    border-color: #f0ad4e
+    border-color: #f0ad4e;
 }
 
 .donate-popup {
     background: #fdfdfd;
     padding: 1.5rem 1rem;
     margin-left: -1rem;
-    margin-bottom: .5rem;
-    border-radius: .5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
     max-width: 22rem;
     box-shadow: 0 0 3px 1px #f0f0f0;
     pointer-events: all;
-    line-height: 1.4
+    line-height: 1.4;
 }
 
 .donate-popup--hidden {
     visibility: hidden;
-    pointer-events: none
+    pointer-events: none;
 }
 
 .donate-popup__title {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
     color: var(--main-color, #f75357);
     font-weight: bold;
     font-size: 1.2rem;
-    margin-bottom: .4rem
+    margin-bottom: 0.4rem;
 }
 
 .donate-popup__content-description {
     color: #23394d;
-    margin-bottom: .8rem
+    margin-bottom: 0.8rem;
 }
 
 .donate-popup__content-qrCode {
     cursor: help;
     width: 48%;
-    margin-right: 2%
+    margin-right: 2%;
 }
 
 .fancybox__container {
-    z-index: 10000
+    z-index: 10000;
 }
 
 .footer-fixed {
@@ -398,22 +421,19 @@ li {
     overflow: hidden;
     z-index: 10;
     transform: translate3d(0, 0, 0);
-    transition: transform .3s ease-in 0s;
-    pointer-events: none
+    transition: transform 0.3s ease-in 0s;
+    pointer-events: none;
 }
 
-
-
-
 .footer-fixed-sidebar-active {
-    transform: translate3d(400px, 0, 0)
+    transform: translate3d(400px, 0, 0);
 }
 
 .footer-fixed-btn {
     pointer-events: auto;
     display: block;
-    transition: all .3s ease;
-    font-family: "iconfont-archer";
+    transition: all 0.3s ease;
+    font-family: 'iconfont-archer';
     z-index: 21;
     width: 1.5rem;
     height: 1.5rem;
@@ -422,11 +442,11 @@ li {
     border: 2px solid #121212;
     background-color: #fff;
     cursor: pointer;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
 }
 
 .footer-fixed-btn:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .footer-fixed-btn--rounded {
@@ -436,22 +456,22 @@ li {
     height: 2.7rem;
     line-height: 2.7rem;
     border: unset;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .footer-fixed-btn--rounded:hover {
-    color: #fff
+    color: #fff;
 }
 
 .footer-fixed-btn--hidden {
     pointer-events: none;
-    opacity: 0
+    opacity: 0;
 }
 
 .footer-fixed-btn:hover,
 .footer-fixed-btn--active {
     background-color: #121212;
-    color: #fff
+    color: #fff;
 }
 
 .footer {
@@ -463,7 +483,7 @@ li {
     margin: 0 auto;
     width: 100%;
     background-color: #fff;
-    transition: background-color .5s ease-out
+    transition: background-color 0.5s ease-out;
 }
 
 .footer .social {
@@ -472,325 +492,420 @@ li {
     line-height: 2.5rem;
     margin: 0 auto;
     text-align: center;
-    vertical-align: text-bottom
+    vertical-align: text-bottom;
 }
 
 .footer .social .iconfont-archer {
-    position: relative
+    position: relative;
 }
 
 .footer .social .iconfont-archer {
     display: inline-block;
-    text-align: center
+    text-align: center;
 }
 
 .footer .social .iconfont-archer::before {
     display: inline-block;
     color: #777;
     font-size: 2.4rem;
-    margin: 0 .5rem 0 0
+    margin: 0 0.5rem 0 0;
 }
 
 .footer .social .iconfont-archer:last-of-child::before {
-    margin: 0
+    margin: 0;
 }
 
 .footer .social .email {
-    top: 3.2px
+    top: 3.2px;
 }
 
 .footer .social .email::before {
-    content: ""
+    content: '';
 }
 
 .footer .social .email:hover::before {
-    color: #0cb49d
+    color: #0cb49d;
 }
 
 .footer .social .github::before {
     font-size: 2.56rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .github:hover::before {
-    color: #24292e
+    color: #24292e;
 }
 
 .footer .social .wechat {
-    top: 3.2px
+    top: 3.2px;
 }
 
 .footer .social .wechat::before {
     font-size: 2.24rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .wechat:hover::before {
-    color: #42ae3c
+    color: #42ae3c;
 }
 
 .footer .social .qq {
-    top: 3.2px
+    top: 3.2px;
 }
 
 .footer .social .qq::before {
     font-size: 2.24rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .qq:hover::before {
-    color: #4f4e71
+    color: #4f4e71;
 }
 
 .footer .social .telegram {
-    top: 2px
+    top: 2px;
 }
 
 .footer .social .telegram::before {
     font-size: 2.08rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .telegram:hover::before {
-    color: #36a1d3
+    color: #36a1d3;
 }
 
 .footer .social .weibo::before {
     font-size: 2.56rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .weibo:hover::before {
-    color: #d52a2a
+    color: #d52a2a;
 }
 
 .footer .social .zhihu {
-    top: 2.4px
+    top: 2.4px;
 }
 
 .footer .social .zhihu::before {
     font-size: 2.16rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .zhihu:hover::before {
-    color: #0f88eb
+    color: #0f88eb;
 }
 
 .footer .social .douban {
-    top: 1.6px
+    top: 1.6px;
 }
 
 .footer .social .douban::before {
     font-size: 2rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .douban:hover::before {
-    color: #071
+    color: #071;
 }
 
 .footer .social .facebook {
-    top: 4px
+    top: 4px;
 }
 
 .footer .social .facebook::before {
     font-size: 2.4rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .facebook:hover::before {
-    color: #3b5998
+    color: #3b5998;
 }
 
 .footer .social .twitter {
-    top: 1.6px
+    top: 1.6px;
 }
 
 .footer .social .twitter::before {
-    content: ""
+    content: '';
 }
 
 .footer .social .twitter:hover::before {
-    color: #1da1f2
+    color: #1da1f2;
 }
 
 .footer .social .instagram {
-    top: 3.2px
+    top: 3.2px;
 }
 
 .footer .social .instagram::before {
-    content: "";
-    font-size: 2.24rem
+    content: '';
+    font-size: 2.24rem;
 }
 
 .footer .social .instagram:hover::before {
-    color: #8042b6
+    color: #8042b6;
 }
 
 .footer .social .stack-overflow {
-    top: .8px
+    top: 0.8px;
 }
 
 .footer .social .stack-overflow::before {
     font-size: 1.84rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .stack-overflow:hover::before {
-    color: #f37f23
+    color: #f37f23;
 }
 
 .footer .social .segmentFault {
-    top: 3.2px
+    top: 3.2px;
 }
 
 .footer .social .segmentFault::before {
     font-size: 2.4rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .segmentFault:hover::before {
-    color: #f37f23
+    color: #f37f23;
 }
 
 .footer .social .juejin {
-    top: .8px
+    top: 0.8px;
 }
 
 .footer .social .juejin::before {
     font-size: 2.16rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .juejin:hover::before {
-    color: #f37f23
+    color: #f37f23;
 }
 
 .footer .social .v2ex::before {
     font-size: 1.76rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .v2ex:hover::before {
-    color: #171718
+    color: #171718;
 }
 
 .footer .social .bilibili {
-    top: 4.8px
+    top: 4.8px;
 }
 
 .footer .social .bilibili::before {
     font-size: 2.8rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .bilibili:hover::before {
-    color: #2cb2f9
+    color: #2cb2f9;
 }
 
 .footer .social .linkedin {
-    top: -0.8px
+    top: -0.8px;
 }
 
 .footer .social .linkedin::before {
     font-size: 2rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .linkedin:hover::before {
-    color: #0077b5
+    color: #0077b5;
 }
 
 .footer .social .steam {
-    top: 1.6px
+    top: 1.6px;
 }
 
 .footer .social .steam::before {
     font-size: 2rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .steam:hover::before {
-    color: #010101
+    color: #010101;
 }
 
 .footer .social .others {
-    top: -0.8px
+    top: -0.8px;
 }
 
 .footer .social .others::before {
     font-size: 1.76rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .others:hover::before {
-    color: #8090b0
+    color: #8090b0;
 }
 
 .footer .social .rss::before {
     font-size: 1.68rem;
-    content: ""
+    content: '';
 }
 
 .footer .social .rss:hover::before {
-    color: #e53935
+    color: #e53935;
 }
 
 .copyright {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    margin: .5rem auto;
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
+    margin: 0.5rem auto;
     text-align: center;
-    color: #777
+    color: #777;
 }
 
 .copyright a {
-    color: var(--main-color, #f75357)
+    color: var(--main-color, #f75357);
 }
 
 .power {
     position: relative;
     vertical-align: baseline;
     font-size: 1rem;
-    padding: 0 .2rem
+    padding: 0 0.2rem;
 }
 
 .website-approve {
     font-size: 14px;
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    margin: 0rem auto .5rem;
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
+    margin: 0rem auto 0.5rem;
     text-align: center;
-    color: #777
+    color: #777;
 }
 
 .website-approve a {
-    color: #777
+    color: #777;
 }
 
 .icp-approve {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
 }
 
 .beian-img {
     position: relative;
     vertical-align: middle;
-    padding: 0 .2rem .3rem .2rem
+    padding: 0 0.2rem 0.3rem 0.2rem;
 }
 
 .beian-approve {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
 }
 
 .busuanzi-container {
-    text-align: center
+    text-align: center;
 }
 
 #busuanzi_container_site_pv,
 #busuanzi_container_site_uv {
     display: block;
     text-align: center;
-    font: .6rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    color: #ddd
+    font:
+        0.6rem 'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
+    color: #ddd;
 }
 
 header.header {
@@ -801,22 +916,22 @@ header.header {
     overflow: hidden;
     z-index: 10;
     transform: translate3d(0, 0, 0);
-    transition: transform .3s ease-in 0s;
-    pointer-events: none
+    transition: transform 0.3s ease-in 0s;
+    pointer-events: none;
 }
 
 header.index-header {
     background-color: transparent;
     -webkit-backdrop-filter: none;
-    backdrop-filter: none
+    backdrop-filter: none;
 }
 
 header.header-sidebar-active {
-    transform: translate3d(400px, 0, 0)
+    transform: translate3d(400px, 0, 0);
 }
 
 header .header-element {
-    pointer-events: auto
+    pointer-events: auto;
 }
 
 .read-progress {
@@ -825,16 +940,17 @@ header .header-element {
     top: 0;
     left: 0;
     height: 3px;
-    background-color: rgba(0, 0, 0, .7);
-    transition: transform .1s ease-out, opacity .5s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition:
+        transform 0.1s ease-out,
+        opacity 0.5s ease-in-out;
     transform: translate3d(-100%, 0, 0);
     opacity: 0;
-    z-index: 99999
+    z-index: 99999;
 }
 
-
 .read-progress-feature {
-    background-color: var(--main-color, #f75357)
+    background-color: var(--main-color, #f75357);
 }
 
 .header-sidebar-menu {
@@ -845,22 +961,22 @@ header .header-element {
     width: 1.5rem;
     height: 1.5rem;
     transform: translate(0, -50%);
-    transition: all .3s ease;
-    font-family: "iconfont-archer";
+    transition: all 0.3s ease;
+    font-family: 'iconfont-archer';
     color: #fff;
     text-align: center;
     line-height: 1.5rem;
     z-index: 21;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .header-sidebar-menu.header-sidebar-menu-active {
     background-color: #fff;
-    color: #121212
+    color: #121212;
 }
 
 .header-sidebar-menu-active {
-    transform: translate(0, -50%) rotate(180deg) !important
+    transform: translate(0, -50%) rotate(180deg) !important;
 }
 
 .header-sidebar-menu-rounded {
@@ -870,39 +986,39 @@ header .header-element {
     height: 2.7rem;
     line-height: 2.7rem;
     border: unset;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .header-sidebar-menu-rounded.header-sidebar-menu-active {
     background-color: rgba(0, 0, 0, 0);
-    color: var(--main-color, #f75357)
+    color: var(--main-color, #f75357);
 }
 
 .header-sidebar-menu-black {
     color: #121212;
     background-color: #fff;
-    border-color: #121212
+    border-color: #121212;
 }
 
 .header-sidebar-menu-black.header-sidebar-menu-active {
     background-color: #121212;
-    color: #fff
+    color: #fff;
 }
 
 @media not all and (hover: none) {
     .header-sidebar-menu:hover {
         background-color: #fff;
-        color: #121212
+        color: #121212;
     }
 
     .header-sidebar-menu-rounded:hover {
         background-color: rgba(0, 0, 0, 0);
-        color: var(--main-color, #f75357)
+        color: var(--main-color, #f75357);
     }
 
     .header-sidebar-menu-black:hover {
         background-color: #121212;
-        color: #fff
+        color: #fff;
     }
 }
 
@@ -911,16 +1027,16 @@ header .header-element {
     right: 1rem;
     line-height: 2.7rem;
     top: 50%;
-    transform: translate(0, -50%)
+    transform: translate(0, -50%);
 }
 
 .header-actions.header-actions-hide {
-    display: none
+    display: none;
 }
 
-.header-actions>span {
+.header-actions > span {
     margin-left: 1rem;
-    padding: .5rem
+    padding: 0.5rem;
 }
 
 .header-actions .header-theme-btn {
@@ -929,29 +1045,48 @@ header .header-element {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    transition: all .3s ease
+    transition: all 0.3s ease;
 }
 
 .header-actions .header-theme-btn-disabled {
-    pointer-events: none
+    pointer-events: none;
 }
 
 .header-actions .home-link {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
 }
 
 .header-actions .home-link a {
     color: #fff;
-    transition: all .3s ease
+    transition: all 0.3s ease;
 }
 
 @media not all and (hover: none) {
     .header-actions .header-theme-btn:hover {
-        color: var(--main-color, #f75357)
+        color: var(--main-color, #f75357);
     }
 
     .header-actions .home-link a:hover {
-        color: var(--main-color, #f75357)
+        color: var(--main-color, #f75357);
     }
 }
 
@@ -960,12 +1095,12 @@ header .banner {
     width: 100%;
     margin: 0 auto;
     height: calc(100% - 1px);
-    border-bottom: 1px solid rgba(0, 0, 0, .8);
-    background-color: rgba(255, 255, 255, .8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     transform: translate3d(0, -100%, 0);
-    transition: transform .3s ease 0s
+    transition: transform 0.3s ease 0s;
 }
 
 header .banner .post-title {
@@ -974,7 +1109,7 @@ header .banner .post-title {
     align-items: center;
     height: 100%;
     width: 70%;
-    margin-left: 15%
+    margin-left: 15%;
 }
 
 header .banner .post-title a {
@@ -984,11 +1119,11 @@ header .banner .post-title a {
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
-    font-size: 1.5rem
+    font-size: 1.5rem;
 }
 
 header .banner .post-title.post-title-hide {
-    display: none
+    display: none;
 }
 
 header .banner .blog-title {
@@ -1000,26 +1135,45 @@ header .banner .blog-title {
     transform: translate(0, -50%);
     justify-content: center;
     align-items: center;
-    height: 100%
+    height: 100%;
 }
 
 header .banner .blog-title a {
     vertical-align: top;
     white-space: nowrap;
     color: #333;
-    font: 1rem/1rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif
+    font:
+        1rem/1rem 'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
 }
 
 header .banner .blog-title a:hover {
-    color: var(--main-color, #f75357)
+    color: var(--main-color, #f75357);
 }
 
 header .banner.banner-show {
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
 }
 
 header .banner.banner-clean {
-    border-bottom: unset
+    border-bottom: unset;
 }
 
 .site-intro-img {
@@ -1033,7 +1187,7 @@ header .banner.banner-clean {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0)
+    background-color: rgba(0, 0, 0, 0);
 }
 
 /* 顶部头图全宽 */
@@ -1067,107 +1221,145 @@ header .banner.banner-clean {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 .intro-title,
 .intro-subtitle {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
     color: #fff;
     margin: 0;
     opacity: 0;
-    transition: all .5s ease-out;
-    transform: translate(0, -1rem)
+    transition: all 0.5s ease-out;
+    transform: translate(0, -1rem);
 }
 
 .intro-title {
-    font-size: 4rem
+    font-size: 4rem;
 }
 
 .intro-subtitle {
     font-size: 2rem;
-    margin-top: .5rem;
-    transition-delay: .5s
+    margin-top: 0.5rem;
+    transition-delay: 0.5s;
 }
 
 .intro-fade-in {
     opacity: 1;
-    transform: translate(0, 0)
+    transform: translate(0, 0);
 }
 
 .home-body .intro-title,
 .home-body .intro-subtitle {
     text-align: center;
-    margin-top: 0
+    margin-top: 0;
 }
 
 .page-nav {
-    padding: 1rem 0 .5rem 0;
+    padding: 1rem 0 0.5rem 0;
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
 
-.page-nav>* {
-    font: 1.4rem "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+.page-nav > * {
+    font:
+        1.4rem 'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
     color: #252525;
     vertical-align: middle;
-    margin-right: .5rem;
-    text-align: center
+    margin-right: 0.5rem;
+    text-align: center;
 }
 
 .page-nav a {
     position: relative;
     color: #ccc;
-    overflow: visible
+    overflow: visible;
 }
 
 .page-nav a::after {
-    content: "";
+    content: '';
     position: absolute;
     left: calc((100% - 98%) / 2);
     bottom: -15%;
-    transition: all .15s ease-in;
+    transition: all 0.15s ease-in;
     width: 98%;
     height: 2px;
     transform: translate(0, 0);
     background-color: #ccc;
-    opacity: 0
+    opacity: 0;
 }
 
 .page-nav a:hover::after {
     transform: translate(0, -2px);
-    opacity: 1
+    opacity: 1;
 }
 
 .four-zero-four-body .loading {
-    display: none !important
+    display: none !important;
 }
 
 .four-zero-four-body .site-intro {
-    height: 100%
+    height: 100%;
 }
 
 .four-zero-four-body .site-intro-meta {
-    height: 80%
+    height: 80%;
 }
 
 .four-zero-four-body .intro-title {
     width: 80%;
-    text-align: center
+    text-align: center;
 }
 
 .four-zero-four-body .intro-subtitle {
     width: 90%;
-    text-align: center
+    text-align: center;
 }
 
 .four-zero-four-body .wrapper {
     height: 100vh;
-    padding-bottom: 0
+    padding-bottom: 0;
 }
 
 .four-zero-four-body .container {
-    padding: 0
+    padding: 0;
 }
 
 .four-zero-four-body .footer {
@@ -1175,137 +1367,156 @@ header .banner.banner-clean {
     z-index: 30;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
-    bottom: 0
+    bottom: 0;
 }
 
 .four-zero-four-body .iconfont-archer::before {
-    color: rgba(255, 255, 255, .5)
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .four-zero-four-body .copyright {
-    color: #ddd
+    color: #ddd;
 }
 
 .four-zero-four-body .website-approve a {
-    color: #ddd
+    color: #ddd;
 }
 
 .four-zero-four-body #busuanzi_container_site_pv,
 .four-zero-four-body #busuanzi_container_site_uv {
-    color: #ddd
+    color: #ddd;
 }
 
 .archer-float-left {
     float: left;
-    margin-right: 1rem
+    margin-right: 1rem;
 }
 
 .archer-float-right {
     float: right;
-    margin-left: 1rem
+    margin-left: 1rem;
 }
 
 /* Post Content Styles (Shared between Index and Article) */
 .index-post {
     background-color: #fdfdfd;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     position: relative;
     padding: 1rem;
     z-index: 3;
-    transition: background-color .5s ease-out
+    transition: background-color 0.5s ease-out;
 }
 
 .index-post .abstract-content {
     color: #585858;
     font-size: 1rem;
     font-weight: 300;
-    word-break: break-word
+    word-break: break-word;
 }
 
 .index-post .abstract-content img {
     max-height: 60vh;
-    box-shadow: none
+    box-shadow: none;
 }
 
 .index-post .abstract-content h1 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h1 .headerlink,
 .index-post .abstract-content h1 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .index-post .abstract-content h2 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h2 .headerlink,
 .index-post .abstract-content h2 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .index-post .abstract-content h3 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h3 .headerlink,
 .index-post .abstract-content h3 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .index-post .abstract-content h4 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h4 .headerlink,
 .index-post .abstract-content h4 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .index-post .abstract-content h5 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h5 .headerlink,
 .index-post .abstract-content h5 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .index-post .abstract-content h6 {
-    font-weight: normal
+    font-weight: normal;
 }
 
 .index-post .abstract-content h6 .headerlink,
 .index-post .abstract-content h6 .anchorjs-link {
-    display: none
+    display: none;
 }
 
 .abstract-title {
     display: flex;
     align-items: baseline;
     line-height: 1.625;
-    padding-top: .5rem;
-    transition: color .1s ease-in;
-    color: #333
+    padding-top: 0.5rem;
+    transition: color 0.1s ease-in;
+    color: #333;
 }
 
 .abstract-title:hover {
-    color: var(--main-color, #f75357)
+    color: var(--main-color, #f75357);
 }
 
 .abstract-title .stick-top {
     font-size: 1.3rem;
-    margin-right: .5rem
+    margin-right: 0.5rem;
 }
 
 .abstract-title .abstract-title-text {
-    font-size: 1.7rem
+    font-size: 1.7rem;
 }
 
 .index-post .abstract-read-more-button {
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    font-size: 1rem
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
+    font-size: 1rem;
 }
 
 .index-post .abstract-read-more-button a {
@@ -1314,11 +1525,11 @@ header .banner.banner-clean {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    transition: color .1s ease-in
+    transition: color 0.1s ease-in;
 }
 
 .index-post .abstract-read-more-button a:hover {
-    color: var(--main-color, #f75357)
+    color: var(--main-color, #f75357);
 }
 
 .abstract-post-meta {
@@ -1326,90 +1537,109 @@ header .banner.banner-clean {
     justify-content: space-between;
     margin-top: 1rem;
     font-size: 1rem;
-    font-family: "Oswald-Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    color: #aaa
+    font-family:
+        'Oswald-Regular',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Helvetica Neue',
+        Arial,
+        'PingFang SC',
+        'Hiragino Sans GB',
+        STHeiti,
+        'Microsoft YaHei',
+        'Microsoft JhengHei',
+        'Source Han Sans SC',
+        'Noto Sans CJK SC',
+        'Source Han Sans CN',
+        'Noto Sans SC',
+        'Source Han Sans TC',
+        'Noto Sans CJK TC',
+        'WenQuanYi Micro Hei',
+        SimSun,
+        sans-serif;
+    color: #aaa;
 }
 
 .abstract-post-meta a {
-    color: #aaa
+    color: #aaa;
 }
 
 .abstract-post-meta .abstract-calander {
     position: relative;
     top: -0.1rem;
-    margin-right: .3rem
+    margin-right: 0.3rem;
 }
 
 .abstract-post-meta .abstract-tags {
-    text-align: right
+    text-align: right;
 }
 
 .abstract-post-meta .post-category {
     cursor: pointer;
     position: relative;
-    margin-left: .4rem;
-    font-weight: lighter
+    margin-left: 0.4rem;
+    font-weight: lighter;
 }
 
 .abstract-post-meta .post-category::after {
-    content: "";
+    content: '';
     position: absolute;
     left: calc((100% - 98%) / 2);
     bottom: -15%;
-    transition: all .15s ease-in;
+    transition: all 0.15s ease-in;
     width: 98%;
     height: 2px;
     transform: translate(0, 0);
     background-color: #aaa;
-    opacity: 0
+    opacity: 0;
 }
 
 .abstract-post-meta .post-category:hover::after {
     transform: translate(0, -2px);
-    opacity: 1
+    opacity: 1;
 }
 
 .abstract-post-meta .post-category-icon {
     margin-right: 2px;
-    pointer-events: none
+    pointer-events: none;
 }
 
 .abstract-post-meta .post-category-text {
-    pointer-events: none
+    pointer-events: none;
 }
 
 .abstract-post-meta .post-tag {
     position: relative;
-    margin-left: .4rem;
-    font-weight: lighter
+    margin-left: 0.4rem;
+    font-weight: lighter;
 }
 
 .abstract-post-meta .post-tag::before {
     margin-right: 2px;
-    content: "#"
+    content: '#';
 }
 
 .abstract-post-meta .post-tag::after {
-    content: "";
+    content: '';
     position: absolute;
     left: calc((100% - 98%) / 2);
     bottom: -15%;
-    transition: all .15s ease-in;
+    transition: all 0.15s ease-in;
     width: 98%;
     height: 2px;
     transform: translate(0, 0);
     background-color: #aaa;
-    opacity: 0
+    opacity: 0;
 }
 
 .abstract-post-meta .post-tag:hover::after {
     transform: translate(0, -2px);
-    opacity: 1
+    opacity: 1;
 }
 
 .index-post-divider {
-    margin: .5rem;
-    border-bottom: 1px dashed rgba(0, 0, 0, .2)
+    margin: 0.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
 .abstract-content,
@@ -1417,18 +1647,18 @@ header .banner.banner-clean {
     position: relative;
     font-weight: lighter;
     font-weight: 400;
-    color: #23394d
+    color: #23394d;
 }
 
 .abstract-content li,
 .article-entry li {
     word-wrap: break-all;
-    line-height: 1.625
+    line-height: 1.625;
 }
 
 .abstract-content li p,
 .article-entry li p {
-    margin: 0
+    margin: 0;
 }
 
 .abstract-content ul,
@@ -1436,7 +1666,7 @@ header .banner.banner-clean {
 .article-entry ul,
 .article-entry ul li {
     list-style-type: initial;
-    margin-top: .25em
+    margin-top: 0.25em;
 }
 
 .abstract-content ol,
@@ -1444,59 +1674,59 @@ header .banner.banner-clean {
 .article-entry ol,
 .article-entry ol li {
     list-style-type: decimal-leading-zero;
-    margin-top: .25em
+    margin-top: 0.25em;
 }
 
 .abstract-content h1 .headerlink,
 .article-entry h1 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h2 .headerlink,
 .article-entry h2 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h3 .headerlink,
 .article-entry h3 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h4 .headerlink,
 .article-entry h4 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h5 .headerlink,
 .article-entry h5 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h6 .headerlink,
 .article-entry h6 .headerlink {
-    display: none
+    display: none;
 }
 
 .abstract-content h5,
 .article-entry h5 {
     font-size: 1rem;
-    margin: 1rem 0
+    margin: 1rem 0;
 }
 
 .abstract-content h6,
 .article-entry h6 {
-    font-size: .8rem;
-    margin: 1rem 0
+    font-size: 0.8rem;
+    margin: 1rem 0;
 }
 
 .abstract-content p,
 .article-entry p {
-    line-height: 1.625
+    line-height: 1.625;
 }
 
 .abstract-content em,
 .article-entry em {
-    font-style: italic
+    font-style: italic;
 }
 
 .abstract-content img,
@@ -1504,7 +1734,7 @@ header .banner.banner-clean {
     display: block;
     max-width: 100%;
     margin: 1rem auto 1rem;
-    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .2)
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .abstract-content blockquote,
@@ -1513,19 +1743,19 @@ header .banner.banner-clean {
     padding: 1rem 1.5rem;
     position: relative;
     background-color: #f6f6f6;
-    border-left: .35rem solid var(--main-color, #f75357);
-    border-radius: .35rem;
-    transition: all .5s ease-out
+    border-left: 0.35rem solid var(--main-color, #f75357);
+    border-radius: 0.35rem;
+    transition: all 0.5s ease-out;
 }
 
 .abstract-content blockquote :first-child,
 .article-entry blockquote :first-child {
-    margin-top: 0
+    margin-top: 0;
 }
 
 .abstract-content blockquote :last-child,
 .article-entry blockquote :last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .abstract-content table,
@@ -1535,24 +1765,24 @@ header .banner.banner-clean {
     border: 1px solid #ddd;
     margin: 1rem 0;
     border-collapse: collapse;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .125)
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.125);
 }
 
 .abstract-content table tr,
 .abstract-content table td,
 .article-entry table tr,
 .article-entry table td {
-    height: 2rem
+    height: 2rem;
 }
 
 .abstract-content table th,
 .article-entry table th {
-    background: #f8f8f8
+    background: #f8f8f8;
 }
 
 .abstract-content table tr :not(:first-child):hover,
 .article-entry table tr:not(:first-child):hover {
-    background: #efefef
+    background: #efefef;
 }
 
 .abstract-content table td,
@@ -1560,19 +1790,19 @@ header .banner.banner-clean {
 .article-entry table td,
 .article-entry table th {
     border: 1px solid #dedede;
-    padding: .2rem 1rem 0 1rem
+    padding: 0.2rem 1rem 0 1rem;
 }
 
 .abstract-content a,
 .article-entry a {
     color: var(--main-color, #f75357);
     padding: 0 2px;
-    word-break: break-all
+    word-break: break-all;
 }
 
 .abstract-content a:has(code),
 .article-entry a:has(code) {
-    padding: 0
+    padding: 0;
 }
 
 .abstract-content a:hover,
@@ -1580,10 +1810,10 @@ header .banner.banner-clean {
     text-decoration-line: underline;
     text-decoration-color: var(--main-color, #f75357);
     text-decoration-thickness: 2px;
-    text-underline-offset: 4px
+    text-underline-offset: 4px;
 }
 
 .abstract-content a.fancybox,
 .article-entry a.fancybox {
-    border: 0
+    border: 0;
 }

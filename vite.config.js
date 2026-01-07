@@ -1,4 +1,3 @@
-
 import { defineConfig } from 'vite';
 import path from 'path';
 
@@ -25,10 +24,10 @@ export default defineConfig({
                 entryFileNames: `[name].js`,
                 chunkFileNames: `[name].js`,
                 assetFileNames: `[name].[ext]`,
-            }
-        }
+            },
+        },
     },
     server: {
         origin: 'http://localhost:5173', // For HMR (if we were doing full integration)
-    }
+    },
 });

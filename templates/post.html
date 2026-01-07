@@ -1,89 +1,107 @@
-<th:block th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, 'post')}"
-  xmlns:th="http://www.w3.org/1999/xhtml">
-  <th:block th:fragment="content">
-    <main class="main post-page">
-      <!-- Post Intro - Header Image Area -->
+<th:block
+    th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${post.spec.title}, 'post')}"
+    xmlns:th="http://www.w3.org/1999/xhtml"
+>
+    <th:block th:fragment="content">
+        <main class="main post-page">
+            <!-- Post Intro - Header Image Area -->
 
+            <article class="article-entry" th:utext="${post.content.content}"></article>
 
-      <article class="article-entry" th:utext="${post.content.content}"></article>
+            <!-- Previous/Next Post Navigation -->
+            <th:block th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
+                <ul
+                    class="post-paginator"
+                    th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}"
+                >
+                    <li class="next">
+                        <a
+                            th:href="@{${postCursor.previous.status.permalink}}"
+                            th:title="${postCursor.previous.spec.title}"
+                            th:if="${postCursor.hasPrevious()}"
+                            class="next-link"
+                        >
+                            <div class="nextSlogan">Next Post</div>
+                            <div class="nextTitle" th:text="${postCursor.previous.spec.title}">Next Post Title</div>
+                        </a>
+                    </li>
+                    <li class="previous" th:if="${postCursor.hasNext()}">
+                        <a
+                            th:href="@{${postCursor.next.status.permalink}}"
+                            th:title="${postCursor.next.spec.title}"
+                            class="prev-link"
+                        >
+                            <div class="prevSlogan">Previous Post</div>
+                            <div class="prevTitle" th:text="${postCursor.next.spec.title}">Previous Post Title</div>
+                        </a>
+                    </li>
+                </ul>
+                <script th:inline="javascript" th:if="${postCursor != null}"></script>
+            </th:block>
 
-      <!-- Previous/Next Post Navigation -->
-      <th:block th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
-        <ul class="post-paginator" th:if="${postCursor != null and (postCursor.hasPrevious() or postCursor.hasNext())}">
-          <li class="next">
-            <a th:href="@{${postCursor.previous.status.permalink}}" th:title="${postCursor.previous.spec.title}"
-              th:if="${postCursor.hasPrevious()}" class="next-link">
-              <div class="nextSlogan">Next Post</div>
-              <div class="nextTitle" th:text="${postCursor.previous.spec.title}">Next Post Title</div>
-            </a>
-          </li>
-          <li class="previous" th:if="${postCursor.hasNext()}">
-            <a th:href="@{${postCursor.next.status.permalink}}" th:title="${postCursor.next.spec.title}"
-              class="prev-link">
-              <div class="prevSlogan">Previous Post</div>
-              <div class="prevTitle" th:text="${postCursor.next.spec.title}">Previous Post Title</div>
-            </a>
-          </li>
-        </ul>
-        <script th:inline="javascript" th:if="${postCursor != null}">
+            <div class="license-wrapper" th:if="${theme.config.other.copyright?.enable == true}">
+                <p>
+                    Author:
+                    <a
+                        th:href="${post.owner?.permalink != null ? post.owner.permalink : post.status.permalink}"
+                        th:text="${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"
+                    ></a>
+                </p>
+                <p>
+                    Permalink:
+                    <a th:href="${post.status.permalink}" th:text="${post.status.permalink}"></a>
+                </p>
+                <p th:if="${post.spec.publishTime != null}">
+                    Published:
+                    <span th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </p>
+                <p th:if="${post.metadata.creationTimestamp != null}">
+                    Updated:
+                    <span th:text="${#dates.format(post.metadata.creationTimestamp, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </p>
+                <p th:if="${not #strings.isEmpty(theme.config.other.copyright?.license)}">
+                    License:
+                    <span th:utext="${theme.config.other.copyright.license}"></span>
+                </p>
+            </div>
+
+            <div class="post-comment" th:if="${post.spec.allowComment}">
+                <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
+            </div>
+
+            <div th:if="${theme.config.other.math?.mathjax?.enable == true}">
+                <script
+                    type="text/javascript"
+                    async
+                    th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}"
+                ></script>
+            </div>
+        </main>
+    </th:block>
+
+    <th:block th:fragment="page_js">
+        <script th:inline="javascript" th:if="${theme.config.other.outdated_threshold?.enable == true}">
+            (function () {
+                var time = document.getElementsByClassName('post-intro-time')[0];
+                var article = document.getElementsByTagName('article')[0];
+                if (!time || !article) {
+                    return;
+                }
+                var pubTime = new Date(time.innerText);
+                var now = Date.now();
+                var interval = parseInt(now - pubTime);
+                var days = parseInt(interval / 86400000);
+                var threshold = parseInt(/*[[${theme.config.other.outdated_threshold.days}]]*/ 0);
+                if (interval > threshold * 24 * 3600 * 1000) {
+                    article.innerHTML =
+                        '<div class="note note-warning">' +
+                        '<div class="title">文章时效性提示</div><p>这是一篇发布于 ' +
+                        days +
+                        ' 天前的文章，部分信息可能已发生改变，请注意甄别。</p>' +
+                        '</div>' +
+                        article.innerHTML;
+                }
+            })();
         </script>
-      </th:block>
-
-      <div class="license-wrapper" th:if="${theme.config.other.copyright?.enable == true}">
-        <p>
-          Author:
-          <a th:href="${post.owner?.permalink != null ? post.owner.permalink : post.status.permalink}"
-            th:text="${post.owner?.displayName != null ? post.owner.displayName : (theme.config.profile.author != null ? theme.config.profile.author : site.title)}"></a>
-        </p>
-        <p>
-          Permalink:
-          <a th:href="${post.status.permalink}" th:text="${post.status.permalink}"></a>
-        </p>
-        <p th:if="${post.spec.publishTime != null}">
-          Published:
-          <span th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
-        </p>
-        <p th:if="${post.metadata.creationTimestamp != null}">
-          Updated:
-          <span th:text="${#dates.format(post.metadata.creationTimestamp, 'yyyy-MM-dd HH:mm:ss')}"></span>
-        </p>
-        <p th:if="${not #strings.isEmpty(theme.config.other.copyright?.license)}">
-          License:
-          <span th:utext="${theme.config.other.copyright.license}"></span>
-        </p>
-      </div>
-
-      <div class="post-comment" th:if="${post.spec.allowComment}">
-        <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
-      </div>
-
-      <div th:if="${theme.config.other.math?.mathjax?.enable == true}">
-        <script type="text/javascript" async
-          th:src="${'https://cdn.jsdelivr.net/npm/mathjax@' + (theme.config.other.math?.mathjax?.version ?: '3.2.0') + '/es5/tex-mml-chtml.js'}">
-          </script>
-      </div>
-    </main>
-  </th:block>
-
-  <th:block th:fragment="page_js">
-    <script th:inline="javascript" th:if="${theme.config.other.outdated_threshold?.enable == true}">
-      (function () {
-        var time = document.getElementsByClassName('post-intro-time')[0]
-        var article = document.getElementsByTagName('article')[0]
-        if (!time || !article) {
-          return
-        }
-        var pubTime = new Date(time.innerText)
-        var now = Date.now()
-        var interval = parseInt(now - pubTime)
-        var days = parseInt(interval / 86400000)
-        var threshold = parseInt(/*[[${theme.config.other.outdated_threshold.days}]]*/ 0)
-        if (interval > threshold * 24 * 3600 * 1000) {
-          article.innerHTML = '<div class="note note-warning">' +
-            '<div class="title">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。</p>' +
-            '</div>' + article.innerHTML
-        }
-      })()
-    </script>
-  </th:block>
+    </th:block>
 </th:block>

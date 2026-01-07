@@ -1,11 +1,14 @@
-<th:block th:with="pageTemplate=${singlePage.spec.slug != null && singlePage.spec.slug == 'about' ? 'about' : 'page'}" th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${singlePage.spec.title}, ${pageTemplate})}">
-  <th:block th:fragment="content">
-    <main class="main about-page">
-      <article class="article-entry" th:utext="${singlePage.content.content}"></article>
-      <div class="post-comment" th:if="${singlePage.spec.allowComment}">
-        <halo:comment group="content.halo.run" kind="SinglePage" th:attr="name=${singlePage.metadata.name}" />
-      </div>
-    </main>
-  </th:block>
-  <th:block th:fragment="page_js"></th:block>
+<th:block
+    th:with="pageTemplate=${singlePage.spec.slug != null && singlePage.spec.slug == 'about' ? 'about' : 'page'}"
+    th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${singlePage.spec.title}, ${pageTemplate})}"
+>
+    <th:block th:fragment="content">
+        <main class="main about-page">
+            <article class="article-entry" th:utext="${singlePage.content.content}"></article>
+            <div class="post-comment" th:if="${singlePage.spec.allowComment}">
+                <halo:comment group="content.halo.run" kind="SinglePage" th:attr="name=${singlePage.metadata.name}" />
+            </div>
+        </main>
+    </th:block>
+    <th:block th:fragment="page_js"></th:block>
 </th:block>

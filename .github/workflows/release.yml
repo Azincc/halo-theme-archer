@@ -1,79 +1,79 @@
 name: Release Theme
 
 on:
-  push:
-    tags:
-      - "v*"
+    push:
+        tags:
+            - 'v*'
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build assets
-        run: npm run build
+            - name: Build assets
+              run: npm run build
 
-      - name: Extract version
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+            - name: Extract version
+              id: get_version
+              run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
 
-      - name: Get Tag Message
-        id: tag_msg
-        run: |
-          # Force fetch tags to ensure we have the annotated tag object
-          git fetch --tags --force
-          
-          # Extract tag message
-          git for-each-ref --format='%(contents)' refs/tags/${{ github.ref_name }} > release_body.md
-          
-          # Fallback to commit log if empty
-          if [ ! -s release_body.md ]; then
-             git show -s --format=%B ${{ github.ref_name }} > release_body.md
-          fi
+            - name: Get Tag Message
+              id: tag_msg
+              run: |
+                  # Force fetch tags to ensure we have the annotated tag object
+                  git fetch --tags --force
 
-      - name: Update theme.yaml version
-        run: |
-          if [[ "${{ env.VERSION }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Updating theme.yaml version to ${{ env.VERSION }}"
-            sed -i "s/^  version: .*/  version: ${{ env.VERSION }}/" theme.yaml
-          else
-            echo "Tag version format invalid, keeping original version"
-          fi
+                  # Extract tag message
+                  git for-each-ref --format='%(contents)' refs/tags/${{ github.ref_name }} > release_body.md
 
-      - name: Package theme
-        run: |
-          mkdir -p dist
-          zip -r dist/halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
+                  # Fallback to commit log if empty
+                  if [ ! -s release_body.md ]; then
+                     git show -s --format=%B ${{ github.ref_name }} > release_body.md
+                  fi
 
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ env.VERSION }}
-          body_path: release_body.md
-          files: dist/halo-theme-archer-${{ env.VERSION }}.zip
-          draft: false
-          prerelease: false
+            - name: Update theme.yaml version
+              run: |
+                  if [[ "${{ env.VERSION }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                    echo "Updating theme.yaml version to ${{ env.VERSION }}"
+                    sed -i "s/^  version: .*/  version: ${{ env.VERSION }}/" theme.yaml
+                  else
+                    echo "Tag version format invalid, keeping original version"
+                  fi
 
-      - name: Release to App Store
-        uses: halo-sigs/app-store-release-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          app-id: ${{ secrets.APP_ID }}
-          release-id: ${{ steps.create_release.outputs.id }}
-          halo-pat: ${{ secrets.HALO_PAT }}
-          assets-dir: dist
+            - name: Package theme
+              run: |
+                  mkdir -p dist
+                  zip -r dist/halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
+
+            - name: Create Release
+              id: create_release
+              uses: softprops/action-gh-release@v2
+              with:
+                  name: ${{ env.VERSION }}
+                  body_path: release_body.md
+                  files: dist/halo-theme-archer-${{ env.VERSION }}.zip
+                  draft: false
+                  prerelease: false
+
+            - name: Release to App Store
+              uses: halo-sigs/app-store-release-action@v3
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  app-id: ${{ secrets.APP_ID }}
+                  release-id: ${{ steps.create_release.outputs.id }}
+                  halo-pat: ${{ secrets.HALO_PAT }}
+                  assets-dir: dist
