@@ -7,8 +7,8 @@ class MetaInfo {
         this.isInited = false;
         this.postsArr = null;
         this.metaName = metaName;
-        this.labelsContainer = $(labelsContainer)[0] || null;
-        this.postContainer = $(postContainer)[0] || null;
+        this.labelsContainer = document.querySelector(labelsContainer);
+        this.postContainer = document.querySelector(postContainer);
         this.indexMap = new Map();
         this.isValid = Boolean(this.labelsContainer && this.postContainer);
         if (!this.isValid) {
@@ -80,16 +80,21 @@ class MetaInfo {
     }
 
     _createPostDom(postInfo) {
-        const $tagItem = $(
-            '<li class="meta-post-item"><span class="meta-post-date">' +
-            archerUtil.dateFormater(new Date(Date.parse(postInfo.date)), 'yyyy/MM/dd') +
-            '</span></li>',
-        );
-        const $aItem = $(
-            '<a class="meta-post-title" href="' + siteMeta.root + postInfo.path + '">' + postInfo.title + '</a>',
-        );
-        $tagItem.append($aItem);
-        return $tagItem[0];
+        const tagItem = document.createElement('li');
+        tagItem.className = 'meta-post-item';
+
+        const dateSpan = document.createElement('span');
+        dateSpan.className = 'meta-post-date';
+        dateSpan.textContent = archerUtil.dateFormater(new Date(Date.parse(postInfo.date)), 'yyyy/MM/dd');
+        tagItem.appendChild(dateSpan);
+
+        const aItem = document.createElement('a');
+        aItem.className = 'meta-post-title';
+        aItem.href = siteMeta.root + postInfo.path;
+        aItem.textContent = postInfo.title;
+        tagItem.appendChild(aItem);
+
+        return tagItem;
     }
 
     tryInit(postsArr) {
@@ -121,8 +126,8 @@ class MetaInfo {
         }
 
         if (!this.indexMap.size) {
-            const emptyState = document.getElementsByClassName(`sidebar-${this.metaName}-empty`)[0];
-            emptyState && emptyState.classList.add(`sidebar-${this.metaName}-empty-active`);
+            const emptyState = document.querySelector(`.sidebar-${this.metaName}-empty`);
+            emptyState?.classList.add(`sidebar-${this.metaName}-empty-active`);
         }
 
         this.postsArr = postsArr;
@@ -182,11 +187,11 @@ class SidebarMeta {
         const xhr = new XMLHttpRequest();
         xhr.responseType = '';
         xhr.open('get', contentURL, true);
-        const $loadFailed = $('.tag-load-fail');
+        const loadFailed = document.querySelector('.tag-load-fail');
         const that = this;
         xhr.onload = function () {
             if (this.status === 200 || this.status === 304) {
-                $loadFailed.remove();
+                loadFailed?.remove();
                 // defensive programming if content.json format is not correct
                 const contentJSON = JSON.parse(this.responseText);
                 const posts = Array.isArray(contentJSON) ? contentJSON : contentJSON.posts;
@@ -195,28 +200,33 @@ class SidebarMeta {
                     that.emitter.emit('DATA_FETCHED_SUCCESS');
                 }
             } else {
-                this.$currPostsContainer.remove();
+                // this.$currPostsContainer.remove(); // Removed in refactor as logic was unclear in original
+                console.error('Failed to load content.json');
             }
         };
         xhr.send();
     }
 
     _bindOtherClick() {
-        $('.post-tag:not([href])').click((e) => {
-            e.stopPropagation();
-            this.sidebar.activateSidebar();
-            this.sidebar.switchTo(1);
-            this.currLabelName = e.target.getAttribute('data-tags');
-            const tagMeta = this.metas[0];
-            tagMeta.changeLabel(this.currLabelName);
+        document.querySelectorAll('.post-tag:not([href])').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.sidebar.activateSidebar();
+                this.sidebar.switchTo(1);
+                this.currLabelName = e.target.getAttribute('data-tags');
+                const tagMeta = this.metas[0];
+                tagMeta.changeLabel(this.currLabelName);
+            });
         });
-        $('.post-category:not([href])').click((e) => {
-            e.stopPropagation();
-            this.sidebar.activateSidebar();
-            this.sidebar.switchTo(2);
-            this.currLabelName = e.target.getAttribute('data-categories');
-            const categoryMeta = this.metas[1];
-            categoryMeta.changeLabel(this.currLabelName);
+        document.querySelectorAll('.post-category:not([href])').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.sidebar.activateSidebar();
+                this.sidebar.switchTo(2);
+                this.currLabelName = e.target.getAttribute('data-categories');
+                const categoryMeta = this.metas[1];
+                categoryMeta.changeLabel(this.currLabelName);
+            });
         });
     }
 }

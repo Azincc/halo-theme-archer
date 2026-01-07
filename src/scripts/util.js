@@ -70,7 +70,7 @@ const archerUtil = {
 
     // 获取 1rem 对应的 px 值
     rem: () => {
-        return parseInt($('html').css('font-size'), 10);
+        return parseInt(window.getComputedStyle(document.documentElement).fontSize, 10);
     },
 
     // rAF 的 ticking
@@ -142,10 +142,7 @@ const archerUtil = {
     },
 
     isPostPage: () => {
-        if ($('.post-body').length) {
-            return true;
-        }
-        return false;
+        return !!document.querySelector('.post-body');
     },
 
     isMobile: () => {

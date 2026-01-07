@@ -1,119 +1,96 @@
 <!doctype html>
-<html
-    th:lang="${#locale.toLanguageTag}"
-    xmlns:th="http://www.thymeleaf.org"
+<html th:lang="${#locale.toLanguageTag}" xmlns:th="http://www.thymeleaf.org"
     th:fragment="html (content, page_js, _title, _templateId)"
-    th:with="templateId=${_templateId != null ? _templateId : 'index'}"
->
-    <head th:replace="~{modules/head :: head(${_title}, ${templateId})}"></head>
+    th:with="templateId=${_templateId != null ? _templateId : 'index'}">
 
-    <body
-        th:with="bodyClass=${templateId == 'index' ? 'home-body' : templateId == 'post' ? 'post-body' : templateId == 'about' ? 'about-body' : templateId == '404' ? 'four-zero-four-body' : ''}"
-        th:class="${bodyClass}"
-        th:classappend="${#authentication.name != 'anonymousUser'} ? ' logged-in'"
-    >
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-        <script th:inline="javascript">
-            if (typeof window.$ === 'undefined') {
-                console.warn('jquery load from jsdelivr failed, will load local script');
-                var localJquery = /*[[ @{/assets/lib/jquery.min.js} ]]*/ '';
-                document.write('<script src="' + localJquery + '"><\\/script>');
-            }
-        </script>
+<head th:replace="~{modules/head :: head(${_title}, ${templateId})}"></head>
 
-        <th:block th:replace="~{modules/header :: header}"></th:block>
+<body
+    th:with="bodyClass=${templateId == 'index' ? 'home-body' : templateId == 'post' ? 'post-body' : templateId == 'about' ? 'about-body' : templateId == '404' ? 'four-zero-four-body' : ''}"
+    th:class="${bodyClass}" th:classappend="${#authentication.name != 'anonymousUser'} ? ' logged-in'">
 
-        <th:block th:replace="~{modules/footer-fixed :: footer-fixed(templateId=${templateId})}"></th:block>
 
-        <div class="wrapper">
-            <th:block th:replace="~{fragment/intro::html(${templateId})}" />
+    <th:block th:replace="~{modules/header :: header}"></th:block>
 
-            <img
-                class="loading"
-                th:src="@{/assets/loading.svg}"
-                style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem"
-                alt="loading"
-            />
+    <th:block th:replace="~{modules/footer-fixed :: footer-fixed(templateId=${templateId})}"></th:block>
 
-            <div class="container container-unloaded">
-                <th:block th:replace="${content}" />
-            </div>
+    <div class="wrapper">
+        <th:block th:replace="~{fragment/intro::html(${templateId})}" />
 
-            <th:block th:replace="~{modules/footer :: footer}"></th:block>
+        <img class="loading" th:src="@{/assets/loading.svg}"
+            style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem" alt="loading" />
+
+        <div class="container container-unloaded">
+            <th:block th:replace="${content}" />
         </div>
 
-        <!-- TOC -->
-        <th:block th:if="${templateId == 'post'}">
-            <th:block th:replace="~{modules/toc :: toc}"></th:block>
-        </th:block>
+        <th:block th:replace="~{modules/footer :: footer}"></th:block>
+    </div>
 
-        <!-- Sidebar -->
-        <th:block th:replace="~{modules/sidebar :: sidebar}"></th:block>
+    <!-- TOC -->
+    <th:block th:if="${templateId == 'post'}">
+        <th:block th:replace="~{modules/toc :: toc}"></th:block>
+    </th:block>
 
-        <!-- Site metadata for sidebar JavaScript -->
-        <th:block th:replace="~{modules/sidebar :: site-meta}"></th:block>
+    <!-- Sidebar -->
+    <th:block th:replace="~{modules/sidebar :: sidebar}"></th:block>
 
-        <script th:src="@{/assets/dist/main.js}" type="module"></script>
-        <script th:inline="javascript">
-            (function () {
-                var scheme = /*[[${theme.config.style.color_scheme}]]*/ 'system';
-                window.__archerMainCallbacks = window.__archerMainCallbacks || [];
-                window.__archerMainCallbacks.push(function (mainModule) {
-                    if (mainModule && typeof mainModule.initializeColorScheme === 'function') {
-                        mainModule.initializeColorScheme(scheme);
-                    }
-                });
-                if (window.main && typeof window.main.initializeColorScheme === 'function') {
-                    window.main.initializeColorScheme(scheme);
+    <!-- Site metadata for sidebar JavaScript -->
+    <th:block th:replace="~{modules/sidebar :: site-meta}"></th:block>
+
+    <script th:src="@{/assets/dist/main.js}" type="module"></script>
+    <script th:inline="javascript">
+        (function () {
+            var scheme = /*[[${theme.config.style.color_scheme}]]*/ 'system';
+            window.__archerMainCallbacks = window.__archerMainCallbacks || [];
+            window.__archerMainCallbacks.push(function (mainModule) {
+                if (mainModule && typeof mainModule.initializeColorScheme === 'function') {
+                    mainModule.initializeColorScheme(scheme);
                 }
-            })();
+            });
+            if (window.main && typeof window.main.initializeColorScheme === 'function') {
+                window.main.initializeColorScheme(scheme);
+            }
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"
+        onload="window.Fancybox && window.Fancybox.bind('[data-fancybox]')" defer></script>
+
+    <th:block th:if="${theme.config.algolia_search?.enable == true}">
+        <script th:inline="javascript">
+            window.algolia = {
+                applicationID: /*[[${theme.config.algolia_search.applicationID}]]*/ '',
+                apiKey: /*[[${theme.config.algolia_search.apiKey}]]*/ '',
+                indexName: /*[[${theme.config.algolia_search.indexName}]]*/ '',
+                hits: /*[[${#json.toJson(theme.config.algolia_search.hits)}]]*/ {},
+                labels: /*[[${#json.toJson(theme.config.algolia_search.labels)}]]*/ {},
+            };
         </script>
+        <script th:src="@{/assets/dist/search.js}" type="module"></script>
+    </th:block>
+
+    <th:block th:if="${theme.config.analytics?.busuanzi?.enable == true}">
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+    </th:block>
+
+    <th:block th:if="${templateId == 'post'}">
+        <script th:src="@{/assets/dist/share.js}" type="module"></script>
+    </th:block>
+
+    <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid.enable?: false)}">
         <script
-            src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"
-            onload="window.Fancybox && window.Fancybox.bind('[data-fancybox]')"
-            defer
-        ></script>
+            th:src="|https://cdn.jsdelivr.net/npm/mermaid@${theme.config.other.mermaid.version}/dist/mermaid.min.js|"
+            th:attr="onload=|window.mermaid && window.mermaid.initialize({theme: '${theme.config.other.mermaid.theme ?: 'default'}'})|"
+            async></script>
+    </th:block>
 
-        <th:block th:if="${theme.config.algolia_search?.enable == true}">
-            <script th:inline="javascript">
-                window.algolia = {
-                    applicationID: /*[[${theme.config.algolia_search.applicationID}]]*/ '',
-                    apiKey: /*[[${theme.config.algolia_search.apiKey}]]*/ '',
-                    indexName: /*[[${theme.config.algolia_search.indexName}]]*/ '',
-                    hits: /*[[${#json.toJson(theme.config.algolia_search.hits)}]]*/ {},
-                    labels: /*[[${#json.toJson(theme.config.algolia_search.labels)}]]*/ {},
-                };
-            </script>
-            <script th:src="@{/assets/dist/search.js}" type="module"></script>
-        </th:block>
+    <th:block th:if="${page_js != null}" th:replace="${page_js}" />
 
-        <th:block th:if="${theme.config.analytics?.busuanzi?.enable == true}">
-            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-        </th:block>
+    <script type="text/javascript" th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
+        th:utext="${theme.config.custom.code_js}"></script>
 
-        <th:block th:if="${templateId == 'post'}">
-            <script th:src="@{/assets/dist/share.js}" type="module"></script>
-        </th:block>
+    <th:block th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
+        th:utext="${theme.config.custom.footer_html}"></th:block>
+</body>
 
-        <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid.enable?: false)}">
-            <script
-                th:src="|https://cdn.jsdelivr.net/npm/mermaid@${theme.config.other.mermaid.version}/dist/mermaid.min.js|"
-                th:attr="onload=|window.mermaid && window.mermaid.initialize({theme: '${theme.config.other.mermaid.theme ?: 'default'}'})|"
-                async
-            ></script>
-        </th:block>
-
-        <th:block th:if="${page_js != null}" th:replace="${page_js}" />
-
-        <script
-            type="text/javascript"
-            th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
-            th:utext="${theme.config.custom.code_js}"
-        ></script>
-
-        <th:block
-            th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
-            th:utext="${theme.config.custom.footer_html}"
-        ></th:block>
-    </body>
 </html>
