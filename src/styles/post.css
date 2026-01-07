@@ -366,7 +366,7 @@
         'WenQuanYi Micro Hei',
         SimSun,
         sans-serif;
-    color: #252525;
+    color: var(--text-slogan);
 }
 
 .post-paginator .nextSlogan::before {
@@ -385,7 +385,8 @@
 }
 
 .article-entry {
-    background-color: #fdfdfd;
+    background-color: var(--bg-content);
+    color: var(--text-primary);
     border-radius: 0.5rem 0.5rem 0 0;
     padding: 2rem 1.5rem;
     transition: background-color 0.5s ease-out;
@@ -403,14 +404,14 @@
 /* Shared typography moved to base.css */
 
 .license-wrapper {
-    background-color: #fdfdfd;
+    background-color: var(--bg-content);
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 1.5rem;
     font-weight: 300;
     line-height: 1.5rem;
     border-top: 1px dashed #ccc;
     border-bottom: 1px dashed #ccc;
-    color: #23394d;
+    color: var(--text-secondary);
     transition: all 0.5s ease-out;
 }
 
@@ -684,7 +685,7 @@
 
 .abstract-content code,
 .article-entry code {
-    background: #eee;
+    background: var(--code-bg);
     padding: 1px 0.4rem;
     border-radius: 2px;
     margin: 0 0.2rem;

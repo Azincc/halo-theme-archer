@@ -182,15 +182,7 @@
     <noscript>
         <link rel="stylesheet" th:href="@{/assets/dist/mobile.css}" media="screen and (max-width: 960px)" />
     </noscript>
-    <link id="stylesheet-theme-dark" rel="preload" th:href="@{/assets/dist/dark.css}" as="style" onload="
-            if (
-                localStorage.preferredThemeMode === 'dark' ||
-                (!localStorage.preferredThemeMode && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            ) {
-                this.onload = null;
-                this.rel = 'stylesheet';
-            }
-        " />
+
 
     <script>
         // 为代码高亮插件添加暗色模式支持（需在 CSS 加载前执行）
@@ -203,9 +195,7 @@
             }
         })();
     </script>
-    <noscript>
-        <link rel="stylesheet" th:href="@{/assets/dist/dark.css}" />
-    </noscript>
+
 
     <!-- Fonts -->
 
@@ -287,7 +277,7 @@
     <script>
         (function () {
             const updateThemeColor = () => {
-                const isDark = document.querySelector('link#stylesheet-theme-dark') !== null;
+                const isDark = document.documentElement.classList.contains('dark');
                 const colorVar = isDark ? 'var(--main-color-dark)' : 'var(--main-color-light)';
                 document.documentElement.style.setProperty('--main-color', colorVar);
             };
@@ -297,7 +287,7 @@
 
             // Observer for dynamic changes
             const observer = new MutationObserver(updateThemeColor);
-            observer.observe(document.head, { childList: true, subtree: false });
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         })();
     </script>
     <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}"

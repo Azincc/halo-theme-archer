@@ -3,6 +3,107 @@
         -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', STHeiti,
         'Microsoft YaHei', 'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN',
         'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'WenQuanYi Micro Hei', SimSun, sans-serif;
+
+    /* Light Mode Variables */
+    --bg-body: #fff;
+    --bg-content: #fdfdfd;
+    --bg-sidebar: #222;
+    --bg-secondary: #fdfdfd; 
+    
+    --text-primary: #333;
+    --text-primary-hover: #fff;
+    --text-secondary: #23394d;
+    --text-tertiary: #777;
+    --text-light: #fff;
+    --text-meta: #999;
+    --text-abstract: #585858;
+    
+    --border-color: rgba(0, 0, 0, 0.1);
+    --border-input: silver;
+    
+    --selection-color: #eee;
+    
+    --code-bg: #eee;
+    --blockquote-bg: #f6f6f6;
+    
+    /* Button Variables */
+    --btn-bg: #fff;
+    --btn-border: #121212;
+    --btn-text: #333;
+    
+    --bg-note: transparent;
+    --bg-note-warning: #fdf8ea;
+    --shadow-popup: 0 0 3px 1px #f0f0f0;
+    
+    --bg-read-progress: rgba(0, 0, 0, 0.7);
+    --bg-banner: rgba(255, 255, 255, 0.8);
+    --border-banner: rgba(0, 0, 0, 0.8);
+    
+    /* Social Icons specific */
+    --social-github-hover: #24292e;
+    --social-hover-wechat: #42ae3c;
+    --social-hover-qq: #4f4e71;
+    --social-hover-telegram: #36a1d3;
+    --social-hover-weibo: #d52a2a;
+    --social-hover-zhihu: #0f88eb;
+    --social-hover-douban: #071;
+    --social-hover-facebook: #3b5998;
+    --social-hover-twitter: #1da1f2;
+    --social-hover-instagram: #8042b6;
+    --social-hover-stackoverflow: #f37f23;
+    --social-hover-linkedin: #0077b5;
+    --social-hover-steam: #010101;
+    --social-hover-other: #8090b0;
+    --social-hover-email: #0cb49d;
+    
+    --text-slogan: #252525;
+    
+    --table-border: #ddd;
+    --table-th-bg: #f8f8f8;
+    --table-hover-bg: #efefef;
+    --table-cell-border: #dedede;
+}
+
+:root.dark {
+    /* Dark Mode Variables */
+    --bg-body: #121212;
+    --bg-content: #181818;
+    --bg-secondary: #181818;
+    
+    --text-primary: rgba(255, 255, 255, 0.87);
+    --text-primary-hover: #fff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-tertiary: #777;
+    --text-meta: rgba(255, 255, 255, 0.38);
+    --text-abstract: rgba(255, 255, 255, 0.6);
+    
+    --border-color: rgba(255, 255, 255, 0.1);
+    
+    --selection-color: snow;
+    
+    --code-bg: #282c34;
+    --blockquote-bg: #1e1e1e;
+    
+    --btn-bg: rgba(18, 18, 18, 0.8);
+    --btn-border: rgba(255, 255, 255, 0.87);
+    --btn-text: rgba(255, 255, 255, 0.87);
+    
+    --social-github-hover: #fff;
+    
+    --bg-note: #1e1e1e;
+    --bg-note-warning: #1e1e1e;
+    --shadow-popup: 0 0 3px 1px #0f0f0f;
+    
+    --bg-read-progress: rgba(255, 255, 255, 0.6);
+    --bg-banner: rgba(0, 0, 0, 0.8);
+    --border-banner: rgba(255, 255, 255, 0.87);
+    
+    --text-slogan: rgba(255, 255, 255, 0.87);
+    
+    --table-border: #2a2a2a;
+    --table-th-bg: #1e1e1e;
+    --table-hover-bg: #2a2a2a;
+    --table-cell-border: #2a2a2a;
 }
 
 @font-face {
@@ -182,6 +283,7 @@ html input[type='button'],
 input[type='reset'],
 input[type='submit'] {
     -webkit-appearance: button;
+    appearance: button;
     cursor: pointer;
 }
 
@@ -213,12 +315,14 @@ input[type='number']::-webkit-outer-spin-button {
 
 input[type='searcher'] {
     -webkit-appearance: textfield;
+    appearance: textfield;
     box-sizing: content-box;
 }
 
 input[type='searcher']::-webkit-searcher-cancel-button,
 input[type='searcher']::-webkit-searcher-decoration {
     -webkit-appearance: none;
+    appearance: none;
 }
 
 fieldset {
@@ -263,7 +367,7 @@ html {
 body {
     z-index: 100;
     position: relative;
-    background-color: #fff;
+    background-color: var(--bg-body);
     transition: all 0.5s ease-out;
 }
 
@@ -296,7 +400,7 @@ body {
     display: flex;
     padding: 3rem 0 0 0;
     position: relative;
-    background-color: #fff;
+    background-color: var(--bg-body);
     top: 0;
     left: 0;
     align-items: flex-start;
@@ -324,12 +428,12 @@ li {
 
 ::-moz-selection {
     background: var(--main-color, #f75357);
-    color: #eee;
+    color: var(--text-selection);
 }
 
 ::selection {
     background: var(--main-color, #f75357);
-    color: #eee;
+    color: var(--text-selection);
 }
 
 .fancy-link {
@@ -338,6 +442,7 @@ li {
 }
 
 .note {
+    background-color: var(--bg-note);
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
     border-left: 0.35rem solid;
@@ -351,18 +456,18 @@ li {
 }
 
 .note.note-warning {
-    background-color: #fdf8ea;
+    background-color: var(--bg-note-warning);
     border-color: #f0ad4e;
 }
 
 .donate-popup {
-    background: #fdfdfd;
+    background: var(--bg-content);
     padding: 1.5rem 1rem;
     margin-left: -1rem;
     margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     max-width: 22rem;
-    box-shadow: 0 0 3px 1px #f0f0f0;
+    box-shadow: var(--shadow-popup);
     pointer-events: all;
     line-height: 1.4;
 }
@@ -400,7 +505,7 @@ li {
 }
 
 .donate-popup__content-description {
-    color: #23394d;
+    color: var(--text-secondary);
     margin-bottom: 0.8rem;
 }
 
@@ -439,8 +544,8 @@ li {
     height: 1.5rem;
     text-align: center;
     line-height: 1.5rem;
-    border: 2px solid #121212;
-    background-color: #fff;
+    border: 2px solid var(--btn-border);
+    background-color: var(--btn-bg);
     cursor: pointer;
     margin-bottom: 1rem;
 }
@@ -450,8 +555,8 @@ li {
 }
 
 .footer-fixed-btn--rounded {
-    color: #333;
-    background-color: #fff;
+    color: var(--btn-text);
+    background-color: var(--btn-bg);
     width: 2.7rem;
     height: 2.7rem;
     line-height: 2.7rem;
@@ -482,7 +587,7 @@ li {
     padding: 4rem 0 1.5rem 0;
     margin: 0 auto;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--bg-body);
     transition: background-color 0.5s ease-out;
 }
 
@@ -524,7 +629,7 @@ li {
 }
 
 .footer .social .email:hover::before {
-    color: #0cb49d;
+    color: var(--social-hover-email);
 }
 
 .footer .social .github::before {
@@ -533,7 +638,7 @@ li {
 }
 
 .footer .social .github:hover::before {
-    color: #24292e;
+    color: var(--social-github-hover);
 }
 
 .footer .social .wechat {
@@ -546,7 +651,7 @@ li {
 }
 
 .footer .social .wechat:hover::before {
-    color: #42ae3c;
+    color: var(--social-hover-wechat);
 }
 
 .footer .social .qq {
@@ -559,7 +664,7 @@ li {
 }
 
 .footer .social .qq:hover::before {
-    color: #4f4e71;
+    color: var(--social-hover-qq);
 }
 
 .footer .social .telegram {
@@ -572,7 +677,7 @@ li {
 }
 
 .footer .social .telegram:hover::before {
-    color: #36a1d3;
+    color: var(--social-hover-telegram);
 }
 
 .footer .social .weibo::before {
@@ -581,7 +686,7 @@ li {
 }
 
 .footer .social .weibo:hover::before {
-    color: #d52a2a;
+    color: var(--social-hover-weibo);
 }
 
 .footer .social .zhihu {
@@ -594,7 +699,7 @@ li {
 }
 
 .footer .social .zhihu:hover::before {
-    color: #0f88eb;
+    color: var(--social-hover-zhihu);
 }
 
 .footer .social .douban {
@@ -607,7 +712,7 @@ li {
 }
 
 .footer .social .douban:hover::before {
-    color: #071;
+    color: var(--social-hover-douban);
 }
 
 .footer .social .facebook {
@@ -620,7 +725,7 @@ li {
 }
 
 .footer .social .facebook:hover::before {
-    color: #3b5998;
+    color: var(--social-hover-facebook);
 }
 
 .footer .social .twitter {
@@ -632,7 +737,7 @@ li {
 }
 
 .footer .social .twitter:hover::before {
-    color: #1da1f2;
+    color: var(--social-hover-twitter);
 }
 
 .footer .social .instagram {
@@ -645,7 +750,7 @@ li {
 }
 
 .footer .social .instagram:hover::before {
-    color: #8042b6;
+    color: var(--social-hover-instagram);
 }
 
 .footer .social .stack-overflow {
@@ -693,7 +798,7 @@ li {
 }
 
 .footer .social .v2ex:hover::before {
-    color: #171718;
+    color: var(--text-primary);
 }
 
 .footer .social .bilibili {
@@ -706,7 +811,7 @@ li {
 }
 
 .footer .social .bilibili:hover::before {
-    color: #2cb2f9;
+    color: var(--social-hover-wechat); /* Use roughly same blue or new var? Bilibili is blue. */
 }
 
 .footer .social .linkedin {
@@ -719,7 +824,7 @@ li {
 }
 
 .footer .social .linkedin:hover::before {
-    color: #0077b5;
+    color: var(--social-hover-linkedin);
 }
 
 .footer .social .steam {
@@ -732,7 +837,7 @@ li {
 }
 
 .footer .social .steam:hover::before {
-    color: #010101;
+    color: var(--social-hover-steam);
 }
 
 .footer .social .others {
@@ -745,7 +850,7 @@ li {
 }
 
 .footer .social .others:hover::before {
-    color: #8090b0;
+    color: var(--social-hover-other);
 }
 
 .footer .social .rss::before {
@@ -780,7 +885,7 @@ li {
         sans-serif;
     margin: 0.5rem auto;
     text-align: center;
-    color: #777;
+    color: var(--text-tertiary);
 }
 
 .copyright a {
@@ -818,11 +923,11 @@ li {
         sans-serif;
     margin: 0rem auto 0.5rem;
     text-align: center;
-    color: #777;
+    color: var(--text-tertiary);
 }
 
 .website-approve a {
-    color: #777;
+    color: var(--text-tertiary);
 }
 
 .icp-approve {
@@ -905,7 +1010,7 @@ li {
         'WenQuanYi Micro Hei',
         SimSun,
         sans-serif;
-    color: #ddd;
+    color: var(--text-meta);
 }
 
 header.header {
@@ -940,7 +1045,7 @@ header .header-element {
     top: 0;
     left: 0;
     height: 3px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--bg-read-progress);
     transition:
         transform 0.1s ease-out,
         opacity 0.5s ease-in-out;
@@ -995,14 +1100,14 @@ header .header-element {
 }
 
 .header-sidebar-menu-black {
-    color: #121212;
-    background-color: #fff;
-    border-color: #121212;
+    color: var(--text-primary);
+    background-color: var(--bg-body);
+    border-color: var(--text-primary);
 }
 
 .header-sidebar-menu-black.header-sidebar-menu-active {
-    background-color: #121212;
-    color: #fff;
+    background-color: var(--text-primary);
+    color: var(--bg-body);
 }
 
 @media not all and (hover: none) {
@@ -1017,8 +1122,8 @@ header .header-element {
     }
 
     .header-sidebar-menu-black:hover {
-        background-color: #121212;
-        color: #fff;
+        background-color: var(--text-primary);
+        color: var(--bg-body);
     }
 }
 
@@ -1095,8 +1200,8 @@ header .banner {
     width: 100%;
     margin: 0 auto;
     height: calc(100% - 1px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-banner);
+    background-color: var(--bg-banner);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     transform: translate3d(0, -100%, 0);
@@ -1114,7 +1219,7 @@ header .banner .post-title {
 
 header .banner .post-title a {
     white-space: nowrap;
-    color: #333;
+    color: var(--text-primary);
     max-width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -1141,7 +1246,7 @@ header .banner .blog-title {
 header .banner .blog-title a {
     vertical-align: top;
     white-space: nowrap;
-    color: #333;
+    color: var(--text-primary);
     font:
         1rem/1rem 'Oswald-Regular',
         -apple-system,
@@ -1375,16 +1480,16 @@ header .banner.banner-clean {
 }
 
 .four-zero-four-body .copyright {
-    color: #ddd;
+    color: var(--text-meta);
 }
 
 .four-zero-four-body .website-approve a {
-    color: #ddd;
+    color: var(--text-meta);
 }
 
 .four-zero-four-body #busuanzi_container_site_pv,
 .four-zero-four-body #busuanzi_container_site_uv {
-    color: #ddd;
+    color: var(--text-meta);
 }
 
 .archer-float-left {
@@ -1399,7 +1504,7 @@ header .banner.banner-clean {
 
 /* Post Content Styles (Shared between Index and Article) */
 .index-post {
-    background-color: #fdfdfd;
+    background-color: var(--bg-content);
     border-radius: 0.5rem;
     position: relative;
     padding: 1rem;
@@ -1408,7 +1513,7 @@ header .banner.banner-clean {
 }
 
 .index-post .abstract-content {
-    color: #585858;
+    color: var(--text-abstract);
     font-size: 1rem;
     font-weight: 300;
     word-break: break-word;
@@ -1479,7 +1584,7 @@ header .banner.banner-clean {
     line-height: 1.625;
     padding-top: 0.5rem;
     transition: color 0.1s ease-in;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .abstract-title:hover {
@@ -1520,7 +1625,7 @@ header .banner.banner-clean {
 }
 
 .index-post .abstract-read-more-button a {
-    color: #aaa;
+    color: var(--text-meta);
     padding-top: 1rem;
     display: flex;
     justify-content: flex-end;
@@ -1742,7 +1847,7 @@ header .banner.banner-clean {
     margin: 1.5em 0;
     padding: 1rem 1.5rem;
     position: relative;
-    background-color: #f6f6f6;
+    background-color: var(--blockquote-bg);
     border-left: 0.35rem solid var(--main-color, #f75357);
     border-radius: 0.35rem;
     transition: all 0.5s ease-out;
@@ -1761,8 +1866,8 @@ header .banner.banner-clean {
 .abstract-content table,
 .article-entry table {
     width: 100%;
-    color: #23394d;
-    border: 1px solid #ddd;
+    color: var(--text-primary);
+    border: 1px solid var(--table-border);
     margin: 1rem 0;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.125);
@@ -1777,19 +1882,19 @@ header .banner.banner-clean {
 
 .abstract-content table th,
 .article-entry table th {
-    background: #f8f8f8;
+    background: var(--table-th-bg);
 }
 
 .abstract-content table tr :not(:first-child):hover,
 .article-entry table tr:not(:first-child):hover {
-    background: #efefef;
+    background: var(--table-hover-bg);
 }
 
 .abstract-content table td,
 .abstract-content table th,
 .article-entry table td,
 .article-entry table th {
-    border: 1px solid #dedede;
+    border: 1px solid var(--table-cell-border);
     padding: 0.2rem 1rem 0 1rem;
 }
 

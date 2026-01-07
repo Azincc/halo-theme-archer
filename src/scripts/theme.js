@@ -1,34 +1,3 @@
-const THEME_DARK_STYLESHEET_ID = 'stylesheet-theme-dark';
-
-const resolveAssetsBasePath = () => {
-    const mainStylesheet = document.querySelector('link[href*="assets/dist/base.css"]');
-    if (mainStylesheet) {
-        const href = mainStylesheet.getAttribute('href');
-        const index = href.indexOf('assets/dist/base.css');
-        if (index !== -1) {
-            return href.substring(0, index);
-        }
-    }
-    const root = window.siteMeta?.root || '/';
-    return root.endsWith('/') ? root : `${root}/`;
-};
-
-const ensureDarkStylesheet = () => {
-    if (!document.querySelector(`link#${THEME_DARK_STYLESHEET_ID}`)) {
-        const basePath = resolveAssetsBasePath();
-        const link = document.createElement('link');
-        link.id = THEME_DARK_STYLESHEET_ID;
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = `${basePath}assets/dist/dark.css`;
-        document.head.appendChild(link);
-    }
-};
-
-const removeDarkStylesheet = () => {
-    document.querySelector(`link#${THEME_DARK_STYLESHEET_ID}`)?.remove();
-};
-
 const resolveSystemThemeMode = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
 /** 获取用户偏好的主题颜色模式 */
@@ -55,10 +24,8 @@ const setThemeMode = (mode) => {
     setThemeModeSwitchBtnActive(false);
     const normalizedMode = mode === 'dark' ? 'dark' : 'light';
     if (normalizedMode === 'dark') {
-        ensureDarkStylesheet();
         document.documentElement.classList.add('dark');
     } else {
-        removeDarkStylesheet();
         document.documentElement.classList.remove('dark');
     }
     localStorage.preferredThemeMode = normalizedMode;

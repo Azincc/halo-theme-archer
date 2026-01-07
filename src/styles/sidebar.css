@@ -25,8 +25,8 @@
         'WenQuanYi Micro Hei',
         SimSun,
         sans-serif;
-    color: #777;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .profile a {
@@ -46,7 +46,7 @@
     display: block;
     border-radius: 1rem;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
 }
 
 .profile-avatar.hide-border {
@@ -57,7 +57,7 @@
     font-size: 2rem;
     line-height: 3rem;
     padding: 0.5rem 0 0 0;
-    color: #333;
+    color: var(--text-primary);
     text-align: center;
 }
 
@@ -72,7 +72,7 @@
     text-align: left;
     line-height: 1.7rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .profile-social .iconfont-archer {
@@ -86,7 +86,7 @@
 
 .profile-social .iconfont-archer::before {
     display: inline-block;
-    color: #777;
+    color: var(--text-tertiary);
     font-size: 1.5rem;
     margin: 0 0.4rem 0 0;
 }
@@ -104,7 +104,7 @@
 }
 
 .profile-social .email:hover::before {
-    color: #0cb49d;
+    color: var(--social-hover-email);
 }
 
 .profile-social .github::before {
@@ -113,7 +113,7 @@
 }
 
 .profile-social .github:hover::before {
-    color: #24292e;
+    color: var(--social-github-hover);
 }
 
 .profile-social .wechat {
@@ -126,7 +126,7 @@
 }
 
 .profile-social .wechat:hover::before {
-    color: #42ae3c;
+    color: var(--social-hover-wechat);
 }
 
 .profile-social .qq {
@@ -139,7 +139,7 @@
 }
 
 .profile-social .qq:hover::before {
-    color: #4f4e71;
+    color: var(--social-hover-qq);
 }
 
 .profile-social .telegram {
@@ -152,7 +152,7 @@
 }
 
 .profile-social .telegram:hover::before {
-    color: #36a1d3;
+    color: var(--social-hover-telegram);
 }
 
 .profile-social .weibo::before {
@@ -161,7 +161,7 @@
 }
 
 .profile-social .weibo:hover::before {
-    color: #d52a2a;
+    color: var(--social-hover-weibo);
 }
 
 .profile-social .zhihu {
@@ -174,7 +174,7 @@
 }
 
 .profile-social .zhihu:hover::before {
-    color: #0f88eb;
+    color: var(--social-hover-zhihu);
 }
 
 .profile-social .douban {
@@ -187,7 +187,7 @@
 }
 
 .profile-social .douban:hover::before {
-    color: #071;
+    color: var(--social-hover-douban);
 }
 
 .profile-social .facebook {
@@ -200,7 +200,7 @@
 }
 
 .profile-social .facebook:hover::before {
-    color: #3b5998;
+    color: var(--social-hover-facebook);
 }
 
 .profile-social .twitter {
@@ -212,7 +212,7 @@
 }
 
 .profile-social .twitter:hover::before {
-    color: #1da1f2;
+    color: var(--social-hover-twitter);
 }
 
 .profile-social .instagram {
@@ -225,7 +225,7 @@
 }
 
 .profile-social .instagram:hover::before {
-    color: #8042b6;
+    color: var(--social-hover-instagram);
 }
 
 .profile-social .stack-overflow {
@@ -238,7 +238,7 @@
 }
 
 .profile-social .stack-overflow:hover::before {
-    color: #f37f23;
+    color: var(--social-hover-stackoverflow);
 }
 
 .profile-social .segmentFault {
@@ -251,7 +251,7 @@
 }
 
 .profile-social .segmentFault:hover::before {
-    color: #f37f23;
+    color: var(--social-hover-stackoverflow);
 }
 
 .profile-social .juejin {
@@ -273,7 +273,7 @@
 }
 
 .profile-social .v2ex:hover::before {
-    color: #171718;
+    color: var(--text-primary);
 }
 
 .profile-social .bilibili {
@@ -286,7 +286,7 @@
 }
 
 .profile-social .bilibili:hover::before {
-    color: #2cb2f9;
+    color: var(--social-hover-wechat);
 }
 
 .profile-social .linkedin {
@@ -299,7 +299,7 @@
 }
 
 .profile-social .linkedin:hover::before {
-    color: #0077b5;
+    color: var(--social-hover-linkedin);
 }
 
 .profile-social .steam {
@@ -312,7 +312,7 @@
 }
 
 .profile-social .steam:hover::before {
-    color: #010101;
+    color: var(--social-hover-steam);
 }
 
 .profile-social .others {
@@ -325,7 +325,7 @@
 }
 
 .profile-social .others:hover::before {
-    color: #8090b0;
+    color: var(--social-hover-other);
 }
 
 .profile-social .rss::before {
@@ -365,7 +365,7 @@
 
 .friends {
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
     text-align: left;
 }
 
@@ -377,7 +377,7 @@
 
 .friends a {
     margin-right: 0.6rem;
-    color: #777;
+    color: var(--text-tertiary);
 }
 
 .friends a:hover {
@@ -386,13 +386,13 @@
 
 .profile-link-item {
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .profile-link-item a {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #777;
+    color: var(--text-tertiary);
 }
 
 .profile-link-item a:hover {
