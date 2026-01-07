@@ -74,27 +74,47 @@ const initScroll = () => {
     // 判断是否为 post-page
     const isPostPage = archerUtil.isPostPage();
     let articleHeight, articleTop;
+
     if (isPostPage) {
-        articleTop = bgTitleHeight;
-        // 如果执行时动画已执行完毕
-        articleHeight = $('.article-entry').outerHeight();
-        // 如果执行时动画未执行完毕
-        $('.container').on('transitionend', () => {
+        // 使用 ResizeObserver 监听高度变化
+        const updateDimensions = () => {
+            articleTop = hasIntro ? $bgEle.offset().top + $bgEle.outerHeight() - $header.height() / 2 : 0;
             articleHeight = $('.article-entry').outerHeight();
+        };
+
+        const resizeObserver = new ResizeObserver(() => {
+            updateDimensions();
+            updateScroll($(document).scrollTop());
         });
+
+        const articleEntry = document.querySelector('.article-entry');
+        if (articleEntry) {
+            resizeObserver.observe(articleEntry);
+        }
+
+        // 初始计算
+        updateDimensions();
     }
 
     const calcReadPercent = (scrollTop, beginY, contentHeight) => {
-        const windowHeight = $(window).height();
-        let readPercent;
-        if (scrollTop < bgTitleHeight) {
-            readPercent = 0;
-        } else {
-            readPercent = ((scrollTop - beginY) / (contentHeight - windowHeight)) * 100;
+        const windowHeight = window.innerHeight;
+
+        // 如果高度未加载或异常，返回 0
+        if (!contentHeight) {
+            return 0;
         }
-        // 防止文章过短，产生负百分比
-        readPercent = readPercent >= 0 ? readPercent : 100;
-        return readPercent;
+
+        // 防止文章过短，直接返回 100%
+        if (contentHeight <= windowHeight) {
+            return 100;
+        }
+
+        if (scrollTop < beginY) {
+            return 0;
+        }
+
+        let readPercent = ((scrollTop - beginY) / (contentHeight - windowHeight)) * 100;
+        return readPercent > 100 ? 100 : readPercent;
     };
 
     const updateReadProgress = (readPercent) => {
