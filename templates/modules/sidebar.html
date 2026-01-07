@@ -1,12 +1,8 @@
 <!-- Sidebar component for Archer theme -->
-<div
-    th:fragment="sidebar"
-    class="sidebar sidebar-hide"
-    th:with="
+<div th:fragment="sidebar" class="sidebar sidebar-hide" th:with="
     allPosts = ${postFinder.list(1, 1000).items},
     allTags = ${tagFinder.listAll()},
-    allCategories = ${categoryFinder.listAll()}"
->
+    allCategories = ${categoryFinder.listAll()}">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
         <li class="sidebar-tab-archives">
             <span class="iconfont-archer">&#xe67d;</span>
@@ -30,10 +26,8 @@
                     <span th:text="${#lists.size(allPosts)}">0</span>
                 </div>
                 <!-- search -->
-                <div
-                    th:if="${theme.config.algolia_search?.enable == true}"
-                    class="site-search site-search-loading popup-trigger"
-                >
+                <div th:if="${pluginFinder.available('PluginSearchWidget')}" class="site-search"
+                    onclick="SearchWidget.open()">
                     <span class="iconfont-archer search-icon">&#xe627;</span>
                 </div>
             </div>
@@ -42,25 +36,19 @@
                     <th:block th:each="post, postStat : ${allPosts}">
                         <th:block
                             th:with="currentYear=${post.spec.publishTime != null ? #dates.year(post.spec.publishTime) : 0},
-                              prevYear=${postStat.index > 0 and allPosts[postStat.index - 1].spec.publishTime != null ? #dates.year(allPosts[postStat.index - 1].spec.publishTime) : -1}"
-                        >
+                              prevYear=${postStat.index > 0 and allPosts[postStat.index - 1].spec.publishTime != null ? #dates.year(allPosts[postStat.index - 1].spec.publishTime) : -1}">
                             <th:block th:if="${postStat.first or currentYear != prevYear}">
                                 <th:block th:if="${not postStat.first}" th:utext="'&lt;/ul&gt;'"></th:block>
                                 <div class="archive-year" th:text="${currentYear}">2024</div>
                                 <th:block th:utext="'&lt;ul class=&quot;year-list&quot;&gt;'"></th:block>
                             </th:block>
                             <li class="archive-post-item">
-                                <span
-                                    class="archive-post-date"
-                                    th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}"
-                                >
+                                <span class="archive-post-date"
+                                    th:text="${#dates.format(post.spec.publishTime, 'MM/dd')}">
                                     01/01
                                 </span>
-                                <a
-                                    class="archive-post-title"
-                                    th:href="${post.status.permalink}"
-                                    th:text="${post.spec.title}"
-                                >
+                                <a class="archive-post-title" th:href="${post.status.permalink}"
+                                    th:text="${post.spec.title}">
                                     [Untitled Post]
                                 </a>
                             </li>
@@ -75,11 +63,8 @@
         <div class="sidebar-panel-tags">
             <div class="sidebar-tags-name">
                 <th:block th:each="tag : ${allTags}">
-                    <a
-                        class="sidebar-tag-name"
-                        th:attr="data-tags=${tag.spec.displayName}"
-                        th:href="@{${tag.status.permalink}}"
-                    >
+                    <a class="sidebar-tag-name" th:attr="data-tags=${tag.spec.displayName}"
+                        th:href="@{${tag.status.permalink}}">
                         <span class="iconfont-archer" th:attr="data-tags=${tag.spec.displayName}">&#xe606;</span>
                         <span th:text="${tag.spec.displayName}" th:attr="data-tags=${tag.spec.displayName}">Tag</span>
                     </a>
@@ -96,18 +81,13 @@
         <div class="sidebar-panel-categories">
             <div class="sidebar-categories-name">
                 <th:block th:each="category : ${allCategories}">
-                    <a
-                        class="sidebar-category-name"
-                        th:attr="data-categories=${category.spec.displayName}"
-                        th:href="@{${category.status.permalink}}"
-                    >
+                    <a class="sidebar-category-name" th:attr="data-categories=${category.spec.displayName}"
+                        th:href="@{${category.status.permalink}}">
                         <span class="iconfont-archer" th:attr="data-categories=${category.spec.displayName}">
                             &#xe60a;
                         </span>
-                        <span
-                            th:text="${category.spec.displayName}"
-                            th:attr="data-categories=${category.spec.displayName}"
-                        >
+                        <span th:text="${category.spec.displayName}"
+                            th:attr="data-categories=${category.spec.displayName}">
                             Category
                         </span>
                     </a>

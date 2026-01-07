@@ -56,18 +56,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"
         onload="window.Fancybox && window.Fancybox.bind('[data-fancybox]')" defer></script>
 
-    <th:block th:if="${theme.config.algolia_search?.enable == true}">
-        <script th:inline="javascript">
-            window.algolia = {
-                applicationID: /*[[${theme.config.algolia_search.applicationID}]]*/ '',
-                apiKey: /*[[${theme.config.algolia_search.apiKey}]]*/ '',
-                indexName: /*[[${theme.config.algolia_search.indexName}]]*/ '',
-                hits: /*[[${#json.toJson(theme.config.algolia_search.hits)}]]*/ {},
-                labels: /*[[${#json.toJson(theme.config.algolia_search.labels)}]]*/ {},
-            };
-        </script>
-        <script th:src="@{/assets/dist/search.js}" type="module"></script>
-    </th:block>
+
 
     <th:block th:if="${theme.config.analytics?.busuanzi?.enable == true}">
         <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>

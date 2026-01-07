@@ -10,13 +10,13 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: path.resolve(__dirname, 'src/scripts/main.js'),
-                search: path.resolve(__dirname, 'src/scripts/search.js'),
+
                 share: path.resolve(__dirname, 'src/scripts/share.js'),
                 // CSS Entries
                 base: path.resolve(__dirname, 'src/styles/base.css'),
                 sidebar: path.resolve(__dirname, 'src/styles/sidebar.css'),
                 post: path.resolve(__dirname, 'src/styles/post.css'),
-                searchStyle: path.resolve(__dirname, 'src/styles/search.css'),
+
                 mobile: path.resolve(__dirname, 'src/styles/mobile.css'),
                 dark: path.resolve(__dirname, 'src/styles/dark.css'),
             },

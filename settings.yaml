@@ -217,28 +217,7 @@ spec:
                 label: '显示字数和阅读时间'
                 value: false
 
-        - group: search
-          label: '站内搜索'
-          formSchema:
-              - $formkit: checkbox
-                name: enable
-                label: '启用'
-                value: false
-              - $formkit: text
-                name: url
-                label: '搜索 URL'
-                description: "例如：'halo.run'"
-              - $formkit: radio
-                name: engine
-                label: '搜索引擎'
-                options:
-                    - label: 'bing'
-                      value: 'bing'
-                    - label: 'google'
-                      value: 'google'
-                    - label: 'baidu'
-                      value: 'baidu'
-                value: 'bing'
+
 
         - group: seo
           label: SEO 设置
