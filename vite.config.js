@@ -7,6 +7,14 @@ export default defineConfig({
         outDir: path.resolve(__dirname, 'templates/assets/dist'),
         emptyOutDir: true, // Clean the output directory before building
         manifest: true, // Generate manifest.json for easier asset loading in backend integration (optional but good)
+        minify: 'terser', // 使用 terser 进行压缩
+        terserOptions: {
+            compress: {
+                drop_console: true, // 生产环境移除 console.log
+                drop_debugger: true, // 移除 debugger
+                pure_funcs: ['console.log', 'console.info'], // 移除特定函数调用
+            },
+        },
         rollupOptions: {
             input: {
                 main: path.resolve(__dirname, 'src/scripts/main.js'),

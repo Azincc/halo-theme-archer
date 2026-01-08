@@ -1,3 +1,6 @@
+/* Import perfect-scrollbar styles */
+@import 'perfect-scrollbar/css/perfect-scrollbar.css';
+
 /* Sidebar & Profile Styles */
 .profile {
     padding-top: 1rem;

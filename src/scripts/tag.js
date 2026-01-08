@@ -61,9 +61,7 @@ class MetaInfo {
             });
             this._createPostsDom(corrArr);
         } catch (error) {
-            console.error(
-                'Please make sure you have the content.json file generated correctly.',
-            );
+            console.error('Please make sure you have the content.json file generated correctly.');
         }
     }
 
@@ -181,30 +179,17 @@ class SidebarMeta {
     }
 
     // fetch content.json
+    // NOTE: In Halo theme, this feature is disabled because tags and categories
+    // are already server-side rendered with direct links to their respective pages.
+    // The client-side filtering functionality from Hexo theme is not needed.
     _fetchInfo() {
-        // siteMeta is from js-info.ejs
-        const contentURL = siteMeta.root + 'content.json?t=' + Number(new Date());
-        const xhr = new XMLHttpRequest();
-        xhr.responseType = '';
-        xhr.open('get', contentURL, true);
+        // Disabled: content.json fetching is not used in Halo
+        // Tags and categories in Halo have their own pages with server-side rendering
+        console.info('Tag filtering via content.json is disabled in Halo theme (not needed)');
+
+        // Clean up the error message element if it exists
         const loadFailed = document.querySelector('.tag-load-fail');
-        const that = this;
-        xhr.onload = function () {
-            if (this.status === 200 || this.status === 304) {
-                loadFailed?.remove();
-                // defensive programming if content.json format is not correct
-                const contentJSON = JSON.parse(this.responseText);
-                const posts = Array.isArray(contentJSON) ? contentJSON : contentJSON.posts;
-                if (posts && posts.length) {
-                    that.postsArr = posts;
-                    that.emitter.emit('DATA_FETCHED_SUCCESS');
-                }
-            } else {
-                // this.$currPostsContainer.remove(); // Removed in refactor as logic was unclear in original
-                console.error('Failed to load content.json');
-            }
-        };
-        xhr.send();
+        loadFailed?.remove();
     }
 
     _bindOtherClick() {

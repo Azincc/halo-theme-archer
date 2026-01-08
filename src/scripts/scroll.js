@@ -1,4 +1,5 @@
 import archerUtil from './util.js';
+import CONFIG from './config.js';
 
 const initScroll = () => {
     const banner = document.querySelector('.banner');
@@ -29,13 +30,13 @@ const initScroll = () => {
     });
 
     // 滚动式切换文章标题和站点标题
-    const showBannerScrollHeight = -200;
+    const showBannerScrollHeight = CONFIG.BANNER_SCROLL_THRESHOLD;
     let previousHeight = 0,
         continueScroll = 0;
 
     const isScrollingUpOrDown = (currTop) => {
         continueScroll += currTop - previousHeight;
-        if (continueScroll > 30) {
+        if (continueScroll > CONFIG.SCROLL_CONTINUE_THRESHOLD) {
             // 向下滑动
             continueScroll = 0;
             return 1;
@@ -82,7 +83,7 @@ const initScroll = () => {
         const updateDimensions = () => {
             articleTop = hasIntro
                 ? bgEle.getBoundingClientRect().top + window.scrollY + bgEle.offsetHeight - header.offsetHeight / 2
-                : 0;
+                : CONFIG.TOC_SCROLL_OFFSET;
             const articleEntry = document.querySelector('.article-entry');
             articleHeight = articleEntry ? articleEntry.offsetHeight : 0;
         };
@@ -115,11 +116,11 @@ const initScroll = () => {
         }
 
         if (scrollTop < beginY) {
-            return 0;
+            return CONFIG.MIN_READ_PROGRESS;
         }
 
         let readPercent = ((scrollTop - beginY) / (contentHeight - windowHeight)) * 100;
-        return readPercent > 100 ? 100 : readPercent;
+        return readPercent > CONFIG.MAX_READ_PROGRESS ? CONFIG.MAX_READ_PROGRESS : readPercent;
     };
 
     const updateReadProgress = (readPercent) => {
@@ -173,8 +174,8 @@ const initScroll = () => {
                 banner?.classList.add('banner-show');
             }
 
-            // 仅在桌面端的 Post 页面，阅读进度大于等于 50% 时，显示 Donate 按钮
-            if (readPercent >= 50) {
+            // 仅在桌面端的 Post 页面，阅读进度大于等于配置阈值时，显示 Donate 按钮
+            if (readPercent >= CONFIG.DONATE_SHOW_PROGRESS) {
                 donateBtn?.classList.remove('footer-fixed-btn--hidden');
             } else if (crossingState === -1 && !donateBtn?.classList.contains('footer-fixed-btn--active')) {
                 donateBtn?.classList.add('footer-fixed-btn--hidden');
@@ -194,9 +195,9 @@ const initScroll = () => {
     const onScroll = () => {
         const scrollTop = window.scrollY;
         const bindedUpdate = updateScroll.bind(null, scrollTop);
-        archerUtil.rafTick(tickingScroll, bindedUpdate);
+        tickingScroll = archerUtil.rafTick(tickingScroll, bindedUpdate);
     };
-    const throttleOnScroll = archerUtil.throttle(onScroll, 100);
+    const throttleOnScroll = archerUtil.throttle(onScroll, CONFIG.THROTTLE_DELAY);
 
     onScroll();
     document.addEventListener('scroll', throttleOnScroll);

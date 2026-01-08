@@ -8,8 +8,8 @@
     --bg-body: #fff;
     --bg-content: #fdfdfd;
     --bg-sidebar: #222;
-    --bg-secondary: #fdfdfd; 
-    
+    --bg-secondary: #fdfdfd;
+
     --text-primary: #333;
     --text-primary-hover: #fff;
     --text-secondary: #23394d;
@@ -17,28 +17,28 @@
     --text-light: #fff;
     --text-meta: #999;
     --text-abstract: #585858;
-    
+
     --border-color: rgba(0, 0, 0, 0.1);
     --border-input: silver;
-    
+
     --selection-color: #eee;
-    
+
     --code-bg: #eee;
     --blockquote-bg: #f6f6f6;
-    
+
     /* Button Variables */
     --btn-bg: #fff;
     --btn-border: #121212;
     --btn-text: #333;
-    
+
     --bg-note: transparent;
     --bg-note-warning: #fdf8ea;
     --shadow-popup: 0 0 3px 1px #f0f0f0;
-    
+
     --bg-read-progress: rgba(0, 0, 0, 0.7);
     --bg-banner: rgba(255, 255, 255, 0.8);
     --border-banner: rgba(0, 0, 0, 0.8);
-    
+
     /* Social Icons specific */
     --social-github-hover: #24292e;
     --social-hover-wechat: #42ae3c;
@@ -55,9 +55,9 @@
     --social-hover-steam: #010101;
     --social-hover-other: #8090b0;
     --social-hover-email: #0cb49d;
-    
+
     --text-slogan: #252525;
-    
+
     --table-border: #ddd;
     --table-th-bg: #f8f8f8;
     --table-hover-bg: #efefef;
@@ -69,37 +69,37 @@
     --bg-body: #121212;
     --bg-content: #181818;
     --bg-secondary: #181818;
-    
+
     --text-primary: rgba(255, 255, 255, 0.87);
     --text-primary-hover: #fff;
     --text-secondary: rgba(255, 255, 255, 0.6);
     --text-tertiary: #777;
     --text-meta: rgba(255, 255, 255, 0.38);
     --text-abstract: rgba(255, 255, 255, 0.6);
-    
+
     --border-color: rgba(255, 255, 255, 0.1);
-    
+
     --selection-color: snow;
-    
+
     --code-bg: #282c34;
     --blockquote-bg: #1e1e1e;
-    
+
     --btn-bg: rgba(18, 18, 18, 0.8);
     --btn-border: rgba(255, 255, 255, 0.87);
     --btn-text: rgba(255, 255, 255, 0.87);
-    
+
     --social-github-hover: #fff;
-    
+
     --bg-note: #1e1e1e;
     --bg-note-warning: #1e1e1e;
     --shadow-popup: 0 0 3px 1px #0f0f0f;
-    
+
     --bg-read-progress: rgba(255, 255, 255, 0.6);
     --bg-banner: rgba(0, 0, 0, 0.8);
     --border-banner: rgba(255, 255, 255, 0.87);
-    
+
     --text-slogan: rgba(255, 255, 255, 0.87);
-    
+
     --table-border: #2a2a2a;
     --table-th-bg: #1e1e1e;
     --table-hover-bg: #2a2a2a;

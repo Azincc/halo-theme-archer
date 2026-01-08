@@ -1,3 +1,5 @@
+import CONFIG from './config.js';
+
 // stopBodyScroll 方法依赖
 let bodyEl = document.body;
 let windowTop = 0;
@@ -74,11 +76,13 @@ const archerUtil = {
     },
 
     // rAF 的 ticking
+    // 返回新的 ticking 状态，调用方需要更新变量：ticking = rafTick(ticking, updateFunc)
     rafTick: function (ticking, updateFunc) {
         if (!ticking) {
             requestAnimationFrame(updateFunc);
+            return true;
         }
-        ticking = true;
+        return ticking;
     },
 
     // 固定 body
@@ -146,13 +150,12 @@ const archerUtil = {
     },
 
     isMobile: () => {
-        const MOBILE_MAX_WIDTH = 960;
         if (window.matchMedia) {
-            const mql = window.matchMedia(`screen and (max-width: ${MOBILE_MAX_WIDTH}px)`);
+            const mql = window.matchMedia(`screen and (max-width: ${CONFIG.MOBILE_BREAKPOINT}px)`);
             return mql.matches;
         } else {
             const innerWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if (innerWidth <= MOBILE_MAX_WIDTH) {
+            if (innerWidth <= CONFIG.MOBILE_BREAKPOINT) {
                 return true;
             }
             return false;

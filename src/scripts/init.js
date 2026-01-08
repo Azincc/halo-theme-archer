@@ -1,4 +1,4 @@
-import AnchorJS from 'https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/+esm';
+import AnchorJS from 'anchor-js';
 import toc from './toc.js';
 
 const init = function () {

@@ -1,8 +1,8 @@
-const initExcerpt = () => {
-    const DEFAULT_EXCERPT_DEPTH = 5;
+import CONFIG from './config.js';
 
+const initExcerpt = () => {
     function createExcerpt(element) {
-        const excerptDepth = parseInt(element.getAttribute('data-truncate-depth'), 10) || DEFAULT_EXCERPT_DEPTH;
+        const excerptDepth = parseInt(element.getAttribute('data-truncate-depth'), 10) || CONFIG.DEFAULT_EXCERPT_DEPTH;
 
         // Get all direct child elements (like <p>, <div>, etc.).
         const allChildElements = Array.from(element.children);
@@ -13,13 +13,13 @@ const initExcerpt = () => {
             const elementsToRemove = allChildElements.slice(excerptDepth);
 
             // Remove them from the DOM.
-            elementsToRemove.forEach(el => {
+            elementsToRemove.forEach((el) => {
                 element.removeChild(el);
             });
         }
     }
 
-    document.querySelectorAll('.truncate').forEach(element => {
+    document.querySelectorAll('.truncate').forEach((element) => {
         createExcerpt(element);
     });
 };

@@ -1,5 +1,6 @@
 import archerUtil from './util.js';
 import createTOC from './createToc.js';
+import CONFIG from './config.js';
 
 const isPostPage = archerUtil.isPostPage();
 
@@ -75,7 +76,7 @@ const main = () => {
     // 生成 TOC 结构
     const contentSelector = '.article-entry';
     const tocSelector = '.toc-wrapper';
-    const tocGenerated = createTOC(contentSelector, tocSelector, 'h1, h2, h3, h4, h5, h6');
+    const tocGenerated = createTOC(contentSelector, tocSelector, CONFIG.TOC_HEADING_SELECTORS);
 
     if (!tocGenerated) {
         console.warn('TOC generation failed, skipping TOC interaction initialization');
@@ -100,7 +101,7 @@ const main = () => {
     const getInitTocOnScrollFun = () => {
         const banner = document.querySelector('.banner');
         const tocItems = document.querySelectorAll('.toc-item');
-        const headers = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        const headers = article.querySelectorAll(CONFIG.TOC_HEADING_SELECTORS);
 
         let throttleTocOnScroll = null;
         return () => {
@@ -143,12 +144,12 @@ const main = () => {
             // Unbind existing on-scroll event
             if (throttleTocOnScroll) document.removeEventListener('scroll', throttleTocOnScroll);
             // Bind document on-scroll event
-            throttleTocOnScroll = archerUtil.throttle(tocOnScroll, 100);
+            throttleTocOnScroll = archerUtil.throttle(tocOnScroll, CONFIG.THROTTLE_DELAY);
             document.addEventListener('scroll', throttleTocOnScroll);
         };
     };
     const initTocOnScroll = getInitTocOnScrollFun();
-    const throttleInitTocOnScroll = archerUtil.debounce(initTocOnScroll, 300);
+    const throttleInitTocOnScroll = archerUtil.debounce(initTocOnScroll, CONFIG.DEBOUNCE_DELAY);
     // #endregion
 
     // Collapse all toc on initialization

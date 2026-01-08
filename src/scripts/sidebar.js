@@ -1,4 +1,4 @@
-import PerfectScrollbar from 'https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/+esm';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 const Selector = (classPrefix) => ({
     ACTIVE: `${classPrefix}-active`,
