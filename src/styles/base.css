@@ -428,12 +428,12 @@ li {
 
 ::-moz-selection {
     background: var(--main-color, #f75357);
-    color: var(--text-selection);
+    color: #fff;
 }
 
 ::selection {
     background: var(--main-color, #f75357);
-    color: var(--text-selection);
+    color: #fff;
 }
 
 .fancy-link {
