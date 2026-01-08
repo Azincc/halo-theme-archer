@@ -675,7 +675,8 @@ html::-webkit-scrollbar-track:hover,
     display: inline-block;
     border: 1px solid #fff;
     border-radius: 5rem;
-    padding: 0.07rem 0.4rem 0.1rem 0.4rem;
+    padding: 0.15rem 0.4rem;
+    line-height: 1.35;
     margin: 0.2rem 0;
     white-space: nowrap;
     font-size: 1rem;

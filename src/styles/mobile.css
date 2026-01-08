@@ -198,11 +198,20 @@ header .header-sidebar-menu {
 header .header-sidebar-menu-rounded {
     width: 2.5rem;
     height: 2.5rem;
-    line-height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0, -50%);
 }
 
 .footer-fixed-btn {
     display: none;
+}
+
+.footer-fixed-btn.footer-fixed-btn--rounded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .post-paginator li {

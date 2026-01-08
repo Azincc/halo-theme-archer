@@ -142,27 +142,32 @@ const initScroll = () => {
         // intro 边界切换
         if (crossingState === 1) {
             tocWrapper?.classList.add('toc-fixed');
-            header?.classList.remove('header-mobile');
-            headerActions?.classList.add('header-actions-hide');
+            // 移动端保持 header-mobile 类，不切换 header 样式
+            if (!isMobile) {
+                header?.classList.remove('header-mobile');
+                headerActions?.classList.add('header-actions-hide');
+            }
             sidebarMenu?.classList.add('header-sidebar-menu-black');
             backTop?.classList.remove('footer-fixed-btn--hidden');
         } else if (crossingState === -1) {
             tocWrapper?.classList.remove('toc-fixed');
-            header?.classList.add('header-mobile');
-            headerActions?.classList.remove('header-actions-hide');
+            if (!isMobile) {
+                header?.classList.add('header-mobile');
+                headerActions?.classList.remove('header-actions-hide');
+            }
             banner?.classList.remove('banner-show');
             sidebarMenu?.classList.remove('header-sidebar-menu-black');
             backTop?.classList.add('footer-fixed-btn--hidden');
         }
 
-        if (isMobile) {
-            // 移动端在所有页面的主内容区域时，显示 toggle banner
-            if (isHigherThanIntro) {
-                banner?.classList.remove('banner-show');
-            } else {
-                banner?.classList.add('banner-show');
-            }
-        }
+        // 移动端不切换 banner，保持顶栏固定
+        // if (isMobile) {
+        //     if (isHigherThanIntro) {
+        //         banner?.classList.remove('banner-show');
+        //     } else {
+        //         banner?.classList.add('banner-show');
+        //     }
+        // }
 
         if (!isMobile && isPostPage) {
             const upDownState = isScrollingUpOrDown(scrollTop);

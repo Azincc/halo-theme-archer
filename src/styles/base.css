@@ -559,9 +559,11 @@ li {
     background-color: var(--btn-bg);
     width: 2.7rem;
     height: 2.7rem;
-    line-height: 2.7rem;
     border: unset;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-fixed-btn--rounded:hover {
@@ -1089,9 +1091,11 @@ header .header-element {
     transform: translate(0, -50%);
     width: 2.7rem;
     height: 2.7rem;
-    line-height: 2.7rem;
     border: unset;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-sidebar-menu-rounded.header-sidebar-menu-active {

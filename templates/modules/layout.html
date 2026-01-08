@@ -34,7 +34,7 @@
         </div>
 
         <!-- TOC -->
-        <th:block th:if="${templateId == 'post'}">
+        <th:block th:if="${templateId == 'post' and (theme.config.style.toc ?: true)}">
             <th:block th:replace="~{modules/toc :: toc}"></th:block>
         </th:block>
 
