@@ -56,8 +56,8 @@ jobs:
 
             - name: Package theme
               run: |
-                  mkdir -p dist
-                  zip -r dist/halo-theme-archer-${{ env.VERSION }}.zip templates settings.yaml theme.yaml README.md
+                  chmod +x package-theme.sh
+                  ./package-theme.sh ${{ env.VERSION }}
 
             - name: Create Release
               id: create_release

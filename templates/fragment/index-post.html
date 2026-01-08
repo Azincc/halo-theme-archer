@@ -4,15 +4,14 @@
         <span class="abstract-title-text" th:text="${post.spec.title ?: '[Untitled Post]'}">Post Title</span>
     </a>
 
-    <th:block
-        th:with="postDepthStr=${post.metadata.annotations != null ? post.metadata.annotations['rich_excerpt_depth'] : null},
-                 isRich=${theme.config.style.enable_rich_excerpt and !#strings.isEmpty(postDepthStr)},
+    <th:block <th:block th:with="postDepthStr=${post.metadata.annotations != null ? post.metadata.annotations['rich_excerpt_depth'] : null},
                  finalDepth=${!#strings.isEmpty(postDepthStr) ? T(java.lang.Integer).parseInt(postDepthStr) : 0},
+                 isRich=${theme.config.style.enable_rich_excerpt and finalDepth > 0},
                  fullContentVo=${isRich ? postFinder.content(post.metadata.name) : null}">
 
         <div th:classappend="${finalDepth > 0} ? 'truncate' : ''"
-             th:attr="data-truncate-depth=${finalDepth > 0 ? finalDepth : ''}"
-             class="abstract-content rich-content" th:if="${isRich} and ${fullContentVo != null}">
+            th:attr="data-truncate-depth=${finalDepth > 0 ? finalDepth : ''}" class="abstract-content rich-content"
+            th:if="${isRich} and ${fullContentVo != null}">
             <th:block th:utext="${fullContentVo.content}"></th:block>
             <!-- Add a fade-out effect overlay if desired, or relying on height limit -->
         </div>

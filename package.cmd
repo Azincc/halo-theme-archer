@@ -14,6 +14,6 @@ ECHO 正在使用 tar 压缩文件...
 REM -a (自动根据扩展名 .zip 选择压缩格式)
 REM -c (创建 Create)
 REM -f (指定文件名 File)
-tar.exe -a -c -f theme.zip templates settings.yaml theme.yaml README.md
+tar.exe -a -c -f theme.zip templates settings.yaml theme.yaml README.md annotation-setting.yaml
 
 ECHO 压缩完成: theme.zip
