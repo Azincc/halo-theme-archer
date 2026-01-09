@@ -6,21 +6,15 @@
     <meta name="copyright" th:content="${theme.config.profile.author ?: site.title}" />
 
     <!-- SEO Keywords -->
-    <th:block
-        th:with="keywords=${post != null && not #lists.isEmpty(post.tags) ? #strings.listJoin(post.tags.![spec.displayName], ',')
+    <th:block th:with="keywords=${post != null && not #lists.isEmpty(post.tags) ? #strings.listJoin(post.tags.![spec.displayName], ',')
       : (singlePage != null && not #lists.isEmpty(singlePage.tags) ? #strings.listJoin(singlePage.tags.![spec.displayName], ',')
-      : (!#strings.isEmpty(theme.config.seo?.SEO_keywords) ? theme.config.seo.SEO_keywords
-      : (!#strings.isEmpty(theme.config.custom?.keywords) ? theme.config.custom.keywords : site.title + ',' + (theme.config.profile.author ?: site.title))))}"
-    >
+      : site.title + ',' + (theme.config.profile.author ?: site.title))}">
         <meta name="keywords" th:content="${keywords}" />
     </th:block>
 
-    <!-- SEO Description -->
     <th:block
         th:with="description=${post != null && post.status != null && !#strings.isEmpty(post.status.excerpt) ? post.status.excerpt
-      : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt
-      : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
-    >
+      : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt : site.title)}">
         <meta name="description" th:content="${description}" />
     </th:block>
 
@@ -28,85 +22,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!-- Favicon -->
-    <link rel="icon" th:href="${theme.config.basic.favicon ?: site.favicon}" />
+    <link rel="icon" th:href="${site.favicon}" />
 
-    <!-- RSS Feed -->
-    <link
-        th:if="${theme.config.seo?.feed?.enable == true && !#strings.isEmpty(theme.config.seo.feed.path)}"
-        rel="alternate"
-        th:href="@{${theme.config.seo.feed.path}}"
-        th:title="${theme.config.basic.main_title ?: site.title}"
-        type="application/atom+xml"
-    />
+
 
     <!-- SEO Title -->
-    <th:block
-        th:with="
+    <th:block th:with="
     pageTitle=${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : null)},
-    seoTitle=${theme.config.seo?.SEO_title ?: site.title},
-    fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (_title != null ? _title : seoTitle)}"
-    >
+    seoTitle=${site.title},
+    fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (_title != null ? _title : seoTitle)}">
         <title th:text="${fullTitle}"></title>
     </th:block>
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta
-        property="og:title"
-        th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}"
-    />
-    <meta
-        property="og:url"
-        th:content="${post != null ? post.status.permalink : (singlePage != null ? singlePage.status.permalink : site.url)}"
-    />
+    <meta property="og:title"
+        th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
+    <meta property="og:url"
+        th:content="${post != null ? post.status.permalink : (singlePage != null ? singlePage.status.permalink : site.url)}" />
     <meta property="og:site_name" th:content="${site.title}" />
-    <meta
-        property="og:description"
-        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
-    />
+    <meta property="og:description"
+        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.title)}" />
     <meta property="og:locale" th:content="${#locale.language}" />
     <meta property="og:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
-    <meta
-        property="og:image"
-        th:if="${singlePage != null && singlePage.spec.cover != null}"
-        th:content="${singlePage.spec.cover}"
-    />
+    <meta property="og:image" th:if="${singlePage != null && singlePage.spec.cover != null}"
+        th:content="${singlePage.spec.cover}" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" th:if="${theme.config.seo?.twitter_id != null}" />
-    <meta
-        name="twitter:site"
-        th:if="${theme.config.seo?.twitter_id != null}"
-        th:content="${'@' + theme.config.seo.twitter_id}"
-    />
-    <meta
-        name="twitter:title"
-        th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}"
-    />
-    <meta
-        name="twitter:description"
-        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
-    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+        th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}" />
+    <meta name="twitter:description"
+        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.title)}" />
     <meta name="twitter:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
+    <meta name="twitter:site" th:if="${theme.config.social_meta?.twitter_id != null}"
+        th:content="${'@' + theme.config.social_meta.twitter_id}" />
 
     <!-- Facebook Meta -->
-    <meta
-        property="fb:admins"
-        th:if="${theme.config.seo?.fb_admins != null}"
-        th:content="${theme.config.seo.fb_admins}"
-    />
-    <meta
-        property="fb:app_id"
-        th:if="${theme.config.seo?.fb_app_id != null}"
-        th:content="${theme.config.seo.fb_app_id}"
-    />
+    <meta property="fb:admins" th:if="${theme.config.social_meta?.fb_admins != null}"
+        th:content="${theme.config.social_meta.fb_admins}" />
+    <meta property="fb:app_id" th:if="${theme.config.social_meta?.fb_app_id != null}"
+        th:content="${theme.config.social_meta.fb_app_id}" />
+
 
     <!-- Base preload polyfill -->
     <script>
         (function (w) {
             'use strict';
             if (!w.loadCSS) {
-                w.loadCSS = function () {};
+                w.loadCSS = function () { };
             }
             var rp = (loadCSS.relpreload = {});
             rp.support = (function () {
@@ -177,76 +141,40 @@
     </script>
 
     <!-- Stylesheets -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-        crossorigin="anonymous"
-    />
-    <link
-        id="stylesheet-fancybox"
-        rel="preload"
-        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css"
-        as="style"
-        integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb"
-        crossorigin="anonymous"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link id="stylesheet-fancybox" rel="preload"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" as="style"
+        integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb" crossorigin="anonymous"
         onload="
             this.onload = null;
             this.rel = 'stylesheet';
-        "
-    />
+        " />
     <noscript>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css"
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css"
             integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb"
-            crossorigin="anonymous"
-        />
+            crossorigin="anonymous" />
     </noscript>
-    <link
-        id="stylesheet-base"
-        rel="preload"
-        th:href="@{/assets/dist/base.css}"
-        as="style"
-        onload="
+    <link id="stylesheet-base" rel="preload" th:href="@{/assets/dist/base.css}" as="style" onload="
             this.onload = null;
             this.rel = 'stylesheet';
-        "
-    />
-    <link
-        id="stylesheet-sidebar"
-        rel="preload"
-        th:href="@{/assets/dist/sidebar.css}"
-        as="style"
-        onload="
+        " />
+    <link id="stylesheet-sidebar" rel="preload" th:href="@{/assets/dist/sidebar.css}" as="style" onload="
             this.onload = null;
             this.rel = 'stylesheet';
-        "
-    />
+        " />
     <noscript>
         <link rel="stylesheet" th:href="@{/assets/dist/style.css}" />
     </noscript>
-    <link
-        th:if="${templateId == 'post'}"
-        rel="preload"
-        th:href="@{/assets/dist/post.css}"
-        as="style"
-        onload="
+    <link th:if="${templateId == 'post'}" rel="preload" th:href="@{/assets/dist/post.css}" as="style" onload="
             this.onload = null;
             this.rel = 'stylesheet';
-        "
-    />
-    <link
-        id="stylesheet-mobile"
-        rel="preload"
-        th:href="@{/assets/dist/mobile.css}"
-        as="style"
-        onload="
+        " />
+    <link id="stylesheet-mobile" rel="preload" th:href="@{/assets/dist/mobile.css}" as="style" onload="
             this.onload = null;
             this.rel = 'stylesheet';
             this.media = 'screen and (max-width: 960px)';
-        "
-    />
+        " />
     <noscript>
         <link rel="stylesheet" th:href="@{/assets/dist/mobile.css}" media="screen and (max-width: 960px)" />
     </noscript>
@@ -266,19 +194,10 @@
     <!-- Fonts -->
 
     <link rel="preload" th:href="@{/assets/font/Oswald-Regular.ttf}" as="font" type="font/ttf" crossorigin />
-    <link
-        rel="preload"
-        href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff"
-        as="font"
-        type="font/woff"
-        crossorigin
-    />
-    <link
-        rel="stylesheet"
-        href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.css"
-        integrity="sha384-C0gGHuE2m2aydcd5JYOecH4uZAT950Fp42rkjNOuJ/Fwn3e1OgxRGDYLNUlS4XNb"
-        crossorigin="anonymous"
-    />
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" type="font/woff"
+        crossorigin />
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.css"
+        integrity="sha384-C0gGHuE2m2aydcd5JYOecH4uZAT950Fp42rkjNOuJ/Fwn3e1OgxRGDYLNUlS4XNb" crossorigin="anonymous" />
 
     <!-- Algolia Search Configuration -->
     <script th:if="${theme.config.algolia_search?.enable == true}" th:inline="javascript">
@@ -330,11 +249,9 @@
     </script>
 
     <!-- Google Analytics (gtag.js) -->
-    <script
-        th:if="${!#strings.isEmpty(theme.config.analytics.google_analytics)}"
+    <script th:if="${!#strings.isEmpty(theme.config.analytics.google_analytics)}"
         th:src="|https://www.googletagmanager.com/gtag/js?id=${theme.config.analytics.google_analytics}|"
-        async
-    ></script>
+        async></script>
     <script th:if="${!#strings.isEmpty(theme.config.analytics.google_analytics)}" th:inline="javascript">
         /*<![CDATA[*/
         window.dataLayer = window.dataLayer || [];
@@ -346,14 +263,11 @@
         /*]]>*/
     </script>
 
-    <style
-        th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
-        th:utext="${theme.config.custom.code_css}"
-    ></style>
+
     <style
         th:if="${not #strings.isEmpty(theme.config.style.main_color_light) or not #strings.isEmpty(theme.config.style.main_color_dark)}"
-        th:utext="|:root{--main-color-light: ${theme.config.style.main_color_light ?: '#f75357'}; --main-color-dark: ${theme.config.style.main_color_dark ?: '#f75357'}; --main-color: var(--main-color-light); --halo-search-widget-primary-color: var(--main-color);}|"
-    ></style>
+        th:utext="|:root{--main-color-light: ${theme.config.style.main_color_light ?: '#f75357'}; --main-color-dark: ${theme.config.style.main_color_dark ?: '#f75357'}; --main-color: var(--main-color-light); --halo-search-widget-primary-color: var(--main-color);}|">
+    </style>
     <script>
         (function () {
             const updateThemeColor = () => {
@@ -370,8 +284,5 @@
             observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         })();
     </script>
-    <th:block
-        th:if="${not #strings.isEmpty(theme.config.custom.head_html)}"
-        th:utext="${theme.config.custom.head_html}"
-    ></th:block>
+
 </head>

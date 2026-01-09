@@ -4,21 +4,6 @@ metadata:
     name: halo-theme-archer-setting
 spec:
     forms:
-        - group: basic
-          label: 基础设置
-          formSchema:
-              - $formkit: text
-                name: main_title
-                label: 主标题
-                value: "Archer's Blog"
-              - $formkit: text
-                name: subtitle
-                label: 副标题
-                value: "it's better to burn out than to fade away"
-              - $formkit: attachment
-                name: favicon
-                label: 网站图标
-                value: '/assets/favicon.ico'
 
         - group: profile
           label: 个人资料
@@ -218,19 +203,9 @@ spec:
                 label: '显示字数和阅读时间'
                 value: false
 
-        - group: seo
-          label: SEO 设置
+        - group: social_meta
+          label: 社交媒体
           formSchema:
-              - $formkit: text
-                name: SEO_title
-                label: 网站标题
-                value: "Archer's Blog"
-                help: 用于 SEO 的网站标题，会显示在浏览器标签和搜索结果中
-              - $formkit: text
-                name: SEO_keywords
-                label: 网站关键词
-                value: 'halo,halo-theme,halo-blog'
-                help: 多个关键词用逗号分隔
               - $formkit: text
                 name: twitter_id
                 label: Twitter ID
@@ -241,19 +216,6 @@ spec:
               - $formkit: text
                 name: fb_app_id
                 label: Facebook App ID
-              - $formkit: group
-                name: feed
-                label: RSS Feed
-                children:
-                    - $formkit: checkbox
-                      name: enable
-                      label: 启用 RSS
-                      value: false
-                    - $formkit: text
-                      name: path
-                      label: RSS 路径
-                      value: '/rss.xml'
-                      help: RSS feed 的路径
 
         - group: donate
           label: 赞赏设置
@@ -422,30 +384,3 @@ spec:
                       label: '字体 CDN URL'
                       value: 'https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap'
 
-        - group: custom
-          label: 扩展设置
-          formSchema:
-              - $formkit: textarea
-                name: keywords
-                label: SEO关键词
-                rows: 3
-              - $formkit: code
-                name: code_css
-                label: 自定义CSS代码
-                height: 200px
-                language: css
-              - $formkit: code
-                name: code_js
-                label: 自定义JavaScript代码
-                height: 200px
-                language: javascript
-              - $formkit: code
-                name: head_html
-                label: 自定义HTML代码-头部
-                height: 200px
-                language: html
-              - $formkit: code
-                name: footer_html
-                label: 自定义HTML代码-底部
-                height: 200px
-                language: html
