@@ -1,15 +1,22 @@
-<header th:fragment="header" class="header header-mobile"
-    th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'">
+<header
+    th:fragment="header"
+    class="header header-mobile"
+    th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'"
+>
     <!-- top read progress line -->
     <div class="header-element">
-        <div th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
-            class="read-progress"></div>
+        <div
+            th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
+            class="read-progress"
+        ></div>
     </div>
 
     <!-- sidebar menu button -->
     <div class="header-element">
-        <div class="header-sidebar-menu"
-            th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'">
+        <div
+            class="header-sidebar-menu"
+            th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
+        >
             <th:block th:if="${theme.config.style?.float_button_theme == 'rounded'}">
                 <i class="fas fa-bars"></i>
             </th:block>
