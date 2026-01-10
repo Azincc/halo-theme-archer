@@ -355,29 +355,29 @@ spec:
                       name: enable
                       label: '启用'
                       value: false
-                    - $formkit: text
-                      name: version
-                      label: '版本'
-                      value: '8.11.0'
-                    - $formkit: text
+                    - $formkit: select
                       name: theme
                       label: '主题'
-                      value: 'dark'
+                      value: 'auto'
+                      options:
+                          - label: 跟随系统
+                            value: auto
+                          - label: 默认
+                            value: default
+                          - label: 深色
+                            value: dark
+                          - label: 森林
+                            value: forest
+                          - label: 中性
+                            value: neutral
               - $formkit: group
                 name: math
                 label: 'LaTeX 数学公式'
                 children:
-                    - $formkit: group
-                      name: mathjax
-                      children:
-                          - $formkit: checkbox
-                            name: enable
-                            label: '启用 MathJax'
-                            value: false
-                          - $formkit: text
-                            name: version
-                            label: '版本'
-                            value: '3.2.0'
+                    - $formkit: checkbox
+                      name: enable
+                      label: '启用 MathJax'
+                      value: false
               - $formkit: group
                 name: custom_font
                 label: '自定义字体'

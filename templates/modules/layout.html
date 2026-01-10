@@ -73,12 +73,80 @@
             <script th:src="@{/assets/dist/share.js}" type="module"></script>
         </th:block>
 
-        <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid.enable?: false)}">
+        <!-- Mermaid Diagrams -->
+        <th:block th:if="${templateId == 'post' and (theme.config.other.mermaid?.enable ?: false)}">
             <script
-                th:src="|https://cdn.jsdelivr.net/npm/mermaid@${theme.config.other.mermaid.version}/dist/mermaid.min.js|"
-                th:attr="onload=|window.mermaid && window.mermaid.initialize({theme: '${theme.config.other.mermaid.theme ?: 'default'}'})|"
-                async
+                src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"
+                th:data-theme="${theme.config.other.mermaid.theme ?: 'default'}"
+                data-cfasync="false"
+                onload="
+                    (function () {
+                        if (!window.mermaid) return;
+                        var isDark = document.documentElement.classList.contains('dark');
+                        var theme = this.dataset.theme;
+                        if (theme === 'auto') theme = isDark ? 'dark' : 'default';
+                        window.mermaid.initialize({ startOnLoad: false, theme: theme });
+                        // Convert mermaid code blocks
+                        var blocks = document.querySelectorAll('code.language-mermaid, code[class*=language-mermaid]');
+                        blocks.forEach(function (code, i) {
+                            var pre = code.closest('pre');
+                            var wrapper = pre ? pre.closest('shiki-code') || pre : code;
+                            var div = document.createElement('div');
+                            div.className = 'mermaid';
+                            div.id = 'mermaid-' + Date.now() + '-' + i;
+                            div.textContent = code.textContent.trim();
+                            if (wrapper.parentNode) wrapper.parentNode.replaceChild(div, wrapper);
+                        });
+                        window.mermaid.run();
+                    }).call(this)
+                "
             ></script>
+        </th:block>
+
+        <!-- MathJax LaTeX -->
+        <th:block th:if="${templateId == 'post' and (theme.config.other.math?.enable ?: false)}">
+            <script data-cfasync="false">
+                window.MathJax = {
+                    tex: {
+                        inlineMath: [
+                            ['$', '$'],
+                            ['\\(', '\\)'],
+                        ],
+                        displayMath: [
+                            ['$$', '$$'],
+                            ['\\[', '\\]'],
+                        ],
+                        processEscapes: true,
+                    },
+                    options: {
+                        skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+                    },
+                    startup: {
+                        pageReady: function () {
+                            // Convert latex code blocks before typesetting
+                            var blocks = document.querySelectorAll(
+                                'code.language-latex, code.language-math, code[class*=language-latex], code[class*=language-math]',
+                            );
+                            blocks.forEach(function (code) {
+                                var pre = code.closest('pre');
+                                var wrapper = pre ? pre.closest('shiki-code') || pre : code;
+                                var content = code.textContent.trim();
+                                var div = document.createElement('div');
+                                div.className = 'mathjax-block';
+                                // Check if already has delimiters
+                                if (/^\$\$[\s\S]*\$\$$/.test(content) || /^\\\[[\s\S]*\\\]$/.test(content)) {
+                                    div.textContent = content;
+                                } else {
+                                    div.textContent = '$$' + content + '$$';
+                                }
+                                if (wrapper.parentNode) wrapper.parentNode.replaceChild(div, wrapper);
+                            });
+                            return MathJax.startup.defaultPageReady();
+                        },
+                    },
+                };
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" data-cfasync="false"></script>
         </th:block>
 
         <th:block th:if="${page_js != null}" th:replace="${page_js}" />

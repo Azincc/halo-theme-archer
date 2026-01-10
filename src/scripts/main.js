@@ -6,6 +6,7 @@ import initScroll from './scroll.js';
 import initSidebar from './initSidebar.js';
 import initDonate from './donate.js';
 import initExcerpt from './excerpt.js';
+import { initMermaid, initMathJax } from './codeblock.js';
 
 // print console info
 const logStyle = 'color: #fff; background: #f75357; padding: 1px; border-radius: 5px;';
@@ -45,9 +46,15 @@ initExcerpt();
 // Export the main module API for external access
 const mainModule = {
     initializeColorScheme,
+    initMermaid,
+    initMathJax,
 };
 
 window.main = mainModule;
+
+// Global functions for script onload callbacks
+window.archerInitMermaid = initMermaid;
+window.archerInitMathJax = initMathJax;
 
 // Process any callbacks that were registered before module load
 if (window.__archerMainCallbacks && Array.isArray(window.__archerMainCallbacks)) {
