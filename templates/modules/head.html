@@ -9,8 +9,7 @@
     <th:block
         th:with="keywords=${post != null && not #lists.isEmpty(post.tags) ? #strings.listJoin(post.tags.![spec.displayName], ',')
       : (singlePage != null && not #lists.isEmpty(singlePage.tags) ? #strings.listJoin(singlePage.tags.![spec.displayName], ',')
-      : (!#strings.isEmpty(theme.config.seo?.SEO_keywords) ? theme.config.seo.SEO_keywords
-      : (!#strings.isEmpty(theme.config.custom?.keywords) ? theme.config.custom.keywords : site.title + ',' + (theme.config.profile.author ?: site.title))))}"
+      : site.title + ',' + (theme.config.profile.author ?: site.title))}"
     >
         <meta name="keywords" th:content="${keywords}" />
     </th:block>
@@ -28,22 +27,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!-- Favicon -->
-    <link rel="icon" th:href="${theme.config.basic.favicon ?: site.favicon}" />
-
-    <!-- RSS Feed -->
-    <link
-        th:if="${theme.config.seo?.feed?.enable == true && !#strings.isEmpty(theme.config.seo.feed.path)}"
-        rel="alternate"
-        th:href="@{${theme.config.seo.feed.path}}"
-        th:title="${theme.config.basic.main_title ?: site.title}"
-        type="application/atom+xml"
-    />
+    <link rel="icon" th:href="${site.favicon}" />
 
     <!-- SEO Title -->
     <th:block
         th:with="
     pageTitle=${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : null)},
-    seoTitle=${theme.config.seo?.SEO_title ?: site.title},
+    seoTitle=${site.title},
     fullTitle=${!#strings.isEmpty(pageTitle) ? pageTitle + ' · ' + seoTitle : (_title != null ? _title : seoTitle)}"
     >
         <title th:text="${fullTitle}"></title>
@@ -347,10 +337,6 @@
     </script>
 
     <style
-        th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
-        th:utext="${theme.config.custom.code_css}"
-    ></style>
-    <style
         th:if="${not #strings.isEmpty(theme.config.style.main_color_light) or not #strings.isEmpty(theme.config.style.main_color_dark)}"
         th:utext="|:root{--main-color-light: ${theme.config.style.main_color_light ?: '#f75357'}; --main-color-dark: ${theme.config.style.main_color_dark ?: '#f75357'}; --main-color: var(--main-color-light); --halo-search-widget-primary-color: var(--main-color);}|"
     ></style>
@@ -370,8 +356,4 @@
             observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         })();
     </script>
-    <th:block
-        th:if="${not #strings.isEmpty(theme.config.custom.head_html)}"
-        th:utext="${theme.config.custom.head_html}"
-    ></th:block>
 </head>

@@ -82,16 +82,5 @@
         </th:block>
 
         <th:block th:if="${page_js != null}" th:replace="${page_js}" />
-
-        <script
-            type="text/javascript"
-            th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
-            th:utext="${theme.config.custom.code_js}"
-        ></script>
-
-        <th:block
-            th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
-            th:utext="${theme.config.custom.footer_html}"
-        ></th:block>
     </body>
 </html>
