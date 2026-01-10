@@ -1,22 +1,15 @@
-<header
-    th:fragment="header"
-    class="header header-mobile"
-    th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'"
->
+<header th:fragment="header" class="header header-mobile"
+    th:classappend="${templateId != null and templateId == 'index'} ? ' index-header'">
     <!-- top read progress line -->
     <div class="header-element">
-        <div
-            th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
-            class="read-progress"
-        ></div>
+        <div th:classappend="${theme.config.style?.read_progress_color == 'feature'} ? ' read-progress-feature'"
+            class="read-progress"></div>
     </div>
 
     <!-- sidebar menu button -->
     <div class="header-element">
-        <div
-            class="header-sidebar-menu"
-            th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'"
-        >
+        <div class="header-sidebar-menu"
+            th:classappend="${theme.config.style?.float_button_theme == 'rounded'} ? ' header-sidebar-menu-rounded'">
             <th:block th:if="${theme.config.style?.float_button_theme == 'rounded'}">
                 <i class="fas fa-bars"></i>
             </th:block>
@@ -34,14 +27,14 @@
         </span>
         <!-- back to home page text -->
         <span class="home-link header-element">
-            <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Home</a>
+            <a th:href="@{/}" th:text="${site.title}">Home</a>
         </span>
     </div>
 
     <!-- toggle banner -->
     <div class="banner" th:classappend="${theme.config.style?.post_banner_theme == 'clean'} ? ' banner-clean'">
         <div class="blog-title header-element">
-            <a th:href="@{/}" th:text="${theme.config.style?.main_title ?: site.title}">Blog Title</a>
+            <a th:href="@{/}" th:text="${site.title}">Blog Title</a>
         </div>
         <div class="post-title header-element">
             <a href="#" class="post-name" th:text="${post?.spec?.title ?: page?.title ?: ''}"></a>

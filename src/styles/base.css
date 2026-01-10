@@ -813,7 +813,8 @@ li {
 }
 
 .footer .social .bilibili:hover::before {
-    color: var(--social-hover-wechat); /* Use roughly same blue or new var? Bilibili is blue. */
+    color: var(--social-hover-wechat);
+    /* Use roughly same blue or new var? Bilibili is blue. */
 }
 
 .footer .social .linkedin {
@@ -1143,7 +1144,7 @@ header .header-element {
     display: none;
 }
 
-.header-actions > span {
+.header-actions>span {
     margin-left: 1rem;
     padding: 0.5rem;
 }
@@ -1389,7 +1390,7 @@ header .banner.banner-clean {
     justify-content: center;
 }
 
-.page-nav > * {
+.page-nav>* {
     font:
         1.4rem 'Oswald-Regular',
         -apple-system,

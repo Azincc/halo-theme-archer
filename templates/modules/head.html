@@ -14,11 +14,9 @@
         <meta name="keywords" th:content="${keywords}" />
     </th:block>
 
-    <!-- SEO Description -->
     <th:block
         th:with="description=${post != null && post.status != null && !#strings.isEmpty(post.status.excerpt) ? post.status.excerpt
-      : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt
-      : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
+      : (singlePage != null && singlePage.status != null && !#strings.isEmpty(singlePage.status.excerpt) ? singlePage.status.excerpt : site.title)}"
     >
         <meta name="description" th:content="${description}" />
     </th:block>
@@ -52,7 +50,7 @@
     <meta property="og:site_name" th:content="${site.title}" />
     <meta
         property="og:description"
-        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
+        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.title)}"
     />
     <meta property="og:locale" th:content="${#locale.language}" />
     <meta property="og:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
@@ -63,32 +61,32 @@
     />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" th:if="${theme.config.seo?.twitter_id != null}" />
-    <meta
-        name="twitter:site"
-        th:if="${theme.config.seo?.twitter_id != null}"
-        th:content="${'@' + theme.config.seo.twitter_id}"
-    />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
         name="twitter:title"
         th:content="${post != null ? post.spec.title : (singlePage != null ? singlePage.spec.title : site.title)}"
     />
     <meta
         name="twitter:description"
-        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : (!#strings.isEmpty(theme.config.basic.subtitle) ? theme.config.basic.subtitle : site.title))}"
+        th:content="${post != null ? post.status.excerpt : (singlePage != null ? singlePage.status.excerpt : site.title)}"
     />
     <meta name="twitter:image" th:if="${post != null && post.spec.cover != null}" th:content="${post.spec.cover}" />
+    <meta
+        name="twitter:site"
+        th:if="${theme.config.social_meta?.twitter_id != null}"
+        th:content="${'@' + theme.config.social_meta.twitter_id}"
+    />
 
     <!-- Facebook Meta -->
     <meta
         property="fb:admins"
-        th:if="${theme.config.seo?.fb_admins != null}"
-        th:content="${theme.config.seo.fb_admins}"
+        th:if="${theme.config.social_meta?.fb_admins != null}"
+        th:content="${theme.config.social_meta.fb_admins}"
     />
     <meta
         property="fb:app_id"
-        th:if="${theme.config.seo?.fb_app_id != null}"
-        th:content="${theme.config.seo.fb_app_id}"
+        th:if="${theme.config.social_meta?.fb_app_id != null}"
+        th:content="${theme.config.social_meta.fb_app_id}"
     />
 
     <!-- Base preload polyfill -->

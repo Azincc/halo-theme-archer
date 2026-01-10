@@ -214,8 +214,8 @@ spec:
                 label: '显示字数和阅读时间'
                 value: false
 
-        - group: seo
-          label: SEO 设置
+        - group: social_meta
+          label: 社交媒体
           formSchema:
               - $formkit: text
                 name: twitter_id

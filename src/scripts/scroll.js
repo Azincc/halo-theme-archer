@@ -160,14 +160,16 @@ const initScroll = () => {
             backTop?.classList.add('footer-fixed-btn--hidden');
         }
 
-        // 移动端不切换 banner，保持顶栏固定
-        // if (isMobile) {
-        //     if (isHigherThanIntro) {
-        //         banner?.classList.remove('banner-show');
-        //     } else {
-        //         banner?.classList.add('banner-show');
-        //     }
-        // }
+        // 移动端切换 banner
+        if (isMobile) {
+            if (isHigherThanIntro) {
+                banner?.classList.remove('banner-show');
+                headerActions?.classList.remove('header-actions-hide');
+            } else {
+                banner?.classList.add('banner-show');
+                headerActions?.classList.add('header-actions-hide');
+            }
+        }
 
         if (!isMobile && isPostPage) {
             const upDownState = isScrollingUpOrDown(scrollTop);
