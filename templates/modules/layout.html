@@ -82,22 +82,65 @@
                 onload="
                     (function () {
                         if (!window.mermaid) return;
-                        var isDark = document.documentElement.classList.contains('dark');
-                        var theme = this.dataset.theme;
-                        if (theme === 'auto') theme = isDark ? 'dark' : 'default';
-                        window.mermaid.initialize({ startOnLoad: false, theme: theme });
-                        // Convert mermaid code blocks
+                        var configTheme = this.dataset.theme;
+                        var mermaidSources = [];
+
+                        function getMermaidTheme() {
+                            if (configTheme === 'auto') {
+                                return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+                            }
+                            return configTheme;
+                        }
+
+                        function renderMermaid() {
+                            var theme = getMermaidTheme();
+                            window.mermaid.initialize({ startOnLoad: false, theme: theme });
+
+                            mermaidSources.forEach(function (item, i) {
+                                var container = document.getElementById(item.id);
+                                if (container) {
+                                    container.removeAttribute('data-processed');
+                                    container.innerHTML = item.source;
+                                }
+                            });
+
+                            window.mermaid.run();
+                        }
+
+                        // Convert mermaid code blocks and save sources
                         var blocks = document.querySelectorAll('code.language-mermaid, code[class*=language-mermaid]');
                         blocks.forEach(function (code, i) {
                             var pre = code.closest('pre');
                             var wrapper = pre ? pre.closest('shiki-code') || pre : code;
+                            var source = code.textContent.trim();
+                            var id = 'mermaid-' + Date.now() + '-' + i;
+
+                            mermaidSources.push({ id: id, source: source });
+
                             var div = document.createElement('div');
                             div.className = 'mermaid';
-                            div.id = 'mermaid-' + Date.now() + '-' + i;
-                            div.textContent = code.textContent.trim();
+                            div.id = id;
+                            div.textContent = source;
                             if (wrapper.parentNode) wrapper.parentNode.replaceChild(div, wrapper);
                         });
-                        window.mermaid.run();
+
+                        // Initial render
+                        renderMermaid();
+
+                        // Watch for theme changes
+                        if (configTheme === 'auto') {
+                            var observer = new MutationObserver(function (mutations) {
+                                mutations.forEach(function (mutation) {
+                                    if (mutation.attributeName === 'class') {
+                                        renderMermaid();
+                                    }
+                                });
+                            });
+                            observer.observe(document.documentElement, {
+                                attributes: true,
+                                attributeFilter: ['class'],
+                            });
+                        }
                     }).call(this)
                 "
             ></script>
