@@ -223,6 +223,8 @@ v<major>.<minor>.<patch>
 
 ### Release Note 格式
 
+Release Note 写在 tag 的 message 部分（`git tag -a v0.1.2 -m "..."`）：
+
 ```markdown
 ## 🎉 New Features
 
