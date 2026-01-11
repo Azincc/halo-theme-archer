@@ -223,26 +223,35 @@ v<major>.<minor>.<patch>
 
 ### Release Note 格式
 
-Release Note 写在 tag 的 message 部分（`git tag -a v0.1.2 -m "..."`）：
-
-**⚠️ 注意**：Git tag message 中 `#` 开头的行会被视为注释而忽略，因此标题使用方括号 `[]` 而非 `##`。
+Release Note 写入 `release.md` 文件，然后使用该文件作为 tag message：
 
 ```markdown
-[New Features]
+## ✨ New Features
 
-- ✨ 新增了...
+- 新增了...
 
-[Bug Fixes]
+## 🐛 Bug Fixes
 
-- 🐞 修复了...
+- 修复了...
 
-[Improvements]
+## 🚀 Improvements
 
-- 🚀 优化了...
+- 优化了...
 
-[Chore]
+## 🔧 Chore
 
-- 🔧 更新了...
+- 更新了...
+```
+
+**发布流程**：
+
+```bash
+# 1. 编写 release.md
+# 2. 使用文件内容创建 tag（必须加 --cleanup=verbatim 保留 # 标题）
+git tag -a v0.1.x -F release.md --cleanup=verbatim
+
+# 3. 推送
+git push && git push --tags
 ```
 
 **内容要求**：总结从上一个 tag 到当前 tag 之间的所有修改。
