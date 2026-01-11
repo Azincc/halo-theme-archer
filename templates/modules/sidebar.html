@@ -3,7 +3,7 @@
     th:fragment="sidebar"
     class="sidebar sidebar-hide"
     th:with="
-    allPosts = ${postFinder.list(1, 1000).items},
+    allPosts = ${postFinder.list({page: 1, size: 1000, sort: {'spec.publishTime,desc'}}).items},
     allTags = ${tagFinder.listAll()},
     allCategories = ${categoryFinder.listAll()}"
 >

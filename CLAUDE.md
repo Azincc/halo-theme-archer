@@ -198,7 +198,7 @@ package.cmd       # 自动构建并打包主题为 theme.zip
 - 摘要截取通过 `excerpt.js` 实现
 - 全局设置在 `settings.yaml` 的 `rich_excerpt_depth` 字段
 - 单篇文章可通过注解 `annotation-setting.yaml` 覆盖全局设置
-- 截取行数为 0 时输出全文
+- 截取行数为 0 时显示系统默认摘要
 
 ### 打包发布
 

@@ -114,7 +114,8 @@
         |background-image: url(@{/assets/intro/index-bg.jpg});|"
         ></div>
         <div class="site-intro-meta">
-            <h1 class="intro-title" th:text="${site.title}">Main Title</h1>
+            <h1 class="intro-title" th:text="${theme.config.basic.main_title ?: site.title}">Main Title</h1>
+            <p class="intro-subtitle" th:text="${theme.config.basic.subtitle ?: ''}">Subtitle</p>
         </div>
     </div>
 
