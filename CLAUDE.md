@@ -225,20 +225,22 @@ v<major>.<minor>.<patch>
 
 Release Note 写在 tag 的 message 部分（`git tag -a v0.1.2 -m "..."`）：
 
+**⚠️ 注意**：Git tag message 中 `#` 开头的行会被视为注释而忽略，因此标题使用方括号 `[]` 而非 `##`。
+
 ```markdown
-## 🎉 New Features
+[New Features]
 
 - ✨ 新增了...
 
-## 🐛 Bug Fixes
+[Bug Fixes]
 
 - 🐞 修复了...
 
-## ⚡ Improvements
+[Improvements]
 
 - 🚀 优化了...
 
-## 🔨 Chore
+[Chore]
 
 - 🔧 更新了...
 ```
