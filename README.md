@@ -1,5 +1,7 @@
 # Halo-theme-archer
 
+![visitors](https://img.shields.io/endpoint?url=https://hits.dwyl.com/Azincc/halo-theme-archer.json&style=for-the-badge&logo=github&logoColor=white&label=VISITORS&color=f75357)
+
 ![preview.jpg](img/preview.jpg)
 
 <img src="img/Archer.webp" width="25%" alt="logo">
@@ -7,6 +9,8 @@
 本项目源于[hexo-theme-archer](https://github.com/fi3ework/hexo-theme-archer)
 
 保留原项目样式，使用halo特性实现功能
+
+📖 **[用户手册](docs/USER_GUIDE.md)** - 查看完整的主题配置指南
 
 ## 主题特色
 

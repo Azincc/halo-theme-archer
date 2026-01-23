@@ -393,6 +393,14 @@
     overflow: hidden;
 }
 
+/* THYUU embed background fix */
+.article-entry thyuu-embed,
+.article-entry .thyuu-music,
+.article-entry .thyuu-video {
+    background-color: var(--bg-content) !important;
+}
+
+
 .article-entry :first-child {
     margin-top: 0;
 }
@@ -512,7 +520,7 @@
     z-index: 1;
 }
 
-.toc-wrapper > * {
+.toc-wrapper>* {
     transform: translate(0, 0);
     transition:
         transform 0.3s ease-out,
@@ -537,7 +545,7 @@
     color: var(--main-color, #f75357) !important;
 }
 
-.toc-hide-children > * {
+.toc-hide-children>* {
     transform: translate(20%, 0);
     opacity: 0;
 }

@@ -1,10 +1,11 @@
 <th:block
-    th:with="pageTemplate=${singlePage.spec.slug != null && singlePage.spec.slug == 'about' ? 'about' : 'page'}"
+    th:with="pageTemplate=${singlePage.spec.template != null && singlePage.spec.template != '' ? singlePage.spec.template : (singlePage.spec.slug == 'about' ? 'about' : 'page')}"
     th:replace="~{modules/layout :: html(~{::content}, ~{::page_js}, ${singlePage.spec.title}, ${pageTemplate})}"
->
+    xmlns:th="http://www.w3.org/1999/xhtml">
     <th:block th:fragment="content">
-        <main class="main about-page">
+        <main class="main post-page" th:classappend="${singlePage.spec.slug == 'about' ? 'about-page' : ''}">
             <article class="article-entry" th:utext="${singlePage.content.content}"></article>
+
             <div class="post-comment" th:if="${singlePage.spec.allowComment}">
                 <halo:comment group="content.halo.run" kind="SinglePage" th:attr="name=${singlePage.metadata.name}" />
             </div>
