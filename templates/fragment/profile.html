@@ -24,6 +24,20 @@
         ></a>
     </div>
 
+    <!-- About Page Link -->
+    <th:block th:if="${theme.config.profile.profile_icons?.enable == true}">
+        <div class="profile-link-item about-link" th:with="aboutPage=${singlePageFinder.getByName('about')}">
+            <a th:if="${aboutPage != null}" th:href="${aboutPage.status.permalink}">
+                <i th:class="|profile-item-icon ${theme.config.profile.profile_icons.about ?: 'fas fa-id-card'}|"></i>
+                <span>About</span>
+            </a>
+            <a th:unless="${aboutPage != null}" th:href="@{/about}">
+                <i th:class="|profile-item-icon ${theme.config.profile.profile_icons.about ?: 'fas fa-id-card'}|"></i>
+                <span>About</span>
+            </a>
+        </div>
+    </th:block>
+
     <th:block th:if="${not #lists.isEmpty(theme.config.profile.profile_links)}">
         <div class="profile-link-item" th:each="link : ${theme.config.profile.profile_links}">
             <a th:href="${link.url}" target="_blank" rel="noopener noreferrer">
