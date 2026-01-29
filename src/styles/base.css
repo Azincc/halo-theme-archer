@@ -1497,6 +1497,98 @@ header .banner.banner-clean {
     color: var(--text-meta);
 }
 
+/* Error Page Content Styles */
+.error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+    padding: 2rem;
+}
+
+.error-content {
+    text-align: center;
+    max-width: 600px;
+    color: var(--text-secondary);
+}
+
+.error-message {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.error-detail {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+    word-break: break-word;
+}
+
+.error-hint {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.error-options {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text-tertiary);
+}
+
+.error-options li {
+    margin: 0.3rem 0;
+}
+
+.error-options li::before {
+    content: '•';
+    margin-right: 0.5rem;
+    color: var(--main-color, #f75357);
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.error-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.error-actions .btn-primary {
+    background-color: var(--main-color, #f75357);
+    color: #fff;
+}
+
+.error-actions .btn-primary:hover {
+    opacity: 0.85;
+}
+
+.error-actions .btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.error-actions .btn-secondary:hover {
+    background-color: var(--bg-secondary);
+}
+
+.error-actions .iconfont-archer {
+    font-size: 1rem;
+}
+
 .archer-float-left {
     float: left;
     margin-right: 1rem;

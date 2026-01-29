@@ -8,7 +8,7 @@
     <head th:replace="~{modules/head :: head(${_title}, ${templateId})}"></head>
 
     <body
-        th:with="bodyClass=${templateId == 'index' ? 'home-body' : templateId == 'post' ? 'post-body' : templateId == 'about' ? 'about-body' : templateId == '404' ? 'four-zero-four-body' : ''}"
+        th:with="bodyClass=${templateId == 'index' ? 'home-body' : templateId == 'post' ? 'post-body' : templateId == 'about' ? 'about-body' : templateId == '404' ? 'about-body error-body' : ''}"
         th:class="${bodyClass}"
         th:classappend="${#authentication.name != 'anonymousUser'} ? ' logged-in'"
     >

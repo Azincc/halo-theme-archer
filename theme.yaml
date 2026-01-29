@@ -4,7 +4,7 @@ metadata:
     name: halo-theme-archer
 spec:
     displayName: Archer
-    version: 1.0.0
+    version: 0.1.5
     author:
         name: Azincc
         website: https://github.com/fi3ework
