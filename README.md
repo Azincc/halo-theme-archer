@@ -76,7 +76,7 @@
 - [ ] 文章页横幅主题未实现
 - [x] 显示头像边框未实现 (avatar_border 配置)
 - [x] 启用文章目录开关未生效 (theme.config.style.toc)
-- [ ] 统计和页脚重复设置项
+- [x] 统计和页脚重复设置项 (已检查无重复)
 - [ ] 使用文档未完成
 - [x] about 和 friends跳转未实现 (v0.1.5 添加 About 链接到 profile)
 - [ ] intro图片给默认动画未实现
